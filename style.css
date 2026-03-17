@@ -454,3 +454,271 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .page-inner, .page-inner-wide { padding: 2.5rem 1.75rem 4rem; }
   .dre-grid-2 { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   LIGHT THEME — semantic tokens swap on [data-theme="light"]
+   Brookfield light: warm white pages, navy text, blue accents
+═══════════════════════════════════════════════════════ */
+
+/* Dark theme tokens (default — map onto existing variables) */
+:root {
+  --bg-page:      var(--navy);
+  --bg-sidebar:   var(--navy-mid);
+  --bg-card:      var(--navy-card);
+  --bg-panel:     var(--navy-lt);
+  --bg-alt:       var(--navy-mid);
+  --bg-re-panel:  var(--navy-lt);
+
+  --tx-h:         var(--on-dark-1);
+  --tx-body:      var(--on-dark-2);
+  --tx-2:         var(--on-dark-3);
+  --tx-muted:     var(--on-dark-4);
+  --tx-on-accent: #FFFFFF;
+
+  --bd:           var(--border-dark);
+  --bd-accent:    var(--blue-mid);
+
+  --accent-bg:    var(--blue);
+  --accent-text:  var(--blue-lt);
+  --accent-btn:   var(--blue-mid);
+
+  --signal-bg:    var(--signal-pale);
+  --teal-bg:      var(--teal-pale);
+  --amber-bg:     var(--amber-pale);
+}
+
+/* Light theme tokens */
+[data-theme="light"] {
+  --bg-page:      #F0F4F8;
+  --bg-sidebar:   #0D1C2E;
+  --bg-card:      #FFFFFF;
+  --bg-panel:     #E8EFF6;
+  --bg-alt:       #EBF2FA;
+  --bg-re-panel:  #E1ECF7;
+
+  --tx-h:         #0D1C2E;
+  --tx-body:      #1A2F44;
+  --tx-2:         #2C4460;
+  --tx-muted:     #4A6580;
+  --tx-on-accent: #FFFFFF;
+
+  --bd:           rgba(13,28,46,0.14);
+  --bd-accent:    #2E86C1;
+
+  --accent-bg:    #2E86C1;
+  --accent-text:  #1A5276;
+  --accent-btn:   #2E86C1;
+
+  --signal-bg:    #FDECEA;
+  --teal-bg:      #E8F8F5;
+  --amber-bg:     #FEF9E7;
+}
+
+/* Apply semantic tokens to all elements */
+body {
+  background: var(--bg-page);
+  color: var(--tx-body);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+/* Sidebar stays dark in both themes — Brookfield branding */
+.sidebar { background: var(--bg-sidebar); }
+
+/* Page backgrounds */
+.main-content { background: var(--bg-page); transition: background 0.3s var(--ease); }
+
+.hero-text-block { border-right-color: var(--bd); }
+.hero-stack-diagram { background: var(--bg-alt); transition: background 0.3s var(--ease); }
+.hero-title, .page-title { color: var(--tx-h); }
+.hero-body, .page-lead, .body-text { color: var(--tx-body); }
+
+/* Stack items light mode */
+[data-theme="light"] .stack-item { background: var(--bg-card); border-color: var(--bd); }
+[data-theme="light"] .si-name { color: var(--tx-h); }
+[data-theme="light"] .si-desc { color: var(--tx-muted); }
+
+/* Overview questions */
+.overview-questions { background: var(--bg-alt); border-top-color: var(--bd); transition: background 0.3s var(--ease); }
+.oq-item { background: var(--bg-card); transition: background 0.3s var(--ease); }
+.oq-item:hover { background: var(--bg-panel); }
+[data-theme="light"] .oq-item.added { background: #EAF4FD; }
+[data-theme="light"] .oq-item.added:hover { background: #D6EAF8; }
+[data-theme="light"] .oq-q { color: var(--tx-body); }
+
+/* Cards */
+.gap-col, .failure-item, .memory-card-item, .layer-block,
+.dre, .drift-intro-col, .dd-col, .tr-item, .vs-col.old {
+  background: var(--bg-card);
+  border-color: var(--bd);
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+[data-theme="light"] .gap-col h3,
+[data-theme="light"] .failure-item h4,
+[data-theme="light"] .memory-card-item h3,
+[data-theme="light"] .lb-body h3,
+[data-theme="light"] .dd-col h3,
+[data-theme="light"] .drift-intro-col h3,
+[data-theme="light"] .decay-state h3,
+[data-theme="light"] .dre-term,
+[data-theme="light"] .tr-to,
+[data-theme="light"] .lc-label { color: var(--tx-h); }
+
+[data-theme="light"] .gap-col p,
+[data-theme="light"] .failure-item p,
+[data-theme="light"] .memory-card-item p,
+[data-theme="light"] .lb-body p,
+[data-theme="light"] .lb-expand-content p,
+[data-theme="light"] .dd-col p,
+[data-theme="light"] .drift-intro-col p,
+[data-theme="light"] .decay-state p,
+[data-theme="light"] .dre-field span,
+[data-theme="light"] .vs-col.old .vs-val,
+[data-theme="light"] .lc-desc,
+[data-theme="light"] .dd-val,
+[data-theme="light"] .tr-from,
+[data-theme="light"] .vs-dim { color: var(--tx-body); }
+
+[data-theme="light"] .gap-col-label,
+[data-theme="light"] .failure-num,
+[data-theme="light"] .mc-tag,
+[data-theme="light"] .lb-truth,
+[data-theme="light"] .lb-augment-label,
+[data-theme="light"] .ma-label,
+[data-theme="light"] .dd-label,
+[data-theme="light"] .ds-label,
+[data-theme="light"] .dre-field label,
+[data-theme="light"] .oq-label,
+[data-theme="light"] .dd-dim,
+[data-theme="light"] .outcome-label,
+[data-theme="light"] .label-tag,
+[data-theme="light"] .lb-name,
+[data-theme="light"] .lc-num { color: var(--tx-muted); }
+
+/* Dark banner light mode */
+[data-theme="light"] .dark-banner { background: #1A3A5C; border-left-color: var(--blue-mid); }
+[data-theme="light"] .dark-banner p { color: #FFFFFF; }
+
+/* Memory answers bar */
+.memory-answers { background: var(--bg-alt); transition: background 0.3s var(--ease); }
+.ma-item { border-right-color: var(--bd); }
+[data-theme="light"] .ma-answer { color: var(--tx-h); }
+
+/* Layer blocks */
+.lb-meta { border-right-color: var(--bd); }
+.lb-body { border-right-color: var(--bd); }
+.lb-expand-content { background: var(--bg-panel); border-top-color: var(--bd); }
+.lb-augment { background: var(--bg-panel); }
+[data-theme="light"] .lb-augment ul li { color: var(--tx-body); }
+
+/* Lineage chain */
+[data-theme="light"] .lc-item { background: var(--bg-card); }
+[data-theme="light"] .lc-item:hover { background: var(--blue); }
+[data-theme="light"] .lc-item:hover .lc-label,
+[data-theme="light"] .lc-item:hover .lc-desc { color: #FFFFFF; }
+
+/* VS grid */
+.vs-col.old { background: var(--bg-panel); }
+.vs-col.new { background: var(--bg-alt); }
+[data-theme="light"] .vs-col.new { background: #1A3A5C; }
+[data-theme="light"] .vs-col.new h4 { color: var(--blue-lt); }
+[data-theme="light"] .vs-col.new .vs-val { color: #FFFFFF; }
+[data-theme="light"] .vs-col.new .vs-dim { color: #A8C4D8; }
+[data-theme="light"] .vs-row { border-bottom-color: var(--bd); }
+
+/* Drift register */
+.dre-header { background: var(--bg-panel); border-bottom-color: var(--bd); transition: background 0.3s var(--ease); }
+.dre-header:hover { background: var(--bg-alt); }
+.dre-body { background: var(--bg-card); }
+[data-theme="light"] .dre-body { background: #FAFCFE; }
+.dre-impact { background: var(--signal-bg); }
+.dre-resolution { background: var(--teal-bg); }
+[data-theme="light"] .dre-impact { color: var(--tx-body); }
+[data-theme="light"] .dre-resolution { color: var(--tx-body); }
+
+/* Decay states */
+[data-theme="light"] .ds-active-bg     { background: #E8F8F5; }
+[data-theme="light"] .ds-archived-bg   { background: #FEF9E7; }
+[data-theme="light"] .ds-deprecated-bg { background: #FDECEA; }
+[data-theme="light"] .decay-state p    { color: var(--tx-body); }
+[data-theme="light"] .ds-timing        { color: var(--tx-muted); }
+
+/* Decay table */
+[data-theme="light"] .decay-table td   { color: var(--tx-body); }
+[data-theme="light"] .decay-table .td-context { color: var(--tx-h); }
+[data-theme="light"] .decay-table tr:hover td { background: #EAF4FD; }
+
+/* Data table */
+[data-theme="light"] .data-table td    { color: var(--tx-body); }
+[data-theme="light"] .data-table .td-strong { color: var(--tx-h); }
+[data-theme="light"] .data-table tr:hover td { background: #EAF4FD; }
+
+/* Outcome grid */
+.outcome-col.without { background: var(--bg-panel); border-color: var(--bd); }
+[data-theme="light"] .outcome-col.without p { color: var(--tx-body); }
+[data-theme="light"] .outcome-col.with p { color: #FFFFFF; }
+
+/* Moat quote */
+[data-theme="light"] .moat-quote { background: #1A3A5C; }
+[data-theme="light"] .moat-quote p { color: #FFFFFF; }
+
+/* Transition row */
+[data-theme="light"] .tr-item { background: var(--bg-card); border-color: var(--bd); }
+
+/* RE panel */
+.re-panel { background: var(--bg-re-panel); transition: background 0.3s var(--ease); }
+[data-theme="light"] .re-panel h4 { color: var(--tx-h); }
+[data-theme="light"] .re-panel p  { color: var(--tx-body); }
+[data-theme="light"] .re-panel strong { color: var(--tx-h); }
+[data-theme="light"] .re-panel .re-example { background: rgba(13,28,46,0.06); color: var(--tx-body); }
+
+/* Inline notes light */
+[data-theme="light"] .inline-note { color: var(--tx-body); }
+[data-theme="light"] .inline-note.blue   { background: #DEEAF8; }
+[data-theme="light"] .inline-note.teal   { background: #E8F8F5; }
+[data-theme="light"] .inline-note.signal { background: #FDECEA; }
+[data-theme="light"] .inline-note.amber  { background: #FEF9E7; }
+
+/* Page nav footer */
+.page-nav-footer { border-top-color: var(--bd); }
+.page-nav-btn { background: var(--bg-card); border-color: var(--bd); color: var(--tx-muted); transition: all 0.18s var(--ease), background 0.3s var(--ease); }
+.page-nav-btn:hover { color: var(--tx-h); border-color: var(--bd-accent); }
+
+/* Eyebrow tag */
+.eyebrow-tag::after { background: var(--bd); }
+
+/* Grid gaps */
+.gap-grid, .failure-trio, .memory-trio, .layer-stack .layer-block,
+.lineage-chain, .vs-grid, .drift-intro, .dd-compare, .decay-state-grid,
+.transition-row, .oq-grid { background: var(--bd); }
+
+/* ═══════════════════════════════════════════════════════
+   THEME TOGGLE BUTTON
+═══════════════════════════════════════════════════════ */
+.theme-toggle {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 1rem 0.6rem 1.2rem;
+  margin: 0.5rem 0.75rem 0.75rem;
+  background: rgba(93,173,226,0.08);
+  border: 1px solid var(--border-dark);
+  color: var(--on-dark-3); cursor: pointer;
+  font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all 0.2s var(--ease);
+  user-select: none;
+}
+.theme-toggle:hover { background: rgba(93,173,226,0.15); color: var(--on-dark-1); }
+.theme-toggle-track {
+  width: 32px; height: 18px; border-radius: 9px;
+  background: var(--navy-lt); border: 1px solid var(--border-dark);
+  position: relative; transition: background 0.25s var(--ease);
+  flex-shrink: 0;
+}
+.theme-toggle-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--on-dark-4);
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease);
+}
+[data-theme="light"] .theme-toggle-track { background: var(--blue-mid); }
+[data-theme="light"] .theme-toggle-thumb { background: #fff; transform: translateX(14px); }
+.theme-toggle-icon { font-size: 0.85rem; line-height: 1; }
