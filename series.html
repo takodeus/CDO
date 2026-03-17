@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Intelligence Series — Real Estate & Capital Markets</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:        #4F8EF7;
+  --blue-bright: #6BA3FF;
+  --blue-deep:   #2563EB;
+  --teal:        #00C2CB;
+  --green:       #16A34A;
+  --amber:       #D97706;
+  --red:         #DC2626;
+  --radius:      10px;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] {
+  --bg:            #F5F7FB;
+  --bg-alt:        #EDF0F7;
+  --surface:       #FFFFFF;
+  --surface-alt:   #F7F9FC;
+  --surface-hover: #EEF2FF;
+  --border:        #E2E6F0;
+  --border-strong: #C8D0E4;
+  --text-primary:  #0D1117;
+  --text-secondary:#3D4B6B;
+  --text-muted:    #8892A8;
+  --text-faint:    #B4BCCE;
+  --blue-tint:     rgba(79,142,247,0.08);
+  --blue-tint-md:  rgba(79,142,247,0.14);
+  --blue-border:   rgba(79,142,247,0.3);
+  --teal-tint:     rgba(0,194,203,0.08);
+  --teal-border:   rgba(0,194,203,0.28);
+  --amber-tint:    rgba(217,119,6,0.08);
+  --amber-border:  rgba(217,119,6,0.28);
+  --tag-soon-bg:   #F3F4F6; --tag-soon-text: #6B7280;
+}
+
+[data-theme="dark"] {
+  --bg:            #080C14;
+  --bg-alt:        #0C1220;
+  --surface:       #111827;
+  --surface-alt:   #162035;
+  --surface-hover: #1A2A4A;
+  --border:        #1E2D45;
+  --border-strong: #2A3F60;
+  --text-primary:  #F0F4FF;
+  --text-secondary:#A8BDD8;
+  --text-muted:    #5A7898;
+  --text-faint:    #344A64;
+  --blue-tint:     rgba(79,142,247,0.1);
+  --blue-tint-md:  rgba(79,142,247,0.18);
+  --blue-border:   rgba(79,142,247,0.35);
+  --teal-tint:     rgba(0,194,203,0.1);
+  --teal-border:   rgba(0,194,203,0.32);
+  --amber-tint:    rgba(217,119,6,0.1);
+  --amber-border:  rgba(217,119,6,0.32);
+  --tag-soon-bg:   rgba(255,255,255,0.06); --tag-soon-text: #5A7898;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  height: 54px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+}
+.brand-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+}
+.brand-name {
+  font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-right { display: flex; align-items: center; gap: 12px; }
+.theme-toggle {
+  display: flex; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 7px; padding: 2px; gap: 2px;
+}
+.theme-opt {
+  display: flex; align-items: center; gap: 5px; padding: 5px 10px;
+  border-radius: 5px; border: none; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+  color: var(--text-muted); background: transparent; transition: all 0.15s;
+}
+.theme-opt:hover { color: var(--text-primary); }
+[data-theme="light"] .theme-opt.active { background: var(--surface-alt); color: var(--blue-deep); }
+[data-theme="dark"]  .theme-opt.active { background: var(--surface-alt); color: var(--blue-bright); }
+.theme-opt svg { width: 11px; height: 11px; }
+
+/* ── HERO ── */
+.hero {
+  padding: 72px 48px 56px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; display: inline-block;
+  width: 28px; height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  border-radius: 2px;
+}
+.hero-title {
+  font-size: 38px; font-weight: 700; letter-spacing: -0.03em;
+  line-height: 1.15; color: var(--text-primary); margin-bottom: 20px;
+}
+.hero-title span {
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-thesis {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+  max-width: 680px; margin-bottom: 32px;
+}
+.series-arc {
+  display: flex; align-items: center; gap: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  margin-bottom: 8px;
+}
+.arc-step {
+  flex: 1; padding: 14px 20px; position: relative;
+  border-right: 1px solid var(--border);
+}
+.arc-step:last-child { border-right: none; }
+.arc-num {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-faint); margin-bottom: 4px;
+}
+.arc-label {
+  font-size: 12px; font-weight: 600; color: var(--text-primary);
+}
+.arc-sub {
+  font-size: 10px; color: var(--text-muted); margin-top: 2px;
+}
+.arc-arrow {
+  position: absolute; right: -9px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px; font-weight: 700; color: var(--blue);
+  z-index: 2; background: var(--surface);
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+}
+.arc-step.active { background: var(--blue-tint); }
+.arc-step.active .arc-label { color: var(--blue); }
+.arc-step.coming { opacity: 0.55; }
+.arc-note {
+  font-size: 10px; color: var(--text-faint); text-align: right; margin-top: 4px;
+  font-style: italic;
+}
+
+/* ── THROUGH-LINE ── */
+.through-line {
+  max-width: 900px; margin: 0 auto 60px; padding: 0 48px;
+}
+.through-inner {
+  background: var(--blue-tint); border: 1px solid var(--blue-border);
+  border-radius: var(--radius); padding: 20px 24px;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.through-stripe {
+  width: 3px; border-radius: 2px; flex-shrink: 0; align-self: stretch;
+  background: linear-gradient(180deg, var(--blue), var(--teal));
+}
+.through-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.through-shifts {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.through-shift {
+  font-size: 10px; font-weight: 600; padding: 4px 10px;
+  border-radius: 5px; background: var(--blue-tint-md);
+  border: 1px solid var(--blue-border); color: var(--blue);
+  white-space: nowrap;
+}
+[data-theme="light"] .through-shift { color: var(--blue-deep); }
+
+/* ── PIECES GRID ── */
+.pieces {
+  max-width: 900px; margin: 0 auto; padding: 0 48px 80px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.piece-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.piece-card:hover:not(.coming-soon) {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.piece-card.coming-soon { opacity: 0.7; }
+.piece-top {
+  display: flex; align-items: stretch;
+}
+.piece-num-col {
+  width: 72px; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 24px 16px;
+  background: var(--surface-alt); border-right: 1px solid var(--border);
+}
+.piece-num {
+  font-size: 28px; font-weight: 700; letter-spacing: -0.03em;
+  line-height: 1; margin-bottom: 4px;
+}
+.piece-num.n1 { color: var(--blue); }
+.piece-num.n2 { background: linear-gradient(135deg, var(--blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.piece-num.n3 { color: var(--teal); }
+.piece-status {
+  font-size: 8px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 6px; border-radius: 4px;
+  text-align: center; white-space: nowrap;
+}
+.status-pub { background: rgba(22,163,74,0.15); color: #16A34A; border: 1px solid rgba(22,163,74,0.3); }
+.status-soon { background: var(--tag-soon-bg); color: var(--tag-soon-text); border: 1px solid var(--border); }
+.piece-body {
+  flex: 1; padding: 24px 28px;
+}
+.piece-series-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;
+}
+.piece-title {
+  font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--text-primary); margin-bottom: 4px; line-height: 1.25;
+}
+.piece-subtitle {
+  font-size: 12px; color: var(--text-muted); font-style: italic;
+  margin-bottom: 12px;
+}
+.piece-question {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.6;
+  margin-bottom: 14px; font-style: italic;
+  padding: 10px 14px;
+  background: var(--surface-alt); border-left: 3px solid var(--blue-border);
+  border-radius: 0 6px 6px 0;
+}
+[data-theme="light"] .piece-question { border-left-color: var(--blue-deep); }
+.piece-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.piece-tag {
+  font-size: 9px; font-weight: 600; letter-spacing: 0.06em;
+  padding: 3px 9px; border-radius: 20px;
+  border: 1px solid var(--border); color: var(--text-muted);
+  background: var(--surface-alt);
+}
+.piece-cta-col {
+  width: 160px; flex-shrink: 0; padding: 24px 20px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; border-left: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+.cta-btn {
+  display: block; width: 100%; padding: 9px 0; text-align: center;
+  border-radius: 7px; font-size: 11px; font-weight: 600;
+  text-decoration: none; transition: all 0.15s;
+  letter-spacing: 0.01em;
+}
+.cta-primary {
+  background: var(--blue-deep); color: #fff;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.35);
+}
+.cta-primary:hover { background: var(--blue); }
+.cta-secondary {
+  background: var(--surface); color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.cta-secondary:hover { color: var(--text-primary); border-color: var(--border-strong); }
+.cta-coming {
+  background: var(--surface); color: var(--text-faint);
+  border: 1px solid var(--border); cursor: default; pointer-events: none;
+}
+.piece-bottom {
+  border-top: 1px solid var(--border);
+  padding: 14px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg);
+}
+.piece-covers-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-muted); margin-right: 12px;
+}
+.piece-covers { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.cover-pill {
+  font-size: 9px; padding: 2px 8px; border-radius: 4px;
+  background: var(--surface-alt); border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: auto;
+  padding: 16px 48px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-note { font-size: 10px; color: var(--text-faint); letter-spacing: 0.06em; }
+.footer-series { font-size: 10px; color: var(--blue); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">
+    <div class="brand-dot"></div>
+    <span class="brand-name">Data Intelligence</span>
+  </div>
+  <div class="header-right">
+    <div class="theme-toggle" role="group">
+      <button class="theme-opt" id="opt-light" onclick="setTheme('light')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        Light
+      </button>
+      <button class="theme-opt" id="opt-dark" onclick="setTheme('dark')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        Dark
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Thought Leadership Series</div>
+  <h1 class="hero-title">
+    The Intelligence Transition<br>
+    in <span>Real Estate & Capital Markets</span>
+  </h1>
+  <p class="hero-thesis">
+    The enterprise AI transition in real estate is not a technology transition. It is a governance, memory, and organizational redesign problem. This series traces the full arc — from the failure modes of current operating models, through the architecture of corporate memory, to the practical work of building an agentic data organization.
+  </p>
+
+  <div class="series-arc">
+    <div class="arc-step">
+      <div class="arc-num">Part 01</div>
+      <div class="arc-label">Diagnosis</div>
+      <div class="arc-sub">Why the current model breaks</div>
+      <div class="arc-arrow">→</div>
+    </div>
+    <div class="arc-step active">
+      <div class="arc-num">Part 02</div>
+      <div class="arc-label">Architecture</div>
+      <div class="arc-sub">The memory layer you're missing</div>
+      <div class="arc-arrow">→</div>
+    </div>
+    <div class="arc-step coming">
+      <div class="arc-num">Part 03</div>
+      <div class="arc-label">Operationalization</div>
+      <div class="arc-sub">Building the agentic organization</div>
+    </div>
+  </div>
+  <div class="arc-note">Each part builds on the one before. The argument is sequential.</div>
+</div>
+
+<div class="through-line">
+  <div class="through-inner">
+    <div class="through-stripe"></div>
+    <div>
+      <div class="through-label">Four shifts running through every piece</div>
+      <div class="through-shifts">
+        <span class="through-shift">Tech Debt → Data Debt</span>
+        <span class="through-shift">Data Governance → Meaning Governance</span>
+        <span class="through-shift">Data Lineage → Decision Lineage</span>
+        <span class="through-shift">Operating Model → Intelligence Model</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pieces">
+
+  <!-- PIECE 01 -->
+  <div class="piece-card">
+    <div class="piece-top">
+      <div class="piece-num-col">
+        <div class="piece-num n1">01</div>
+        <div class="piece-status status-pub">Published</div>
+      </div>
+      <div class="piece-body">
+        <div class="piece-series-label">Operating Model Architecture · Q1 2026</div>
+        <div class="piece-title">From Data Stack to Control Tower</div>
+        <div class="piece-subtitle">Target Operating Models to Target Intelligence Models</div>
+        <div class="piece-question">"What breaks when you try to run a distributed real estate operating model on an architecture built for centralized, human-read reporting?"</div>
+        <div class="piece-tags">
+          <span class="piece-tag">Operating Model</span>
+          <span class="piece-tag">Data Pyramid</span>
+          <span class="piece-tag">Intelligence Tower</span>
+          <span class="piece-tag">Meaning Governance</span>
+          <span class="piece-tag">Decision Lineage</span>
+          <span class="piece-tag">Agent Skills</span>
+        </div>
+      </div>
+      <div class="piece-cta-col">
+        <a href="piece-01.html" class="cta-btn cta-primary">Read →</a>
+        <a href="piece-01.html" class="cta-btn cta-secondary">Architecture</a>
+      </div>
+    </div>
+    <div class="piece-bottom">
+      <span class="piece-covers-label">Covers</span>
+      <div class="piece-covers">
+        <span class="cover-pill">Legacy vs. Intelligence architecture</span>
+        <span class="cover-pill">Paradigmatic tech shifts</span>
+        <span class="cover-pill">Plural ontologies</span>
+        <span class="cover-pill">Control Tower model</span>
+        <span class="cover-pill">Knowledge Graph R&D</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIECE 02 -->
+  <div class="piece-card">
+    <div class="piece-top">
+      <div class="piece-num-col">
+        <div class="piece-num n2">02</div>
+        <div class="piece-status status-pub">Published</div>
+      </div>
+      <div class="piece-body">
+        <div class="piece-series-label">Memory Architecture · Q2 2026</div>
+        <div class="piece-title">From Knowledge to Memory</div>
+        <div class="piece-subtitle">The Architecture of Corporate Memory and Decision Lineage</div>
+        <div class="piece-question">"Your systems know what is true now. Do they remember what was true then — and why it mattered?"</div>
+        <div class="piece-tags">
+          <span class="piece-tag">Semantic Memory</span>
+          <span class="piece-tag">Episodic Memory</span>
+          <span class="piece-tag">Decision Lineage</span>
+          <span class="piece-tag">Drift Register</span>
+          <span class="piece-tag">Decay Governance</span>
+          <span class="piece-tag">Context Graph</span>
+          <span class="piece-tag">Corporate Memory</span>
+        </div>
+      </div>
+      <div class="piece-cta-col">
+        <a href="index.html" class="cta-btn cta-primary">Read →</a>
+        <a href="drift-register.html" class="cta-btn cta-secondary">Drift Register</a>
+      </div>
+    </div>
+    <div class="piece-bottom">
+      <span class="piece-covers-label">Covers</span>
+      <div class="piece-covers">
+        <span class="cover-pill">Three memory types</span>
+        <span class="cover-pill">Knowledge stack augmentation</span>
+        <span class="cover-pill">Data vs. decision lineage</span>
+        <span class="cover-pill">Drift register with live examples</span>
+        <span class="cover-pill">Decay lifecycle</span>
+        <span class="cover-pill">Eight-question test</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIECE 03 -->
+  <div class="piece-card coming-soon">
+    <div class="piece-top">
+      <div class="piece-num-col">
+        <div class="piece-num n3">03</div>
+        <div class="piece-status status-soon">Coming Soon</div>
+      </div>
+      <div class="piece-body">
+        <div class="piece-series-label">Organizational Redesign · Q3 2026</div>
+        <div class="piece-title">The Agentic Data Organization</div>
+        <div class="piece-subtitle">Role Redesign, KPI Redesign, and the Quiet Failure Modes No One Plans For</div>
+        <div class="piece-question">"You cannot deploy an agentic intelligence architecture on top of an operating model designed for human report-readers. What does the organization actually need to change?"</div>
+        <div class="piece-tags">
+          <span class="piece-tag">Role Redesign</span>
+          <span class="piece-tag">KPI Redesign</span>
+          <span class="piece-tag">Agentic Workforce</span>
+          <span class="piece-tag">Quiet Failure Modes</span>
+          <span class="piece-tag">Rollout Sequencing</span>
+          <span class="piece-tag">Human Oversight</span>
+        </div>
+      </div>
+      <div class="piece-cta-col">
+        <a href="piece-03.html" class="cta-btn cta-primary">Read →</a>
+        <span class="cta-btn cta-coming">Notify me</span>
+      </div>
+    </div>
+    <div class="piece-bottom">
+      <span class="piece-covers-label">Will cover</span>
+      <div class="piece-covers">
+        <span class="cover-pill">Knowledge architects vs. data engineers</span>
+        <span class="cover-pill">Reasoning auditors</span>
+        <span class="cover-pill">Intelligence quality KPIs</span>
+        <span class="cover-pill">Governance theater risk</span>
+        <span class="cover-pill">Agent overconfidence</span>
+        <span class="cover-pill">EY CIO playbook synthesis</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="footer-note">Data Intelligence Series · Real Estate & Capital Markets · 2026</span>
+  <span class="footer-series">3 parts · 1 argument</span>
+</div>
+
+<script>
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('di-series-theme', t);
+  document.getElementById('opt-light').classList.toggle('active', t === 'light');
+  document.getElementById('opt-dark').classList.toggle('active',  t === 'dark');
+}
+const saved = localStorage.getItem('di-series-theme') || 'dark';
+setTheme(saved);
+</script>
+</body>
+</html>

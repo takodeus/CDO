@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 01 — From Data Stack to Control Tower · Data Intelligence Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --blue:#4F8EF7;--blue-deep:#2563EB;--teal:#00C2CB;--radius:10px; }
+[data-theme="light"] { --bg:#F5F7FB;--surface:#fff;--border:#E2E6F0;--text-primary:#0D1117;--text-muted:#8892A8;--text-secondary:#3D4B6B; }
+[data-theme="dark"]  { --bg:#080C14;--surface:#111827;--border:#1E2D45;--text-primary:#F0F4FF;--text-muted:#5A7898;--text-secondary:#A8BDD8; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:14px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;}
+.series-bar{
+  position:sticky;top:0;z-index:200;
+  background:var(--bg);border-bottom:1px solid var(--border);
+  padding:0 32px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Inter',sans-serif;
+}
+.series-left{display:flex;align-items:center;gap:16px;}
+.series-home{font-size:11px;font-weight:600;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;}
+.series-home:hover{opacity:0.8;}
+.series-divider{width:1px;height:16px;background:var(--border);}
+.series-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);}
+.series-nav{display:flex;align-items:center;gap:4px;}
+.series-nav-item{
+  padding:4px 10px;border-radius:5px;font-size:10px;font-weight:500;
+  text-decoration:none;color:var(--text-muted);transition:all 0.15s;
+}
+.series-nav-item:hover{color:var(--text-primary);}
+.series-nav-item.current{background:rgba(79,142,247,0.12);color:var(--blue);font-weight:600;}
+.series-nav-arrow{font-size:11px;color:var(--border);}
+.theme-toggle{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2px;gap:2px;}
+.theme-opt{display:flex;align-items:center;gap:4px;padding:4px 8px;border-radius:4px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:var(--text-muted);background:transparent;transition:all 0.15s;}
+[data-theme="light"] .theme-opt.active{background:var(--bg);color:var(--blue-deep);}
+[data-theme="dark"] .theme-opt.active{background:rgba(79,142,247,0.1);color:#6BA3FF;}
+.theme-opt svg{width:10px;height:10px;}
+.embed-frame{flex:1;display:flex;flex-direction:column;}
+iframe{flex:1;border:none;width:100%;min-height:calc(100vh - 42px);}
+</style>
+</head>
+<body>
+<div class="series-bar">
+  <div class="series-left">
+    <a href="series.html" class="series-home">← Series</a>
+    <div class="series-divider"></div>
+    <span class="series-label">Part 01 of 03</span>
+    <div class="series-nav">
+      <span class="series-nav-item current">01 · Control Tower</span>
+      <span class="series-nav-arrow">→</span>
+      <a href="index.html" class="series-nav-item">02 · Memory Architecture</a>
+      <span class="series-nav-arrow">→</span>
+      <a href="piece-03.html" class="series-nav-item">03 · Agentic Org</a>
+    </div>
+  </div>
+  <div class="theme-toggle">
+    <button class="theme-opt" id="opt-light" onclick="setTheme('light')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      Light
+    </button>
+    <button class="theme-opt" id="opt-dark" onclick="setTheme('dark')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      Dark
+    </button>
+  </div>
+</div>
+<div class="embed-frame">
+  <iframe src="Brookfield_1Q2026.html" id="content-frame" title="From Data Stack to Control Tower"></iframe>
+</div>
+<script>
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('di-theme',t);
+  document.getElementById('opt-light').classList.toggle('active',t==='light');
+  document.getElementById('opt-dark').classList.toggle('active',t==='dark');
+  // Pass theme to iframe
+  const iframe=document.getElementById('content-frame');
+  try{ iframe.contentDocument.documentElement.setAttribute('data-theme',t); }catch(e){}
+}
+const saved=localStorage.getItem('di-theme')||'light';
+setTheme(saved);
+</script>
+</body>
+</html>

@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operating Model Intelligence — Real Estate Data Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Light & Dark via CSS custom properties
+═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Shared / invariant */
+  --blue:        #4F8EF7;
+  --blue-bright: #6BA3FF;
+  --blue-deep:   #2563EB;
+  --teal:        #00C2CB;
+  --green:       #16A34A;
+  --green-bg:    #DCFCE7;
+  --amber:       #D97706;
+  --amber-bg:    #FEF3C7;
+  --red:         #DC2626;
+  --red-bg:      #FEE2E2;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+  --radius:      10px;
+}
+
+/* ── LIGHT THEME ─────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:            #FAFAFA;
+  --bg-alt:        #F2F4F8;
+  --surface:       #FFFFFF;
+  --surface-alt:   #F7F8FC;
+  --surface-hover: #EEF2FF;
+  --border:        #E2E6F0;
+  --border-strong: #C8D0E4;
+  --text-primary:  #0D1117;
+  --text-secondary:#3D4B6B;
+  --text-muted:    #8892A8;
+  --text-faint:    #B4BCCE;
+  --header-bg:     rgba(250,250,250,0.96);
+  --header-border: #E2E6F0;
+
+  /* Accent tints — light */
+  --blue-tint:     rgba(79,142,247,0.08);
+  --blue-tint-md:  rgba(79,142,247,0.14);
+  --blue-border:   rgba(79,142,247,0.3);
+  --teal-tint:     rgba(0,194,203,0.08);
+  --teal-border:   rgba(0,194,203,0.28);
+  --amber-tint:    rgba(217,119,6,0.08);
+  --amber-border:  rgba(217,119,6,0.28);
+  --red-tint:      rgba(220,38,38,0.07);
+  --red-border:    #EF4444;
+
+  /* Layer bg — light */
+  --layer-1:       #F7F9FE;
+  --layer-2:       #F2F5FD;
+  --layer-3:       #ECF0FC;
+  --layer-4:       #E6EBF9;
+  --layer-bad:     #FDF4F4;
+
+  /* Tag colors — light mode solid */
+  --tag-internal-bg: #16A34A; --tag-internal-text: #fff;
+  --tag-staff-bg:    #2563EB; --tag-staff-text:    #fff;
+  --tag-3p-bg:       #DC2626; --tag-3p-text:       #fff;
+
+  /* Pyramid layer fills — light */
+  --pyr-1: #F0E8E8;
+  --pyr-2: #F5F0E8;
+  --pyr-3: #EAF0F8;
+  --pyr-4: #E4EDF7;
+  --pyr-5: #DDE7F6;
+}
+
+/* ── DARK THEME ──────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg:            #0A0A1A;
+  --bg-alt:        #0E0E22;
+  --surface:       #111128;
+  --surface-alt:   #16162E;
+  --surface-hover: #1A1A38;
+  --border:        rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+  --text-primary:  #F0F2FF;
+  --text-secondary:#A8B2D8;
+  --text-muted:    #8B95B8;
+  --text-faint:    #4A5080;
+  --header-bg:     rgba(10,10,26,0.95);
+  --header-border: rgba(255,255,255,0.07);
+
+  --blue-tint:     rgba(79,142,247,0.1);
+  --blue-tint-md:  rgba(79,142,247,0.18);
+  --blue-border:   rgba(79,142,247,0.28);
+  --teal-tint:     rgba(0,194,203,0.08);
+  --teal-border:   rgba(0,194,203,0.22);
+  --amber-tint:    rgba(245,158,11,0.1);
+  --amber-border:  rgba(245,158,11,0.25);
+  --red-tint:      rgba(239,68,68,0.1);
+  --red-border:    #EF4444;
+
+  --layer-1:       #1A0A0A;
+  --layer-2:       #1A1008;
+  --layer-3:       #0D1525;
+  --layer-4:       #0D1A35;
+  --layer-bad:     rgba(239,68,68,0.1);
+
+  --tag-internal-bg: #16A34A; --tag-internal-text: #fff;
+  --tag-staff-bg:    #2563EB; --tag-staff-text:    #fff;
+  --tag-3p-bg:       #DC2626; --tag-3p-text:       #fff;
+
+  --pyr-1: #1A0A0A;
+  --pyr-2: #1A1008;
+  --pyr-3: #0D1525;
+  --pyr-4: #0D1A35;
+  --pyr-5: #0D2045;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BASE STYLES
+═══════════════════════════════════════════════════════════════════ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.25s, color 0.25s;
+}
+
+/* ── HEADER ─────────────────────────────────────────────────────── */
+.header {
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--header-border);
+  flex-wrap: wrap;
+  gap: 14px;
+  background: var(--header-bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  transition: background 0.25s, border-color 0.25s;
+}
+.header-left { display:flex; align-items:center; gap:18px; }
+.brand-logo {
+  font-size: 17px; font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 7px;
+}
+.brand-logo-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  flex-shrink: 0;
+}
+.header-divider { width:1px; height:22px; background:var(--border-strong); }
+.header-eyebrow {
+  font-size: 9.5px; letter-spacing: 0.18em; color: var(--blue);
+  text-transform: uppercase; font-weight: 600; margin-bottom: 2px;
+}
+.header h1 { font-size: 16px; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+.header h1 span {
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.controls-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+
+/* ── THEME TOGGLE ────────────────────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.theme-opt {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex; align-items: center; gap: 5px;
+  border: none; background: transparent;
+  font-family: 'Inter', sans-serif;
+}
+.theme-opt.active {
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+[data-theme="light"] .theme-opt.active { color: var(--blue-deep); }
+[data-theme="dark"] .theme-opt.active  { color: var(--blue-bright); }
+.theme-opt svg { width:12px; height:12px; flex-shrink:0; }
+
+/* ── TAB NAV ─────────────────────────────────────────────────────── */
+.tab-nav {
+  display: flex;
+  background: var(--bg-alt);
+  border-radius: 10px;
+  padding: 3px; gap: 2px;
+  border: 1px solid var(--border);
+}
+.tab-btn {
+  padding: 7px 16px; border-radius: 7px; border: none; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.03em; background: transparent; color: var(--text-muted);
+  transition: all 0.18s; white-space: nowrap;
+}
+.tab-btn:hover { color: var(--text-primary); background: var(--surface-hover); }
+.tab-btn.active {
+  background: var(--blue-deep); color: #fff; font-weight: 600;
+  box-shadow: 0 2px 10px rgba(37,99,235,0.35);
+}
+[data-theme="light"] .tab-btn.active { box-shadow: 0 2px 10px rgba(37,99,235,0.25); }
+
+/* ── TOGGLE (before/after/compare) ──────────────────────────────── */
+.toggle-group {
+  display:flex; background: var(--bg-alt); border-radius:8px;
+  padding:3px; gap:2px; border:1px solid var(--border);
+}
+.toggle-btn {
+  padding:6px 13px; border-radius:6px; border:none; cursor:pointer;
+  font-family:'Inter',sans-serif; font-size:11px; font-weight:500;
+  background:transparent; color:var(--text-muted); transition:all 0.18s;
+}
+.toggle-btn:hover { color:var(--text-primary); }
+.toggle-btn.active {
+  background: var(--blue-tint-md);
+  color: var(--blue-bright);
+  font-weight:600;
+  border: 1px solid var(--blue-border);
+}
+[data-theme="light"] .toggle-btn.active {
+  color: var(--blue-deep);
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(37,99,235,0.25);
+}
+
+/* ── MAIN ────────────────────────────────────────────────────────── */
+.main { display:flex; flex:1; padding:24px 48px 36px; gap:24px; align-items:stretch; }
+
+/* ── TAB SECTIONS ─────────────────────────────────────────────────── */
+.tab-section { display:none; width:100%; }
+.tab-section.active { display:flex; flex-direction:column; flex:1; }
+
+/* ── PANELS ──────────────────────────────────────────────────────── */
+.panels-row { display:flex; flex:1; gap:22px; }
+.panel { flex:1; display:flex; flex-direction:column; }
+.panel-label-small { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; margin-bottom:4px; }
+.panel-title { font-size:16px; color:var(--text-primary); font-weight:600; }
+.panel-subtitle { font-size:12px; color:var(--text-muted); font-style:italic; margin-top:4px; margin-bottom:16px; }
+.divider { width:1px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+/* ── PYRAMID ─────────────────────────────────────────────────────── */
+.pyramid-container { flex:1; display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:4px; padding-top:4px; }
+.flow-label { font-size:10px; color:var(--blue); letter-spacing:0.12em; font-weight:600; text-transform:uppercase; margin-bottom:8px; }
+.pyramid-layer {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 16px; border-radius:8px;
+  border:1px solid var(--border); box-shadow: var(--shadow-sm);
+}
+.pyramid-layer-title { font-size:13px; font-weight:600; color:var(--text-primary); }
+.pyramid-layer-sub { font-size:11px; color:var(--text-muted); margin-top:2px; }
+.tag { font-size:9px; letter-spacing:0.1em; padding:3px 8px; border-radius:4px; font-weight:700; color:#fff; flex-shrink:0; margin-left:12px; }
+.pyramid-note { font-size:11px; color:var(--text-faint); font-style:italic; margin-top:14px; text-align:center; line-height:1.5; }
+
+/* ── TOWER ───────────────────────────────────────────────────────── */
+.new-layers { flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center; }
+.new-layer-wrap { position:relative; }
+.new-layer {
+  border-radius:10px; display:flex; align-items:center; padding:0 18px;
+  gap:14px; position:relative; z-index:1;
+  border:1px solid var(--border); box-shadow:var(--shadow-sm);
+  background: var(--surface);
+}
+.new-layer.highlighted {
+  border: 1px solid var(--blue-border);
+  box-shadow: 0 0 0 1px var(--blue-border), var(--shadow-md);
+}
+[data-theme="light"] .new-layer.highlighted {
+  background: linear-gradient(135deg, rgba(37,99,235,0.04), rgba(0,194,203,0.03));
+}
+[data-theme="dark"] .new-layer.highlighted {
+  background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(0,194,203,0.12));
+}
+.layer-icon { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; border:1px solid var(--border); background:var(--surface-alt); }
+.layer-body { flex:1; min-width:0; }
+.layer-name { font-size:11px; font-weight:700; letter-spacing:0.08em; }
+.layer-sub { font-size:11px; color:var(--text-muted); margin-top:2px; }
+.pills { display:flex; gap:5px; flex-shrink:0; flex-wrap:wrap; justify-content:flex-end; }
+.pill { font-size:9px; padding:3px 8px; border-radius:20px; font-weight:500; letter-spacing:0.04em; white-space:nowrap; border:1px solid var(--border); background:var(--surface-alt); color:var(--text-secondary); }
+.connector-line { display:flex; justify-content:center; height:10px; }
+.connector-line div { width:1px; background:var(--border-strong); }
+
+/* ── PRINCIPLE BOX ───────────────────────────────────────────────── */
+.principle-box {
+  margin-top:12px; background:var(--blue-tint);
+  border:1px solid var(--blue-border); border-radius:10px;
+  padding:16px 20px; display:flex; gap:20px; align-items:center;
+}
+.principle-eyebrow { font-size:9px; letter-spacing:0.18em; color:var(--blue); text-transform:uppercase; font-weight:700; margin-bottom:5px; }
+.principle-quote { font-size:12px; color:var(--text-secondary); font-style:italic; line-height:1.6; }
+.vertical-tags { display:flex; flex-direction:column; gap:5px; }
+.vtag { font-size:8px; color:var(--blue); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:5px 10px; background:var(--blue-tint); border-radius:5px; border:1px solid var(--blue-border); white-space:nowrap; }
+
+/* ── SECTION HEADER ──────────────────────────────────────────────── */
+.section-header-bar { margin-bottom:18px; }
+.section-eyebrow { font-size:10px; letter-spacing:0.18em; color:var(--blue); text-transform:uppercase; font-weight:600; margin-bottom:5px; }
+.section-title { font-size:20px; font-weight:700; color:var(--text-primary); letter-spacing:-0.02em; margin-bottom:5px; }
+.section-subtitle { font-size:12px; color:var(--text-muted); font-style:italic; }
+
+/* ── LENSES ──────────────────────────────────────────────────────── */
+.lenses-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; flex:1; }
+.lens-col { display:flex; flex-direction:column; }
+.lens-col-header { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
+.lens-num { width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; }
+.lens-col-title { font-size:13px; font-weight:700; color:var(--text-primary); margin-bottom:2px; }
+.lens-col-sub { font-size:10px; color:var(--text-muted); line-height:1.4; }
+.lens-accent-line { height:2px; border-radius:2px; margin-bottom:10px; }
+.lens-stack { display:flex; flex-direction:column; gap:3px; }
+.lens-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:9px 12px 9px 14px; border-radius:7px;
+  border-left:3px solid transparent; background:var(--surface-alt);
+}
+.lens-row-label { font-size:11px; flex:1; color:var(--text-secondary); font-weight:500; }
+.lens-row-tag { font-size:8px; font-weight:700; letter-spacing:0.06em; padding:3px 8px; border-radius:4px; flex-shrink:0; margin-left:8px; }
+.lens-connector { text-align:center; font-size:11px; color:var(--text-faint); margin:1px 0; }
+.boundary-line { display:flex; align-items:center; gap:8px; margin:5px 0; }
+.boundary-dash { flex:1; border-top:1.5px dashed var(--red); }
+.boundary-label { font-size:8.5px; color:var(--red); font-style:italic; white-space:nowrap; font-weight:500; }
+.lens-note { margin-top:10px; padding:12px 14px; background:var(--surface-alt); border-left:3px solid; border-radius:0 7px 7px 0; font-size:10.5px; color:var(--text-muted); line-height:1.55; }
+
+/* ── BRIDGE ROWS ─────────────────────────────────────────────────── */
+.bridge-row { display:flex; border-radius:10px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-sm); }
+.bridge-row-accent { width:4px; flex-shrink:0; }
+.bridge-row-num { display:flex; align-items:center; justify-content:center; width:58px; flex-shrink:0; padding:0 12px; background:var(--surface-alt); }
+.bridge-num-circle { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; }
+.bridge-row-body { flex:1; padding:16px 18px; background:var(--surface); }
+.bridge-row-head { font-size:12px; font-weight:700; color:var(--text-primary); margin-bottom:7px; letter-spacing:-0.01em; }
+.bridge-row-text { font-size:11px; color:var(--text-secondary); line-height:1.65; }
+.bridge-row-source { margin-top:9px; font-size:9px; color:var(--blue); letter-spacing:0.1em; font-style:italic; font-weight:500; }
+.bridge-row-tags { display:flex; flex-direction:column; gap:5px; justify-content:center; padding:16px 14px; width:164px; flex-shrink:0; background:var(--surface-alt); border-left:1px solid var(--border); }
+.bridge-tag { font-size:8.5px; font-weight:700; padding:5px 10px; border-radius:5px; text-align:center; letter-spacing:0.05em; }
+
+/* ── IMPLICATION BAR ─────────────────────────────────────────────── */
+.implication-bar {
+  margin-top:16px; padding:16px 22px;
+  background:var(--blue-tint); border:1px solid var(--blue-border);
+  border-radius:10px; display:flex; gap:20px; align-items:center; flex-wrap:wrap;
+}
+.implication-label { font-size:9px; letter-spacing:0.16em; color:var(--blue); text-transform:uppercase; font-weight:700; margin-bottom:5px; }
+.implication-text { font-size:12px; color:var(--text-secondary); font-style:italic; line-height:1.6; }
+.implication-tags { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+.imp-tag { font-size:9px; padding:5px 10px; border-radius:6px; background:var(--blue-tint-md); border:1px solid var(--blue-border); color:var(--blue); font-weight:600; white-space:nowrap; }
+[data-theme="light"] .imp-tag { color: var(--blue-deep); }
+
+/* ── THESIS BAR ──────────────────────────────────────────────────── */
+.thesis-bar {
+  margin-top:14px; padding:16px 24px;
+  background: var(--blue-tint); border:1px solid var(--blue-border);
+  border-radius:10px; display:flex; align-items:center; gap:18px;
+}
+.thesis-stripe { width:3px; height:40px; border-radius:2px; background:linear-gradient(180deg,var(--blue),var(--teal)); flex-shrink:0; }
+.thesis-text { font-size:12.5px; color:var(--text-secondary); font-style:italic; line-height:1.6; flex:1; }
+[data-theme="light"] .thesis-text { color: #3D4B6B; }
+.thesis-label { font-size:9px; color:var(--blue); letter-spacing:0.18em; text-transform:uppercase; font-weight:700; flex-shrink:0; }
+
+/* ── NAV STRIP ───────────────────────────────────────────────────── */
+.nav-strip { margin-top:12px; display:flex; border-radius:10px; overflow:hidden; border:1px solid var(--border); }
+.nav-cell { flex:1; padding:12px 18px; background:var(--surface-alt); border-right:1px solid var(--border); cursor:pointer; transition:background 0.15s; }
+.nav-cell:last-child { border-right:none; }
+.nav-cell:hover { background:var(--surface-hover); }
+.nav-cell.active { background:var(--blue-tint); }
+.nav-cell-label { font-size:8px; letter-spacing:0.16em; color:var(--blue); text-transform:uppercase; font-weight:700; margin-bottom:3px; }
+.nav-cell-desc { font-size:10.5px; color:var(--text-muted); }
+
+/* ── FOOTER ──────────────────────────────────────────────────────── */
+.footer {
+  padding:12px 48px; border-top:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:8px; background:var(--bg);
+}
+.footer-note { font-size:10px; color:var(--text-faint); letter-spacing:0.07em; font-weight:500; }
+.footer-badge { display:flex; align-items:center; gap:6px; font-size:10px; color:var(--blue); font-weight:600; }
+.footer-badge span { color:var(--text-faint); }
+
+/* ── COMPARE GRID (Model Shift tab) ─────────────────────────────── */
+.compare-headers {
+  display: flex; align-items: stretch; gap: 0;
+  margin-bottom: 10px; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.compare-header-cell {
+  flex: 1; padding: 12px 18px; background: var(--surface-alt);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.compare-header-divider { width: 1px; background: var(--border); flex-shrink: 0; }
+.compare-header-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.compare-header-title { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.compare-header-sub { font-size: 11px; color: var(--text-muted); font-style: italic; }
+
+.single-header { margin-bottom: 14px; }
+
+.cmp-row {
+  display: flex; gap: 0; margin-bottom: 6px;
+}
+.cmp-caption-row { margin-bottom: 4px; }
+.cmp-cell { flex: 1; min-width: 0; }
+.cmp-gutter {
+  width: 16px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.cmp-gutter::after {
+  content: '→';
+  font-size: 14px; color: var(--blue); font-weight: 700;
+  position: absolute;
+}
+/* hide arrow in single views */
+.cmp-gutter.no-arrow::after { content: ''; }
+
+.cmp-layer {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  height: 100%; min-height: 64px;
+}
+.cmp-layer-body { flex: 1; min-width: 0; }
+.cmp-layer-name { font-size: 12px; font-weight: 700; color: var(--text-primary); letter-spacing: 0.02em; }
+.cmp-layer-sub { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+.cmp-layer-tech { font-size: 9px; color: var(--text-faint); margin-top: 3px; font-style: italic; }
+
+/* ── DIAGNOSIS BAR ──────────────────────────────────────────────── */
+.diagnosis-bar {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 18px; border-radius: 10px;
+  background: var(--surface-alt); border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+}
+.diagnosis-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--amber);
+  white-space: nowrap; padding-top: 2px;
+}
+.diagnosis-body {
+  font-size: 11.5px; color: var(--text-secondary); line-height: 1.65;
+}
+.diagnosis-body em { color: var(--text-primary); font-style: normal; font-weight: 600; }
+
+/* ── EXPANDED SHIFT ROWS ────────────────────────────────────────── */
+.shift-row-expanded {
+  padding: 0; border-radius: 8px;
+  background: var(--surface-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.shift-row-expanded:hover { box-shadow: 0 0 0 1px var(--blue); }
+.shift-row-expanded.open  { box-shadow: 0 0 0 1px var(--blue); }
+.shift-row-header {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 9px 12px;
+  cursor: pointer; user-select: none;
+}
+.shift-row-header:hover { background: rgba(79,142,247,0.04); }
+.shift-toggle {
+  margin-left: auto; flex-shrink: 0;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--text-muted); transition: transform 0.2s, background 0.15s;
+}
+.shift-row-expanded.open .shift-toggle {
+  transform: rotate(180deg);
+  background: var(--blue-tint); border-color: var(--blue-border); color: var(--blue);
+}
+.shift-row-body {
+  font-size: 11px; color: var(--text-secondary); line-height: 1.7;
+  padding: 0 14px;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.2s ease;
+}
+.shift-row-expanded.open .shift-row-body {
+  max-height: 300px;
+  padding: 0 14px 12px 14px;
+}
+.shift-row-body em { color: var(--text-primary); font-style: italic; }
+.shift-hint {
+  font-size: 9px; color: var(--text-faint); font-style: italic;
+  margin-top: 4px; letter-spacing: 0.04em;
+}
+.shift-panel {
+  flex: 1; display: flex; flex-direction: column; gap: 12px;
+  background: var(--surface); border-radius: 10px;
+  padding: 20px; border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.shift-panel-header { margin-bottom: 4px; }
+.shift-eyebrow { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+.shift-title { font-size: 13px; color: var(--text-secondary); font-style: italic; line-height: 1.5; }
+
+.shift-rows { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.shift-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; border-radius: 8px;
+  background: var(--surface-alt); border: 1px solid var(--border);
+}
+.shift-from { flex: 1; min-width: 0; }
+.shift-to   { flex: 1; min-width: 0; }
+.shift-dir-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+.shift-from-text { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+.shift-to-text   { font-size: 12px; font-weight: 700; color: var(--text-primary); }
+.shift-arrow {
+  font-size: 18px; font-weight: 700; color: var(--blue);
+  flex-shrink: 0; opacity: 0.6;
+}
+
+.shift-conclusion {
+  padding: 12px 16px; border-radius: 8px; border: 1px solid;
+  margin-top: 4px;
+}
+.shift-conclusion-label { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 5px; }
+.shift-conclusion-text { font-size: 11.5px; color: var(--text-secondary); line-height: 1.6; }
+.shift-conclusion-text strong { color: var(--text-primary); }
+
+.hidden { display:none !important; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-left">
+    <div class="brand-logo">
+      <div class="brand-logo-dot"></div>
+      <span style="background:linear-gradient(90deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Data Intelligence</span>
+    </div>
+    <div class="header-divider"></div>
+    <div>
+      <div class="header-eyebrow">Real Estate · Operating Model Architecture</div>
+      <h1>From Data Stack to <span>Control Tower</span></h1>
+    </div>
+  </div>
+
+  <div class="controls-bar">
+    <!-- Light / Dark toggle -->
+    <div class="theme-toggle" role="group" aria-label="Color theme">
+      <button class="theme-opt active" id="opt-light" onclick="setTheme('light')" title="Light mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        Light
+      </button>
+      <button class="theme-opt" id="opt-dark" onclick="setTheme('dark')" title="Dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        Dark
+      </button>
+    </div>
+
+    <!-- Tab nav -->
+    <div class="tab-nav">
+      <button class="tab-btn" onclick="setTab('model')" id="tab-btn-model">Model Shift</button>
+      <button class="tab-btn" onclick="setTab('lenses')" id="tab-btn-lenses">Operating Lenses</button>
+      <button class="tab-btn active" onclick="setTab('bridge')" id="tab-btn-bridge">The Bridge</button>
+      <button class="tab-btn" onclick="setTab('arch')" id="tab-btn-arch">Architecture</button>
+      <button class="tab-btn" onclick="setTab('appendix')" id="tab-btn-appendix">Appendix</button>
+    </div>
+
+    <!-- Before/After sub-toggle (model tab only) -->
+    <div class="toggle-group" id="model-subtoggle" style="display:none;">
+      <button class="toggle-btn" onclick="setView('old')" id="btn-old">Before</button>
+      <button class="toggle-btn active" onclick="setView('new')" id="btn-new">After</button>
+      <button class="toggle-btn" onclick="setView('both')" id="btn-both">Compare</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+  <!-- ════════════════ TAB 1: MODEL SHIFT ════════════════════════════ -->
+  <div class="tab-section" id="tab-model">
+
+    <!-- Column headers row — hidden in single-panel views -->
+    <div id="compare-headers" class="compare-headers hidden">
+      <div class="compare-header-cell" style="color:var(--red);">
+        <span class="compare-header-label">Now</span>
+        <span class="compare-header-title">Data Pyramid</span>
+        <span class="compare-header-sub">Intelligence arrives late — if it arrives at all. Quarterly reports delivered after decisions are made.</span>
+      </div>
+      <div class="compare-header-divider"></div>
+      <div class="compare-header-cell" style="color:var(--green);">
+        <span class="compare-header-label">Next</span>
+        <span class="compare-header-title">Intelligence Control Tower</span>
+        <span class="compare-header-sub">Operations decoupled from intelligence. Decision rights enforced at top; execution distributed.</span>
+      </div>
+    </div>
+
+    <!-- Single-panel headers (shown when not comparing) -->
+    <div id="single-header-old" class="single-header hidden">
+      <div class="panel-label-small" style="color:var(--red);">Now</div>
+      <div class="panel-title">Data Pyramid</div>
+      <div class="panel-subtitle">Intelligence arrives late — if it arrives at all. Quarterly reports delivered after decisions are made.</div>
+    </div>
+    <div id="single-header-new" class="single-header">
+      <div class="panel-label-small" style="color:var(--green);">Next</div>
+      <div class="panel-title">Intelligence Control Tower</div>
+      <div class="panel-subtitle">Operations decoupled from intelligence. Decision rights enforced at top; execution distributed.</div>
+    </div>
+
+    <!-- ── ALIGNED LAYER ROWS ──────────────────────────────────────── -->
+    <!-- Each .cmp-row is one horizontal band. Left=Before, Right=After.
+         In single-view mode the irrelevant cell is hidden. -->
+
+    <!-- Row 0: flow caption -->
+    <div class="cmp-row cmp-caption-row">
+      <div class="cmp-cell" id="cmp-cap-old">
+        <div class="flow-label">↑ data flows up — insight arrives late ↑</div>
+      </div>
+      <div class="cmp-gutter" id="cmp-gutter"></div>
+      <div class="cmp-cell" id="cmp-cap-new">
+        <div class="flow-label" style="color:var(--green);">Thin senior core — oversees live networked execution ↓</div>
+      </div>
+    </div>
+
+    <!-- Row 1: Fund / Decision Control -->
+    <div class="cmp-row">
+      <div class="cmp-cell" id="cmp-old-1">
+        <div class="cmp-layer" style="background:var(--pyr-1);border-left:3px solid #D97706;">
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name">Fund &amp; Portfolio Management</div>
+            <div class="cmp-layer-sub">Reports · LP packs · BI dashboards · AI Agents</div>
+            <div class="cmp-layer-tech">Application · Transport layers</div>
+          </div>
+          <div class="tag" style="background:#D97706;">LAGGING</div>
+        </div>
+      </div>
+      <div class="cmp-gutter"></div>
+      <div class="cmp-cell" id="cmp-new-1">
+        <div class="cmp-layer" style="background:var(--surface);border-left:3px solid var(--text-secondary);">
+          <div class="layer-icon" style="color:var(--text-secondary);font-size:16px;width:28px;height:28px;flex-shrink:0;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--surface-alt);">◇</div>
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name" style="color:var(--text-primary);">Decision Control</div>
+            <div class="cmp-layer-sub">Capital allocation · IC · Risk thresholds · LP governance</div>
+          </div>
+          <div class="pills" style="flex-wrap:wrap;gap:3px;">
+            <div class="pill">Decision Rights</div>
+            <div class="pill">Audit Trails</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Asset Mgmt / Continuous Intelligence (highlighted) -->
+    <div class="cmp-row">
+      <div class="cmp-cell" id="cmp-old-2">
+        <div class="cmp-layer" style="background:var(--pyr-2);border-left:3px solid #D97706;">
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name">Asset Management</div>
+            <div class="cmp-layer-sub">Semantic models · UDM · Knowledge Graph (KGM)</div>
+            <div class="cmp-layer-tech">Consumption · Transformation layers</div>
+          </div>
+          <div class="tag" style="background:#D97706;">PERIODIC</div>
+        </div>
+      </div>
+      <div class="cmp-gutter"></div>
+      <div class="cmp-cell" id="cmp-new-2">
+        <div class="cmp-layer" style="background:var(--blue-tint);border:1px solid var(--blue-border);border-left:3px solid var(--blue);">
+          <div class="layer-icon" style="color:var(--blue);font-size:16px;width:28px;height:28px;flex-shrink:0;border:1px solid var(--blue-border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--blue-tint);">◈</div>
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name" style="color:var(--blue);">Continuous Intelligence</div>
+            <div class="cmp-layer-sub">Knowledge Graph · Provenance · Plural Ontologies · Decision Lineage</div>
+          </div>
+          <div class="pills" style="flex-wrap:wrap;gap:3px;">
+            <div class="pill" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Semantic Gov.</div>
+            <div class="pill" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Live Context</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Property Operations / AI Agent Network -->
+    <div class="cmp-row">
+      <div class="cmp-cell" id="cmp-old-3">
+        <div class="cmp-layer" style="background:var(--pyr-3);border-left:3px solid #DC2626;">
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name">Property Operations</div>
+            <div class="cmp-layer-sub">Tables · CSV · Excel · PDFs · SFTP · Emails</div>
+            <div class="cmp-layer-tech">Curation · Connection layers</div>
+          </div>
+          <div class="tag" style="background:#DC2626;">SILOED</div>
+        </div>
+      </div>
+      <div class="cmp-gutter"></div>
+      <div class="cmp-cell" id="cmp-new-3">
+        <div class="cmp-layer" style="background:var(--surface);border-left:3px solid var(--teal);">
+          <div class="layer-icon" style="color:var(--teal);font-size:16px;width:28px;height:28px;flex-shrink:0;border:1px solid var(--teal-border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--teal-tint);">◎</div>
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name" style="color:var(--teal);">AI Agent Network</div>
+            <div class="cmp-layer-sub">Underwriting · Lease abstraction · Capex · Anomaly detection</div>
+          </div>
+          <div class="pills" style="flex-wrap:wrap;gap:3px;">
+            <div class="pill" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Autonomous</div>
+            <div class="pill" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Traceable</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Systems of Record / Systems of Record -->
+    <div class="cmp-row">
+      <div class="cmp-cell" id="cmp-old-4">
+        <div class="cmp-layer" style="background:var(--pyr-5);border-left:3px solid #DC2626;">
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name">Systems of Record</div>
+            <div class="cmp-layer-sub">Yardi · Argus · VTS · Anaplan · DealCloud</div>
+            <div class="cmp-layer-tech">Internal &amp; external apps · 3rd party vendors · file submissions</div>
+          </div>
+          <div class="tag" style="background:#DC2626;">FRAGMENTED</div>
+        </div>
+      </div>
+      <div class="cmp-gutter"></div>
+      <div class="cmp-cell" id="cmp-new-4">
+        <div class="cmp-layer" style="background:var(--surface);border-left:3px solid var(--text-faint);">
+          <div class="layer-icon" style="color:var(--text-muted);font-size:16px;width:28px;height:28px;flex-shrink:0;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--surface-alt);">⬡</div>
+          <div class="cmp-layer-body">
+            <div class="cmp-layer-name" style="color:var(--text-muted);">Systems of Record</div>
+            <div class="cmp-layer-sub">Yardi · Argus · VTS · Anaplan · DealCloud · IoT · APIs</div>
+          </div>
+          <div class="pills" style="flex-wrap:wrap;gap:3px;">
+            <div class="pill">Entity Resolution</div>
+            <div class="pill">Provenance at Source</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Principle box (shown only in After/Compare) -->
+    <div id="principle-row" class="principle-box" style="margin-top:10px;">
+      <div style="flex:1;">
+        <div class="principle-eyebrow">Key Principle</div>
+        <div class="principle-quote">"Operations is decoupled from intelligence. Centralised control no longer requires centralised execution. What it does require is a governed, traceable layer through which all decisions flow."</div>
+      </div>
+      <div class="vertical-tags">
+        <div class="vtag">Entity Resolution</div>
+        <div class="vtag">Decision Lineage</div>
+        <div class="vtag">Provenance</div>
+        <div class="vtag">Plural Ontologies</div>
+      </div>
+    </div>
+
+    <!-- Institutionalizing Intelligence -->
+    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+
+      <!-- Decision Architecture -->
+      <div style="background:var(--surface);border:1px solid var(--blue-border);border-top:3px solid var(--blue);border-radius:10px;padding:16px 18px;">
+        <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:6px;">Decision Architecture</div>
+        <div style="font-size:11.5px;color:var(--text-secondary);line-height:1.65;">Capital allocation, IC process, and LP governance encode explicit decision rights with full audit trail. Operations can be distributed; accountability cannot.</div>
+      </div>
+
+      <!-- Meaning Governance -->
+      <div style="background:var(--surface);border:1px solid var(--teal-border);border-top:3px solid var(--teal);border-radius:10px;padding:16px 18px;">
+        <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--teal);margin-bottom:6px;">Meaning Governance</div>
+        <div style="font-size:11.5px;color:var(--text-secondary);line-height:1.65;">Plural ontologies replace the failed mandate of one canonical model. Semantic drift — when definitions shift across counterparties, periods, or regions — is tracked and versioned explicitly.</div>
+      </div>
+
+      <!-- Corporate Memory -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--amber);border-radius:10px;padding:16px 18px;">
+        <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--amber);margin-bottom:6px;">Corporate Memory</div>
+        <div style="font-size:11.5px;color:var(--text-secondary);line-height:1.65;">The accumulated record of which interpretations drove which outcomes. Persists through reorganisations, market cycles, and leadership transitions. This is the real moat.</div>
+      </div>
+
+    </div>
+
+    <!-- Institutionalizing moves -->
+    <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+
+      <!-- Organizational Moves -->
+      <div style="background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--text-muted);margin-bottom:8px;">Organisational Moves</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--blue);font-weight:700;flex-shrink:0;">→</span>Establish semantic governance councils — not just data governance committees</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--blue);font-weight:700;flex-shrink:0;">→</span>Fund ontology engineering as a core enterprise capability</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--blue);font-weight:700;flex-shrink:0;">→</span>Treat AI failures as epistemic failures, not technical ones</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--blue);font-weight:700;flex-shrink:0;">→</span>Appoint owners for definition drift across counterparties and periods</li>
+        </ul>
+      </div>
+
+      <!-- Architectural Moves -->
+      <div style="background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--text-muted);margin-bottom:8px;">Architectural Moves</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">→</span>Introduce knowledge graphs as semantic backplanes across systems of record</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">→</span>Decouple storage from meaning — governed definitions enforced at query time</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">→</span>Design for multiple coexisting truths with explicit scope and provenance</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">→</span>Build agent governance alongside meaning governance from the start</li>
+        </ul>
+      </div>
+
+      <!-- Cultural Moves -->
+      <div style="background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--text-muted);margin-bottom:8px;">Cultural Moves</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--amber);font-weight:700;flex-shrink:0;">→</span>Accept definitional ambiguity as a systems property, not a failure</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--amber);font-weight:700;flex-shrink:0;">→</span>Reward interpretation quality and decision traceability, not just data accuracy</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--amber);font-weight:700;flex-shrink:0;">→</span>Shift from 'single source of truth' to 'traceable sources of meaning'</li>
+          <li style="font-size:11px;color:var(--text-secondary);line-height:1.5;display:flex;gap:7px;"><span style="color:var(--amber);font-weight:700;flex-shrink:0;">→</span>Measure corporate memory: can you query which definition drove which outcome?</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="thesis-bar" style="margin-top:14px;">
+      <div class="thesis-stripe"></div>
+      <div class="thesis-text">"The organisations that will lead are not those that deploy the most AI: they are those that build the institutional infrastructure to govern meaning, trace decisions, and adapt definitions as their operating models evolve."</div>
+      <div class="thesis-label">Key Thesis</div>
+    </div>
+
+  </div><!-- tab-model -->
+
+
+  <!-- ════════════════ TAB 2: OPERATING LENSES ═══════════════════════ -->
+  <div class="tab-section" id="tab-lenses">
+    <div class="section-header-bar">
+      <div class="section-eyebrow">Operating Model · Section 02 · Three Lenses</div>
+      <div class="section-title">Why the Operating Model Determines the Intelligence Stack</div>
+      <div class="section-subtitle">The more distributed the operating model, the more critical the intelligence architecture becomes. The intelligence stack required depends on where operational control sits — inside the firm or delegated to third parties.</div>
+    </div>
+
+    <div class="lenses-grid">
+      <!-- LENS 1 -->
+      <div class="lens-col">
+        <div class="lens-col-header">
+          <div class="lens-num" style="background:var(--blue-tint);color:var(--blue);border:1px solid var(--blue-border);">01</div>
+          <div>
+            <div class="lens-col-title">Owner-Operator</div>
+            <div class="lens-col-sub">All real estate operations performed internally by Company staff, from property level to asset to fund management</div>
+          </div>
+        </div>
+        <div class="lens-accent-line" style="background:linear-gradient(90deg,var(--blue),transparent);"></div>
+        <div class="lens-stack">
+          <div class="lens-row" style="border-left-color:var(--blue);">
+            <span class="lens-row-label">Fund / Portfolio Management</span>
+            <span class="lens-row-tag" style="background:var(--tag-internal-bg);color:var(--tag-internal-text);">INTERNAL</span>
+          </div>
+          <div class="lens-connector">↑</div>
+          <div class="lens-row" style="border-left-color:var(--blue);">
+            <span class="lens-row-label">Asset Management</span>
+            <span class="lens-row-tag" style="background:var(--tag-internal-bg);color:var(--tag-internal-text);">INTERNAL</span>
+          </div>
+          <div class="lens-connector">↑</div>
+          <div class="lens-row" style="border-left-color:var(--blue);">
+            <span class="lens-row-label">Property Operations</span>
+            <span class="lens-row-tag" style="background:var(--tag-internal-bg);color:var(--tag-internal-text);">INTERNAL</span>
+          </div>
+          <div class="lens-connector">↑</div>
+          <div class="lens-row" style="border-left-color:var(--blue-bright);">
+            <span class="lens-row-label">Transaction Data Capture</span>
+            <span class="lens-row-tag" style="background:var(--tag-staff-bg);color:var(--tag-staff-text);">STAFF</span>
+          </div>
+        </div>
+        <div class="lens-note" style="border-color:var(--blue);">
+          Single data owner across all layers. Full control of provenance chain. Lowest third-party integration complexity — the Knowledge Graph spans internally owned entities end-to-end.
+        </div>
+      </div>
+
+      <!-- LENS 2 -->
+      <div class="lens-col">
+        <div class="lens-col-header">
+          <div class="lens-num" style="background:var(--teal-tint);color:var(--teal);border:1px solid var(--teal-border);">02</div>
+          <div>
+            <div class="lens-col-title">Investment Manager · Outsourced Property Management</div>
+            <div class="lens-col-sub">Property operations outsourced to third-party Property Managers. Asset &amp; fund management performed internally.</div>
+          </div>
+        </div>
+        <div class="lens-accent-line" style="background:linear-gradient(90deg,var(--teal),transparent);"></div>
+        <div class="lens-stack">
+          <div class="lens-row" style="border-left-color:var(--teal);">
+            <span class="lens-row-label">Fund / Portfolio Management</span>
+            <span class="lens-row-tag" style="background:var(--tag-internal-bg);color:var(--tag-internal-text);">INTERNAL</span>
+          </div>
+          <div class="lens-connector">↑</div>
+          <div class="lens-row" style="border-left-color:var(--teal);">
+            <span class="lens-row-label">Asset Management</span>
+            <span class="lens-row-tag" style="background:var(--tag-internal-bg);color:var(--tag-internal-text);">INTERNAL</span>
+          </div>
+          <div class="boundary-line">
+            <div class="boundary-dash"></div>
+            <span class="boundary-label">3rd party boundary</span>
+            <div class="boundary-dash"></div>
+          </div>
+          <div class="lens-row" style="border-left-color:var(--red);background:var(--red-tint);">
+            <span class="lens-row-label">Property Operations</span>
+            <span class="lens-row-tag" style="background:var(--tag-3p-bg);color:var(--tag-3p-text);">3RD PARTY</span>
+          </div>
+          <div class="lens-connector">↑</div>
+          <div class="lens-row" style="border-left-color:var(--red);background:var(--red-tint);">
+            <span class="lens-row-label">Transaction Data Capture</span>
+            <span class="lens-row-tag" style="background:var(--tag-3p-bg);color:var(--tag-3p-text);">3RD PARTY</span>
+          </div>
+        </div>
+        <div class="lens-note" style="border-color:var(--teal);">
+          Boundary at property level. Third-party data must be ingested, entity-resolved, and reconciled. Provenance must track the handoff explicitly.
+        </div>
+      </div>
+
+      <!-- LENS 3 -->
+      <div class="lens-col">
+        <div class="lens-col-header">
+          <div class="lens-num" style="background:var(--amber-tint);color:var(--amber);border:1px solid var(--amber-border);">03</div>
+          <div>
+            <div class="lens-col-title">Investment Manager · Outsourced Property &amp; Asset Management</div>
+            <div class="lens-col-sub">Property operations and asset management outsourced to third-party or JV Partner. Fund management performed internally.</div>
+          </div>
+        </div>
+        <div class="lens-accent-line" style="background:linear-gradient(90deg,var(--amber),transparent);"></div>
+        <div class="lens-stack">
+          <div class="lens-row" style="border-left-color:var(--amber);">
+            <span class="lens-row-label">Fund / Portfolio Management</span>
+            <span class="lens-row-tag" style="background:var(--tag-internal-bg);color:var(--tag-internal-text);">INTERNAL</span>
+          </div>
+          <div class="boundary-line">
+            <div class="boundary-dash"></div>
+            <span class="boundary-label">3rd party boundary</span>
+            <div class="boundary-dash"></div>
+          </div>
+          <div class="lens-row" style="border-left-color:var(--red);background:var(--red-tint);">
+            <span class="lens-row-label">Asset Management</span>
+            <span class="lens-row-tag" style="background:var(--tag-3p-bg);color:var(--tag-3p-text);">JV / 3RD PTY</span>
+          </div>
+          <div class="lens-connector">↑</div>
+          <div class="lens-row" style="border-left-color:var(--red);background:var(--red-tint);">
+            <span class="lens-row-label">Property Operations</span>
+            <span class="lens-row-tag" style="background:var(--tag-3p-bg);color:var(--tag-3p-text);">3RD PARTY</span>
+          </div>
+          <div class="lens-connector">↑</div>
+          <div class="lens-row" style="border-left-color:var(--red);background:var(--red-tint);">
+            <span class="lens-row-label">Transaction Data Capture</span>
+            <span class="lens-row-tag" style="background:var(--tag-3p-bg);color:var(--tag-3p-text);">3RD PARTY</span>
+          </div>
+        </div>
+        <div class="lens-note" style="border-color:var(--amber);">
+          Boundary at fund level. Provenance &amp; entity resolution critical across two handoffs. Each boundary requires semantic contract enforcement.
+        </div>
+      </div>
+    </div>
+
+    <div class="implication-bar">
+      <div style="flex:1;min-width:280px;">
+        <div class="implication-label">Intelligence Architecture Implication</div>
+        <div class="implication-text">"The more distributed the operating model, the more critical an intelligence architecture becomes. The moat is not data access. It is the institutional memory that persists across third-party boundaries. When property or asset operations are outsourced, investors lose more than data custody. They lose the context that makes data meaningful."</div>
+      </div>
+      <div class="implication-tags">
+        <div class="imp-tag">Entity Resolution</div>
+        <div class="imp-tag">Decision Lineage</div>
+        <div class="imp-tag">Provenance at Boundary</div>
+        <div class="imp-tag">Semantic Contracts</div>
+        <div class="imp-tag">Meaning Governance</div>
+      </div>
+    </div>
+  </div><!-- tab-lenses -->
+
+
+  <!-- ════════════════ TAB 3: THE BRIDGE ════════════════════════════ -->
+  <div class="tab-section active" id="tab-bridge">
+
+    <!-- Diagnosis bar -->
+    <div class="diagnosis-bar">
+      <div class="diagnosis-label">Diagnosis</div>
+      <div class="diagnosis-body">Legacy enterprise architectures were built on five assumptions that no longer hold: <em>one truth per entity, one schema per domain, one metric definition per KPI, one standard workflow per process, one system of record per function.</em> That worldview worked when data volumes were smaller, change was slow, interpretation was centralised, and software acted while humans decided. Operating models carried the same logic: one owner per function, one authority per decision, one chain of command per reporting line. Both worked when operations were vertically integrated and humans coordinated directly. AI agents, distributed ownership, and global operations break every one of these assumptions simultaneously.</div>
+    </div>
+
+    <div style="display:flex;gap:14px;flex:1;align-items:stretch;margin-top:12px;">
+
+      <!-- SHIFT 1: TECHNOLOGY -->
+      <div class="shift-panel" style="border-top:3px solid var(--blue);">
+        <div class="shift-panel-header">
+          <div class="shift-eyebrow" style="color:var(--blue);">Paradigmatic Technology Shifts</div>
+          <div class="shift-title">Enterprise architectures and technology topographies need to adapt.</div>
+          <div class="shift-hint">Click any row to read the detail ↓</div>
+        </div>
+
+        <div class="shift-rows">
+
+          <!-- T1 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Tech Debt</div>
+              <div class="shift-arrow-sm">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Data Debt</div>
+            </div>
+            <div class="shift-row-body">The accumulated cost of inconsistent identifiers, unmapped entity relationships, and definitions living inside BI logic rather than governed systems. Clean pipelines carrying semantically broken data produce faster answers to the wrong questions. AI pilots built on inconsistent entities and drifting metrics become wrong at scale.</div>
+          </div>
+
+          <!-- T2 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Systems of Record</div>
+              <div class="shift-arrow-sm">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Systems of Interpretation</div>
+            </div>
+            <div class="shift-row-body">ERP, CRM, and data warehouses record what happened — not why, not under which definition, not with whose authority. As agents begin acting on data rather than humans interpreting it, a new class of system is required: a layer of semantic mediation that maintains probabilistic and contextual truth, and makes that truth revisable without losing the trace of what was believed and when. The question shifts from "Is the data correct?" to "Does it represent the intended meaning?"</div>
+          </div>
+
+          <!-- T3 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Data Governance</div>
+              <div class="shift-arrow-sm">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Meaning Governance</div>
+            </div>
+            <div class="shift-row-body">Traditional governance checked format, completeness, and access. It could not answer whether the data meant what anyone assumed it meant. Meaning governance shifts the question: is the interpretation consistent across decisions? Semantic drift, when definitions shift across counterparties, periods, or regions, is treated as a first-class risk rather than a data quality footnote.</div>
+          </div>
+
+          <!-- T4 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Data Lineage</div>
+              <div class="shift-arrow-sm">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Decision Lineage</div>
+            </div>
+            <div class="shift-row-body">Technical lineage tells you where a number came from. Decision lineage makes the full chain queryable: what changed, when, and which version was in effect at the moment a capital decision was taken. This is the minimum infrastructure required for AI accountability — and the precondition for institutional memory that compounds.</div>
+          </div>
+
+        </div>
+
+        <div class="shift-conclusion" style="border-color:var(--blue);background:var(--blue-tint);">
+          <div class="shift-conclusion-label" style="color:var(--blue);">Architecture Shift</div>
+          <div class="shift-conclusion-text">Enterprise Architecture shifts to <strong>Decision Architecture</strong>. Architecture is no longer application-centric. The organising question is no longer which systems connect, but which decisions are governed, traceable, and trusted across the full execution chain.</div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div style="width:1px;background:var(--border);flex-shrink:0;"></div>
+
+      <!-- SHIFT 2: OPERATIONS -->
+      <div class="shift-panel" style="border-top:3px solid var(--teal);">
+        <div class="shift-panel-header">
+          <div class="shift-eyebrow" style="color:var(--teal);">Paradigmatic Operation Shifts</div>
+          <div class="shift-title">Target operating models need to be revisited and reimagined.</div>
+          <div class="shift-hint">Click any row to read the detail ↓</div>
+        </div>
+
+        <div class="shift-rows">
+
+          <!-- O1 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Who Operates</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Who Decides</div>
+            </div>
+            <div class="shift-row-body">With agents able to execute at scale, the question shifts from who performs each function to who holds decision rights. Execution can be outsourced, automated, or delegated — but decision rights, risk thresholds, and accountability cannot. The operating model determines the boundary between execution and governance. The intelligence layer must encode this boundary explicitly.</div>
+          </div>
+
+          <!-- O2 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Aggregating Information</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Orchestrating Outcomes</div>
+            </div>
+            <div class="shift-row-body">The dominant data model was consolidation: pull all data into a central warehouse, then report from it. The new challenge is coordination — ensuring agents operating at property, asset, and fund level are working from compatible context, not fragmented signal.</div>
+          </div>
+
+          <!-- O3 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Measuring Activity</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Driving Decisions</div>
+            </div>
+            <div class="shift-row-body">Most operational reporting tells leadership what already happened. The competitive question is no longer how well you report the past, but how early you act on the future. Humans supervise systems, not steps — the intelligence layer ensures signals are derived from governed, traceable entities.</div>
+          </div>
+
+          <!-- O4 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Reporting Results</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Managing Performance</div>
+            </div>
+            <div class="shift-row-body">Reporting is a record of what was. Performance management is the active governance of what will be — capital reallocation, lease strategy, capex sequencing. Corporate memory — the accumulated record of which interpretations drove which outcomes — is what separates an organisation that learns from one that merely repeats.</div>
+          </div>
+
+        </div>
+
+        <div class="shift-conclusion" style="border-color:var(--teal);background:var(--teal-tint);">
+          <div class="shift-conclusion-label" style="color:var(--teal);">Operating Model Shift</div>
+          <div class="shift-conclusion-text">Target Operating Model shifts to <strong>Target Intelligence Model</strong>. Operations is decoupled from intelligence. Centralised control no longer requires centralised execution, but it does require a governed, traceable layer through which all decisions flow.</div>
+        </div>
+      </div>
+
+    </div><!-- flex row -->
+
+    <div class="thesis-bar" style="margin-top:14px;">
+      <div class="thesis-stripe"></div>
+      <div class="thesis-text">"The operating model determines where execution happens. The Intelligence Control Tower determines whether decisions made across that execution can be trusted, traced, and compounded."</div>
+      <div class="thesis-label">Key Thesis</div>
+    </div>
+
+    <div class="nav-strip">
+      <div class="nav-cell" onclick="setTab('lenses')">
+        <div class="nav-cell-label">← Operating Lenses</div>
+        <div class="nav-cell-desc">Shows the three archetypes and where the third-party data boundary falls in each.</div>
+      </div>
+      <div class="nav-cell active">
+        <div class="nav-cell-label">You Are Here</div>
+        <div class="nav-cell-desc">The paradigmatic shifts — in technology and operations — that demand a new intelligence architecture.</div>
+      </div>
+      <div class="nav-cell" onclick="setTab('model')">
+        <div class="nav-cell-label">Model Shift →</div>
+        <div class="nav-cell-desc">Shows what the Control Tower looks like once the shift is made.</div>
+      </div>
+      <div class="nav-cell" onclick="setTab('arch')">
+        <div class="nav-cell-label">Architecture →</div>
+        <div class="nav-cell-desc">Comparison of technology approaches and stack failure modes.</div>
+      </div>
+    </div>
+  </div><!-- tab-bridge -->
+
+  <!-- ════════════════ TAB 4: ARCHITECTURE ═══════════════════════════ -->
+  <div class="tab-section" id="tab-arch">
+    <div class="section-header-bar">
+      <div class="section-eyebrow">Data & Tech · Section 04</div>
+      <div class="section-title">Architecture Comparison & Failure Modes</div>
+      <div class="section-subtitle">How the current stack fails — and what an agent-grade foundation requires.</div>
+    </div>
+
+    <!-- Data Operating Model Evolution (Page 14) -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--text-muted);margin-bottom:10px;">Data Operating Model Evolution</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr>
+            <th style="padding:9px 14px;text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--red);background:var(--layer-bad);border:1px solid var(--border);border-bottom:2px solid var(--red);width:50%;">Now · Data Pyramid</th>
+            <th style="padding:9px 14px;text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--green);background:var(--green-bg);border:1px solid var(--border);border-bottom:2px solid var(--green);width:50%;">Next · Intelligence Control Tower</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--text-secondary);background:var(--layer-bad);border-right:1px solid var(--border);">Quarterly reports delivered after decisions are made</td>
+            <td style="padding:10px 14px;color:var(--text-primary);font-weight:500;">Continuous intelligence surface, always current</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--text-secondary);background:var(--layer-bad);border-right:1px solid var(--border);">Intelligence sits at the top of the stack, arriving last</td>
+            <td style="padding:10px 14px;color:var(--text-primary);font-weight:500;">Intelligence sits between operations and executives</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--text-secondary);background:var(--layer-bad);border-right:1px solid var(--border);">Regional systems are siloed with manual reconciliation</td>
+            <td style="padding:10px 14px;color:var(--text-primary);font-weight:500;">Connected execution band with entity resolution at source</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--text-secondary);background:var(--layer-bad);border-right:1px solid var(--border);">AI is hidden tooling bolted onto existing pipelines</td>
+            <td style="padding:10px 14px;color:var(--text-primary);font-weight:500;">AI agents are active participants with traceable actions</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--text-secondary);background:var(--layer-bad);border-right:1px solid var(--border);">Data governance: format, completeness, and ownership</td>
+            <td style="padding:10px 14px;color:var(--text-primary);font-weight:500;">Meaning governance: explicit, versioned definitions enforced at query time</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;color:var(--text-secondary);background:var(--layer-bad);border-right:1px solid var(--border);">Centralised control requires centralised execution</td>
+            <td style="padding:10px 14px;color:var(--text-primary);font-weight:500;">Decision rights enforced at top; execution distributed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Comparison Table -->
+    <div style="overflow-x:auto;margin-bottom:14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr style="background:var(--surface-alt);">
+            <th style="padding:10px 12px;text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);font-weight:700;border-bottom:1px solid var(--border);white-space:nowrap;">Dimension</th>
+            <th style="padding:10px 12px;text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);font-weight:700;border-bottom:1px solid var(--border);">Legacy DW + MDM</th>
+            <th style="padding:10px 12px;text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);font-weight:700;border-bottom:1px solid var(--border);">Horizontal KG Platforms</th>
+            <th style="padding:10px 12px;text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);font-weight:700;border-bottom:1px solid var(--border);">Vertical PropTech SaaS</th>
+            <th style="padding:10px 12px;text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-weight:700;border-bottom:1px solid var(--border);background:var(--blue-tint);">Intelligence Control Tower</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:9px 12px;font-weight:600;color:var(--text-primary);">Core abstraction</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Tables · Golden records</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Generic nodes/edges</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Application objects</td>
+            <td style="padding:9px 12px;color:var(--blue);font-weight:600;background:var(--blue-tint);">Resolved entities</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);background:var(--surface-alt);">
+            <td style="padding:9px 12px;font-weight:600;color:var(--text-primary);">Entity resolution</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Deterministic keys</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Partial, manual</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Implicit</td>
+            <td style="padding:9px 12px;color:var(--blue);font-weight:600;background:var(--blue-tint);">Probabilistic, time-aware</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:9px 12px;font-weight:600;color:var(--text-primary);">Ontology model</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Fixed schema · Single ontology</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Generic ontology</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Hard-coded</td>
+            <td style="padding:9px 12px;color:var(--blue);font-weight:600;background:var(--blue-tint);">Plural ontologies · Governed</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);background:var(--surface-alt);">
+            <td style="padding:9px 12px;font-weight:600;color:var(--text-primary);">Temporal reasoning</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Weak</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Medium</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Low</td>
+            <td style="padding:9px 12px;color:var(--blue);font-weight:600;background:var(--blue-tint);">Native</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:9px 12px;font-weight:600;color:var(--text-primary);">Semantic lineage</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Minimal</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Partial</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Opaque</td>
+            <td style="padding:9px 12px;color:var(--blue);font-weight:600;background:var(--blue-tint);">Explicit</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);background:var(--surface-alt);">
+            <td style="padding:9px 12px;font-weight:600;color:var(--text-primary);">AI readiness</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Low</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Medium</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Narrow</td>
+            <td style="padding:9px 12px;color:var(--blue);font-weight:600;background:var(--blue-tint);">Agent-grade</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 12px;font-weight:600;color:var(--text-primary);">Governance maturity</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Data-centric</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">Developer-centric</td>
+            <td style="padding:9px 12px;color:var(--text-secondary);">App-centric</td>
+            <td style="padding:9px 12px;color:var(--blue);font-weight:600;background:var(--blue-tint);">Semantic-centric</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Failure Modes Grid -->
+    <div style="margin-bottom:8px;">
+      <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:10px;">Requirements & Stack Failure Modes</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;">
+
+      <div style="background:var(--layer-bad);border:1px solid var(--red-border);border-left:3px solid var(--red);border-radius:8px;padding:13px 15px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:5px;">Entity Resolution Over Heterogenous Sources</div>
+        <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px;"><em style="color:var(--red);font-style:normal;">Failure:</em> IDs do not align across managers, funds, servicers, and external datasets; matching is periodic and highly manual.</div>
+        <div style="font-size:10.5px;color:var(--green);line-height:1.6;"><em style="font-style:normal;font-weight:600;">Advantage:</em> Probabilistic, time-aware entity resolution across sources, with traceable history and lineage.</div>
+      </div>
+
+      <div style="background:var(--layer-bad);border:1px solid var(--red-border);border-left:3px solid var(--red);border-radius:8px;padding:13px 15px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:5px;">Canonical Data Schema</div>
+        <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px;"><em style="color:var(--red);font-style:normal;">Failure:</em> Standards are imposed or application-specific; every team rebuilds "truth" independently.</div>
+        <div style="font-size:10.5px;color:var(--green);line-height:1.6;"><em style="font-style:normal;font-weight:600;">Advantage:</em> A governed canonical layer anchored on entities and relationships that can evolve safely.</div>
+      </div>
+
+      <div style="background:var(--layer-bad);border:1px solid var(--red-border);border-left:3px solid var(--red);border-radius:8px;padding:13px 15px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:5px;">Meaning Governance</div>
+        <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px;"><em style="color:var(--red);font-style:normal;">Failure:</em> Governance checks format and completeness; definitions live in BI logic and spreadsheets.</div>
+        <div style="font-size:10.5px;color:var(--green);line-height:1.6;"><em style="font-style:normal;font-weight:600;">Advantage:</em> Explicit, versioned definitions and contexts enforced across all uses.</div>
+      </div>
+
+      <div style="background:var(--layer-bad);border:1px solid var(--red-border);border-left:3px solid var(--red);border-radius:8px;padding:13px 15px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:5px;">Observability Over Data In Motion</div>
+        <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px;"><em style="color:var(--red);font-style:normal;">Failure:</em> Monitoring focused on row counts and fill rates. Semantic failures occur in mapping, joins, reconciliation.</div>
+        <div style="font-size:10.5px;color:var(--green);line-height:1.6;"><em style="font-style:normal;font-weight:600;">Advantage:</em> Detect mapping drift, join explosions, reconciliation anomalies, and definition drift as pipelines run.</div>
+      </div>
+
+      <div style="background:var(--layer-bad);border:1px solid var(--red-border);border-left:3px solid var(--red);border-radius:8px;padding:13px 15px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:5px;">Auditability</div>
+        <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px;"><em style="color:var(--red);font-style:normal;">Failure:</em> Technical lineage exists, but "why did it change?" remains manual across tools and teams.</div>
+        <div style="font-size:10.5px;color:var(--green);line-height:1.6;"><em style="font-style:normal;font-weight:600;">Advantage:</em> Queryable meaning lineage: what changed, when, where, why, and which version was in effect.</div>
+      </div>
+
+      <div style="background:var(--layer-bad);border:1px solid var(--red-border);border-left:3px solid var(--red);border-radius:8px;padding:13px 15px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:5px;">AI Readiness</div>
+        <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px;"><em style="color:var(--red);font-style:normal;">Failure:</em> AI pilots built on inconsistent entities and drifting metrics become "wrong at scale."</div>
+        <div style="font-size:10.5px;color:var(--green);line-height:1.6;"><em style="font-style:normal;font-weight:600;">Advantage:</em> Agent-grade foundation: governed entities + time-awareness + meaning + traceability.</div>
+      </div>
+
+    </div>
+
+    <div class="thesis-bar" style="margin-top:14px;">
+      <div class="thesis-stripe"></div>
+      <div class="thesis-text">"Clean pipelines carrying semantically broken data produce faster answers to the wrong questions."</div>
+      <div class="thesis-label">Architecture Thesis</div>
+    </div>
+  </div><!-- tab-arch -->
+
+  <!-- ════════════════ TAB 5: APPENDIX ══════════════════════════════ -->
+  <div class="tab-section" id="tab-appendix">
+
+    <div class="diagnosis-bar" style="margin-bottom:14px;">
+      <div class="diagnosis-label">Five Arguments</div>
+      <div class="diagnosis-body">Each section below develops one of the five supporting arguments behind the intelligence architecture thesis. Click any row to read the full argument.</div>
+    </div>
+
+    <div style="display:flex;gap:14px;flex:1;align-items:stretch;">
+
+      <!-- LEFT PANEL: Why Operating Model + Data as Context + Meaning vs Agent Governance -->
+      <div class="shift-panel" style="border-top:3px solid var(--blue);flex:1;">
+        <div class="shift-panel-header">
+          <div class="shift-eyebrow" style="color:var(--blue);">Operating Model &amp; Data Architecture</div>
+          <div class="shift-title">Why the operating model determines what the intelligence stack must solve for.</div>
+          <div class="shift-hint">Click any row to read the full argument ↓</div>
+        </div>
+        <div class="shift-rows">
+
+          <!-- A1 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">The Data Problem</div>
+              <div class="shift-arrow-sm" style="color:var(--blue);">is</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">A Meaning Problem</div>
+            </div>
+            <div class="shift-row-body">At every third-party handoff, data loses the context that makes it trustworthy for decisions. When property or asset operations are outsourced, investors lose more than data custody. They lose the context that makes data meaningful. The property manager's definition of "occupancy" or "lease commencement" may not match. Data arrives stripped of intent. Systems of record capture what happened — not why, not under which definition, not with whose authority.
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--blue-tint);border:1px solid var(--blue-border);color:var(--blue);">Definition Gap</span>
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--blue-tint);border:1px solid var(--blue-border);color:var(--blue);">Plural Ontologies</span>
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--blue-tint);border:1px solid var(--blue-border);color:var(--blue);">Definition Drift</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- A2 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">The Context Graph</div>
+              <div class="shift-arrow-sm" style="color:var(--blue);">lets</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Definitions Travel</div>
+            </div>
+            <div class="shift-row-body">A context graph accumulates decision traces across entities and time, making precedent searchable across organisational lines. At every handoff, data must arrive with explicit provenance tags: source, as-of date, definition used, rights. Entity resolution unifies the same asset across disparate systems. Plural ontologies let a partner's definitions coexist rather than silently collide. Without this layer, data arrives that cannot be interrogated or trusted.
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--teal-tint);border:1px solid var(--teal-border);color:var(--teal);">Entity Resolution</span>
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--teal-tint);border:1px solid var(--teal-border);color:var(--teal);">Origin Tagged at Source</span>
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--teal-tint);border:1px solid var(--teal-border);color:var(--teal);">Decision Traces</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- A3 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">The Operating Model</div>
+              <div class="shift-arrow-sm" style="color:var(--blue);">is</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">The Architecture</div>
+            </div>
+            <div class="shift-row-body">The Intelligence Control Tower is purpose-built for operating models where execution is distributed but decision rights must remain centralised. A decision-centric architecture only works if the intelligence layer holds the institutional memory that persists across the organisational boundaries the operating model creates. Distributed execution has always been achievable. The constraint has never been scale of operations, but whether meaning can travel reliably across the boundaries that scale creates.
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--amber-tint);border:1px solid var(--amber-border);color:var(--amber);">Corporate Memory</span>
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--amber-tint);border:1px solid var(--amber-border);color:var(--amber);">Decision Lineage</span>
+                <span style="font-size:8.5px;font-weight:700;padding:4px 9px;border-radius:5px;background:var(--amber-tint);border:1px solid var(--amber-border);color:var(--amber);">Meaning Governance</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- A4 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Static Schema</div>
+              <div class="shift-arrow-sm" style="color:var(--blue);">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Living Ontology</div>
+            </div>
+            <div class="shift-row-body">A fixed schema assumes the world is stable and centrally defined. A living ontology tracks how concepts evolve across time, counterparty, and use case, versioned explicitly so that "occupancy" in 2022 under one property manager means something legible and distinct from "occupancy" today under another.</div>
+          </div>
+
+          <!-- A5 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Data Completeness</div>
+              <div class="shift-arrow-sm" style="color:var(--blue);">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Semantic Fidelity</div>
+            </div>
+            <div class="shift-row-body">Completeness checks whether all rows and fields are present. Semantic fidelity asks whether the data represents the intended meaning. A pipeline can be 100% complete and semantically broken: every lease record present, every definition drifted. The metric that matters shifts from fill rate to interpretation consistency.</div>
+          </div>
+
+          <!-- A6 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Single Source of Truth</div>
+              <div class="shift-arrow-sm" style="color:var(--blue);">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Traceable Sources of Meaning</div>
+            </div>
+            <div class="shift-row-body">The single source of truth mandate fails when execution is distributed. Multiple valid definitions must coexist: the property manager's view, the asset manager's view, the fund's view, each explicitly scoped and mapped. The governance objective is not to eliminate plurality but to make it traceable, with every interpretation annotated by its source, period, and authority.</div>
+          </div>
+
+          <!-- A7 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Batch Lineage</div>
+              <div class="shift-arrow-sm" style="color:var(--blue);">→</div>
+              <div class="shift-to-chip" style="background:var(--blue-tint);border-color:var(--blue-border);color:var(--blue);">Decision Lineage</div>
+            </div>
+            <div class="shift-row-body">Technical lineage records where a value came from. Decision lineage makes the full interpretive chain queryable: which version of a definition was in effect when a capital allocation was made, which entity mapping was used, and who held authority at that moment. This is the minimum infrastructure for AI accountability and the precondition for institutional memory that compounds.</div>
+          </div>
+
+        </div>
+        <div class="shift-conclusion" style="border-color:var(--blue);background:var(--blue-tint);">
+          <div class="shift-conclusion-label" style="color:var(--blue);">Data Architecture Shift</div>
+          <div class="shift-conclusion-text">The question is no longer whether the data is present. It is whether it carries the context needed to make a decision that can be trusted.</div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div style="width:1px;background:var(--border);flex-shrink:0;"></div>
+
+      <!-- RIGHT PANEL: Governance + Operating Model + Agentic Coordination -->
+      <div class="shift-panel" style="border-top:3px solid var(--teal);flex:1;">
+        <div class="shift-panel-header">
+          <div class="shift-eyebrow" style="color:var(--teal);">Governance &amp; Agentic Coordination</div>
+          <div class="shift-title">Meaning governance and agent governance are distinct problems that require distinct solutions.</div>
+          <div class="shift-hint">Click any row to read the full argument ↓</div>
+        </div>
+        <div class="shift-rows">
+
+          <!-- B1 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Data Governance</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Meaning Governance</div>
+            </div>
+            <div class="shift-row-body">Are your definitions consistent across decisions? Semantic drift, when occupancy, NOI, or lease commencement shifts across counterparties or regions, is a first-class risk, not a data quality footnote. Traditional governance checked format, completeness, and access. It could not answer whether the data meant what anyone thought it meant.</div>
+          </div>
+
+          <!-- B2 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Agent Governance</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Decision Alignment</div>
+            </div>
+            <div class="shift-row-body">Are your agents making decisions aligned with your business strategy? As agents begin acting on interpreted signals, a second governance layer is required: ensuring agent behaviour stays within sanctioned decision boundaries and remains auditable. Meaning governance and agent governance are related but not the same problem. Both must be built from the start.</div>
+          </div>
+
+          <!-- B3 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Canonicalisation</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">A Service, Not a Mandate</div>
+            </div>
+            <div class="shift-row-body">One canonical model per domain is no longer viable. Plural ontologies, contextual, persona-driven, and counterparty-scoped, must coexist with explicit mappings between them. Standardisation becomes a governed service rather than a top-down imposition. The goal shifts from enforcing a single truth to making all truths legible and traceable.</div>
+          </div>
+
+          <!-- B4 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Centralised Intelligence</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Signal Orchestration</div>
+            </div>
+            <div class="shift-row-body">Intelligence no longer lives only in dashboards and reports. Agents operating at property, asset, and fund level continuously interpret signals. The new architecture orchestrates those signals, ensuring agents work from compatible context rather than fragmented inputs. The challenge shifts from modelling to coordination.</div>
+          </div>
+
+          <!-- B5 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Managing Information</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Managing Meaning</div>
+            </div>
+            <div class="shift-row-body">Legacy architectures optimised for stability, control, and predictability. Future architectures must optimise for adaptation, plurality, and negotiation. Those who prepare early will build institutions capable of reasoning across counterparties when no single ontology is sufficient.</div>
+          </div>
+
+          <!-- B6 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Rule-Based Automation</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Negotiated Execution</div>
+            </div>
+            <div class="shift-row-body">Agents do not simply execute rules. They negotiate, escalate, and reconcile across partial knowledge boundaries. This creates a coordination problem, not just a modelling problem. Governance must define how agents escalate, how conflicts resolve, and which decisions require human authorisation before action is taken.</div>
+          </div>
+
+          <!-- B7 -->
+          <div class="shift-row-expanded">
+            <div class="shift-row-header">
+              <div class="shift-from-chip">Humans Decide Each Step</div>
+              <div class="shift-arrow-sm" style="color:var(--teal);">→</div>
+              <div class="shift-to-chip" style="background:var(--teal-tint);border-color:var(--teal-border);color:var(--teal);">Humans Supervise Systems</div>
+            </div>
+            <div class="shift-row-body">Agents act on interpretations that are probabilistic, signal-driven, and judgment-weighted. Humans no longer supervise individual steps; they govern the systems that take those steps. This requires explicit trust boundaries: which decisions agents can make autonomously, which require escalation, and which need a full audit trail.</div>
+          </div>
+
+        </div>
+        <div class="shift-conclusion" style="border-color:var(--teal);background:var(--teal-tint);">
+          <div class="shift-conclusion-label" style="color:var(--teal);">Governance Shift</div>
+          <div class="shift-conclusion-text">AI that acts on semantically broken data produces wrong decisions at scale, and wrong decisions that are untraceable. Meaning governance and agent governance must be built together from the start.</div>
+        </div>
+      </div>
+
+    </div><!-- flex row -->
+
+    <div class="thesis-bar" style="margin-top:14px;">
+      <div class="thesis-stripe"></div>
+      <div class="thesis-text">"The organisations that will lead are not those that deploy the most AI. They are those that build the institutional infrastructure to govern meaning, trace decisions, and adapt definitions as their operating models evolve."</div>
+      <div class="thesis-label">Closing Thesis</div>
+    </div>
+
+  </div><!-- tab-appendix -->
+
+</div><!-- main -->
+
+<!-- ══════════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════════ -->
+<div class="footer">
+  <span class="footer-note">FROM DATA GOVERNANCE → MEANING GOVERNANCE &nbsp;·&nbsp; FROM DATA LINEAGE → DECISION LINEAGE</span>
+  <div class="footer-badge">
+    <div style="width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));"></div>
+    Intelligence Architecture <span>· Real Estate · March 2026</span>
+  </div>
+</div>
+
+<script>
+  // ── Theme toggle
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    ['light','dark'].forEach(id => {
+      document.getElementById('opt-'+id).classList.toggle('active', id === t);
+    });
+    localStorage.setItem('intel-theme', t);
+  }
+
+  // ── Tab switching
+  function setTab(t) {
+    ['model','lenses','bridge','arch','appendix'].forEach(id => {
+      document.getElementById('tab-'+id).classList.toggle('active', id === t);
+      document.getElementById('tab-btn-'+id).classList.toggle('active', id === t);
+    });
+    document.getElementById('model-subtoggle').style.display = (t === 'model') ? 'flex' : 'none';
+  }
+
+  // ── Before/After/Compare — controls new aligned grid
+  function setView(v) {
+    ['old','new','both'].forEach(id => document.getElementById('btn-'+id).classList.remove('active'));
+    document.getElementById('btn-'+v).classList.add('active');
+
+    // All old cells: cmp-old-1 through cmp-old-4 + cmp-cap-old
+    const oldCells = ['cmp-old-1','cmp-old-2','cmp-old-3','cmp-old-4','cmp-cap-old'];
+    const newCells = ['cmp-new-1','cmp-new-2','cmp-new-3','cmp-new-4','cmp-cap-new'];
+    const gutters  = document.querySelectorAll('.cmp-gutter');
+    const compareH = document.getElementById('compare-headers');
+    const singleOld = document.getElementById('single-header-old');
+    const singleNew = document.getElementById('single-header-new');
+    const principleRow = document.getElementById('principle-row');
+
+    oldCells.forEach(id => { const el = document.getElementById(id); if(el) el.classList.toggle('hidden', v === 'new'); });
+    newCells.forEach(id => { const el = document.getElementById(id); if(el) el.classList.toggle('hidden', v === 'old'); });
+    gutters.forEach(g => g.classList.toggle('no-arrow', v !== 'both'));
+
+    // Show/hide compare vs single headers
+    compareH.classList.toggle('hidden', v !== 'both');
+    singleOld.classList.toggle('hidden', v !== 'old');
+    singleNew.classList.toggle('hidden', v !== 'new');
+
+    // Principle box only shown with new/both
+    if(principleRow) principleRow.classList.toggle('hidden', v === 'old');
+  }
+
+  // ── Shift row expand/collapse
+  function initShiftRows() {
+    document.querySelectorAll('.shift-row-expanded').forEach(row => {
+      const header = row.querySelector('.shift-row-header');
+      // Add toggle chevron if not already present
+      if (!header.querySelector('.shift-toggle')) {
+        const toggle = document.createElement('span');
+        toggle.className = 'shift-toggle';
+        toggle.innerHTML = '▾';
+        header.appendChild(toggle);
+      }
+      header.addEventListener('click', () => {
+        const isOpen = row.classList.contains('open');
+        // Close all in same panel first
+        row.closest('.shift-rows').querySelectorAll('.shift-row-expanded.open').forEach(r => r.classList.remove('open'));
+        if (!isOpen) row.classList.add('open');
+      });
+    });
+  }
+  initShiftRows();
+
+  // ── Init: restore saved theme, default to light
+  const saved = localStorage.getItem('intel-theme') || 'light';
+  setTheme(saved);
+  setView('new');
+  setTab('bridge');
+</script>
+</body>
+</html>
