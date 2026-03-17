@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 · The Moat — Memory Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><span class="logo-mark">MA</span><span class="logo-text">Memory<br>Architecture</span></div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="nav-item" data-page="home"><span class="nav-num">00</span><span class="nav-label">Overview</span></a>
+    <a href="gap.html" class="nav-item" data-page="gap"><span class="nav-num">01</span><span class="nav-label">The Gap</span></a>
+    <a href="memory-types.html" class="nav-item" data-page="memory-types"><span class="nav-num">02</span><span class="nav-label">Memory Types</span></a>
+    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack"><span class="nav-num">03</span><span class="nav-label">Knowledge Stack</span></a>
+    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage"><span class="nav-num">04</span><span class="nav-label">Decision Lineage</span></a>
+    <a href="drift-register.html" class="nav-item" data-page="drift-register"><span class="nav-num">05</span><span class="nav-label">Drift Register</span></a>
+    <a href="decay-governance.html" class="nav-item" data-page="decay-governance"><span class="nav-num">06</span><span class="nav-label">Decay Governance</span></a>
+    <a href="moat.html" class="nav-item active" data-page="moat"><span class="nav-num">07</span><span class="nav-label">The Moat</span></a>
+  </nav>
+  <div class="sidebar-footer"><span class="sidebar-tag">CDO Brief · Q2 2026</span></div>
+</aside>
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">07</span>
+</header>
+<main class="main-content">
+<div class="page-inner">
+  <div class="eyebrow-tag">07 · The Competitive Argument</div>
+  <h1 class="page-title">The durable <em>moat</em></h1>
+  <p class="page-lead">Data access is commoditizing. Model performance is converging. Speed advantages are temporary. The durable moat is institutional memory that persists — and the governance disciplines that keep it trustworthy across cycles, people, and systems.</p>
+
+  <div class="moat-quote">
+    <p>The knowledge architecture tells you what your enterprise <em>knows</em>. The memory architecture tells you what your enterprise <em>remembers</em>. The drift register tells you when meaning has <em>forked</em>. Decay governance tells you when context has <em>expired</em>. Decision lineage tells you why judgment <em>made sense then</em>. Together, they form the only infrastructure that makes institutional intelligence durable.</p>
+  </div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1.25rem;font-weight:600">The Four Transitions</h2>
+  <div class="transition-row">
+    <div class="tr-item">
+      <div class="tr-from">Tech Debt</div>
+      <span class="tr-arrow">→</span>
+      <div class="tr-to">Data Debt</div>
+    </div>
+    <div class="tr-item">
+      <div class="tr-from">Data Governance</div>
+      <span class="tr-arrow">→</span>
+      <div class="tr-to">Meaning Governance</div>
+    </div>
+    <div class="tr-item">
+      <div class="tr-from">Data Lineage</div>
+      <span class="tr-arrow">→</span>
+      <div class="tr-to">Decision Lineage</div>
+    </div>
+    <div class="tr-item">
+      <div class="tr-from">Single Source of Truth</div>
+      <span class="tr-arrow">→</span>
+      <div class="tr-to">Traceable Sources of Meaning</div>
+    </div>
+  </div>
+
+  <div class="outcome-grid">
+    <div class="outcome-col without">
+      <span class="outcome-label">Without Corporate Memory</span>
+      <p>Relearn the same lessons every cycle. Cannot compare this vintage to prior ones because definitions have drifted. Cannot explain why an IC decision made sense in 2022 because the context was never preserved. Cannot trust agent recommendations because stale context is still driving reasoning. Lose institutional knowledge every time a leader or a property manager changes.</p>
+    </div>
+    <div class="outcome-col with">
+      <span class="outcome-label">With Corporate Memory</span>
+      <p style="color:var(--text-on-dark-2)">Reason across time with confidence. Know which occupancy definition was used in which cycle and compare them correctly. Reconstruct every IC decision with the context that made it rational. Trust agent recommendations because the context graph is current and the drift register has caught the gaps. Institutional intelligence is structural — not trapped in people who eventually leave.</p>
+    </div>
+  </div>
+
+  <!-- RE TOGGLE -->
+  <div class="re-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
+    <button class="re-toggle-btn" data-re-target="moat" onclick="toggleRE('moat')">
+      <span class="btn-dot"></span>
+      Show Real Estate Context
+    </button>
+  </div>
+  <div class="re-panel" id="re-moat">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">RE Application</span>
+      <h4>What Wins the Next Decade in Real Estate</h4>
+    </div>
+    <p>The firms that will have durable advantage are not the ones with the most assets in their data warehouse or the fastest underwriting models. They are the firms where a new portfolio manager, joining three years after an acquisition, can ask: <strong>why did we buy this asset, under what assumptions, using what definitions, with what macro context active</strong> — and get a complete, structured, verifiable answer.</p>
+    <p>And where an AI agent working on lease strategy can ask: <strong>is the competitive context I'm reasoning from still current, and is the occupancy metric I'm using defined the same way it was in the renewal model I'm comparing it to</strong> — and get a governed, auditable answer.</p>
+    <div class="re-example">
+      <strong>The Real Test</strong>
+      Not a better dashboard. A better institution. One whose systems remember not just what happened, but what it meant, why it made sense then, and how meaning has evolved. In real estate, where decisions compound across decades of hold periods, market cycles, and organizational change — this is the only moat that doesn't erode.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1.25rem;font-weight:600">The Eight-Question Test</h2>
+  <p class="body-text" style="margin-bottom:1.5rem">A fully augmented architecture answers all eight with grounded, consistent, and traceable responses for any business object in the portfolio.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Question</th><th>Layer</th><th>Memory Type</th><th>Real Estate Example</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>What is this thing?</td><td>Ontology</td><td>Semantic</td><td>Is this a "property" in the loan or AM sense? Which entity type and which ontology version governs?</td><td><span class="badge badge-existing">Existing</span></td></tr>
+      <tr><td>How is it measured?</td><td>Semantic Layer</td><td>Semantic (quantified)</td><td>Which occupancy definition? Which renewal rate cohort logic? Which NOI convention?</td><td><span class="badge badge-existing">Existing</span></td></tr>
+      <tr><td>What is happening around it?</td><td>Context Graph</td><td>Episodic</td><td>What context is Active: property mgmt transition, deferred capex, competitive campaign, supply pipeline?</td><td><span class="badge badge-existing">Existing</span></td></tr>
+      <tr><td>What should happen next?</td><td>Reasoning</td><td>Procedural</td><td>Given governed metrics and active context — hold, sell, or accelerate leasing?</td><td><span class="badge badge-existing">Existing</span></td></tr>
+      <tr><td>What did this mean then?</td><td>Decision Lineage</td><td>All three (historical)</td><td>In Q2 2023 when the IC approved this acquisition, what definition of NOI was in use? What macro context was Active?</td><td><span class="badge badge-added">Augmentation</span></td></tr>
+      <tr><td>Is this term consistent?</td><td>Drift Register</td><td>Semantic (spatial)</td><td>Are Yardi, Argus, VTS, and the property manager computing renewal rate the same way — or has drift created a hidden gap?</td><td><span class="badge badge-added">Augmentation</span></td></tr>
+      <tr><td>Is this context still current?</td><td>Decay Governance</td><td>Episodic (temporal)</td><td>The competitive pressure flag from 18 months ago — is it still Active, or has it been Archived because the campaign resolved?</td><td><span class="badge badge-added">Augmentation</span></td></tr>
+      <tr><td>What have we learned?</td><td>Memory Governance</td><td>All three (durable)</td><td>Across three market cycles and four property managers — what assumptions have been consistently wrong?</td><td><span class="badge badge-added">Augmentation</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-nav-footer">
+    <a href="decay-governance.html" class="page-nav-btn">← Decay Governance</a>
+    <a href="index.html" class="page-nav-btn" style="opacity:0.4;pointer-events:none">End of Brief</a>
+  </div>
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

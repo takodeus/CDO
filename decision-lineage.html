@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 · Decision Lineage — Memory Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill" style="width:57%"></div></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><span class="logo-mark">MA</span><span class="logo-text">Memory<br>Architecture</span></div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="nav-item" data-page="home"><span class="nav-num">00</span><span class="nav-label">Overview</span></a>
+    <a href="gap.html" class="nav-item" data-page="gap"><span class="nav-num">01</span><span class="nav-label">The Gap</span></a>
+    <a href="memory-types.html" class="nav-item" data-page="memory-types"><span class="nav-num">02</span><span class="nav-label">Memory Types</span></a>
+    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack"><span class="nav-num">03</span><span class="nav-label">Knowledge Stack</span></a>
+    <a href="decision-lineage.html" class="nav-item active" data-page="decision-lineage"><span class="nav-num">04</span><span class="nav-label">Decision Lineage</span></a>
+    <a href="drift-register.html" class="nav-item" data-page="drift-register"><span class="nav-num">05</span><span class="nav-label">Drift Register</span></a>
+    <a href="decay-governance.html" class="nav-item" data-page="decay-governance"><span class="nav-num">06</span><span class="nav-label">Decay Governance</span></a>
+    <a href="moat.html" class="nav-item" data-page="moat"><span class="nav-num">07</span><span class="nav-label">The Moat</span></a>
+  </nav>
+  <div class="sidebar-footer"><span class="sidebar-tag">CDO Brief · Q2 2026</span></div>
+</aside>
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">04</span>
+</header>
+<main class="main-content">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">04 · Decision Lineage</div>
+  <h1 class="page-title">Not a log.<br>A <em>reconstructable chain</em>.</h1>
+  <p class="page-lead">Logs record what happened. Decision lineage records why it made sense — and preserves the chain of reasoning, definition, measurement, and context that produced a judgment. It is not a fifth layer sitting above reasoning. It is a cross-cutting thread that runs through all four simultaneously.</p>
+
+  <div class="dark-banner">
+    <p>Data lineage tells you where a number came from. Decision lineage tells you where a <em>judgment</em> came from. These are not the same thing — and the difference is the entire premise of institutional memory.</p>
+  </div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:0.75rem;font-weight:600">Anatomy of a Decision Lineage Record</h2>
+  <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem">Hover each element to understand what it captures.</p>
+
+  <div class="lineage-chain">
+    <div class="lc-item"><span class="lc-num">01</span><div class="lc-label">The Decision</div><div class="lc-desc">What was concluded, recommended, or acted upon</div><span class="lc-arrow">→</span></div>
+    <div class="lc-item"><span class="lc-num">02</span><div class="lc-label">Ontological State</div><div class="lc-desc">Which definitions were active at the moment of decision</div><span class="lc-arrow">→</span></div>
+    <div class="lc-item"><span class="lc-num">03</span><div class="lc-label">Semantic State</div><div class="lc-desc">Which formulas, metrics, and calculation logic were applied</div><span class="lc-arrow">→</span></div>
+    <div class="lc-item"><span class="lc-num">04</span><div class="lc-label">Contextual State</div><div class="lc-desc">What events and circumstances were visible and Active</div><span class="lc-arrow">→</span></div>
+    <div class="lc-item"><span class="lc-num">05</span><div class="lc-label">Reasoning Path</div><div class="lc-desc">How synthesis produced judgment from the above inputs</div><span class="lc-arrow">→</span></div>
+    <div class="lc-item"><span class="lc-num">06</span><div class="lc-label">Actors + Authority</div><div class="lc-desc">Who or what decided, under what mandate and governance</div><span class="lc-arrow">→</span></div>
+    <div class="lc-item"><span class="lc-num">07</span><div class="lc-label">Known Unknowns</div><div class="lc-desc">What was uncertain, contested, or deliberately set aside</div></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1.25rem;font-weight:600">Data Lineage vs. Decision Lineage</h2>
+
+  <div class="vs-grid">
+    <div class="vs-col old">
+      <h4>Data Lineage</h4>
+      <div class="vs-row"><span class="vs-dim">Tracks</span><span class="vs-val">Information movement through systems</span></div>
+      <div class="vs-row"><span class="vs-dim">Answers</span><span class="vs-val">"Where did this number come from?"</span></div>
+      <div class="vs-row"><span class="vs-dim">Orientation</span><span class="vs-val">Retrospective, compliance-focused</span></div>
+      <div class="vs-row"><span class="vs-dim">Unit</span><span class="vs-val">Data point or field</span></div>
+      <div class="vs-row"><span class="vs-dim">Fails without</span><span class="vs-val">Data quality issues surface</span></div>
+      <div class="vs-row"><span class="vs-dim">Horizon</span><span class="vs-val">Event-level, pipeline-level</span></div>
+      <div class="vs-row" style="border:none"><span class="vs-dim">Primary user</span><span class="vs-val">Data engineer, auditor</span></div>
+    </div>
+    <div class="vs-col new">
+      <h4>Decision Lineage</h4>
+      <div class="vs-row"><span class="vs-dim">Tracks</span><span class="vs-val">Meaning and judgment movement across time</span></div>
+      <div class="vs-row"><span class="vs-dim">Answers</span><span class="vs-val">"Why did this conclusion make sense then?"</span></div>
+      <div class="vs-row"><span class="vs-dim">Orientation</span><span class="vs-val">Forward-facing, institutional learning</span></div>
+      <div class="vs-row"><span class="vs-dim">Unit</span><span class="vs-val">Decision with full context snapshot</span></div>
+      <div class="vs-row"><span class="vs-dim">Fails without</span><span class="vs-val">Institutional amnesia compounds silently</span></div>
+      <div class="vs-row"><span class="vs-dim">Horizon</span><span class="vs-val">Cycle-level, portfolio-level</span></div>
+      <div class="vs-row" style="border:none"><span class="vs-dim">Primary user</span><span class="vs-val">Portfolio manager, future decision-maker, AI agent</span></div>
+    </div>
+  </div>
+
+  <!-- RE TOGGLE -->
+  <div class="re-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
+    <button class="re-toggle-btn" data-re-target="lineage" onclick="toggleRE('lineage')">
+      <span class="btn-dot"></span>
+      Show Real Estate Context
+    </button>
+  </div>
+  <div class="re-panel" id="re-lineage">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">RE Application</span>
+      <h4>The IC Reconstruction Problem</h4>
+    </div>
+    <p>A fund is reviewing a logistics acquisition approved in Q2 2023. The IC wants to understand whether the original underwriting held — whether the thesis was sound given what was known at the time, and whether similar assumptions should inform the follow-on vehicle.</p>
+    <p><strong>With data lineage:</strong> they can find the approved model file and trace the numbers. They know where the exit cap rate came from in the spreadsheet.</p>
+    <p><strong>With decision lineage:</strong> they can reconstruct the occupancy definition used, the cap rate methodology in force at that moment, the market comparable set that grounded the exit assumption, the macro thesis articulated by the AM team, the three specific risks the IC flagged as acceptable, and the two risks they considered but judged immaterial. The difference between a file retrieval and a genuine strategic review.</p>
+    <div class="re-example">
+      <strong>The Practical Question It Enables</strong>
+      "In Q2 2023 when we approved this acquisition, we used a 7.5% exit cap rate. The context that justified that assumption included a specific set of tenant credit profiles, a specific macro rate outlook, and a specific view of submarket supply. How many of those conditions still hold? Where have they changed? And therefore — how much of the original thesis is still valid?" This question is unanswerable without decision lineage.
+    </div>
+  </div>
+
+  <div class="page-nav-footer">
+    <a href="knowledge-stack.html" class="page-nav-btn">← Knowledge Stack</a>
+    <a href="drift-register.html" class="page-nav-btn next">Drift Register →</a>
+  </div>
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 · Drift Register — Memory Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill" style="width:71%"></div></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><span class="logo-mark">MA</span><span class="logo-text">Memory<br>Architecture</span></div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="nav-item" data-page="home"><span class="nav-num">00</span><span class="nav-label">Overview</span></a>
+    <a href="gap.html" class="nav-item" data-page="gap"><span class="nav-num">01</span><span class="nav-label">The Gap</span></a>
+    <a href="memory-types.html" class="nav-item" data-page="memory-types"><span class="nav-num">02</span><span class="nav-label">Memory Types</span></a>
+    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack"><span class="nav-num">03</span><span class="nav-label">Knowledge Stack</span></a>
+    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage"><span class="nav-num">04</span><span class="nav-label">Decision Lineage</span></a>
+    <a href="drift-register.html" class="nav-item active" data-page="drift-register"><span class="nav-num">05</span><span class="nav-label">Drift Register</span></a>
+    <a href="decay-governance.html" class="nav-item" data-page="decay-governance"><span class="nav-num">06</span><span class="nav-label">Decay Governance</span></a>
+    <a href="moat.html" class="nav-item" data-page="moat"><span class="nav-num">07</span><span class="nav-label">The Moat</span></a>
+  </nav>
+  <div class="sidebar-footer"><span class="sidebar-tag">CDO Brief · Q2 2026</span></div>
+</aside>
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">05</span>
+</header>
+<main class="main-content">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">05 · Drift Register</div>
+  <h1 class="page-title">Semantic fidelity<br>across <em>space</em></h1>
+  <p class="page-lead">Drift is not a data quality problem. It is a meaning problem. The same term comes to mean different things in different places — without anyone deciding that it should. A drift register makes that divergence visible before it compounds into a misaligned IC presentation, an LP report discrepancy, or an AI recommendation built on incompatible inputs.</p>
+
+  <div class="drift-intro">
+    <div class="drift-intro-col">
+      <h3>Why Drift is Nobody's Fault</h3>
+      <p>Drift accumulates through legitimate local decisions that, in aggregate, erode shared meaning. A property manager onboards with different default reporting logic. A new analyst applies a slightly different cohort definition. A JV partner's system uses a different fiscal year convention. None of these are errors.</p>
+      <p>All of them are drift events. And without a register, they are invisible until they collide — in a board presentation, an LP report, or an AI agent recommendation that blends incompatible inputs from systems that were never reconciled.</p>
+      <p>The failure mode isn't that someone was wrong. It's that two teams were right about different things, and the system had no mechanism to surface the divergence.</p>
+    </div>
+    <div class="drift-intro-col">
+      <h3>Traceable Coexistence, Not Forced Convergence</h3>
+      <p>Resolution does not always mean convergence on one canonical definition. In a distributed operating model with outsourced managers, JV partners, and multiple systems of record, forcing a single definition is often neither practical nor correct.</p>
+      <p>The alternative is <strong>traceable coexistence</strong> — plural definitions with explicit scope, provenance, and governed mappings between them. The drift register records which definition was active, where, and when — so that cross-portfolio comparisons can be made correctly even when the underlying definitions differ.</p>
+      <p>Standardization becomes a service offered, not a mandate imposed.</p>
+    </div>
+  </div>
+
+  <!-- RE TOGGLE -->
+  <div class="re-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
+    <button class="re-toggle-btn" data-re-target="drift-concept" onclick="toggleRE('drift-concept')">
+      <span class="btn-dot"></span>
+      Show Real Estate Context
+    </button>
+  </div>
+  <div class="re-panel" id="re-drift-concept">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">RE Application</span>
+      <h4>Where Drift Enters a Real Estate Portfolio</h4>
+    </div>
+    <p>Every handoff in the real estate operating model is a potential drift event. When property operations are outsourced to JLL, their definition of "occupancy" defaults to physical occupancy. The fund's reporting layer uses economic occupancy. Both are defensible. Neither is communicated. Over two reporting cycles, the gap accumulates.</p>
+    <p>When a JV partner onboards with their own Argus templates, their definition of stabilized NOI excludes management fees above-the-line. Fund accounting includes them. The blended portfolio NOI is systematically inconsistent — and the inconsistency is large enough to affect cap rate calculations, valuation conclusions, and carry waterfall projections.</p>
+    <div class="re-example">
+      <strong>The Visibility Problem</strong>
+      These gaps are not detectable by data quality checks. Every row is present. Every field is populated. The pipeline is green. The problem is semantic — and it only surfaces when someone compares two numbers that should be comparable but aren't. By then, it has usually appeared in an LP report, an IC memo, or an AI recommendation.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);font-weight:600">Active Register — Real Estate Portfolio</h2>
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">Click any entry to expand</span>
+  </div>
+
+  <!-- ENTRY 1 -->
+  <div class="dre" id="dre-1">
+    <div class="dre-header" onclick="toggleDRE(this)">
+      <span class="dre-term">Occupancy Rate</span>
+      <span class="badge badge-open">Open · High Impact</span>
+      <span class="dre-chevron">▼</span>
+    </div>
+    <div class="dre-body">
+      <div class="dre-grid-2">
+        <div class="dre-field"><label>Source A — Fund Reporting</label><span>Economic occupancy: rent collected ÷ gross potential rent. Excludes concessions. Weighted by gross leasable area.</span></div>
+        <div class="dre-field"><label>Source B — Property Manager (JLL)</label><span>Physical occupancy: executed leases ÷ total units/SF. Includes leases within free rent period. Unweighted count.</span></div>
+        <div class="dre-field"><label>Divergence Detected</label><span>Q3 2024 — surfaced during LP reporting cycle review</span></div>
+        <div class="dre-field"><label>Magnitude</label><span>3.8 percentage point gap across the Sun Belt multifamily portfolio (91.2% vs 87.4%)</span></div>
+      </div>
+      <div class="dre-impact">
+        <strong>Business Impact</strong>
+        LP quarterly report showed 91.2% occupancy. Property manager dashboard showed 87.4% for the same portfolio. Two LPs submitted written inquiries. The IC presentation for the follow-on fund used the physical figure. The fund model used the economic figure. Waterfall projections were based on incompatible inputs, producing a carry calculation that was overstated by approximately $2.1M.
+      </div>
+      <div class="dre-resolution">
+        <strong>Resolution Path</strong>
+        Semantic governance council convened. Formal version boundary established: all fund-level reporting uses economic occupancy from Q4 2024 forward. Property manager dashboards retain physical occupancy with explicit scope tag. Governed mapping created between the two definitions. Prior-period figures retroactively labeled with definition provenance tag.
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRY 2 -->
+  <div class="dre" id="dre-2">
+    <div class="dre-header" onclick="toggleDRE(this)">
+      <span class="dre-term">Net Operating Income</span>
+      <span class="badge badge-monitoring">Monitoring · Medium Impact</span>
+      <span class="dre-chevron">▼</span>
+    </div>
+    <div class="dre-body">
+      <div class="dre-grid-2">
+        <div class="dre-field"><label>Source A — Asset Management (Argus)</label><span>NOI before management fee, excluding capex reserves. Treats tenant improvement allowances as below-the-line items.</span></div>
+        <div class="dre-field"><label>Source B — Fund Accounting (Yardi)</label><span>NOI after management fee, including a 15¢/SF capex reserve. TI allowances amortized above-the-line over lease term.</span></div>
+        <div class="dre-field"><label>Divergence Detected</label><span>Q1 2025 — flagged during annual valuation review process</span></div>
+        <div class="dre-field"><label>Magnitude</label><span>Varies by asset: 8–14% gap. Office-heavy assets show widest divergence due to TI treatment difference.</span></div>
+      </div>
+      <div class="dre-impact">
+        <strong>Business Impact</strong>
+        Cap rate calculations in AM reports are based on a systematically higher NOI figure than fund accounting. Asset-level IRRs appear stronger than fund-level IRRs not due to performance differences but due to definition differences. The gap has been consistent enough that teams have learned to expect it without understanding why — which is exactly how invisible drift becomes structural.
+      </div>
+      <div class="dre-resolution">
+        <strong>Resolution Path (Active)</strong>
+        Working group formed with AM and Fund Accounting. Interim measure: all cross-portfolio comparisons to include definition footnote specifying which NOI convention is in use. Target: reconciled definition or formal traceable coexistence protocol established by Q3 2025, with retroactive application to 2023 vintage fund modeling.
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRY 3 -->
+  <div class="dre" id="dre-3">
+    <div class="dre-header" onclick="toggleDRE(this)">
+      <span class="dre-term">Lease Commencement Date</span>
+      <span class="badge badge-resolved">Resolved · Version 2.1</span>
+      <span class="dre-chevron">▼</span>
+    </div>
+    <div class="dre-body">
+      <div class="dre-grid-2">
+        <div class="dre-field"><label>Version 1.0 (Pre-Q2 2024)</label><span>Date of lease execution — driven by transaction close date. Default convention in VTS and property management system.</span></div>
+        <div class="dre-field"><label>Version 2.1 (Q2 2024 — Current)</label><span>Date rent first becomes payable, excluding free rent periods. Aligned with Argus cash flow model and GAAP revenue recognition convention.</span></div>
+        <div class="dre-field"><label>Divergence Duration</label><span>14 months active — Q4 2022 through Q2 2024</span></div>
+        <div class="dre-field"><label>Version Boundary</label><span>Formal boundary set at Q2 2024. All leases executed prior carry Version 1.0 tag. Subsequent leases carry Version 2.1 tag.</span></div>
+      </div>
+      <div class="dre-resolution">
+        <strong>Closed with Version Boundary</strong>
+        Historical occupancy ramp analysis now requires version-aware queries. Any comparison across the version boundary must account for the 30–90 day timing shift between execution and rent commencement. Decision lineage records created for 47 leases whose underwriting used Version 1.0 definitions but whose cash flows are being modeled under Version 2.1 — ensuring that comparisons flag the version gap rather than treating the numbers as directly comparable.
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRY 4 -->
+  <div class="dre" id="dre-4">
+    <div class="dre-header" onclick="toggleDRE(this)">
+      <span class="dre-term">Weighted Average Lease Term (WALT)</span>
+      <span class="badge badge-open">Open · Under Review</span>
+      <span class="dre-chevron">▼</span>
+    </div>
+    <div class="dre-body">
+      <div class="dre-grid-2">
+        <div class="dre-field"><label>Convention A — AM Team</label><span>Weighted by in-place rent. Calculates WALT from current date to expiry. Excludes month-to-month tenants from weighted average.</span></div>
+        <div class="dre-field"><label>Convention B — JV Partner (Brookfield Office JV)</label><span>Weighted by GLA. Calculates from lease commencement date (Version 1.0). Includes month-to-month at 0.25 year residual term.</span></div>
+        <div class="dre-field"><label>Impact</label><span>WALT reported to LPs differs from WALT used in valuation model by 0.4–0.9 years depending on asset mix.</span></div>
+        <div class="dre-field"><label>Discovery</label><span>Identified during Q1 2025 LP data room preparation for fund recapitalization</span></div>
+      </div>
+      <div class="dre-impact">
+        <strong>Business Impact</strong>
+        LP data room figures inconsistent with internal valuation model. Potential perception issue with institutional LPs conducting their own underwriting using data room figures and comparing to internally modeled returns. Escalated to CFO level for resolution before Q2 2025 LP meeting.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav-footer">
+    <a href="decision-lineage.html" class="page-nav-btn">← Decision Lineage</a>
+    <a href="decay-governance.html" class="page-nav-btn next">Decay Governance →</a>
+  </div>
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 · The Gap — Memory Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><span class="logo-mark">MA</span><span class="logo-text">Memory<br>Architecture</span></div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="nav-item" data-page="home"><span class="nav-num">00</span><span class="nav-label">Overview</span></a>
+    <a href="gap.html" class="nav-item active" data-page="gap"><span class="nav-num">01</span><span class="nav-label">The Gap</span></a>
+    <a href="memory-types.html" class="nav-item" data-page="memory-types"><span class="nav-num">02</span><span class="nav-label">Memory Types</span></a>
+    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack"><span class="nav-num">03</span><span class="nav-label">Knowledge Stack</span></a>
+    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage"><span class="nav-num">04</span><span class="nav-label">Decision Lineage</span></a>
+    <a href="drift-register.html" class="nav-item" data-page="drift-register"><span class="nav-num">05</span><span class="nav-label">Drift Register</span></a>
+    <a href="decay-governance.html" class="nav-item" data-page="decay-governance"><span class="nav-num">06</span><span class="nav-label">Decay Governance</span></a>
+    <a href="moat.html" class="nav-item" data-page="moat"><span class="nav-num">07</span><span class="nav-label">The Moat</span></a>
+  </nav>
+  <div class="sidebar-footer"><span class="sidebar-tag">CDO Brief · Q2 2026</span></div>
+</aside>
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">Memory Architecture</span>
+  <span class="mobile-page-num">01</span>
+</header>
+<main class="main-content">
+<div class="page-inner">
+
+  <div class="eyebrow-tag">01 · The Gap</div>
+  <h1 class="page-title">Systems that <em>know</em>.<br>Systems that <em>remember</em>.</h1>
+  <p class="page-lead">Storage is not memory. A library is not a mind. The gap between them is where institutional intelligence is lost — through leadership transitions, market cycles, and reorganizations that no architecture was designed to survive.</p>
+
+  <div class="gap-grid">
+    <div class="gap-col col-knows">
+      <span class="gap-col-label">A System That Knows</span>
+      <h3>Present-State Intelligence</h3>
+      <p>The modern knowledge architecture answers four questions with precision: what an asset is, how it is measured, what is happening around it, and what should happen next.</p>
+      <p>It resolves what a property is, applies governed metrics, surfaces contextual events, and synthesizes a recommendation. It is architecturally complete for the present moment.</p>
+      <p>And that is exactly its limitation. The present moment is not where institutional intelligence lives.</p>
+    </div>
+    <div class="gap-col col-remembers">
+      <span class="gap-col-label">A System That Remembers</span>
+      <h3>Temporal Intelligence</h3>
+      <p>A system that remembers answers two questions the knowledge architecture cannot: what did this mean <em>then</em>, and why did that decision make sense <em>at that moment</em>?</p>
+      <p>It preserves definitions in use, measurements applied, circumstances visible, and reasoning produced — and binds them into a chain that is traversable across time, across cycles, and across people.</p>
+      <p>This is not a feature of the data stack. It is a different class of architecture.</p>
+    </div>
+  </div>
+
+  <div class="dark-banner">
+    <p>The knowledge architecture answers all four questions <em>now</em>. It does not yet answer: what did this mean then? Why did it make sense at that moment? What can be <em>learned</em> by traversing the chain of prior judgments?</p>
+  </div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.4rem;color:var(--text-primary);margin-bottom:1.25rem;font-weight:600">The Three Failure Modes</h2>
+  <div class="failure-trio">
+    <div class="failure-item failure-1">
+      <span class="failure-num">Failure Mode 01</span>
+      <h4>Semantic Drift</h4>
+      <p>The same term means different things across periods, counterparties, and systems. No visible event marks the moment coherence breaks. Two agents produce incompatible outputs using the same word — and neither is wrong.</p>
+    </div>
+    <div class="failure-item failure-2">
+      <span class="failure-num">Failure Mode 02</span>
+      <h4>Orphaned Judgment</h4>
+      <p>Reasoning outputs are disconnected from the state that produced them. Conclusions survive without premises. They cannot be audited, challenged, or built upon with confidence by anyone who comes after.</p>
+    </div>
+    <div class="failure-item failure-3">
+      <span class="failure-num">Failure Mode 03</span>
+      <h4>Stale Context</h4>
+      <p>Context that was once relevant continues to influence live reasoning long after the conditions it described have resolved. An agent recommending action on a competitive dynamic that ended eighteen months ago.</p>
+    </div>
+  </div>
+
+  <!-- RE TOGGLE -->
+  <div class="re-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
+    <button class="re-toggle-btn" data-re-target="gap" onclick="toggleRE('gap')">
+      <span class="btn-dot"></span>
+      Show Real Estate Context
+    </button>
+  </div>
+  <div class="re-panel" id="re-gap">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">RE Application</span>
+      <h4>The Occupancy Problem</h4>
+    </div>
+    <p>A fund reports 91% occupancy. The JV partner reports 87% for the same portfolio. Neither number is wrong. <strong>Physical occupancy</strong> — what the property manager tracks — counts signed leases regardless of rent collection. <strong>Economic occupancy</strong> — what fund reporting uses — weights by rent passing. The definitions diverged quietly eighteen months ago when a new property manager was onboarded with different default reporting logic.</p>
+    <p>No system flagged it. The IC presentation blended both. Two LPs submitted written inquiries after the quarterly report was circulated.</p>
+    <div class="re-example">
+      <strong>What Each Failure Mode Looks Like in Practice</strong>
+      Semantic drift: "occupancy" means different things to JLL and to fund accounting. Orphaned judgment: the IC memo from Q2 2023 exists as a file — but the occupancy definition used, the macro thesis active, and the risk factors considered are not bound to it. Stale context: an underwriting agent is still applying a "flight-to-quality discount" to a CBD office submarket whose competitive dynamics changed completely after three Class A deliveries in 2024.
+    </div>
+  </div>
+
+  <div class="page-nav-footer">
+    <a href="index.html" class="page-nav-btn">← Overview</a>
+    <a href="memory-types.html" class="page-nav-btn next">Memory Types →</a>
+  </div>
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

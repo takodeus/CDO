@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 · Memory Types — Memory Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><span class="logo-mark">MA</span><span class="logo-text">Memory<br>Architecture</span></div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="nav-item" data-page="home"><span class="nav-num">00</span><span class="nav-label">Overview</span></a>
+    <a href="gap.html" class="nav-item" data-page="gap"><span class="nav-num">01</span><span class="nav-label">The Gap</span></a>
+    <a href="memory-types.html" class="nav-item active" data-page="memory-types"><span class="nav-num">02</span><span class="nav-label">Memory Types</span></a>
+    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack"><span class="nav-num">03</span><span class="nav-label">Knowledge Stack</span></a>
+    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage"><span class="nav-num">04</span><span class="nav-label">Decision Lineage</span></a>
+    <a href="drift-register.html" class="nav-item" data-page="drift-register"><span class="nav-num">05</span><span class="nav-label">Drift Register</span></a>
+    <a href="decay-governance.html" class="nav-item" data-page="decay-governance"><span class="nav-num">06</span><span class="nav-label">Decay Governance</span></a>
+    <a href="moat.html" class="nav-item" data-page="moat"><span class="nav-num">07</span><span class="nav-label">The Moat</span></a>
+  </nav>
+  <div class="sidebar-footer"><span class="sidebar-tag">CDO Brief · Q2 2026</span></div>
+</aside>
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">Memory Architecture</span>
+  <span class="mobile-page-num">02</span>
+</header>
+<main class="main-content">
+<div class="page-inner-wide">
+
+  <div class="eyebrow-tag">02 · Cognitive Architecture</div>
+  <h1 class="page-title">The three types<br>of <em>memory</em></h1>
+  <p class="page-lead">Three distinct types, each contributing something the others cannot. Memory does not reduce to a single capability. Semantic, episodic, and procedural memory operate independently — and all three are required for an architecture that genuinely remembers.</p>
+
+  <div class="memory-trio">
+    <div class="memory-card-item mc-semantic">
+      <div class="mc-icon">SM</div>
+      <h3>Semantic Memory</h3>
+      <span class="mc-tag">Meaning · Stability · Relationship</span>
+      <p>Knowledge of what things mean — concepts, categories, relationships, and the rules connecting them. It is general, not situational. It holds the framework that makes events interpretable, not the events themselves.</p>
+      <p>It is timeless in character. Definitions, ontologies, taxonomies, and governed metrics belong here. Semantic memory is what allows a term defined in one period to be interpreted correctly in another.</p>
+      <div class="inline-note teal">
+        <strong>Lives In</strong>
+        Ontology and Semantic Layer. Requires version governance — when a definition changes, the prior version must be preserved. Monitored by the Drift Register for divergence across counterparties and systems.
+      </div>
+    </div>
+    <div class="memory-card-item mc-episodic">
+      <div class="mc-icon">EM</div>
+      <h3>Episodic Memory</h3>
+      <span class="mc-tag">Circumstance · Time · Context</span>
+      <p>The record of what happened, when, under what conditions, with what result. It is autobiographical and time-stamped. It answers "what did we do?" not "what does it mean?"</p>
+      <p>A log from 2019 describes what happened — but if the definitions used in 2019 have since drifted, the log becomes uninterpretable. The record survives. The meaning doesn't. Episodic memory without semantic grounding decays into uninterpretable noise.</p>
+      <div class="inline-note signal">
+        <strong>Lives In</strong>
+        Context Graph — but only if explicitly temporal. Requires the context graph to record what was active at the moment a decision was made, not just at present. Governed by Decay Logic: context states transition through Active → Archived → Deprecated.
+      </div>
+    </div>
+    <div class="memory-card-item mc-procedural">
+      <div class="mc-icon">PM</div>
+      <h3>Procedural Memory</h3>
+      <span class="mc-tag">Execution · Judgment · Audit</span>
+      <p>How things are done — workflows, rules, sequences of action. It carries execution, not explanation. A workflow runs correctly even if no one can articulate why those steps exist. This is its power and its danger.</p>
+      <p>Elevated to the reasoning layer, procedural memory becomes the auditable record of judgment — how the system synthesized meaning, measurement, and context into a recommendation at a specific moment in time.</p>
+      <div class="inline-note gold">
+        <strong>Lives In</strong>
+        Reasoning layer. Requires binding of output to the state of all lower layers at the moment of execution. Without this binding, conclusions are orphaned from the premises that produced them — and cannot be audited, challenged, or built upon.
+      </div>
+    </div>
+  </div>
+
+  <div class="memory-answers">
+    <div class="ma-item">
+      <span class="ma-label">Semantic Memory Answers</span>
+      <div class="ma-answer">What does it mean — and which version of that definition applies?</div>
+    </div>
+    <div class="ma-item">
+      <span class="ma-label">Episodic Memory Answers</span>
+      <div class="ma-answer">What happened, when, under what conditions — and is that context still current?</div>
+    </div>
+    <div class="ma-item">
+      <span class="ma-label">Procedural Memory Answers</span>
+      <div class="ma-answer">How was it done, by what logic, and what was the state of the system when judgment was produced?</div>
+    </div>
+  </div>
+
+  <!-- RE TOGGLE -->
+  <div class="re-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
+    <button class="re-toggle-btn" data-re-target="memory-types" onclick="toggleRE('memory-types')">
+      <span class="btn-dot"></span>
+      Show Real Estate Context
+    </button>
+  </div>
+  <div class="re-panel" id="re-memory-types">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">RE Application</span>
+      <h4>Each Memory Type in a Real Estate Portfolio</h4>
+    </div>
+    <p><strong>Semantic memory</strong> in real estate: knowing that "net rentable area" and "gross leasable area" are distinct concepts, that "cap rate" means different things in stabilized versus value-add contexts, and that "tenant" in a commercial lease occupies a structurally different position in the domain model than "customer" in retail analytics. It also means knowing that JLL and Greystar may use the same word "occupancy" to mean different things — and that both definitions are valid within their respective contexts.</p>
+    <p><strong>Episodic memory</strong> in real estate: the property management transition at 400 Market Street in Q1 2024. The deferred HVAC decision logged in June 2024. The competitor running 3-month free rent in the Austin submarket from August through November 2024. The rising rate macro context that shaped hold/sell recommendations from 2022 through mid-2025. These facts shaped decisions at specific moments — and they decay in relevance as conditions change.</p>
+    <p><strong>Procedural memory</strong> in real estate: the underwriting model that applies a specific discount rate methodology to value-add industrial assets in secondary markets. The model ran correctly for three years. But when the methodology changed in Q1 2024, historical underwriting outputs became incomparable to current ones — because no version binding was in place to record which methodology was active when each deal was modeled.</p>
+    <div class="re-example">
+      <strong>The Consequence</strong>
+      Without all three memory types operating together, a cycle comparison becomes unreliable. You can retrieve the deals underwritten in 2022. You cannot reliably compare their underwriting assumptions to deals underwritten in 2025 — because the definitions, the contextual conditions, and the modeling methodology have all changed without a consistent record of when and how.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.4rem;color:var(--text-primary);margin-bottom:1rem;font-weight:600">How the Three Types Map to the Architecture</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Memory Type</th>
+        <th>Answers</th>
+        <th>Lives In</th>
+        <th>Fails When</th>
+        <th>Governed By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-strong">Semantic</td>
+        <td>What does it mean?</td>
+        <td>Ontology, Semantic Layer</td>
+        <td>Definitions drift without a version boundary</td>
+        <td>Drift Register, Versioning</td>
+      </tr>
+      <tr>
+        <td class="td-strong">Episodic</td>
+        <td>What happened, when, under what conditions?</td>
+        <td>Context Graph</td>
+        <td>Context is deleted rather than archived — or remains Active after conditions resolve</td>
+        <td>Decay Governance</td>
+      </tr>
+      <tr>
+        <td class="td-strong">Procedural</td>
+        <td>How was it done, and why did it make sense then?</td>
+        <td>Reasoning Layer</td>
+        <td>Outputs are not bound to the stack state at moment of execution</td>
+        <td>Decision Lineage</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-nav-footer">
+    <a href="gap.html" class="page-nav-btn">← The Gap</a>
+    <a href="knowledge-stack.html" class="page-nav-btn next">Knowledge Stack →</a>
+  </div>
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>
