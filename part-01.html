@@ -194,6 +194,36 @@
  padding: 0.4rem 0.85rem; border: 1px solid var(--bd);
  background: var(--bg-panel);
 }
+/* Legacy Architecture & Operating Model grid */
+.legacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--bd); margin-bottom: 2.5rem; }
+.legacy-col { display: flex; flex-direction: column; }
+.legacy-col:first-child { border-right: 1px solid var(--bd); }
+.legacy-col-header {
+  padding: 1rem 1.5rem;
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 700; color: #fff; text-align: center;
+}
+.legacy-col:first-child .legacy-col-header { background: var(--blue-dark, #0D2137); }
+.legacy-col:last-child  .legacy-col-header { background: var(--blue-mid); }
+.legacy-col-body { padding: 1.5rem; flex: 1; }
+.legacy-section-label {
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-weight: 700; color: var(--tx-h); margin-bottom: 0.6rem; margin-top: 1.25rem; display: block;
+}
+.legacy-section-label:first-child { margin-top: 0; }
+.legacy-list { list-style: none; padding: 0; margin: 0 0 0 0; }
+.legacy-list li {
+  font-size: 0.88rem; color: var(--tx-body); line-height: 1.65;
+  padding: 0.25rem 0; padding-left: 1rem; position: relative;
+}
+.legacy-list li::before {
+  content: "·"; position: absolute; left: 0;
+  color: var(--blue-lt); font-weight: 700;
+}
+[data-theme="light"] .legacy-col:first-child .legacy-col-header { background: #1a2f45; }
+[data-theme="light"] .legacy-col:last-child  .legacy-col-header { background: var(--blue-mid); }
+@media (max-width: 768px) { .legacy-grid { grid-template-columns: 1fr; } .legacy-col:first-child { border-right: none; border-bottom: 1px solid var(--bd); } }
+
 </style>
 </head>
 <body>
@@ -284,32 +314,51 @@
  <h1 class="page-title">From <em>Data Pyramid</em><br>to Intelligence Control Tower</h1>
  <p class="page-lead">The traditional stack was built on five assumptions that no longer hold. Each one is broken by a different force — and all five break simultaneously.</p>
 
- <div class="gap-grid" style="margin-bottom:2rem">
-   <div class="gap-col">
-     <span class="gap-col-label col-knows" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;display:block;">Assumption</span>
-     <h3 style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--tx-h);margin-bottom:0.35rem">One truth per entity</h3>
-     <p style="font-size:0.82rem;color:var(--tx-body);line-height:1.7">Broken by JV structures, outsourced management, and multi-manager funds. Greystar's canonical record of an asset is not the same as the fund's. Both are right. Neither is usable alone.</p>
+ <h2 class="section-h2" style="margin:0 0 1rem">Legacy Architecture &amp; Operating Model</h2>
+ <div class="legacy-grid">
+
+   <div class="legacy-col">
+     <div class="legacy-col-header">Enterprise Architecture</div>
+     <div class="legacy-col-body">
+       <span class="legacy-section-label">Assumes:</span>
+       <ul class="legacy-list">
+         <li>One truth per entity</li>
+         <li>One schema per domain</li>
+         <li>One metric definition per KPI</li>
+         <li>One standard workflow per process</li>
+         <li>One system of record per function</li>
+       </ul>
+       <span class="legacy-section-label">Worked when:</span>
+       <ul class="legacy-list">
+         <li>Data volumes were smaller</li>
+         <li>Change was slow</li>
+         <li>Interpretation was centralized</li>
+         <li>Software acted, humans decided</li>
+       </ul>
+     </div>
    </div>
-   <div class="gap-col">
-     <span class="gap-col-label col-knows" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;display:block;">Assumption</span>
-     <h3 style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--tx-h);margin-bottom:0.35rem">One schema per domain</h3>
-     <p style="font-size:0.82rem;color:var(--tx-body);line-height:1.7">Broken by distributed operations. Yardi, Argus, and VTS each have their own schema. No two use the same field names for the same concepts, and forcing convergence destroys the local logic that makes each system work.</p>
+
+   <div class="legacy-col">
+     <div class="legacy-col-header">Operating Model</div>
+     <div class="legacy-col-body">
+       <span class="legacy-section-label">Assumes:</span>
+       <ul class="legacy-list">
+         <li>One owner per function</li>
+         <li>One manager per asset</li>
+         <li>One authority per decision</li>
+         <li>One team per workflow</li>
+         <li>One chain of command per reporting line</li>
+       </ul>
+       <span class="legacy-section-label">Worked when:</span>
+       <ul class="legacy-list">
+         <li>Operations were vertically integrated</li>
+         <li>Execution and oversight sat in the same organization</li>
+         <li>Change happened within a single management structure</li>
+         <li>Humans coordinated directly, not through systems</li>
+       </ul>
+     </div>
    </div>
-   <div class="gap-col">
-     <span class="gap-col-label col-knows" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;display:block;">Assumption</span>
-     <h3 style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--tx-h);margin-bottom:0.35rem">One metric definition per KPI</h3>
-     <p style="font-size:0.82rem;color:var(--tx-body);line-height:1.7">Broken by counterparty variation and methodology drift. Occupancy means something different to the property manager, the asset manager, and the LP report. All three are legitimate. None of them agree.</p>
-   </div>
-   <div class="gap-col">
-     <span class="gap-col-label col-knows" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;display:block;">Assumption</span>
-     <h3 style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--tx-h);margin-bottom:0.35rem">One standard workflow per process</h3>
-     <p style="font-size:0.82rem;color:var(--tx-body);line-height:1.7">Broken by AI agents. Agents don't follow a single workflow — they compose steps dynamically. When an agent executes a renewal analysis differently each time based on context, "standard workflow" is no longer a meaningful constraint.</p>
-   </div>
-   <div class="gap-col">
-     <span class="gap-col-label col-knows" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;display:block;">Assumption</span>
-     <h3 style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--tx-h);margin-bottom:0.35rem">One system of record per function</h3>
-     <p style="font-size:0.82rem;color:var(--tx-body);line-height:1.7">Broken by the shift to agentic execution. When agents read from and write to multiple systems simultaneously, there is no single system of record. There is a distributed execution layer that must be governed as a whole.</p>
-   </div>
+
  </div>
 
  <div class="model-compare">
