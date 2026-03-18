@@ -216,7 +216,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .series-section-item.sec-active {
   color: #D6E4F0; border-left-color: rgba(46,134,193,0.4);
 }
-.sec-num { font-family: var(--font-mono); font-size: 0.5rem; color: rgba(93,173,226,0.35); flex-shrink: 0; width: 14px; }
+.sec-num { font-family: var(--font-mono); font-size: 0.5rem; color: rgba(93,173,226,0.35); flex-shrink: 0; width: 22px; }
 .series-section-item.sec-active .sec-num { color: var(--blue-lt); }
 
 /* Internal page nav — below series nav */
