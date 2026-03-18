@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>06 · Decay Governance — Memory Architecture</title>
+<title>06 · Decay Governance, Memory Architecture</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -12,216 +12,216 @@
 <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
 <aside class="sidebar" id="sidebar">
 
-  <a href="index.html" class="sidebar-logo">
-    <div class="logo-mark">II</div>
-    <div>
-      <div class="logo-text">The Intelligence<br>Architecture Series</div>
-      <div class="logo-hint">← series home</div>
-    </div>
-  </a>
+ <a href="index.html" class="sidebar-logo">
+ <div class="logo-mark">II</div>
+ <div>
+ <div class="logo-text">The Intelligence<br>Architecture Series</div>
+ <div class="logo-hint">← series home</div>
+ </div>
+ </a>
 
-  <div class="series-nav-top">
-    <span class="series-nav-title">The Series</span>
+ <div class="series-nav-top">
+ <span class="series-nav-title">The Series</span>
 
-    <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
-      <span class="spn">I</span>
-      <span class="spl">The Operating Model</span>
-    </a>
+ <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+ <span class="spn">I</span>
+ <span class="spl">The Operating Model</span>
+ </a>
 
-    <div class="series-part active-part" id="sp-2">
-      <div class="series-part-header" onclick="toggleSeriesPart('sp-2')">
-        <span class="spn">II</span>
-        <span class="spl">Institutional Memory</span>
-        <span class="sp-chevron">›</span>
-      </div>
-      <div class="series-part-sections">
-        <a class="series-section-item" href="part-02.html"><span class="sec-num">·</span>Overview</a>
-        <a class="series-section-item" href="gap.html"><span class="sec-num">·</span>The Gap</a>
-        <a class="series-section-item" href="memory-types.html"><span class="sec-num">·</span>Memory Types</a>
-        <a class="series-section-item" href="knowledge-stack.html"><span class="sec-num">·</span>Knowledge Stack</a>
-        <a class="series-section-item" href="decision-lineage.html"><span class="sec-num">·</span>Decision Lineage</a>
-        <a class="series-section-item" href="drift-register.html"><span class="sec-num">·</span>Drift Register</a>
-        <a class="series-section-item" href="decay-governance.html"><span class="sec-num">·</span>Decay Governance</a>
-        <a class="series-section-item" href="moat.html"><span class="sec-num">·</span>The Moat</a>
-      </div>
-    </div>
+ <div class="series-part active-part" id="sp-2">
+ <div class="series-part-header" onclick="toggleSeriesPart('sp-2')">
+ <span class="spn">II</span>
+ <span class="spl">Institutional Memory</span>
+ <span class="sp-chevron">›</span>
+ </div>
+ <div class="series-part-sections">
+ <a class="series-section-item" href="part-02.html"><span class="sec-num">·</span>Overview</a>
+ <a class="series-section-item" href="gap.html"><span class="sec-num">·</span>The Gap</a>
+ <a class="series-section-item" href="memory-types.html"><span class="sec-num">·</span>Memory Types</a>
+ <a class="series-section-item" href="knowledge-stack.html"><span class="sec-num">·</span>Knowledge Stack</a>
+ <a class="series-section-item" href="decision-lineage.html"><span class="sec-num">·</span>Decision Lineage</a>
+ <a class="series-section-item" href="drift-register.html"><span class="sec-num">·</span>Drift Register</a>
+ <a class="series-section-item" href="decay-governance.html"><span class="sec-num">·</span>Decay Governance</a>
+ <a class="series-section-item" href="moat.html"><span class="sec-num">·</span>The Moat</a>
+ </div>
+ </div>
 
-    <a href="part-03.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
-      <span class="spn">III</span>
-      <span class="spl">The Execution Engine</span>
-    </a>
-  </div>
+ <a href="part-03.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+ <span class="spn">III</span>
+ <span class="spl">The Execution Engine</span>
+ </a>
+ </div>
 
-  <div class="sidebar-footer">
-    <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
-  </div>
+ <div class="sidebar-footer">
+ <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
+ </div>
 
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
-    <span class="theme-track"><span class="theme-thumb"></span></span>
-    <span class="theme-icon">☀</span>
-    <span class="theme-label">Light mode</span>
-  </button>
+ <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+ <span class="theme-track"><span class="theme-thumb"></span></span>
+ <span class="theme-icon">☀</span>
+ <span class="theme-label">Light mode</span>
+ </button>
 </aside>
 <header class="mobile-header">
-  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-  <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">06</span>
+ <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+ <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">06</span>
 </header>
 <main class="main-content">
 <div class="page-header-bar">
-  <span class="page-header-title">Part II · Institutional Memory · Decay Governance</span>
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
-    <span class="theme-track"><span class="theme-thumb"></span></span>
-    <span class="theme-icon">☀</span>
-    <span class="theme-label">Light mode</span>
-  </button>
+ <span class="page-header-title">Part II · Institutional Memory · Decay Governance</span>
+ <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+ <span class="theme-track"><span class="theme-thumb"></span></span>
+ <span class="theme-icon">☀</span>
+ <span class="theme-label">Light mode</span>
+ </button>
 </div>
 
 <div class="page-inner-wide">
-  <div class="eyebrow-tag">06 · Decay Governance</div>
-  <h1 class="page-title">Context relevance<br>across <em>time</em></h1>
-  <p class="page-lead">Decay is not deletion. It is lifecycle management. Context that was once essential to a decision should never disappear — but it should not continue driving live reasoning after the conditions it described have resolved.</p>
+ <div class="eyebrow-tag">06 · Decay Governance</div>
+ <h1 class="page-title">Context relevance<br>across <em>time</em></h1>
+ <p class="page-lead">Decay is not deletion. It is lifecycle management. Context that was once essential to a decision should never disappear, but it should not continue driving live reasoning after the conditions it described have resolved.</p>
 
-  <div class="dd-compare">
-    <div class="dd-col dd-drift">
-      <span class="dd-label">Drift Register</span>
-      <h3>Semantic Fidelity Across Space</h3>
-      <p>Watches for meaning inconsistency across counterparties, systems, and teams. The problem is horizontal — the same word meaning different things in different places.</p>
-      <div class="dd-row"><span class="dd-dim">Problem</span><span class="dd-val">Meaning inconsistency</span></div>
-      <div class="dd-row"><span class="dd-dim">Direction</span><span class="dd-val">Horizontal — across space</span></div>
-      <div class="dd-row"><span class="dd-dim">Urgency</span><span class="dd-val">Active — compounds fast, silently</span></div>
-      <div class="dd-row"><span class="dd-dim">Governs</span><span class="dd-val">Ontology and Semantic Layer</span></div>
-      <div class="dd-row"><span class="dd-dim">Output</span><span class="dd-val">Version boundary or traceable coexistence</span></div>
-      <div class="dd-row" style="border:none"><span class="dd-dim">Without it</span><span class="dd-val">Incompatible outputs from the same word</span></div>
-    </div>
-    <div class="dd-col dd-decay">
-      <span class="dd-label">Decay Governance</span>
-      <h3>Context Relevance Across Time</h3>
-      <p>Manages the lifecycle of contextual facts. The problem is vertical — context that was true becoming less relevant as the world it described changes.</p>
-      <div class="dd-row"><span class="dd-dim">Problem</span><span class="dd-val">Relevance degradation over time</span></div>
-      <div class="dd-row"><span class="dd-dim">Direction</span><span class="dd-val">Vertical — across time</span></div>
-      <div class="dd-row"><span class="dd-dim">Urgency</span><span class="dd-val">Managed — predictable and gradual</span></div>
-      <div class="dd-row"><span class="dd-dim">Governs</span><span class="dd-val">Context Graph lifecycle</span></div>
-      <div class="dd-row"><span class="dd-dim">Output</span><span class="dd-val">State: Active → Archived → Deprecated</span></div>
-      <div class="dd-row" style="border:none"><span class="dd-dim">Without it</span><span class="dd-val">Stale context contaminates live reasoning</span></div>
-    </div>
-  </div>
+ <div class="dd-compare">
+ <div class="dd-col dd-drift">
+ <span class="dd-label">Drift Register</span>
+ <h3>Semantic Fidelity Across Space</h3>
+ <p>Watches for meaning inconsistency across counterparties, systems, and teams. The problem is horizontal, the same word meaning different things in different places.</p>
+ <div class="dd-row"><span class="dd-dim">Problem</span><span class="dd-val">Meaning inconsistency</span></div>
+ <div class="dd-row"><span class="dd-dim">Direction</span><span class="dd-val">Horizontal, across space</span></div>
+ <div class="dd-row"><span class="dd-dim">Urgency</span><span class="dd-val">Active, compounds fast, silently</span></div>
+ <div class="dd-row"><span class="dd-dim">Governs</span><span class="dd-val">Ontology and Semantic Layer</span></div>
+ <div class="dd-row"><span class="dd-dim">Output</span><span class="dd-val">Version boundary or traceable coexistence</span></div>
+ <div class="dd-row" style="border:none"><span class="dd-dim">Without it</span><span class="dd-val">Incompatible outputs from the same word</span></div>
+ </div>
+ <div class="dd-col dd-decay">
+ <span class="dd-label">Decay Governance</span>
+ <h3>Context Relevance Across Time</h3>
+ <p>Manages the lifecycle of contextual facts. The problem is vertical, context that was true becoming less relevant as the world it described changes.</p>
+ <div class="dd-row"><span class="dd-dim">Problem</span><span class="dd-val">Relevance degradation over time</span></div>
+ <div class="dd-row"><span class="dd-dim">Direction</span><span class="dd-val">Vertical, across time</span></div>
+ <div class="dd-row"><span class="dd-dim">Urgency</span><span class="dd-val">Managed, predictable and gradual</span></div>
+ <div class="dd-row"><span class="dd-dim">Governs</span><span class="dd-val">Context Graph lifecycle</span></div>
+ <div class="dd-row"><span class="dd-dim">Output</span><span class="dd-val">State: Active → Archived → Deprecated</span></div>
+ <div class="dd-row" style="border:none"><span class="dd-dim">Without it</span><span class="dd-val">Stale context contaminates live reasoning</span></div>
+ </div>
+ </div>
 
-  <div class="dark-banner">
-    <p>Both problems are <em>silent</em>. Neither announces itself. Drift accumulates through legitimate local decisions. Decay accumulates as the world changes around static context records. Without active governance, both are invisible until a decision goes wrong.</p>
-  </div>
+ <div class="dark-banner">
+ <p>Both problems are <em>silent</em>. Neither announces itself. Drift accumulates through legitimate local decisions. Decay accumulates as the world changes around static context records. Without active governance, both are invisible until a decision goes wrong.</p>
+ </div>
 
-  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1rem;font-weight:600">The Three Decay States</h2>
-  <div class="decay-state-grid">
-    <div class="decay-state ds-active-bg">
-      <span class="ds-label">State 01 — Active</span>
-      <h3>Currently Relevant</h3>
-      <p>Influences live reasoning. Visible to agents and analysts when synthesizing recommendations or evaluating performance. Context remains Active until an explicit trigger moves it — a resolution event, a time threshold, or a conditions-changed flag.</p>
-      <div class="ds-timing">Duration: weeks → years depending on context type</div>
-    </div>
-    <div class="decay-state ds-archived-bg">
-      <span class="ds-label">State 02 — Archived</span>
-      <h3>No Longer Current</h3>
-      <p>Excluded from live reasoning. Fully preserved for lineage reconstruction and historical analysis. Carries its full provenance: what it was, when it was active, what triggered the transition, and what replaced it. Queryable — just not present in current-state views.</p>
-      <div class="ds-timing">Retention: indefinite, for decision lineage integrity</div>
-    </div>
-    <div class="decay-state ds-deprecated-bg">
-      <span class="ds-label">State 03 — Deprecated</span>
-      <h3>Superseded</h3>
-      <p>Replaced by new context. The transition point is recorded. The deprecated record points forward to what replaced it; the replacement points back. This is a labeled handoff — not erasure. The bidirectional pointer preserves the narrative of how understanding evolved.</p>
-      <div class="ds-timing">Pointer: bidirectional, timestamped, preserved</div>
-    </div>
-  </div>
+ <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1rem;font-weight:600">The Three Decay States</h2>
+ <div class="decay-state-grid">
+ <div class="decay-state ds-active-bg">
+ <span class="ds-label">State 01, Active</span>
+ <h3>Currently Relevant</h3>
+ <p>Influences live reasoning. Visible to agents and analysts when synthesizing recommendations or evaluating performance. Context remains Active until an explicit trigger moves it, a resolution event, a time threshold, or a conditions-changed flag.</p>
+ <div class="ds-timing">Duration: weeks → years depending on context type</div>
+ </div>
+ <div class="decay-state ds-archived-bg">
+ <span class="ds-label">State 02, Archived</span>
+ <h3>No Longer Current</h3>
+ <p>Excluded from live reasoning. Fully preserved for lineage reconstruction and historical analysis. Carries its full provenance: what it was, when it was active, what triggered the transition, and what replaced it. Queryable, just not present in current-state views.</p>
+ <div class="ds-timing">Retention: indefinite, for decision lineage integrity</div>
+ </div>
+ <div class="decay-state ds-deprecated-bg">
+ <span class="ds-label">State 03, Deprecated</span>
+ <h3>Superseded</h3>
+ <p>Replaced by new context. The transition point is recorded. The deprecated record points forward to what replaced it; the replacement points back. This is a labeled handoff, not erasure. The bidirectional pointer preserves the narrative of how understanding evolved.</p>
+ <div class="ds-timing">Pointer: bidirectional, timestamped, preserved</div>
+ </div>
+ </div>
 
-  <div class="inline-note gold">
-    <strong>Why Deletion Is the Wrong Answer</strong>
-    Stale context was the episodic record at the moment of a past decision. Deleting it makes that decision permanently uninterpretable. The recommendation made in August 2024 cannot be reconstructed without the competitive context that was active — and then resolved — in that period. Deletion destroys lineage. Archival preserves it.
-  </div>
+ <div class="inline-note gold">
+ <strong>Why Deletion Is the Wrong Answer</strong>
+ Stale context was the episodic record at the moment of a past decision. Deleting it makes that decision permanently uninterpretable. The recommendation made in August 2024 cannot be reconstructed without the competitive context that was active, and then resolved, in that period. Deletion destroys lineage. Archival preserves it.
+ </div>
 
-  <!-- RE TOGGLE -->
-  <div class="re-toggle-bar">
-    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
-    <button class="re-toggle-btn" data-re-target="decay" onclick="toggleRE('decay')">
-      <span class="btn-dot"></span>
-      Show Real Estate Context
-    </button>
-  </div>
-  <div class="re-panel" id="re-decay">
-    <div class="re-panel-header">
-      <span class="re-panel-icon">RE Application</span>
-      <h4>When Drift and Decay Interact</h4>
-    </div>
-    <p>The most complex governance scenario is when both problems occur simultaneously. A definition of "market exposure" was used consistently for three years, then drifted — different teams started applying it differently. Simultaneously, the market conditions it was designed to capture have changed.</p>
-    <p>You now have both problems at once: the term is semantically inconsistent <strong>and</strong> the context it described is no longer current. Resolving the drift by picking one canonical definition is not enough — you also need to archive the contextual snapshots that each version was applied to, so that historical analysis remains coherent across the version boundary.</p>
-    <div class="re-example">
-      <strong>The Governance Rule</strong>
-      When a drift event is resolved with a formal version boundary, that boundary should trigger a decay state review of any context tagged with the prior definition version. The two governance disciplines must coordinate — drift resolution and decay archival are not independent events.
-    </div>
-  </div>
+ <!-- RE TOGGLE -->
+ <div class="re-toggle-bar">
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
+ <button class="re-toggle-btn" data-re-target="decay" onclick="toggleRE('decay')">
+ <span class="btn-dot"></span>
+ Show Real Estate Context
+ </button>
+ </div>
+ <div class="re-panel" id="re-decay">
+ <div class="re-panel-header">
+ <span class="re-panel-icon">RE Application</span>
+ <h4>When Drift and Decay Interact</h4>
+ </div>
+ <p>The most complex governance scenario is when both problems occur simultaneously. A definition of "market exposure" was used consistently for three years, then drifted, different teams started applying it differently. Simultaneously, the market conditions it was designed to capture have changed.</p>
+ <p>You now have both problems at once: the term is semantically inconsistent <strong>and</strong> the context it described is no longer current. Resolving the drift by picking one canonical definition is not enough, you also need to archive the contextual snapshots that each version was applied to, so that historical analysis remains coherent across the version boundary.</p>
+ <div class="re-example">
+ <strong>The Governance Rule</strong>
+ When a drift event is resolved with a formal version boundary, that boundary should trigger a decay state review of any context tagged with the prior definition version. The two governance disciplines must coordinate, drift resolution and decay archival are not independent events.
+ </div>
+ </div>
 
-  <div class="section-divider"></div>
+ <div class="section-divider"></div>
 
-  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1rem;font-weight:600">Decay Lifecycle — Real Estate Context Examples</h2>
+ <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1rem;font-weight:600">Decay Lifecycle, Real Estate Context Examples</h2>
 
-  <table class="decay-table">
-    <thead>
-      <tr>
-        <th>Context Type</th>
-        <th>Description</th>
-        <th>Active Period</th>
-        <th>Archive Trigger</th>
-        <th>State</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="td-context">Competitor Incentive Campaign</td>
-        <td>Rival multifamily operator offering 2 months free rent in Austin submarket. Active Aug–Nov 2024.</td>
-        <td>3 months</td>
-        <td>Campaign end confirmed by market intel</td>
-        <td><span class="badge badge-archived">Archived</span></td>
-      </tr>
-      <tr>
-        <td class="td-context">Property Mgmt Transition</td>
-        <td>CBRE replaced JLL at 400 Market St, March–June 2024. Affected data continuity and maintenance response times during handoff period.</td>
-        <td>6–18 months</td>
-        <td>Operational baseline re-established</td>
-        <td><span class="badge badge-archived">Archived</span></td>
-      </tr>
-      <tr>
-        <td class="td-context">Deferred HVAC Decision</td>
-        <td>Board decision to defer $2.4M HVAC replacement across logistics portfolio. Affects tenant satisfaction, renewal probability model, and capex reserve assumptions.</td>
-        <td>Until resolved</td>
-        <td>Capex executed or asset sold</td>
-        <td><span class="badge badge-active">Active</span></td>
-      </tr>
-      <tr>
-        <td class="td-context">CBD Class B Submarket Classification</td>
-        <td>Classified as "recovering — flight to quality pressuring Class B." Reflected 2023 conditions. Three major Class A deliveries in 2024 fundamentally changed the competitive dynamic.</td>
-        <td>~18 months</td>
-        <td>New delivery schedule absorbed; updated classification issued</td>
-        <td><span class="badge badge-deprecated">Deprecated</span></td>
-      </tr>
-      <tr>
-        <td class="td-context">Rising Rate Macro Context</td>
-        <td>Fed funds rate at 5.25–5.5%. Refinancing risk elevated. Floating rate exposure flagged across 6 assets. Shaped hold/sell recommendations from 2022 through mid-2025.</td>
-        <td>~30 months</td>
-        <td>Rate cycle inflection confirmed; FOMC cut sequence initiated</td>
-        <td><span class="badge badge-archived">Archived</span></td>
-      </tr>
-      <tr>
-        <td class="td-context">New Supply Risk — Sun Belt Industrial</td>
-        <td>Elevated new supply entering Sun Belt industrial markets. Vacancy pressure expected through 2026. Actively informing underwriting assumptions and lease-up pace projections.</td>
-        <td>Ongoing</td>
-        <td>Absorption evidence or confirmed delivery pullback</td>
-        <td><span class="badge badge-active">Active</span></td>
-      </tr>
-    </tbody>
-  </table>
+ <table class="decay-table">
+ <thead>
+ <tr>
+ <th>Context Type</th>
+ <th>Description</th>
+ <th>Active Period</th>
+ <th>Archive Trigger</th>
+ <th>State</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="td-context">Competitor Incentive Campaign</td>
+ <td>Rival multifamily operator offering 2 months free rent in Austin submarket. Active Aug–Nov 2024.</td>
+ <td>3 months</td>
+ <td>Campaign end confirmed by market intel</td>
+ <td><span class="badge badge-archived">Archived</span></td>
+ </tr>
+ <tr>
+ <td class="td-context">Property Mgmt Transition</td>
+ <td>CBRE replaced JLL at 400 Market St, March–June 2024. Affected data continuity and maintenance response times during handoff period.</td>
+ <td>6–18 months</td>
+ <td>Operational baseline re-established</td>
+ <td><span class="badge badge-archived">Archived</span></td>
+ </tr>
+ <tr>
+ <td class="td-context">Deferred HVAC Decision</td>
+ <td>Board decision to defer $2.4M HVAC replacement across logistics portfolio. Affects tenant satisfaction, renewal probability model, and capex reserve assumptions.</td>
+ <td>Until resolved</td>
+ <td>Capex executed or asset sold</td>
+ <td><span class="badge badge-active">Active</span></td>
+ </tr>
+ <tr>
+ <td class="td-context">CBD Class B Submarket Classification</td>
+ <td>Classified as "recovering, flight to quality pressuring Class B." Reflected 2023 conditions. Three major Class A deliveries in 2024 fundamentally changed the competitive dynamic.</td>
+ <td>~18 months</td>
+ <td>New delivery schedule absorbed; updated classification issued</td>
+ <td><span class="badge badge-deprecated">Deprecated</span></td>
+ </tr>
+ <tr>
+ <td class="td-context">Rising Rate Macro Context</td>
+ <td>Fed funds rate at 5.25–5.5%. Refinancing risk elevated. Floating rate exposure flagged across 6 assets. Shaped hold/sell recommendations from 2022 through mid-2025.</td>
+ <td>~30 months</td>
+ <td>Rate cycle inflection confirmed; FOMC cut sequence initiated</td>
+ <td><span class="badge badge-archived">Archived</span></td>
+ </tr>
+ <tr>
+ <td class="td-context">New Supply Risk, Sun Belt Industrial</td>
+ <td>Elevated new supply entering Sun Belt industrial markets. Vacancy pressure expected through 2026. Actively informing underwriting assumptions and lease-up pace projections.</td>
+ <td>Ongoing</td>
+ <td>Absorption evidence or confirmed delivery pullback</td>
+ <td><span class="badge badge-active">Active</span></td>
+ </tr>
+ </tbody>
+ </table>
 
-  <div class="page-nav-footer">
-    <a href="drift-register.html" class="page-nav-btn">← Drift Register</a>
-    <a href="moat.html" class="page-nav-btn next">The Moat →</a>
-  </div>
+ <div class="page-nav-footer">
+ <a href="drift-register.html" class="page-nav-btn">← Drift Register</a>
+ <a href="moat.html" class="page-nav-btn next">The Moat →</a>
+ </div>
 </div>
 </main>
 <script src="nav.js"></script>

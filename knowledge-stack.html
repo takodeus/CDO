@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>03 · Knowledge Stack — Memory Architecture</title>
+<title>03 · Knowledge Stack, Memory Architecture</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -13,186 +13,186 @@
 <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
 <aside class="sidebar" id="sidebar">
 
-  <a href="index.html" class="sidebar-logo">
-    <div class="logo-mark">II</div>
-    <div>
-      <div class="logo-text">The Intelligence<br>Architecture Series</div>
-      <div class="logo-hint">← series home</div>
-    </div>
-  </a>
+ <a href="index.html" class="sidebar-logo">
+ <div class="logo-mark">II</div>
+ <div>
+ <div class="logo-text">The Intelligence<br>Architecture Series</div>
+ <div class="logo-hint">← series home</div>
+ </div>
+ </a>
 
-  <div class="series-nav-top">
-    <span class="series-nav-title">The Series</span>
+ <div class="series-nav-top">
+ <span class="series-nav-title">The Series</span>
 
-    <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
-      <span class="spn">I</span>
-      <span class="spl">The Operating Model</span>
-    </a>
+ <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+ <span class="spn">I</span>
+ <span class="spl">The Operating Model</span>
+ </a>
 
-    <div class="series-part active-part" id="sp-2">
-      <div class="series-part-header" onclick="toggleSeriesPart('sp-2')">
-        <span class="spn">II</span>
-        <span class="spl">Institutional Memory</span>
-        <span class="sp-chevron">›</span>
-      </div>
-      <div class="series-part-sections">
-        <a class="series-section-item" href="part-02.html"><span class="sec-num">·</span>Overview</a>
-        <a class="series-section-item" href="gap.html"><span class="sec-num">·</span>The Gap</a>
-        <a class="series-section-item" href="memory-types.html"><span class="sec-num">·</span>Memory Types</a>
-        <a class="series-section-item" href="knowledge-stack.html"><span class="sec-num">·</span>Knowledge Stack</a>
-        <a class="series-section-item" href="decision-lineage.html"><span class="sec-num">·</span>Decision Lineage</a>
-        <a class="series-section-item" href="drift-register.html"><span class="sec-num">·</span>Drift Register</a>
-        <a class="series-section-item" href="decay-governance.html"><span class="sec-num">·</span>Decay Governance</a>
-        <a class="series-section-item" href="moat.html"><span class="sec-num">·</span>The Moat</a>
-      </div>
-    </div>
+ <div class="series-part active-part" id="sp-2">
+ <div class="series-part-header" onclick="toggleSeriesPart('sp-2')">
+ <span class="spn">II</span>
+ <span class="spl">Institutional Memory</span>
+ <span class="sp-chevron">›</span>
+ </div>
+ <div class="series-part-sections">
+ <a class="series-section-item" href="part-02.html"><span class="sec-num">·</span>Overview</a>
+ <a class="series-section-item" href="gap.html"><span class="sec-num">·</span>The Gap</a>
+ <a class="series-section-item" href="memory-types.html"><span class="sec-num">·</span>Memory Types</a>
+ <a class="series-section-item" href="knowledge-stack.html"><span class="sec-num">·</span>Knowledge Stack</a>
+ <a class="series-section-item" href="decision-lineage.html"><span class="sec-num">·</span>Decision Lineage</a>
+ <a class="series-section-item" href="drift-register.html"><span class="sec-num">·</span>Drift Register</a>
+ <a class="series-section-item" href="decay-governance.html"><span class="sec-num">·</span>Decay Governance</a>
+ <a class="series-section-item" href="moat.html"><span class="sec-num">·</span>The Moat</a>
+ </div>
+ </div>
 
-    <a href="part-03.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
-      <span class="spn">III</span>
-      <span class="spl">The Execution Engine</span>
-    </a>
-  </div>
+ <a href="part-03.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+ <span class="spn">III</span>
+ <span class="spl">The Execution Engine</span>
+ </a>
+ </div>
 
-  <div class="sidebar-footer">
-    <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
-  </div>
+ <div class="sidebar-footer">
+ <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
+ </div>
 
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
-    <span class="theme-track"><span class="theme-thumb"></span></span>
-    <span class="theme-icon">☀</span>
-    <span class="theme-label">Light mode</span>
-  </button>
+ <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+ <span class="theme-track"><span class="theme-thumb"></span></span>
+ <span class="theme-icon">☀</span>
+ <span class="theme-label">Light mode</span>
+ </button>
 </aside>
 <header class="mobile-header">
-  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-  <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">03</span>
+ <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+ <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">03</span>
 </header>
 <main class="main-content">
 <div class="page-header-bar">
-  <span class="page-header-title">Part II · Institutional Memory · Knowledge Stack</span>
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
-    <span class="theme-track"><span class="theme-thumb"></span></span>
-    <span class="theme-icon">☀</span>
-    <span class="theme-label">Light mode</span>
-  </button>
+ <span class="page-header-title">Part II · Institutional Memory · Knowledge Stack</span>
+ <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+ <span class="theme-track"><span class="theme-thumb"></span></span>
+ <span class="theme-icon">☀</span>
+ <span class="theme-label">Light mode</span>
+ </button>
 </div>
 
 <div class="page-inner-wide">
-  <div class="eyebrow-tag">03 · Knowledge Stack</div>
-  <h1 class="page-title">The four layers —<br><em>mapped to memory</em></h1>
-  <p class="page-lead">Each layer contributes something the others cannot. The substrate shapes the intelligence. Click any layer to expand its augmentation requirements.</p>
+ <div class="eyebrow-tag">03 · Knowledge Stack</div>
+ <h1 class="page-title">The four layers,<br><em>mapped to memory</em></h1>
+ <p class="page-lead">Each layer contributes something the others cannot. The substrate shapes the intelligence. Click any layer to expand its augmentation requirements.</p>
 
-  <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.75rem">Click any layer to expand ↓</p>
+ <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.75rem">Click any layer to expand ↓</p>
 
-  <div class="layer-stack">
-    <div class="layer-block" onclick="toggleLayer(this)">
-      <div class="lb-meta"><span class="lb-num ln-r">04</span><span class="lb-name">Reasoning</span></div>
-      <div class="lb-body">
-        <h3>What should happen next</h3>
-        <span class="lb-truth">Interpretive Synthesis · Procedural Memory</span>
-        <p>Synthesizes conceptual meaning, analytical logic, and situational context into explanation, recommendation, prioritization, and action. The quality of reasoning is determined entirely by the richness of what it can reason over. The substrate shapes the intelligence.</p>
-      </div>
-      <div class="lb-augment">
-        <span class="lb-augment-label">Augmentation Required</span>
-        <ul>
-          <li>Bind output to full stack state at moment of reasoning</li>
-          <li>Record uncertainty and contested inputs explicitly</li>
-          <li>Capture actors and decision authority</li>
-          <li>Enable backward traversal across market cycles</li>
-        </ul>
-      </div>
-      <div class="lb-expand-content">
-        <p>The reasoning layer is where large language models, agent frameworks, and orchestration engines operate. Without memory augmentation, every recommendation it produces is disconnected from the prior recommendations made on the same asset, the same portfolio, or the same market condition. A recommendation produced today has no durable connection to the one produced eighteen months ago. Those two moments are unrelated — until decision lineage binds them.</p>
-      </div>
-    </div>
-    <div class="layer-block" onclick="toggleLayer(this)">
-      <div class="lb-meta"><span class="lb-num ln-c">03</span><span class="lb-name">Context Graph</span></div>
-      <div class="lb-body">
-        <h3>What is happening around us</h3>
-        <span class="lb-truth">Situational Truth · Episodic Memory</span>
-        <p>Connects entities, events, actions, provenance, and outcomes into a living structure. The difference between knowing a metric changed and understanding the full chain of events that produced the change.</p>
-      </div>
-      <div class="lb-augment">
-        <span class="lb-augment-label">Augmentation Required</span>
-        <ul>
-          <li>Explicit temporality — moment of decision, not just present</li>
-          <li>Decay states — Active, Archived, Deprecated lifecycle</li>
-          <li>Provenance tags at every third-party handoff</li>
-          <li>Event chains preserved across system and manager changes</li>
-        </ul>
-      </div>
-      <div class="lb-expand-content">
-        <p>The context graph as currently framed captures current situational truth. Episodic memory requires it to be explicitly temporal — not just what is happening, but what was happening at the moment a decision was made. The property management transition. The deferred maintenance call. The competitive incentive campaign. These facts shape decisions — and they require lifecycle governance so they transition from Active to Archived rather than remaining perpetually current or being deleted entirely.</p>
-      </div>
-    </div>
-    <div class="layer-block" onclick="toggleLayer(this)">
-      <div class="lb-meta"><span class="lb-num ln-s">02</span><span class="lb-name">Semantic Layer</span></div>
-      <div class="lb-body">
-        <h3>How things are measured</h3>
-        <span class="lb-truth">Analytical Truth · Semantic Memory (Quantified)</span>
-        <p>Governs metrics, KPIs, calculation logic, aggregations, and reusable business rules. Ensures analytical consistency — when two agents ask the same question, they get the same number, from the same logic.</p>
-      </div>
-      <div class="lb-augment">
-        <span class="lb-augment-label">Augmentation Required</span>
-        <ul>
-          <li>Calculation lineage — formula version at time of computation</li>
-          <li>Metric tagging — which formula produced which number</li>
-          <li>Reconciliation audits to surface silent drift</li>
-          <li>Counterparty definition mapping with provenance</li>
-        </ul>
-      </div>
-      <div class="lb-expand-content">
-        <p>"Renewal rate" sounds unambiguous. In practice it requires governed answers to at least five sub-questions: Does it include option exercises? What is the eligible lease cohort? What time window applies? How are partial renewals counted? Are cause terminations excluded? Two analysts applying different defaults produce numbers that look comparable but aren't. The Drift Register catches this — but only if the semantic layer has been designed to surface formula versions alongside metric values.</p>
-      </div>
-    </div>
-    <div class="layer-block" onclick="toggleLayer(this)">
-      <div class="lb-meta"><span class="lb-num ln-o">01</span><span class="lb-name">Ontology</span></div>
-      <div class="lb-body">
-        <h3>What things are</h3>
-        <span class="lb-truth">Conceptual Truth · Semantic Memory</span>
-        <p>Defines canonical objects, types, hierarchies, attributes, and relationships. Makes the domain legible to both agentic systems and people. A property in a loan portfolio and one in asset management may share an address but represent structurally different entities.</p>
-      </div>
-      <div class="lb-augment">
-        <span class="lb-augment-label">Augmentation Required</span>
-        <ul>
-          <li>Version history — prior definitions preserved, never overwritten</li>
-          <li>Definition provenance — who, when, under what authority</li>
-          <li>Plural ontologies — counterparty definitions with governed mappings</li>
-          <li>Drift detection registered across periods and partners</li>
-        </ul>
-      </div>
-      <div class="lb-expand-content">
-        <p>Plural ontologies replace the failed mandate of one canonical model. In a distributed operating model — with outsourced property managers, JV partners, and multiple systems of record — forcing a single definition is often neither practical nor correct. The ontology layer should instead allow different valid definitions to coexist with explicit scope tags, provenance, and governed mappings between them. Standardization becomes a service offered, not a mandate imposed.</p>
-      </div>
-    </div>
-  </div>
+ <div class="layer-stack">
+ <div class="layer-block" onclick="toggleLayer(this)">
+ <div class="lb-meta"><span class="lb-num ln-r">04</span><span class="lb-name">Reasoning</span></div>
+ <div class="lb-body">
+ <h3>What should happen next</h3>
+ <span class="lb-truth">Interpretive Synthesis · Procedural Memory</span>
+ <p>Synthesizes conceptual meaning, analytical logic, and situational context into explanation, recommendation, prioritization, and action. The quality of reasoning is determined entirely by the richness of what it can reason over. The substrate shapes the intelligence.</p>
+ </div>
+ <div class="lb-augment">
+ <span class="lb-augment-label">Augmentation Required</span>
+ <ul>
+ <li>Bind output to full stack state at moment of reasoning</li>
+ <li>Record uncertainty and contested inputs explicitly</li>
+ <li>Capture actors and decision authority</li>
+ <li>Enable backward traversal across market cycles</li>
+ </ul>
+ </div>
+ <div class="lb-expand-content">
+ <p>The reasoning layer is where large language models, agent frameworks, and orchestration engines operate. Without memory augmentation, every recommendation it produces is disconnected from the prior recommendations made on the same asset, the same portfolio, or the same market condition. A recommendation produced today has no durable connection to the one produced eighteen months ago. Those two moments are unrelated, until decision lineage binds them.</p>
+ </div>
+ </div>
+ <div class="layer-block" onclick="toggleLayer(this)">
+ <div class="lb-meta"><span class="lb-num ln-c">03</span><span class="lb-name">Context Graph</span></div>
+ <div class="lb-body">
+ <h3>What is happening around us</h3>
+ <span class="lb-truth">Situational Truth · Episodic Memory</span>
+ <p>Connects entities, events, actions, provenance, and outcomes into a living structure. The difference between knowing a metric changed and understanding the full chain of events that produced the change.</p>
+ </div>
+ <div class="lb-augment">
+ <span class="lb-augment-label">Augmentation Required</span>
+ <ul>
+ <li>Explicit temporality, moment of decision, not just present</li>
+ <li>Decay states, Active, Archived, Deprecated lifecycle</li>
+ <li>Provenance tags at every third-party handoff</li>
+ <li>Event chains preserved across system and manager changes</li>
+ </ul>
+ </div>
+ <div class="lb-expand-content">
+ <p>The context graph as currently framed captures current situational truth. Episodic memory requires it to be explicitly temporal, not just what is happening, but what was happening at the moment a decision was made. The property management transition. The deferred maintenance call. The competitive incentive campaign. These facts shape decisions, and they require lifecycle governance so they transition from Active to Archived rather than remaining perpetually current or being deleted entirely.</p>
+ </div>
+ </div>
+ <div class="layer-block" onclick="toggleLayer(this)">
+ <div class="lb-meta"><span class="lb-num ln-s">02</span><span class="lb-name">Semantic Layer</span></div>
+ <div class="lb-body">
+ <h3>How things are measured</h3>
+ <span class="lb-truth">Analytical Truth · Semantic Memory (Quantified)</span>
+ <p>Governs metrics, KPIs, calculation logic, aggregations, and reusable business rules. Ensures analytical consistency, when two agents ask the same question, they get the same number, from the same logic.</p>
+ </div>
+ <div class="lb-augment">
+ <span class="lb-augment-label">Augmentation Required</span>
+ <ul>
+ <li>Calculation lineage, formula version at time of computation</li>
+ <li>Metric tagging, which formula produced which number</li>
+ <li>Reconciliation audits to surface silent drift</li>
+ <li>Counterparty definition mapping with provenance</li>
+ </ul>
+ </div>
+ <div class="lb-expand-content">
+ <p>"Renewal rate" sounds unambiguous. In practice it requires governed answers to at least five sub-questions: Does it include option exercises? What is the eligible lease cohort? What time window applies? How are partial renewals counted? Are cause terminations excluded? Two analysts applying different defaults produce numbers that look comparable but aren't. The Drift Register catches this, but only if the semantic layer has been designed to surface formula versions alongside metric values.</p>
+ </div>
+ </div>
+ <div class="layer-block" onclick="toggleLayer(this)">
+ <div class="lb-meta"><span class="lb-num ln-o">01</span><span class="lb-name">Ontology</span></div>
+ <div class="lb-body">
+ <h3>What things are</h3>
+ <span class="lb-truth">Conceptual Truth · Semantic Memory</span>
+ <p>Defines canonical objects, types, hierarchies, attributes, and relationships. Makes the domain legible to both agentic systems and people. A property in a loan portfolio and one in asset management may share an address but represent structurally different entities.</p>
+ </div>
+ <div class="lb-augment">
+ <span class="lb-augment-label">Augmentation Required</span>
+ <ul>
+ <li>Version history, prior definitions preserved, never overwritten</li>
+ <li>Definition provenance, who, when, under what authority</li>
+ <li>Plural ontologies, counterparty definitions with governed mappings</li>
+ <li>Drift detection registered across periods and partners</li>
+ </ul>
+ </div>
+ <div class="lb-expand-content">
+ <p>Plural ontologies replace the failed mandate of one canonical model. In a distributed operating model, with outsourced property managers, JV partners, and multiple systems of record, forcing a single definition is often neither practical nor correct. The ontology layer should instead allow different valid definitions to coexist with explicit scope tags, provenance, and governed mappings between them. Standardization becomes a service offered, not a mandate imposed.</p>
+ </div>
+ </div>
+ </div>
 
-  <!-- RE TOGGLE -->
-  <div class="re-toggle-bar">
-    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
-    <button class="re-toggle-btn" data-re-target="knowledge-stack" onclick="toggleRE('knowledge-stack')">
-      <span class="btn-dot"></span>
-      Show Real Estate Context
-    </button>
-  </div>
-  <div class="re-panel" id="re-knowledge-stack">
-    <div class="re-panel-header">
-      <span class="re-panel-icon">RE Application</span>
-      <h4>Each Layer in a Real Estate Intelligence Stack</h4>
-    </div>
-    <p><strong>Reasoning layer:</strong> An agent recommends holding a logistics asset through the current rate cycle. That recommendation is only trustworthy if it can be traced to the discount rate methodology in use, the occupancy definition applied, and the competitive context visible at the moment of synthesis — not the context that exists today.</p>
-    <p><strong>Context graph:</strong> Tracks that a property management transition occurred at a specific asset in March 2024, that a deferred HVAC decision was logged in June 2024, and that a competitor ran a 3-month free rent campaign in the submarket from August through October 2024. The renewal rate decline in Q3 2024 is only explainable when these three facts are visible, connected, and preserved.</p>
-    <p><strong>Semantic layer:</strong> "Tenant" in a CBRE-managed office portfolio means something structurally different from "tenant" in a Greystar-managed multifamily asset. "Property" in Yardi may not resolve to the same entity as "property" in Argus or VTS. The ontology makes these distinctions explicit — and plural ontologies let a JV partner's definitions coexist with yours without silent collision.</p>
-    <div class="re-example">
-      <strong>The Dependency Chain</strong>
-      The reasoning layer's quality is entirely determined by what it can reason over. If the ontology has drifted, the semantic layer has inconsistent formulas, and the context graph has stale facts — the reasoning output is wrong at scale. Fast and authoritative, but wrong. This is the real risk of deploying AI without the augmented architecture.
-    </div>
-  </div>
+ <!-- RE TOGGLE -->
+ <div class="re-toggle-bar">
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Real Estate Application</span>
+ <button class="re-toggle-btn" data-re-target="knowledge-stack" onclick="toggleRE('knowledge-stack')">
+ <span class="btn-dot"></span>
+ Show Real Estate Context
+ </button>
+ </div>
+ <div class="re-panel" id="re-knowledge-stack">
+ <div class="re-panel-header">
+ <span class="re-panel-icon">RE Application</span>
+ <h4>Each Layer in a Real Estate Intelligence Stack</h4>
+ </div>
+ <p><strong>Reasoning layer:</strong> An agent recommends holding a logistics asset through the current rate cycle. That recommendation is only trustworthy if it can be traced to the discount rate methodology in use, the occupancy definition applied, and the competitive context visible at the moment of synthesis, not the context that exists today.</p>
+ <p><strong>Context graph:</strong> Tracks that a property management transition occurred at a specific asset in March 2024, that a deferred HVAC decision was logged in June 2024, and that a competitor ran a 3-month free rent campaign in the submarket from August through October 2024. The renewal rate decline in Q3 2024 is only explainable when these three facts are visible, connected, and preserved.</p>
+ <p><strong>Semantic layer:</strong> "Tenant" in a CBRE-managed office portfolio means something structurally different from "tenant" in a Greystar-managed multifamily asset. "Property" in Yardi may not resolve to the same entity as "property" in Argus or VTS. The ontology makes these distinctions explicit, and plural ontologies let a JV partner's definitions coexist with yours without silent collision.</p>
+ <div class="re-example">
+ <strong>The Dependency Chain</strong>
+ The reasoning layer's quality is entirely determined by what it can reason over. If the ontology has drifted, the semantic layer has inconsistent formulas, and the context graph has stale facts, the reasoning output is wrong at scale. Fast and authoritative, but wrong. This is the real risk of deploying AI without the augmented architecture.
+ </div>
+ </div>
 
-  <div class="page-nav-footer">
-    <a href="memory-types.html" class="page-nav-btn">← Memory Types</a>
-    <a href="decision-lineage.html" class="page-nav-btn next">Decision Lineage →</a>
-  </div>
+ <div class="page-nav-footer">
+ <a href="memory-types.html" class="page-nav-btn">← Memory Types</a>
+ <a href="decision-lineage.html" class="page-nav-btn next">Decision Lineage →</a>
+ </div>
 </div>
 </main>
 <script src="nav.js"></script>

@@ -12,21 +12,21 @@ body { margin-left: 0; }
 
 /* HEADER */
 .s-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 4rem; border-bottom: 1px solid var(--bd);
-  background: var(--bg); position: sticky; top: 0; z-index: 100;
+ display: flex; align-items: center; justify-content: space-between;
+ padding: 1.1rem 4rem; border-bottom: 1px solid var(--bd);
+ background: var(--bg); position: sticky; top: 0; z-index: 100;
 }
 .s-brand {
-  font-family: var(--font-mono); font-size: 0.62rem;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--tx-muted);
+ font-family: var(--font-mono); font-size: 0.62rem;
+ letter-spacing: 0.18em; text-transform: uppercase; color: var(--tx-muted);
 }
 .s-toggle {
-  display: flex; align-items: center; gap: 0.6rem;
-  padding: 0.5rem 0.9rem; border: 1px solid var(--bd);
-  background: var(--bg-panel); color: var(--tx-2);
-  font-family: var(--font-mono); font-size: 0.58rem;
-  letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
-  transition: all 0.2s var(--ease);
+ display: flex; align-items: center; gap: 0.6rem;
+ padding: 0.5rem 0.9rem; border: 1px solid var(--bd);
+ background: var(--bg-panel); color: var(--tx-2);
+ font-family: var(--font-mono); font-size: 0.58rem;
+ letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+ transition: all 0.2s var(--ease);
 }
 .s-toggle:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 .s-toggle-track { width: 28px; height: 15px; border-radius: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(93,173,226,0.3); position: relative; flex-shrink: 0; transition: background 0.2s; }
@@ -37,28 +37,28 @@ body { margin-left: 0; }
 /* HERO */
 .s-hero { padding: 5rem 4rem 3.5rem; border-bottom: 1px solid var(--bd); }
 .s-eyebrow {
-  font-family: var(--font-mono); font-size: 0.62rem;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--blue-lt); margin-bottom: 1.2rem;
-  display: flex; align-items: center; gap: 0.75rem;
+ font-family: var(--font-mono); font-size: 0.62rem;
+ letter-spacing: 0.22em; text-transform: uppercase;
+ color: var(--blue-lt); margin-bottom: 1.2rem;
+ display: flex; align-items: center; gap: 0.75rem;
 }
 .s-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--blue-lt); border-radius: 2px; }
 .s-title {
-  font-family: var(--font-display); font-size: clamp(2.8rem,4.5vw,4.4rem);
-  font-weight: 700; line-height: 1.07; color: var(--tx-h); margin-bottom: 1.5rem;
+ font-family: var(--font-display); font-size: clamp(2.8rem,4.5vw,4.4rem);
+ font-weight: 700; line-height: 1.07; color: var(--tx-h); margin-bottom: 1.5rem;
 }
 .s-title em { font-style: italic; color: var(--blue-lt); }
 .s-sub {
-  font-size: 1.05rem; color: var(--tx-body); line-height: 1.8;
-  max-width: 660px; margin-bottom: 3rem;
+ font-size: 1.05rem; color: var(--tx-body); line-height: 1.8;
+ max-width: 660px; margin-bottom: 3rem;
 }
 
 /* ARC */
 .s-arc { display: flex; align-items: stretch; border: 1px solid var(--bd); margin-bottom: 0.5rem; }
 .s-arc-step {
-  flex: 1; padding: 1.2rem 1.75rem; border-right: 1px solid var(--bd);
-  text-decoration: none; display: block; position: relative;
-  transition: background 0.18s var(--ease);
+ flex: 1; padding: 1.2rem 1.75rem; border-right: 1px solid var(--bd);
+ text-decoration: none; display: block; position: relative;
+ transition: background 0.18s var(--ease);
 }
 .s-arc-step:last-child { border-right: none; }
 .s-arc-step:hover { background: var(--bg-panel); }
@@ -70,63 +70,63 @@ body { margin-left: 0; }
 
 /* THROUGH-LINE / SHIFTS */
 .s-through {
-  border-bottom: 1px solid var(--bd);
+ border-bottom: 1px solid var(--bd);
 }
 .s-through-header {
-  display: flex; align-items: center; gap: 1rem;
-  padding: 1.5rem 4rem 0;
+ display: flex; align-items: center; gap: 1rem;
+ padding: 1.5rem 4rem 0;
 }
 .s-through-stripe {
-  width: 3px; height: 18px; border-radius: 2px; flex-shrink: 0;
-  background: linear-gradient(180deg, var(--blue-mid), var(--teal-lt));
+ width: 3px; height: 18px; border-radius: 2px; flex-shrink: 0;
+ background: linear-gradient(180deg, var(--blue-mid), var(--teal-lt));
 }
 .s-through-label {
-  font-family: var(--font-mono); font-size: 0.58rem;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-lt);
+ font-family: var(--font-mono); font-size: 0.58rem;
+ letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-lt);
 }
 
-/* Shifts grid — aligned columns */
+/* Shifts grid, aligned columns */
 .s-shifts {
-  display: grid;
-  grid-template-columns: 1fr 40px 1fr;
-  gap: 0;
-  padding: 0 4rem 0;
-  margin-top: 1rem;
+ display: grid;
+ grid-template-columns: 1fr 40px 1fr;
+ gap: 0;
+ padding: 0 4rem 0;
+ margin-top: 1rem;
 }
 .s-shift-row {
-  display: contents; /* participates in parent grid */
+ display: contents; /* participates in parent grid */
 }
 .s-shift-from, .s-shift-arr, .s-shift-to {
-  padding: 0.85rem 1.25rem;
-  border-top: 1px solid var(--bd);
-  display: flex; align-items: center;
+ padding: 0.85rem 1.25rem;
+ border-top: 1px solid var(--bd);
+ display: flex; align-items: center;
 }
 .s-shift-row:last-child .s-shift-from,
 .s-shift-row:last-child .s-shift-arr,
 .s-shift-row:last-child .s-shift-to {
-  border-bottom: 1px solid var(--bd);
+ border-bottom: 1px solid var(--bd);
 }
 /* left col — "from" state */
 .s-shift-from {
-  font-family: var(--font-body); font-size: 0.95rem;
-  color: var(--tx-muted); font-weight: 400;
-  background: var(--bg-panel);
-  border-right: none;
-  border-left: 1px solid var(--bd);
+ font-family: var(--font-body); font-size: 0.95rem;
+ color: var(--tx-muted); font-weight: 400;
+ background: var(--bg-panel);
+ border-right: none;
+ border-left: 1px solid var(--bd);
 }
 /* arrow col */
 .s-shift-arr {
-  justify-content: center; font-size: 1rem; font-weight: 700;
-  color: var(--blue-lt); background: var(--bg-panel);
-  border-right: none; padding: 0;
+ justify-content: center; font-size: 1rem; font-weight: 700;
+ color: var(--blue-lt); background: var(--bg-panel);
+ border-right: none; padding: 0;
 }
 /* right col — "to" state */
 .s-shift-to {
-  font-family: var(--font-body); font-size: 0.95rem;
-  font-weight: 600; color: var(--tx-h);
-  background: var(--bg-card);
-  border-left: 2px solid var(--blue-mid);
-  border-right: 1px solid var(--bd);
+ font-family: var(--font-body); font-size: 0.95rem;
+ font-weight: 600; color: var(--tx-h);
+ background: var(--bg-card);
+ border-left: 2px solid var(--blue-mid);
+ border-right: 1px solid var(--bd);
 }
 /* accent on the "to" text of each row */
 .s-shift-row:nth-child(1) .s-shift-to { border-left-color: var(--blue-lt); }
@@ -137,25 +137,25 @@ body { margin-left: 0; }
 
 /* column header labels */
 .s-shifts-headers {
-  display: grid; grid-template-columns: 1fr 40px 1fr;
-  padding: 0 4rem; margin-top: 0.5rem; margin-bottom: 0;
+ display: grid; grid-template-columns: 1fr 40px 1fr;
+ padding: 0 4rem; margin-top: 0.5rem; margin-bottom: 0;
 }
 .s-shifts-col-label {
-  font-family: var(--font-mono); font-size: 0.72rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 0.5rem 1.25rem;
+ font-family: var(--font-mono); font-size: 0.72rem;
+ letter-spacing: 0.12em; text-transform: uppercase;
+ padding: 0.5rem 1.25rem;
 }
 .s-shifts-col-label.from { color: var(--tx-muted); background: var(--bg-panel); border: 1px solid var(--bd); border-bottom: none; border-right: none; }
-.s-shifts-col-label.arr  { background: var(--bg-panel); border-top: 1px solid var(--bd); border-bottom: none; }
-.s-shifts-col-label.to   { color: var(--blue-lt); background: var(--bg-card); border: 1px solid var(--bd); border-bottom: none; border-left: 2px solid var(--blue-mid); }
+.s-shifts-col-label.arr { background: var(--bg-panel); border-top: 1px solid var(--bd); border-bottom: none; }
+.s-shifts-col-label.to { color: var(--blue-lt); background: var(--bg-card); border: 1px solid var(--bd); border-bottom: none; border-left: 2px solid var(--blue-mid); }
 
 /* light mode adjustments */
 [data-theme="light"] .s-shift-from { background: var(--bg-alt); }
-[data-theme="light"] .s-shift-arr  { background: var(--bg-alt); }
-[data-theme="light"] .s-shift-to   { background: var(--bg-card); color: var(--tx-h); }
+[data-theme="light"] .s-shift-arr { background: var(--bg-alt); }
+[data-theme="light"] .s-shift-to { background: var(--bg-card); color: var(--tx-h); }
 [data-theme="light"] .s-shifts-col-label.from { background: var(--bg-alt); }
-[data-theme="light"] .s-shifts-col-label.arr  { background: var(--bg-alt); }
-[data-theme="light"] .s-shifts-col-label.to   { background: var(--bg-card); }
+[data-theme="light"] .s-shifts-col-label.arr { background: var(--bg-alt); }
+[data-theme="light"] .s-shifts-col-label.to { background: var(--bg-card); }
 
 /* spacing below shifts before pieces */
 .s-shifts-end { height: 1px; background: var(--bd); margin: 0 4rem; }
@@ -164,15 +164,15 @@ body { margin-left: 0; }
 .s-pieces { padding: 3rem 4rem 5rem; display: flex; flex-direction: column; gap: 1.25rem; }
 
 .s-piece {
-  display: grid; grid-template-columns: 80px 1fr;
-  border: 1px solid var(--bd); background: var(--bg-card);
-  text-decoration: none; overflow: hidden;
-  transition: box-shadow 0.2s var(--ease), transform 0.18s var(--ease);
+ display: grid; grid-template-columns: 80px 1fr;
+ border: 1px solid var(--bd); background: var(--bg-card);
+ text-decoration: none; overflow: hidden;
+ transition: box-shadow 0.2s var(--ease), transform 0.18s var(--ease);
 }
 .s-piece:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.18); transform: translateY(-2px); }
 .s-piece-num-col {
-  padding: 2rem 1.1rem; background: var(--bg-panel); border-right: 1px solid var(--bd);
-  display: flex; align-items: flex-start; justify-content: center; padding-top: 2.25rem;
+ padding: 2rem 1.1rem; background: var(--bg-panel); border-right: 1px solid var(--bd);
+ display: flex; align-items: flex-start; justify-content: center; padding-top: 2.25rem;
 }
 .s-piece-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; line-height: 1; }
 .n1 { color: var(--blue-lt); } .n2 { color: var(--blue-mid); } .n3 { color: var(--teal-lt); }
@@ -189,207 +189,207 @@ body { margin-left: 0; }
 .s-footer-note { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx-muted); }
 
 @media (max-width: 768px) {
-  .s-header, .s-hero, .s-through-header, .s-shifts-headers, .s-shifts, .s-pieces, .s-footer {
-    padding-left: 1.25rem; padding-right: 1.25rem;
-  }
-  .s-header { padding-top: 0.75rem; padding-bottom: 0.75rem; position: sticky; top: 0; }
-  .s-hero { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-  .s-title { font-size: clamp(2.4rem, 9vw, 3.4rem); }
-  .s-sub { font-size: 0.92rem; margin-bottom: 2rem; }
-  .s-arc { flex-direction: column; }
-  .s-arc-step { border-right: none; border-bottom: 1px solid var(--bd); }
-  .s-arc-chevron { right: 0.5rem; }
+ .s-header, .s-hero, .s-through-header, .s-shifts-headers, .s-shifts, .s-pieces, .s-footer {
+ padding-left: 1.25rem; padding-right: 1.25rem;
+ }
+ .s-header { padding-top: 0.75rem; padding-bottom: 0.75rem; position: sticky; top: 0; }
+ .s-hero { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+ .s-title { font-size: clamp(2.4rem, 9vw, 3.4rem); }
+ .s-sub { font-size: 0.92rem; margin-bottom: 2rem; }
+ .s-arc { flex-direction: column; }
+ .s-arc-step { border-right: none; border-bottom: 1px solid var(--bd); }
+ .s-arc-chevron { right: 0.5rem; }
 
-  /* Shifts grid */
-  .s-shifts { grid-template-columns: 1fr 24px 1fr; padding: 0 1.25rem; }
-  .s-shifts-headers { grid-template-columns: 1fr 24px 1fr; padding: 0 1.25rem; }
-  .s-shifts-col-label { font-size: 0.6rem; padding: 0.4rem 0.75rem; }
-  .s-shift-from, .s-shift-to { font-size: 0.82rem; padding: 0.65rem 0.75rem; }
-  .s-shift-arr { font-size: 0.85rem; }
+ /* Shifts grid */
+ .s-shifts { grid-template-columns: 1fr 24px 1fr; padding: 0 1.25rem; }
+ .s-shifts-headers { grid-template-columns: 1fr 24px 1fr; padding: 0 1.25rem; }
+ .s-shifts-col-label { font-size: 0.6rem; padding: 0.4rem 0.75rem; }
+ .s-shift-from, .s-shift-to { font-size: 0.82rem; padding: 0.65rem 0.75rem; }
+ .s-shift-arr { font-size: 0.85rem; }
 
-  /* Piece cards */
-  .s-piece { grid-template-columns: 56px 1fr; }
-  .s-piece-num { font-size: 1.6rem; }
-  .s-piece-body { padding: 1.25rem 1rem; }
-  .s-piece-title { font-size: 1.15rem; }
-  .s-piece-q { font-size: 0.82rem; }
-  .s-pieces { padding: 1.5rem 1.25rem 3rem; gap: 0.85rem; }
+ /* Piece cards */
+ .s-piece { grid-template-columns: 56px 1fr; }
+ .s-piece-num { font-size: 1.6rem; }
+ .s-piece-body { padding: 1.25rem 1rem; }
+ .s-piece-title { font-size: 1.15rem; }
+ .s-piece-q { font-size: 0.82rem; }
+ .s-pieces { padding: 1.5rem 1.25rem 3rem; gap: 0.85rem; }
 
-  /* Footer */
-  .s-footer { padding: 1rem 1.25rem; flex-direction: column; gap: 0.4rem; align-items: flex-start; }
+ /* Footer */
+ .s-footer { padding: 1rem 1.25rem; flex-direction: column; gap: 0.4rem; align-items: flex-start; }
 }
 
 @media (max-width: 390px) {
-  .s-title { font-size: 2.1rem; }
-  .s-shifts { grid-template-columns: 1fr 18px 1fr; }
-  .s-shifts-headers { grid-template-columns: 1fr 18px 1fr; }
-  .s-shift-from, .s-shift-to { font-size: 0.75rem; padding: 0.55rem 0.6rem; }
-  .s-shifts-col-label { font-size: 0.55rem; padding: 0.35rem 0.6rem; }
+ .s-title { font-size: 2.1rem; }
+ .s-shifts { grid-template-columns: 1fr 18px 1fr; }
+ .s-shifts-headers { grid-template-columns: 1fr 18px 1fr; }
+ .s-shift-from, .s-shift-to { font-size: 0.75rem; padding: 0.55rem 0.6rem; }
+ .s-shifts-col-label { font-size: 0.55rem; padding: 0.35rem 0.6rem; }
 }
 </style>
 </head>
 <body>
 <div class="s-wrap">
 
-  <div class="s-header">
-    <span class="s-brand">Real Estate &amp; Capital Markets</span>
-    <button class="s-toggle" id="theme-toggle" onclick="toggleTheme()">
-      <span class="s-toggle-track"><span class="s-toggle-thumb"></span></span>
-      <span class="theme-icon">☀</span>
-      <span class="theme-label">Light mode</span>
-    </button>
-  </div>
+ <div class="s-header">
+ <span class="s-brand">Real Estate &amp; Capital Markets</span>
+ <button class="s-toggle" id="theme-toggle" onclick="toggleTheme()">
+ <span class="s-toggle-track"><span class="s-toggle-thumb"></span></span>
+ <span class="theme-icon">☀</span>
+ <span class="theme-label">Light mode</span>
+ </button>
+ </div>
 
-  <div class="s-hero">
-    <div class="s-eyebrow">The Intelligence Architecture Series</div>
-    <h1 class="s-title">Your systems are<br><em>forgetting</em>.</h1>
-    <p class="s-sub">The enterprise AI transition in real estate is not a technology problem. It is a governance, memory, and organizational redesign problem. The firms that pull ahead will not have the most data or the fastest models. They will have systems that remember — and organizations designed to govern what those systems know.</p>
+ <div class="s-hero">
+ <div class="s-eyebrow">The Intelligence Architecture Series</div>
+ <h1 class="s-title">Your systems are<br><em>forgetting</em>.</h1>
+ <p class="s-sub">The enterprise AI transition in real estate is not a technology problem. It is a governance, memory, and organizational redesign problem. The firms that pull ahead will not have the most data or the fastest models. They will have systems that remember, and organizations designed to govern what those systems know.</p>
 
-    <div class="s-arc">
-      <a href="part-01.html" class="s-arc-step">
-        <span class="s-arc-num">Part I</span>
-        <div class="s-arc-label">The Operating Model</div>
-        <div class="s-arc-sub">Why the current model breaks</div>
-        <span class="s-arc-chevron">→</span>
-      </a>
-      <a href="part-02.html" class="s-arc-step">
-        <span class="s-arc-num">Part II</span>
-        <div class="s-arc-label">Institutional Memory</div>
-        <div class="s-arc-sub">The architecture you're missing</div>
-        <span class="s-arc-chevron">→</span>
-      </a>
-      <a href="part-03.html" class="s-arc-step">
-        <span class="s-arc-num">Part III</span>
-        <div class="s-arc-label">The Execution Engine</div>
-        <div class="s-arc-sub">Building the organization around it</div>
-        <span class="s-arc-chevron">→</span>
-      </a>
-    </div>
-    <div class="s-arc-note">Each part builds on the one before. The argument is sequential.</div>
-  </div>
+ <div class="s-arc">
+ <a href="part-01.html" class="s-arc-step">
+ <span class="s-arc-num">Part I</span>
+ <div class="s-arc-label">The Operating Model</div>
+ <div class="s-arc-sub">Why the current model breaks</div>
+ <span class="s-arc-chevron">→</span>
+ </a>
+ <a href="part-02.html" class="s-arc-step">
+ <span class="s-arc-num">Part II</span>
+ <div class="s-arc-label">Institutional Memory</div>
+ <div class="s-arc-sub">The architecture you're missing</div>
+ <span class="s-arc-chevron">→</span>
+ </a>
+ <a href="part-03.html" class="s-arc-step">
+ <span class="s-arc-num">Part III</span>
+ <div class="s-arc-label">The Execution Engine</div>
+ <div class="s-arc-sub">Building the organization around it</div>
+ <span class="s-arc-chevron">→</span>
+ </a>
+ </div>
+ <div class="s-arc-note">Each part builds on the one before. The argument is sequential.</div>
+ </div>
 
-  <div class="s-through">
-    <div class="s-through-header">
-      <div class="s-through-stripe"></div>
-      <span class="s-through-label">Five paradigmatic shifts running through every piece</span>
-    </div>
+ <div class="s-through">
+ <div class="s-through-header">
+ <div class="s-through-stripe"></div>
+ <span class="s-through-label">Five paradigmatic shifts running through every piece</span>
+ </div>
 
-    <div class="s-shifts-headers">
-      <div class="s-shifts-col-label from">Leaving behind</div>
-      <div class="s-shifts-col-label arr"></div>
-      <div class="s-shifts-col-label to">Moving toward</div>
-    </div>
+ <div class="s-shifts-headers">
+ <div class="s-shifts-col-label from">Leaving behind</div>
+ <div class="s-shifts-col-label arr"></div>
+ <div class="s-shifts-col-label to">Moving toward</div>
+ </div>
 
-    <div class="s-shifts">
+ <div class="s-shifts">
 
-      <div class="s-shift-row">
-        <div class="s-shift-from">Tech Debt</div>
-        <div class="s-shift-arr">→</div>
-        <div class="s-shift-to">Data Debt</div>
-      </div>
+ <div class="s-shift-row">
+ <div class="s-shift-from">Tech Debt</div>
+ <div class="s-shift-arr">→</div>
+ <div class="s-shift-to">Data Debt</div>
+ </div>
 
-      <div class="s-shift-row">
-        <div class="s-shift-from">Systems of Record</div>
-        <div class="s-shift-arr">→</div>
-        <div class="s-shift-to">Systems of Interpretation</div>
-      </div>
+ <div class="s-shift-row">
+ <div class="s-shift-from">Systems of Record</div>
+ <div class="s-shift-arr">→</div>
+ <div class="s-shift-to">Systems of Interpretation</div>
+ </div>
 
-      <div class="s-shift-row">
-        <div class="s-shift-from">Data Governance</div>
-        <div class="s-shift-arr">→</div>
-        <div class="s-shift-to">Meaning Governance</div>
-      </div>
+ <div class="s-shift-row">
+ <div class="s-shift-from">Data Governance</div>
+ <div class="s-shift-arr">→</div>
+ <div class="s-shift-to">Meaning Governance</div>
+ </div>
 
-      <div class="s-shift-row">
-        <div class="s-shift-from">Data Lineage</div>
-        <div class="s-shift-arr">→</div>
-        <div class="s-shift-to">Decision Lineage</div>
-      </div>
+ <div class="s-shift-row">
+ <div class="s-shift-from">Data Lineage</div>
+ <div class="s-shift-arr">→</div>
+ <div class="s-shift-to">Decision Lineage</div>
+ </div>
 
-      <div class="s-shift-row">
-        <div class="s-shift-from">Operating Model</div>
-        <div class="s-shift-arr">→</div>
-        <div class="s-shift-to">Intelligence Model</div>
-      </div>
+ <div class="s-shift-row">
+ <div class="s-shift-from">Operating Model</div>
+ <div class="s-shift-arr">→</div>
+ <div class="s-shift-to">Intelligence Model</div>
+ </div>
 
-    </div>
-  </div>
+ </div>
+ </div>
 
-  <div class="s-pieces">
+ <div class="s-pieces">
 
-    <a href="part-01.html" class="s-piece">
-      <div class="s-piece-num-col"><div class="s-piece-num n1">I</div></div>
-      <div class="s-piece-body">
-        <span class="s-piece-series">The Intelligence Architecture Series · Part I</span>
-        <div class="s-piece-title">The Control Problem</div>
-        <div class="s-piece-subtitle">From Data Stack to Intelligence Control Tower</div>
-        <div class="s-piece-q">"What breaks when you run a distributed real estate operating model on an architecture built for centralized, human-read reporting — and what does the architecture that replaces it actually look like?"</div>
-        <div class="s-piece-tags">
-          <span class="s-piece-tag">Data Pyramid</span>
-          <span class="s-piece-tag">Control Tower</span>
-          <span class="s-piece-tag">Operating Lenses</span>
-          <span class="s-piece-tag">Plural Ontologies</span>
-          <span class="s-piece-tag">Meaning Governance</span>
-          <span class="s-piece-tag">Decision Lineage</span>
-          <span class="s-piece-tag">Knowledge Graph</span>
-        </div>
-      </div>
-    </a>
+ <a href="part-01.html" class="s-piece">
+ <div class="s-piece-num-col"><div class="s-piece-num n1">I</div></div>
+ <div class="s-piece-body">
+ <span class="s-piece-series">The Intelligence Architecture Series · Part I</span>
+ <div class="s-piece-title">The Control Problem</div>
+ <div class="s-piece-subtitle">From Data Stack to Intelligence Control Tower</div>
+ <div class="s-piece-q">"What breaks when you run a distributed real estate operating model on an architecture built for centralized, human-read reporting, and what does the architecture that replaces it actually look like?"</div>
+ <div class="s-piece-tags">
+ <span class="s-piece-tag">Data Pyramid</span>
+ <span class="s-piece-tag">Control Tower</span>
+ <span class="s-piece-tag">Operating Lenses</span>
+ <span class="s-piece-tag">Plural Ontologies</span>
+ <span class="s-piece-tag">Meaning Governance</span>
+ <span class="s-piece-tag">Decision Lineage</span>
+ <span class="s-piece-tag">Knowledge Graph</span>
+ </div>
+ </div>
+ </a>
 
-    <a href="part-02.html" class="s-piece">
-      <div class="s-piece-num-col"><div class="s-piece-num n2">II</div></div>
-      <div class="s-piece-body">
-        <span class="s-piece-series">The Intelligence Architecture Series · Part II</span>
-        <div class="s-piece-title">The Memory Gap</div>
-        <div class="s-piece-subtitle">From Knowledge Architecture to Corporate Memory</div>
-        <div class="s-piece-q">"Your systems know what is true now. Do they remember what was true then — why a decision made sense at that moment, under which definitions, with what context active?"</div>
-        <div class="s-piece-tags">
-          <span class="s-piece-tag">Semantic Memory</span>
-          <span class="s-piece-tag">Episodic Memory</span>
-          <span class="s-piece-tag">Decision Lineage</span>
-          <span class="s-piece-tag">Drift Register</span>
-          <span class="s-piece-tag">Decay Governance</span>
-          <span class="s-piece-tag">Context Graph</span>
-          <span class="s-piece-tag">Corporate Memory</span>
-        </div>
-      </div>
-    </a>
+ <a href="part-02.html" class="s-piece">
+ <div class="s-piece-num-col"><div class="s-piece-num n2">II</div></div>
+ <div class="s-piece-body">
+ <span class="s-piece-series">The Intelligence Architecture Series · Part II</span>
+ <div class="s-piece-title">The Memory Gap</div>
+ <div class="s-piece-subtitle">From Knowledge Architecture to Corporate Memory</div>
+ <div class="s-piece-q">"Your systems know what is true now. Do they remember what was true then, why a decision made sense at that moment, under which definitions, with what context active?"</div>
+ <div class="s-piece-tags">
+ <span class="s-piece-tag">Semantic Memory</span>
+ <span class="s-piece-tag">Episodic Memory</span>
+ <span class="s-piece-tag">Decision Lineage</span>
+ <span class="s-piece-tag">Drift Register</span>
+ <span class="s-piece-tag">Decay Governance</span>
+ <span class="s-piece-tag">Context Graph</span>
+ <span class="s-piece-tag">Corporate Memory</span>
+ </div>
+ </div>
+ </a>
 
-    <a href="part-03.html" class="s-piece">
-      <div class="s-piece-num-col"><div class="s-piece-num n3">III</div></div>
-      <div class="s-piece-body">
-        <span class="s-piece-series">The Intelligence Architecture Series · Part III</span>
-        <div class="s-piece-title">The Execution Engine</div>
-        <div class="s-piece-subtitle">Role Redesign, KPI Redesign, and the Quiet Failures No One Plans For</div>
-        <div class="s-piece-q">"You cannot deploy an agentic intelligence architecture on top of an operating model designed for human report-readers. The roles, the KPIs, the governance structures — all of it was built for a world where intelligence arrived late."</div>
-        <div class="s-piece-tags">
-          <span class="s-piece-tag">Knowledge Architects</span>
-          <span class="s-piece-tag">Reasoning Auditors</span>
-          <span class="s-piece-tag">Meaning Governors</span>
-          <span class="s-piece-tag">Intelligence KPIs</span>
-          <span class="s-piece-tag">Sequencing</span>
-          <span class="s-piece-tag">Quiet Failure Modes</span>
-        </div>
-      </div>
-    </a>
+ <a href="part-03.html" class="s-piece">
+ <div class="s-piece-num-col"><div class="s-piece-num n3">III</div></div>
+ <div class="s-piece-body">
+ <span class="s-piece-series">The Intelligence Architecture Series · Part III</span>
+ <div class="s-piece-title">The Execution Engine</div>
+ <div class="s-piece-subtitle">Role Redesign, KPI Redesign, and the Quiet Failures No One Plans For</div>
+ <div class="s-piece-q">"You cannot deploy an agentic intelligence architecture on top of an operating model designed for human report-readers. The roles, the KPIs, the governance structures, all of it was built for a world where intelligence arrived late."</div>
+ <div class="s-piece-tags">
+ <span class="s-piece-tag">Knowledge Architects</span>
+ <span class="s-piece-tag">Reasoning Auditors</span>
+ <span class="s-piece-tag">Meaning Governors</span>
+ <span class="s-piece-tag">Intelligence KPIs</span>
+ <span class="s-piece-tag">Sequencing</span>
+ <span class="s-piece-tag">Quiet Failure Modes</span>
+ </div>
+ </div>
+ </a>
 
-  </div>
+ </div>
 
-  <div class="s-footer">
-    <span class="s-footer-note">The Intelligence Architecture Series · Real Estate &amp; Capital Markets</span>
-    <span class="s-footer-note">Three parts · One argument</span>
-  </div>
+ <div class="s-footer">
+ <span class="s-footer-note">The Intelligence Architecture Series · Real Estate &amp; Capital Markets</span>
+ <span class="s-footer-note">Three parts · One argument</span>
+ </div>
 
 </div>
 <script>
 function getTheme() { return localStorage.getItem('ma-theme') || 'dark'; }
 function applyTheme(t) {
-  document.documentElement.setAttribute('data-theme', t);
-  localStorage.setItem('ma-theme', t);
-  const btn = document.getElementById('theme-toggle');
-  if (!btn) return;
-  btn.querySelector('.theme-label').textContent = t === 'light' ? 'Dark mode' : 'Light mode';
-  btn.querySelector('.theme-icon').textContent  = t === 'light' ? '🌙' : '☀';
+ document.documentElement.setAttribute('data-theme', t);
+ localStorage.setItem('ma-theme', t);
+ const btn = document.getElementById('theme-toggle');
+ if (!btn) return;
+ btn.querySelector('.theme-label').textContent = t === 'light' ? 'Dark mode' : 'Light mode';
+ btn.querySelector('.theme-icon').textContent = t === 'light' ? '🌙' : '☀';
 }
 function toggleTheme() { applyTheme(getTheme() === 'dark' ? 'light' : 'dark'); }
 document.addEventListener('DOMContentLoaded', () => applyTheme(getTheme()));
