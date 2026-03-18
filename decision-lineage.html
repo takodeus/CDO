@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>04 · Decision Lineage, Memory Architecture</title>
+<title>iv · Decision Lineage, Memory Architecture</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -80,12 +80,17 @@
 </div>
 
 <div class="page-inner-wide">
- <div class="eyebrow-tag">04 · Decision Lineage</div>
+ <div class="eyebrow-tag">iv · Decision Lineage</div>
  <h1 class="page-title">Not a log.<br>A <em>reconstructable chain</em>.</h1>
  <p class="page-lead">Logs record what happened. Decision lineage records why it made sense, and preserves the chain of reasoning, definition, measurement, and context that produced a judgment. It is not a fifth layer sitting above reasoning. It is a cross-cutting thread that runs through all four simultaneously.</p>
 
  <div class="dark-banner">
  <p>Data lineage tells you where a number came from. Decision lineage tells you where a <em>judgment</em> came from. These are not the same thing, and the difference is the entire premise of institutional memory.</p>
+ </div>
+
+ <div class="inline-note blue" style="margin-bottom:2rem">
+ <strong>Rules vs. Decision Traces</strong>
+ Rules tell a system what should happen in general. Decision traces capture what happened in this specific case — which definition was active, which policy version applied, which exception was granted, who held authority, and what precedent was cited. Agents don't just need rules. They need access to the record of how rules were applied in the past: where exceptions were granted, how conflicts were resolved, and which precedents actually govern reality rather than what the policy document says. That record is what decision lineage is. Without it, agents can follow rules consistently but cannot navigate the exceptions and precedents that make those rules operational in practice.
  </div>
 
  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:0.75rem;font-weight:600">Anatomy of a Decision Lineage Record</h2>

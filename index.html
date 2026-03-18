@@ -130,10 +130,13 @@ body { margin-left: 0; }
 }
 /* accent on the "to" text of each row */
 .s-shift-row:nth-child(1) .s-shift-to { border-left-color: var(--blue-lt); }
-.s-shift-row:nth-child(2) .s-shift-to { border-left-color: var(--blue-mid); }
+.s-shift-row:nth-child(2) .s-shift-to { border-left-color: var(--blue-lt); }
 .s-shift-row:nth-child(3) .s-shift-to { border-left-color: var(--blue-mid); }
-.s-shift-row:nth-child(4) .s-shift-to { border-left-color: var(--teal-lt); }
+.s-shift-row:nth-child(4) .s-shift-to { border-left-color: var(--blue-mid); }
 .s-shift-row:nth-child(5) .s-shift-to { border-left-color: var(--teal-lt); }
+.s-shift-row:nth-child(6) .s-shift-to { border-left-color: var(--teal-lt); }
+.s-shift-row:nth-child(7) .s-shift-to { border-left-color: var(--teal-lt); }
+.s-shift-row:nth-child(8) .s-shift-to { border-left-color: var(--teal-lt); }
 
 /* column header labels */
 .s-shifts-headers {
@@ -268,6 +271,12 @@ body { margin-left: 0; }
 .s-ref-note {
   font-size: 0.78rem; color: var(--tx-muted); line-height: 1.6;
 }
+.s-ref-title a {
+  color: var(--tx-h); text-decoration: none;
+  border-bottom: 1px solid var(--bd);
+  transition: border-color 0.15s, color 0.15s;
+}
+.s-ref-title a:hover { color: var(--blue-lt); border-bottom-color: var(--blue-lt); }
 @media (max-width: 768px) {
   .s-appendix { padding: 2rem 1.25rem 3rem; }
   .s-appendix-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -318,7 +327,7 @@ body { margin-left: 0; }
  <div class="s-through">
  <div class="s-through-header">
  <div class="s-through-stripe"></div>
- <span class="s-through-label">Five paradigmatic shifts running through every piece</span>
+ <span class="s-through-label">Eight paradigmatic shifts running through every piece</span>
  </div>
 
  <div class="s-shifts-headers">
@@ -438,32 +447,32 @@ body { margin-left: 0; }
  <div class="s-appendix-col">
  <div class="s-appendix-col-head">Operating Model &amp; Architecture</div>
  <div class="s-ref-item">
- <div class="s-ref-title">How Agentic AI Can Reshape Real Estate's Operating Model</div>
+ <div class="s-ref-title"><a href="https://www.mckinsey.com/industries/real-estate/our-insights/how-agentic-ai-can-reshape-real-estates-operating-model" target="_blank" rel="noopener">How Agentic AI Can Reshape Real Estate's Operating Model</a></div>
  <div class="s-ref-meta">McKinsey &amp; Company · March 2026</div>
  <div class="s-ref-note">Domain redesign as the unit of change. Steps vs. thoughts distinction. Four high-value real estate domains. Three futures for the operating model.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">Is 2026 the Year AI Changes Real Estate?</div>
+ <div class="s-ref-title"><a href="https://blog.mipimworld.com/mipim-2026/is-2026-the-year-ai-changes-real-estate/" target="_blank" rel="noopener">Is 2026 the Year AI Changes Real Estate?</a></div>
  <div class="s-ref-meta">McKinsey / MIPIM World · March 2026</div>
  <div class="s-ref-note">The question shifts from use-case pilots to workflow redesign. Domain-level "clean room" approach to agentic transition.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">Context Graphs: AI's Trillion-Dollar Opportunity</div>
+ <div class="s-ref-title"><a href="https://foundationcapital.com/context-graphs-ais-trillion-dollar-opportunity/" target="_blank" rel="noopener">Context Graphs: AI's Trillion-Dollar Opportunity</a></div>
  <div class="s-ref-meta">Foundation Capital · December 2025</div>
  <div class="s-ref-note">Rules tell agents what should happen in general. Decision traces capture what happened in this specific case. Systems of record capture current state — they cannot replay the state of the world at decision time. The read path vs. write path distinction: warehouses receive data after decisions are made; decision lineage requires being in the execution path at commit time.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">Generative AI Can Change Real Estate, But the Industry Must Change to Reap the Benefits</div>
+ <div class="s-ref-title"><a href="https://www.mckinsey.com/industries/real-estate/our-insights/generative-ai-can-change-real-estate-but-the-industry-must-change-to-reap-the-benefits" target="_blank" rel="noopener">Generative AI Can Change Real Estate, But the Industry Must Change to Reap the Benefits</a></div>
  <div class="s-ref-meta">McKinsey &amp; Company · November 2023</div>
  <div class="s-ref-note">Foundation piece on role evolution and new capability requirements in real estate AI adoption.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">AI in Real Estate: What 2025 Delivered and Why 2026 Will Be About Building the Infrastructure</div>
+ <div class="s-ref-title"><a href="https://www.wavgroup.com/2026/01/08/ai-in-real-estate-what-2025-delivered-and-why-2026-will-be-about-building-the-infrastructure-for-agentic-ai/" target="_blank" rel="noopener">AI in Real Estate: What 2025 Delivered and Why 2026 Will Be About Building the Infrastructure</a></div>
  <div class="s-ref-meta">WAV Group · January 2026</div>
  <div class="s-ref-note">Infrastructure-before-agents argument. Systems move data; they do not accept tasks. Context without connectivity is a dead end.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">Defining a CIO Playbook on Agentic AI: From Vision to Execution</div>
+ <div class="s-ref-title"><a href="https://www.ey.com/en_gl/insights/technology/cio-playbook-agentic-ai" target="_blank" rel="noopener">Defining a CIO Playbook on Agentic AI: From Vision to Execution</a></div>
  <div class="s-ref-meta">EY Center for Executive Leadership · February 2026</div>
  <div class="s-ref-note">Eight-stage structured cross-functional approach. Lean agentic layer interfacing directly with the data layer of core systems.</div>
  </div>
@@ -472,27 +481,27 @@ body { margin-left: 0; }
  <div class="s-appendix-col">
  <div class="s-appendix-col-head">Workforce &amp; Role Redesign</div>
  <div class="s-ref-item">
- <div class="s-ref-title">Agentic AI Workforce Redesign: Rise of the Generalist</div>
+ <div class="s-ref-title"><a href="https://www.pwc.com/us/en/tech-effect/ai-analytics/agentic-ai-workforce-redesign.html" target="_blank" rel="noopener">Agentic AI Workforce Redesign: Rise of the Generalist</a></div>
  <div class="s-ref-meta">PwC · 2026 AI Business Predictions</div>
  <div class="s-ref-note">Broader outcome-focused roles. Deliberate pipeline design for AI-literate talent. Risk of losing expertise needed to correct AI errors.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">The Agentic Reality Check: Preparing for a Silicon-Based Workforce</div>
+ <div class="s-ref-title"><a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html" target="_blank" rel="noopener">The Agentic Reality Check: Preparing for a Silicon-Based Workforce</a></div>
  <div class="s-ref-meta">Deloitte Tech Trends · December 2025</div>
  <div class="s-ref-note">30% exploring, 38% piloting, 14% production-ready, 11% in active use. Three fundamental infrastructure obstacles. Agents as silicon workforce.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">How Agentic AI Will Reshape Engineering Workflows in 2026</div>
+ <div class="s-ref-title"><a href="https://www.cio.com/article/4134741/how-agentic-ai-will-reshape-engineering-workflows-in-2026.html" target="_blank" rel="noopener">How Agentic AI Will Reshape Engineering Workflows in 2026</a></div>
  <div class="s-ref-meta">CIO.com · February 2026</div>
  <div class="s-ref-note">From creators to curators. Delegate, review, and own as the operating model. Systems thinking as the core skill.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">Agentic AI Is Already Changing the Workforce</div>
+ <div class="s-ref-title"><a href="https://hbr.org/2025/05/agentic-ai-is-already-changing-the-workforce" target="_blank" rel="noopener">Agentic AI Is Already Changing the Workforce</a></div>
  <div class="s-ref-meta">Harvard Business Review · May 2025</div>
  <div class="s-ref-note">Agents as digital teammates. Operational playbook requirement. Organizations must shape AI labor strategy rather than wait.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">AI at Scale: How 2025 Set the Stage for Agent-Driven Enterprise Reinvention</div>
+ <div class="s-ref-title"><a href="https://kpmg.com/us/en/media/news/q4-ai-pulse.html" target="_blank" rel="noopener">AI at Scale: How 2025 Set the Stage for Agent-Driven Enterprise Reinvention</a></div>
  <div class="s-ref-meta">KPMG Q4 AI Pulse Survey · January 2026</div>
  <div class="s-ref-note">64% of organizations altered entry-level hiring due to agents. 44% expect agents as project leads within 3 years. Professionalized orchestration over scattered pilots.</div>
  </div>
@@ -501,27 +510,27 @@ body { margin-left: 0; }
  <div class="s-appendix-col">
  <div class="s-appendix-col-head">Governance, Lineage &amp; Failure</div>
  <div class="s-ref-item">
- <div class="s-ref-title">The State of AI in the Enterprise</div>
+ <div class="s-ref-title"><a href="https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html" target="_blank" rel="noopener">The State of AI in the Enterprise</a></div>
  <div class="s-ref-meta">Deloitte · 2026 (3,235 leaders surveyed)</div>
  <div class="s-ref-note">Only 1 in 5 companies has mature governance for autonomous agents. AI skills gap as primary barrier. 34% truly reimagining the business.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">The State of AI in 2025: Agents, Innovation, and Transformation</div>
+ <div class="s-ref-title"><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">The State of AI in 2025: Agents, Innovation, and Transformation</a></div>
  <div class="s-ref-meta">McKinsey Global Survey · November 2025</div>
  <div class="s-ref-note">High performers 3× more likely to redesign workflows fundamentally. Defined processes for human validation of model outputs as differentiator.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">Why Data Lineage Is Essential for AI: 7 Governance Challenges</div>
+ <div class="s-ref-title"><a href="https://www.solidatus.com/blog/why-data-lineage-is-essential-for-ai-7-governance-challenges-solved-by-ai-ready-lineage/" target="_blank" rel="noopener">Why Data Lineage Is Essential for AI: 7 Governance Challenges</a></div>
  <div class="s-ref-meta">Solidatus · December 2025</div>
  <div class="s-ref-note">Bi-temporal lineage for audit and simulation. Historical reconstruction requirement. Only 30% of organizations have full AI data pipeline visibility.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">AI Governance Failure Exposes Critical Gap in Enterprise Quality Controls</div>
+ <div class="s-ref-title"><a href="https://www.computerworld.com/article/4069521/deloittes-ai-governance-failure-exposes-critical-gap-in-enterprise-quality-controls.html" target="_blank" rel="noopener">AI Governance Failure Exposes Critical Gap in Enterprise Quality Controls</a></div>
  <div class="s-ref-meta">Computerworld · October 2025</div>
  <div class="s-ref-note">Documented case of AI governance failure: fabricated citations in a government-delivered report. Enterprise AI adoption outpacing governance framework maturity.</div>
  </div>
  <div class="s-ref-item">
- <div class="s-ref-title">Collaboration and the New Triad of AI Governance</div>
+ <div class="s-ref-title"><a href="https://www.isaca.org/resources/news-and-trends/industry-news/2025/collaboration-and-the-new-triad-of-ai-governance" target="_blank" rel="noopener">Collaboration and the New Triad of AI Governance</a></div>
  <div class="s-ref-meta">ISACA · September 2025</div>
  <div class="s-ref-note">Agentic AI decision-making lacks clear traceability. Without structured review triggers, models amplify risk through bias, misjudgment, or drift.</div>
  </div>

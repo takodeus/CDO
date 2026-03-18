@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>01 · The Gap, Memory Architecture</title>
+<title>i · The Gap, Memory Architecture</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -83,7 +83,7 @@
 
 <div class="page-inner">
 
- <div class="eyebrow-tag">01 · The Gap</div>
+ <div class="eyebrow-tag">i · The Gap</div>
  <h1 class="page-title">Systems that <em>know</em>.<br>Systems that <em>remember</em>.</h1>
  <p class="page-lead">Storage is not memory. A library is not a mind. The gap between them is where institutional intelligence is lost, through leadership transitions, market cycles, and reorganizations that no architecture was designed to survive.</p>
 
@@ -106,6 +106,11 @@
 
  <div class="dark-banner">
  <p>The knowledge architecture answers all four questions <em>now</em>. It does not yet answer: what did this mean then? Why did it make sense at that moment? What can be <em>learned</em> by traversing the chain of prior judgments?</p>
+ </div>
+
+ <div class="inline-note blue" style="margin-bottom:2rem">
+ <strong>The Read Path Problem</strong>
+ Most enterprise data infrastructure sits in the read path. By the time a property transaction reaches the data warehouse, the decision that produced it is already over. The definitions active at that moment, the exception approved, the version of the methodology in use — none of that travels with the number. A system that only sees reads can tell you what happened. It cannot tell you why. Memory requires being in the write path at execution time: capturing context, reasoning, and intent as decisions are made, not reconstructing them afterward from the record they left behind.
  </div>
 
  <h2 style="font-family:var(--font-display);font-size:1.4rem;color:var(--text-primary);margin-bottom:1.25rem;font-weight:600">The Three Failure Modes</h2>
