@@ -68,14 +68,97 @@ body { margin-left: 0; }
 .s-arc-chevron { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 0.6rem; color: var(--bd-strong); }
 .s-arc-note { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.08em; color: var(--tx-muted); text-align: right; margin-top: 0.5rem; font-style: italic; }
 
-/* THROUGH-LINE */
-.s-through { padding: 1.75rem 4rem; background: var(--bg-panel); border-bottom: 1px solid var(--bd); }
-.s-through-inner { display: flex; align-items: flex-start; gap: 1.25rem; }
-.s-through-stripe { width: 3px; border-radius: 2px; flex-shrink: 0; align-self: stretch; min-height: 36px; background: linear-gradient(180deg, var(--blue-mid), var(--teal-lt)); }
-.s-through-label { font-family: var(--font-mono); font-size: 0.57rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: 0.6rem; display: block; }
-.s-shifts { display: flex; flex-wrap: wrap; gap: 5px; }
-.s-shift { font-family: var(--font-mono); font-size: 0.6rem; padding: 0.28rem 0.7rem; background: rgba(46,134,193,0.1); border: 1px solid rgba(46,134,193,0.22); color: var(--blue-lt); }
-[data-theme="light"] .s-shift { color: var(--accent); }
+/* THROUGH-LINE / SHIFTS */
+.s-through {
+  border-bottom: 1px solid var(--bd);
+}
+.s-through-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.5rem 4rem 0;
+}
+.s-through-stripe {
+  width: 3px; height: 18px; border-radius: 2px; flex-shrink: 0;
+  background: linear-gradient(180deg, var(--blue-mid), var(--teal-lt));
+}
+.s-through-label {
+  font-family: var(--font-mono); font-size: 0.58rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-lt);
+}
+
+/* Shifts grid — aligned columns */
+.s-shifts {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: 0;
+  padding: 0 4rem 0;
+  margin-top: 1rem;
+}
+.s-shift-row {
+  display: contents; /* participates in parent grid */
+}
+.s-shift-from, .s-shift-arr, .s-shift-to {
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid var(--bd);
+  display: flex; align-items: center;
+}
+.s-shift-row:last-child .s-shift-from,
+.s-shift-row:last-child .s-shift-arr,
+.s-shift-row:last-child .s-shift-to {
+  border-bottom: 1px solid var(--bd);
+}
+/* left col — "from" state */
+.s-shift-from {
+  font-family: var(--font-body); font-size: 0.95rem;
+  color: var(--tx-muted); font-weight: 400;
+  background: var(--bg-panel);
+  border-right: none;
+  border-left: 1px solid var(--bd);
+}
+/* arrow col */
+.s-shift-arr {
+  justify-content: center; font-size: 1rem; font-weight: 700;
+  color: var(--blue-lt); background: var(--bg-panel);
+  border-right: none; padding: 0;
+}
+/* right col — "to" state */
+.s-shift-to {
+  font-family: var(--font-body); font-size: 0.95rem;
+  font-weight: 600; color: var(--tx-h);
+  background: var(--bg-card);
+  border-left: 2px solid var(--blue-mid);
+  border-right: 1px solid var(--bd);
+}
+/* accent on the "to" text of each row */
+.s-shift-row:nth-child(1) .s-shift-to { border-left-color: var(--blue-lt); }
+.s-shift-row:nth-child(2) .s-shift-to { border-left-color: var(--blue-mid); }
+.s-shift-row:nth-child(3) .s-shift-to { border-left-color: var(--blue-mid); }
+.s-shift-row:nth-child(4) .s-shift-to { border-left-color: var(--teal-lt); }
+.s-shift-row:nth-child(5) .s-shift-to { border-left-color: var(--teal-lt); }
+
+/* column header labels */
+.s-shifts-headers {
+  display: grid; grid-template-columns: 1fr 40px 1fr;
+  padding: 0 4rem; margin-top: 0.5rem; margin-bottom: 0;
+}
+.s-shifts-col-label {
+  font-family: var(--font-mono); font-size: 0.52rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.4rem 1.25rem;
+}
+.s-shifts-col-label.from { color: var(--tx-muted); background: var(--bg-panel); border: 1px solid var(--bd); border-bottom: none; border-right: none; }
+.s-shifts-col-label.arr  { background: var(--bg-panel); border-top: 1px solid var(--bd); border-bottom: none; }
+.s-shifts-col-label.to   { color: var(--blue-lt); background: var(--bg-card); border: 1px solid var(--bd); border-bottom: none; border-left: 2px solid var(--blue-mid); }
+
+/* light mode adjustments */
+[data-theme="light"] .s-shift-from { background: var(--bg-alt); }
+[data-theme="light"] .s-shift-arr  { background: var(--bg-alt); }
+[data-theme="light"] .s-shift-to   { background: var(--bg-card); color: var(--tx-h); }
+[data-theme="light"] .s-shifts-col-label.from { background: var(--bg-alt); }
+[data-theme="light"] .s-shifts-col-label.arr  { background: var(--bg-alt); }
+[data-theme="light"] .s-shifts-col-label.to   { background: var(--bg-card); }
+
+/* spacing below shifts before pieces */
+.s-shifts-end { height: 1px; background: var(--bd); margin: 0 4rem; }
 
 /* PIECES */
 .s-pieces { padding: 3rem 4rem 5rem; display: flex; flex-direction: column; gap: 1.25rem; }
@@ -106,10 +189,13 @@ body { margin-left: 0; }
 .s-footer-note { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx-muted); }
 
 @media (max-width: 768px) {
-  .s-header, .s-hero, .s-through, .s-pieces, .s-footer { padding-left: 1.75rem; padding-right: 1.75rem; }
+  .s-header, .s-hero, .s-through-header, .s-shifts-headers, .s-shifts, .s-pieces, .s-footer { padding-left: 1.75rem; padding-right: 1.75rem; }
   .s-arc { flex-direction: column; }
   .s-arc-step { border-right: none; border-bottom: 1px solid var(--bd); }
   .s-piece { grid-template-columns: 64px 1fr; }
+  .s-shifts { grid-template-columns: 1fr 28px 1fr; }
+  .s-shifts-headers { grid-template-columns: 1fr 28px 1fr; }
+  .s-shift-from, .s-shift-to { font-size: 0.82rem; padding: 0.7rem 0.85rem; }
 }
 </style>
 </head>
@@ -154,18 +240,49 @@ body { margin-left: 0; }
   </div>
 
   <div class="s-through">
-    <div class="s-through-inner">
+    <div class="s-through-header">
       <div class="s-through-stripe"></div>
-      <div>
-        <span class="s-through-label">Four shifts running through every piece</span>
-        <div class="s-shifts">
-          <span class="s-shift">Tech Debt → Data Debt</span>
-          <span class="s-shift">Systems of Record → Systems of Interpretation</span>
-          <span class="s-shift">Data Governance → Meaning Governance</span>
-          <span class="s-shift">Data Lineage → Decision Lineage</span>
-          <span class="s-shift">Operating Model → Intelligence Model</span>
-        </div>
+      <span class="s-through-label">Five paradigmatic shifts running through every piece</span>
+    </div>
+
+    <div class="s-shifts-headers">
+      <div class="s-shifts-col-label from">Leaving behind</div>
+      <div class="s-shifts-col-label arr"></div>
+      <div class="s-shifts-col-label to">Moving toward</div>
+    </div>
+
+    <div class="s-shifts">
+
+      <div class="s-shift-row">
+        <div class="s-shift-from">Tech Debt</div>
+        <div class="s-shift-arr">→</div>
+        <div class="s-shift-to">Data Debt</div>
       </div>
+
+      <div class="s-shift-row">
+        <div class="s-shift-from">Systems of Record</div>
+        <div class="s-shift-arr">→</div>
+        <div class="s-shift-to">Systems of Interpretation</div>
+      </div>
+
+      <div class="s-shift-row">
+        <div class="s-shift-from">Data Governance</div>
+        <div class="s-shift-arr">→</div>
+        <div class="s-shift-to">Meaning Governance</div>
+      </div>
+
+      <div class="s-shift-row">
+        <div class="s-shift-from">Data Lineage</div>
+        <div class="s-shift-arr">→</div>
+        <div class="s-shift-to">Decision Lineage</div>
+      </div>
+
+      <div class="s-shift-row">
+        <div class="s-shift-from">Operating Model</div>
+        <div class="s-shift-arr">→</div>
+        <div class="s-shift-to">Intelligence Model</div>
+      </div>
+
     </div>
   </div>
 
