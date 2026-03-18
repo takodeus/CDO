@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-/* Tab nav */
 .tab-nav-bar {
   display: flex; gap: 2px; padding: 0 1.4rem;
   border-bottom: 1px solid var(--bd); background: var(--bg-sidebar);
-  overflow-x: auto;
+  overflow-x: auto; scrollbar-width: none;
 }
+.tab-nav-bar::-webkit-scrollbar { display: none; }
 .tab-btn {
   padding: 0.75rem 1.1rem; font-family: var(--font-mono);
   font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -25,7 +25,7 @@
 .tab-section { display: none; }
 .tab-section.active { display: block; }
 
-/* Paradox grid */
+/* Paradox */
 .paradox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
 .paradox-col { background: var(--bg-card); padding: 2rem 1.75rem; }
 .paradox-col-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
@@ -39,30 +39,33 @@
 .paradox-num.blue { color: var(--blue-lt); }
 .paradox-stat-label { font-size: 0.82rem; color: var(--tx-muted); }
 
-/* Domain cards */
-.domain-grid { display: flex; flex-direction: column; gap: 4px; margin-bottom: 2rem; }
-.domain-card { background: var(--bg-card); border: 1px solid var(--bd); overflow: hidden; cursor: pointer; }
-.domain-card:hover { box-shadow: 0 0 0 1px var(--blue-mid); }
-.domain-card.open { box-shadow: 0 0 0 1px var(--blue-mid); }
-.domain-header { display: grid; grid-template-columns: 64px 1fr 180px 28px; align-items: stretch; }
-.domain-num-col { padding: 1.25rem 1rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; }
-.domain-num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; line-height: 1; color: var(--blue-lt); }
-.domain-title-area { padding: 1.25rem 1.5rem; border-right: 1px solid var(--bd); }
-.domain-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.2rem; }
-.domain-sub { font-size: 0.78rem; color: var(--tx-muted); font-style: italic; }
-.domain-signal { padding: 1.25rem 1.1rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; justify-content: center; gap: 0.25rem; }
-.domain-signal-lbl { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx-muted); }
-.domain-signal-text { font-size: 0.75rem; color: var(--tx-body); line-height: 1.45; font-style: italic; }
-.domain-chevron { display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--tx-muted); padding: 0 10px; transition: transform 0.2s; }
-.domain-card.open .domain-chevron { transform: rotate(180deg); color: var(--blue-lt); }
-.domain-body { max-height: 0; overflow: hidden; padding: 0 1.5rem; transition: max-height 0.35s ease, padding 0.2s ease; background: var(--bg-panel); border-top: 0; }
-.domain-card.open .domain-body { max-height: 500px; padding: 1.5rem; border-top: 1px solid var(--bd); }
-.domain-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.domain-col-head { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; color: var(--blue-lt); }
-.domain-col-head.amber { color: var(--amber-lt); }
-.domain-item { font-size: 0.83rem; color: var(--tx-body); line-height: 1.65; display: flex; gap: 0.55rem; margin-bottom: 0.55rem; }
-.domain-item-dot { flex-shrink: 0; font-weight: 700; color: var(--blue-lt); }
-.domain-item-dot.amber { color: var(--amber-lt); }
+/* Steps vs Thoughts */
+.svt-grid { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; border: 1px solid var(--bd); margin-bottom: 2rem; }
+.svt-col { padding: 1.75rem; }
+.svt-col.steps-col { background: var(--bg-panel); }
+.svt-col.mid-col { background: var(--bg-panel); border-left: 1px solid var(--bd); border-right: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; }
+.svt-col.thoughts-col { background: rgba(46,134,193,0.06); }
+.svt-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+.svt-col.steps-col .svt-label { color: var(--tx-muted); }
+.svt-col.thoughts-col .svt-label { color: var(--blue-lt); }
+.svt-col h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--tx-h); margin-bottom: 0.5rem; font-weight: 700; }
+.svt-col p { font-size: 0.85rem; color: var(--tx-body); line-height: 1.75; margin-bottom: 0.65rem; }
+.svt-item { font-size: 0.82rem; color: var(--tx-body); padding: 0.4rem 0; border-bottom: 1px solid var(--bd); display: flex; gap: 0.5rem; line-height: 1.5; }
+.svt-item:last-child { border-bottom: none; }
+.svt-dot { flex-shrink: 0; }
+.svt-col.steps-col .svt-dot { color: var(--tx-muted); }
+.svt-col.thoughts-col .svt-dot { color: var(--blue-lt); }
+.svt-arrow { font-size: 1.4rem; font-weight: 300; color: var(--blue-lt); }
+
+/* Five layers */
+.five-layers { display: flex; flex-direction: column; gap: 2px; margin-bottom: 2rem; }
+.layer-row { display: grid; grid-template-columns: 140px 1fr; border: 1px solid var(--bd); background: var(--bg-card); }
+.lr-label { padding: 1rem 1.25rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; justify-content: center; }
+.lr-num { font-family: var(--font-mono); font-size: 0.55rem; color: var(--blue-lt); margin-bottom: 0.3rem; letter-spacing: 0.1em; }
+.lr-name { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--tx-h); }
+.lr-body { padding: 1rem 1.5rem; }
+.lr-role { font-size: 0.82rem; color: var(--tx-body); line-height: 1.65; }
+.lr-re { margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.6rem; color: var(--tx-muted); font-style: italic; }
 
 /* Role cards */
 .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
@@ -79,7 +82,6 @@
 .role-desc { font-size: 0.82rem; color: var(--tx-body); line-height: 1.65; }
 .role-card-bottom { padding: 0.85rem 1.25rem; border-top: 1px solid var(--bd); background: var(--bg-inset); font-size: 0.8rem; color: var(--tx-body); line-height: 1.55; }
 .role-card-bottom strong { color: var(--blue-lt); font-weight: 600; }
-
 .new-roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
 .new-role { background: rgba(46,134,193,0.08); padding: 1.5rem; }
 .new-role-tag { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: 0.6rem; display: block; }
@@ -110,6 +112,34 @@
 .tag-amber { background: var(--amber-bg); color: var(--amber-lt); border: 1px solid var(--amber); }
 .tag-green { background: rgba(26,188,156,0.1); color: var(--teal-lt); border: 1px solid var(--teal); }
 
+/* Domain cards */
+.domain-grid { display: flex; flex-direction: column; gap: 4px; margin-bottom: 2rem; }
+.domain-card { background: var(--bg-card); border: 1px solid var(--bd); overflow: hidden; }
+.domain-card:hover { box-shadow: 0 0 0 1px var(--blue-mid); }
+.domain-card.open { box-shadow: 0 0 0 1px var(--blue-mid); }
+.domain-header { display: grid; grid-template-columns: 64px 1fr 190px 28px; align-items: stretch; cursor: pointer; user-select: none; }
+.domain-num-col { padding: 1.25rem 1rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; }
+.domain-num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--blue-lt); line-height: 1; }
+.domain-num-label { font-family: var(--font-mono); font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx-muted); text-align: center; }
+.domain-title-area { padding: 1.25rem 1.5rem; border-right: 1px solid var(--bd); }
+.domain-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.2rem; }
+.domain-sub { font-size: 0.78rem; color: var(--tx-muted); font-style: italic; }
+.domain-signal { padding: 1.25rem 1.1rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; justify-content: center; gap: 0.25rem; }
+.domain-signal-lbl { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx-muted); }
+.domain-signal-text { font-size: 0.75rem; color: var(--tx-body); line-height: 1.45; font-style: italic; }
+.domain-chevron { display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--tx-muted); padding: 0 10px; transition: transform 0.2s; }
+.domain-card.open .domain-chevron { transform: rotate(180deg); color: var(--blue-lt); }
+.domain-body { max-height: 0; overflow: hidden; padding: 0; transition: max-height 0.35s ease; background: var(--bg-panel); border-top: 0; }
+.domain-card.open .domain-body { max-height: 600px; padding: 1.5rem; border-top: 1px solid var(--bd); }
+.domain-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.domain-col-head { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; color: var(--blue-lt); }
+.domain-col-head.amber { color: var(--amber-lt); }
+.domain-item { font-size: 0.83rem; color: var(--tx-body); line-height: 1.65; display: flex; gap: 0.55rem; margin-bottom: 0.55rem; }
+.domain-item-dot { flex-shrink: 0; font-weight: 700; color: var(--blue-lt); }
+.domain-item-dot.amber { color: var(--amber-lt); }
+.domain-outcome { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; padding: 0.5rem 0.85rem; background: rgba(26,188,156,0.1); border: 1px solid var(--teal); font-family: var(--font-mono); font-size: 0.6rem; color: var(--teal-lt); }
+.domain-outcome-num { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--teal-lt); }
+
 /* Failure cards */
 .failure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
 .failure-card { background: var(--bg-card); overflow: hidden; transition: box-shadow 0.15s; }
@@ -124,8 +154,25 @@
 .mit-label { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-lt); flex-shrink: 0; margin-top: 0.05rem; }
 .mit-text { font-size: 0.8rem; color: var(--tx-body); line-height: 1.55; }
 
+/* Futures */
+.futures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.future-card { background: var(--bg-card); padding: 2rem 1.75rem; }
+.future-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; line-height: 1; margin-bottom: 0.75rem; }
+.future-card:nth-child(1) .future-num { color: var(--blue-lt); }
+.future-card:nth-child(2) .future-num { color: var(--blue-mid); }
+.future-card:nth-child(3) .future-num { color: var(--teal-lt); }
+.future-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.5rem; }
+.future-body { font-size: 0.85rem; color: var(--tx-body); line-height: 1.78; }
+
+.loop-question { background: var(--navy-mid); border-left: 4px solid var(--amber-lt); padding: 1.75rem 2rem; margin-bottom: 2rem; }
+.loop-question-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber-lt); margin-bottom: 0.65rem; display: block; }
+.loop-question p { font-size: 0.95rem; color: var(--on-dark-2); line-height: 1.75; }
+.loop-question strong { color: #fff; }
+
 @media (max-width: 768px) {
-  .paradox-grid { grid-template-columns: 1fr; }
+  .paradox-grid, .futures-grid { grid-template-columns: 1fr; }
+  .svt-grid { grid-template-columns: 1fr; }
+  .svt-col.mid-col { display: none; }
   .role-grid { grid-template-columns: 1fr; }
   .role-card-top { grid-template-columns: 1fr; }
   .role-old { border-right: none; border-bottom: 1px solid var(--bd); }
@@ -136,6 +183,8 @@
   .domain-header { grid-template-columns: 56px 1fr 28px; }
   .domain-signal { display: none; }
   .domain-cols { grid-template-columns: 1fr; }
+  .five-layers .layer-row { grid-template-columns: 1fr; }
+  .lr-label { border-right: none; border-bottom: 1px solid var(--bd); }
 }
 </style>
 </head>
@@ -151,7 +200,6 @@
       <div class="logo-hint">← series home</div>
     </div>
   </a>
-
   <div class="series-nav-top">
     <span class="series-nav-title">The Series</span>
     <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
@@ -162,8 +210,7 @@
     </a>
     <div class="series-part active-part" id="sp-3">
       <div class="series-part-header" onclick="toggleSeriesPart('sp-3')">
-        <span class="spn">III</span>
-        <span class="spl">The Execution Engine</span>
+        <span class="spn">III</span><span class="spl">The Execution Engine</span>
         <span class="sp-chevron">›</span>
       </div>
       <div class="series-part-sections">
@@ -172,10 +219,10 @@
         <button class="series-section-item"            id="ssec-kpis"     onclick="setTab('kpis');     setSSecActive('ssec-kpis')">    <span class="sec-num">iii</span>KPI Redesign</button>
         <button class="series-section-item"            id="ssec-domains"  onclick="setTab('domains');  setSSecActive('ssec-domains')"> <span class="sec-num">iv</span>Domain Sequencing</button>
         <button class="series-section-item"            id="ssec-failures" onclick="setTab('failures'); setSSecActive('ssec-failures')"><span class="sec-num">v</span>Quiet Failures</button>
+        <button class="series-section-item"            id="ssec-futures"  onclick="setTab('futures');  setSSecActive('ssec-futures')"> <span class="sec-num">vi</span>Three Futures</button>
       </div>
     </div>
   </div>
-
   <div class="sidebar-footer">
     <span class="sidebar-tag">Intelligence Architecture Series · Part III</span>
   </div>
@@ -188,7 +235,6 @@
 </header>
 
 <main class="main-content">
-
 <div class="page-header-bar">
   <span class="page-header-title">Part III · The Execution Engine</span>
   <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
@@ -204,6 +250,7 @@
   <button class="tab-btn"        id="btn-kpis"     onclick="setTab('kpis')">KPI Redesign</button>
   <button class="tab-btn"        id="btn-domains"  onclick="setTab('domains')">Domain Sequencing</button>
   <button class="tab-btn"        id="btn-failures" onclick="setTab('failures')">Quiet Failures</button>
+  <button class="tab-btn"        id="btn-futures"  onclick="setTab('futures')">Three Futures</button>
 </div>
 
 
@@ -228,38 +275,38 @@
     <div class="paradox-col">
       <span class="paradox-col-label blue">What separates the firms pulling ahead</span>
       <h3>Not better models. Redesigned workflows.</h3>
-      <p>The firms making real gains from agentic AI are not the ones that found a better model. They are the ones that treated the model as the smallest piece of the problem and redesigned the workflow around it. They started with a domain — a complete end-to-end process with clear owners and measurable outcomes — and rebuilt that domain for agentic execution before trying to scale anywhere else.</p>
-      <p>Leasing renewal workflows at the asset level. Investment screening against a defined acquisition thesis. Quarterly reporting tied to a governed semantic layer. Each one is a contained domain. Each one has a defined start and a measurable end. Each one can be rebuilt without disrupting the rest of the organization while the rebuild is underway.</p>
+      <p>The firms making real gains are not the ones that found a better model. They are the ones that treated the model as the smallest piece of the problem and redesigned the workflow around it. They started with a domain — a complete end-to-end process with clear owners and measurable outcomes — and rebuilt it before trying to scale anywhere else.</p>
+      <p>Stop asking "what use cases can we pilot?" Start asking "which workflows should we redesign so the system is allowed to do the work, with appropriate controls?" That is a harder question. It is also the right one.</p>
       <div class="paradox-stat">
         <span class="paradox-num blue">3×</span>
-        <span class="paradox-stat-label">more likely to see measurable EBIT impact — firms that fundamentally redesign workflows around AI vs. those that layer agents onto existing ones</span>
+        <span class="paradox-stat-label">more likely to see measurable business impact — firms that fundamentally redesign workflows around AI vs. those that layer agents onto existing ones</span>
       </div>
     </div>
   </div>
 
-  <div class="dark-banner">
-    <p>The question has changed. It is no longer "what use cases can we find for AI in real estate?" It is "which workflows should we <em>redesign for agentic execution</em>, and in what order?" That is a harder question. It is also the right one.</p>
+  <h2 class="section-h2" style="margin:2.5rem 0 1rem">Three structural assumptions agents break</h2>
+  <p class="body-text" style="margin-bottom:1.5rem">The operating model most real estate firms run today was built for a world where intelligence arrived quarterly, was produced by analysts, and was consumed by portfolio managers who made decisions. Three assumptions made that model work. Agents break all three.</p>
+
+  <div class="gap-grid" style="margin-bottom:2.5rem">
+    <div class="gap-col">
+      <span class="gap-col-label" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.75rem;display:block;">Assumption broken</span>
+      <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--tx-h);margin-bottom:0.5rem">Humans validate before anything moves</h3>
+      <p style="font-size:0.88rem;color:var(--tx-body);line-height:1.78">In the old model, an analyst touching the data was the quality gate. They caught the Argus version mismatch before the IC memo went out. That tacit quality layer disappears when agents execute at speed.</p>
+    </div>
+    <div class="gap-col">
+      <span class="gap-col-label" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.75rem;display:block;">Assumption broken</span>
+      <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--tx-h);margin-bottom:0.5rem">One person owns the full context</h3>
+      <p style="font-size:0.88rem;color:var(--tx-body);line-height:1.78">Decisions used to travel with the people who made them. When the asset manager rotated off a deal, the new person called them. Agents do not call the prior person. They reason from whatever context is in the graph — current or not.</p>
+    </div>
+    <div class="gap-col">
+      <span class="gap-col-label" style="color:var(--signal-lt);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.75rem;display:block;">Assumption broken</span>
+      <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--tx-h);margin-bottom:0.5rem">Speed is constrained by humans in the loop</h3>
+      <p style="font-size:0.88rem;color:var(--tx-body);line-height:1.78">When humans were the bottleneck, speed naturally enforced quality. Agents do not rush. They produce fluent, confident, formatted outputs at any speed you set, regardless of whether the underlying data is trustworthy.</p>
+    </div>
   </div>
 
-  <h2 class="section-h2" style="margin: 2.5rem 0 1rem">Three reasons the current model does not hold</h2>
-  <p class="body-text">The operating model most real estate firms run today was built for a world where intelligence arrived quarterly, was produced by analysts pulling from Yardi and Argus, and was consumed by portfolio managers who made decisions. Three structural assumptions made that model work. Agents break all three.</p>
-
-  <div class="gap-grid" style="margin-bottom:2rem">
-    <div class="gap-col">
-      <span class="gap-col-label col-knows" style="color:var(--signal-lt)">Assumption broken</span>
-      <h3 style="font-size:1rem">Humans validate before anything moves</h3>
-      <p>In the old model, an analyst touching the data was the quality gate. They noticed when the cap rate looked wrong. They caught the Argus version mismatch before the IC memo went out. That tacit quality layer is gone when agents execute.</p>
-    </div>
-    <div class="gap-col">
-      <span class="gap-col-label col-knows" style="color:var(--signal-lt)">Assumption broken</span>
-      <h3 style="font-size:1rem">One person owns the full context of a decision</h3>
-      <p>Decisions used to travel with the people who made them. When the asset manager rotated off a deal, the new person called them. That institutional memory system does not scale to agents. Agents do not call the prior person. They reason from whatever context is in the graph.</p>
-    </div>
-    <div class="gap-col">
-      <span class="gap-col-label col-knows" style="color:var(--signal-lt)">Assumption broken</span>
-      <h3 style="font-size:1rem">Speed is constrained by the humans in the loop</h3>
-      <p>When humans were the bottleneck, speed naturally enforced quality. An analyst who rushed made visible errors. Agents do not rush. They produce fluent, confident, formatted outputs at any speed you set, regardless of whether the underlying data or context is trustworthy.</p>
-    </div>
+  <div class="dark-banner">
+    <p>Parts I and II built the case for the architecture. This piece is about the organization that has to run it. The Control Tower requires a redesigned operating model underneath it. The memory system requires roles that can govern it. <em>Neither works without the other.</em></p>
   </div>
 
   <div class="page-nav-footer">
@@ -275,7 +322,37 @@
 <div class="page-inner-wide">
   <div class="eyebrow-tag">II · Role Redesign</div>
   <h1 class="page-title">From creators<br>to <em>curators</em></h1>
-  <p class="page-lead">Every data role in real estate was designed around production. Analysts produced analysis. Data engineers produced pipelines. BI developers produced reports. In an agentic organization, agents handle the production. The human function shifts entirely: from making the output to governing the quality of the output agents make. That is not a smaller job. It is a different one.</p>
+  <p class="page-lead">Part I introduced the Intelligence Control Tower. Part II introduced the memory layer that makes it trustworthy. Neither architecture runs itself. Every role described here corresponds to a layer of the stack — and the reason each role exists is that without a person responsible for governing that layer, the layer degrades silently.</p>
+
+  <div class="inline-note blue" style="margin-bottom:2rem">
+    <strong>The core principle</strong>
+    Every domain workflow decomposes into two ingredients: steps and thoughts. Steps are repeatable tasks that benefit from speed and consistency. Thoughts are judgment calls that require discretion — exceptions, trade-offs, financial risk, relationship moments. The operating model move is to automate steps aggressively and protect thoughts deliberately. The roles below are the humans protecting the thoughts.
+  </div>
+
+  <!-- Steps vs Thoughts -->
+  <div class="svt-grid" style="margin-bottom:2rem">
+    <div class="svt-col steps-col">
+      <span class="svt-label">Automate aggressively</span>
+      <h3>Steps</h3>
+      <p>Repeatable tasks that benefit from speed, consistency, and clean handoffs.</p>
+      <div class="svt-item"><span class="svt-dot">→</span><span>Pull lease data and populate standardized review templates</span></div>
+      <div class="svt-item"><span class="svt-dot">→</span><span>Route renewal files to the right asset manager based on size and complexity</span></div>
+      <div class="svt-item"><span class="svt-dot">→</span><span>Draft IC materials with sourced data, flag what changed from prior quarter</span></div>
+      <div class="svt-item"><span class="svt-dot">→</span><span>Update Yardi records after lease execution, close the loop on approvals</span></div>
+      <div class="svt-item"><span class="svt-dot">→</span><span>Log maintenance resolutions, update vendor performance records</span></div>
+    </div>
+    <div class="svt-col mid-col"><span class="svt-arrow">⇄</span></div>
+    <div class="svt-col thoughts-col">
+      <span class="svt-label">Protect deliberately</span>
+      <h3>Thoughts</h3>
+      <p>Judgment calls requiring discretion, context, and accountability.</p>
+      <div class="svt-item"><span class="svt-dot" style="color:var(--blue-lt)">→</span><span>Deciding whether to grant a concession that exceeds policy — and why</span></div>
+      <div class="svt-item"><span class="svt-dot" style="color:var(--blue-lt)">→</span><span>Evaluating whether agent-produced analysis is trustworthy enough to go to the IC</span></div>
+      <div class="svt-item"><span class="svt-dot" style="color:var(--blue-lt)">→</span><span>Resolving a definition dispute between the fund's occupancy metric and the property manager's</span></div>
+      <div class="svt-item"><span class="svt-dot" style="color:var(--blue-lt)">→</span><span>Deciding which submarket context is still Active vs. needs to be Archived</span></div>
+      <div class="svt-item"><span class="svt-dot" style="color:var(--blue-lt)">→</span><span>Holding a tenant relationship during an escalation the agent flagged but cannot resolve</span></div>
+    </div>
+  </div>
 
   <div class="role-grid">
     <div class="role-card">
@@ -283,16 +360,16 @@
         <div class="role-old">
           <span class="role-label old">Retiring</span>
           <div class="role-title dim">Data Engineer</div>
-          <div class="role-desc">Builds and maintains pipelines. Fixes Yardi-to-data-warehouse ingestion failures. Optimizes query performance. Moves data from source systems to reporting layers.</div>
+          <div class="role-desc">Builds and maintains pipelines. Fixes Yardi-to-warehouse ingestion failures. Optimizes query performance. Moves data from source systems to reporting layers.</div>
         </div>
         <div class="role-arrow-col">→</div>
         <div class="role-new">
           <span class="role-label new">Emerging</span>
           <div class="role-title">Knowledge Architect</div>
-          <div class="role-desc">Builds and governs ontologies. Designs the semantic layer that agents reason against. Maintains entity resolution across Yardi, Argus, VTS, and third-party property manager systems. Ensures definitions are versioned and agent-readable.</div>
+          <div class="role-desc">Owns the Factual Layer. Builds and governs ontologies. Maintains entity resolution across Yardi, Argus, VTS, and third-party property manager systems. Ensures definitions are versioned and agent-readable. The plumbing still runs — but now it carries meaning, not just data.</div>
         </div>
       </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From moving data to governing meaning. A pipeline that runs flawlessly while carrying a drifted occupancy definition is not working. It is failing quietly.</div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From moving data to governing meaning. A pipeline running at 99.9% uptime while carrying a drifted occupancy definition is not working. It is failing quietly at scale.</div>
     </div>
 
     <div class="role-card">
@@ -300,16 +377,16 @@
         <div class="role-old">
           <span class="role-label old">Retiring</span>
           <div class="role-title dim">Analyst</div>
-          <div class="role-desc">Pulls data, builds models, drafts IC materials. The primary intelligence producer. Answers portfolio questions by assembling evidence from multiple systems.</div>
+          <div class="role-desc">Pulls data, builds models, drafts IC materials. The primary intelligence producer. Answers portfolio questions by assembling evidence from multiple systems manually.</div>
         </div>
         <div class="role-arrow-col">→</div>
         <div class="role-new">
           <span class="role-label new">Emerging</span>
           <div class="role-title">Reasoning Auditor</div>
-          <div class="role-desc">Evaluates whether agent-produced analysis can be trusted. Traces which definitions were active, which context was current, which version of the semantic layer was in use. The intelligence quality function.</div>
+          <div class="role-desc">Owns the Control Layer. Evaluates whether agent-produced analysis can be trusted. Traces which definitions were active, which context was current, which semantic layer version was in use. The intelligence quality function. This is protecting thoughts — not checking boxes.</div>
         </div>
       </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From producing analysis to auditing reasoning. The question moves from "what is the answer?" to "is this answer trustworthy, and how would we know if it weren't?"</div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From producing analysis to auditing reasoning. The question moves from "what is the answer?" to "is this answer trustworthy, and can we prove it?"</div>
     </div>
 
     <div class="role-card">
@@ -317,16 +394,16 @@
         <div class="role-old">
           <span class="role-label old">Retiring</span>
           <div class="role-title dim">Data Governance Lead</div>
-          <div class="role-desc">Enforces format standards, completeness rules, and access controls. Runs governance committees. Maintains data dictionaries. Checks whether the data arrived correctly.</div>
+          <div class="role-desc">Enforces format standards, completeness rules, and access controls. Runs governance committees. Checks whether the data arrived correctly and in the right format.</div>
         </div>
         <div class="role-arrow-col">→</div>
         <div class="role-new">
           <span class="role-label new">Emerging</span>
           <div class="role-title">Meaning Governor</div>
-          <div class="role-desc">Owns the drift register. Reconciles counterparty definitions — Greystar's occupancy methodology versus the fund's, CBRE's tenant classification versus Yardi's. Manages version boundaries and convenes semantic governance councils.</div>
+          <div class="role-desc">Owns the drift register. Reconciles counterparty definitions — Greystar's occupancy methodology vs. the fund's, CBRE's tenant classification vs. Yardi's, Newmark's NRA calculation vs. the LP report. Manages version boundaries. Convenes semantic governance councils with decisions as output, not discussion.</div>
         </div>
       </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From data governance to meaning governance. Format and completeness checks are solved problems. Whether the Newmark rent roll uses the same economic occupancy definition as last quarter's LP report is not.</div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From data governance to meaning governance. Format and completeness are solved problems. Whether two assets are being compared on the same definition of economic occupancy is not.</div>
     </div>
 
     <div class="role-card">
@@ -340,10 +417,10 @@
         <div class="role-new">
           <span class="role-label new">Emerging</span>
           <div class="role-title">Agent Skill Designer</div>
-          <div class="role-desc">Encodes business logic into agent-readable skills. Defines the task boundaries, escalation triggers, and confidence thresholds for renewal recommendation agents, lease abstraction agents, and IC memo drafting agents.</div>
+          <div class="role-desc">Owns the Building-Block Layer. Encodes business logic into agent-readable skills. Defines the task boundaries, escalation triggers, and confidence thresholds for renewal recommendation agents, lease abstraction agents, and IC memo drafting agents. Governs what agents decide vs. what they escalate.</div>
         </div>
       </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From dashboards to agent skills. No one needs to pull the report when the agent already has the answer. The design challenge is defining what the agent is allowed to decide, and where it must stop and ask.</div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From dashboards to agent skills. No one needs to pull the report when the agent already has the answer. The design challenge is defining what the agent is allowed to decide alone.</div>
     </div>
   </div>
 
@@ -352,22 +429,22 @@
     <div class="new-role">
       <span class="new-role-tag">Net New Function</span>
       <h4>Decision Lineage Officer</h4>
-      <p>Ensures every material IC decision is bound to the ontological state, semantic state, and active context at the moment of judgment. When the portfolio manager who bought the Phoenix logistics asset leaves, the next person can reconstruct why the acquisition made sense at that time, under those assumptions, without making calls.</p>
+      <p>Owns the cross-cutting record. Ensures every material IC decision is bound to the ontological state, semantic state, and active context at the moment of judgment. When the portfolio manager who bought the Phoenix logistics asset leaves, the next person reconstructs why the acquisition made sense — from a structured record, without making calls.</p>
     </div>
     <div class="new-role">
       <span class="new-role-tag">Net New Function</span>
       <h4>Context Graph Curator</h4>
-      <p>Manages the decay lifecycle across the context graph. A submarket supply wave from 18 months ago does not stay Active indefinitely. A rent concession campaign that ended has a different weight in agent reasoning than one currently running. Someone has to own those transitions, and the record of why they happened.</p>
+      <p>Manages the decay lifecycle. A submarket supply wave from 18 months ago does not stay Active indefinitely. A rent concession campaign that ended has a different weight than one currently running. Owns the Active → Archived → Deprecated transitions and the record of why each happened, so agents reason against current context, not institutional memory that has quietly expired.</p>
     </div>
     <div class="new-role">
       <span class="new-role-tag">Net New Function</span>
       <h4>Plural Ontology Steward</h4>
-      <p>Governs the coexistence of counterparty definitions. JLL's "occupancy" and the fund's "occupancy" may legitimately differ. Both can be correct. What cannot be allowed is for an agent to silently pick one without the decision being explicit, recorded, and traceable to a governance choice.</p>
+      <p>Governs the coexistence of counterparty definitions. JLL's occupancy figure and the fund's occupancy figure may legitimately differ. Both can be correct within their scope. What cannot be allowed is for an agent to silently choose one without that choice being explicit, recorded, and traceable to a governance decision. This is what Part I called building agent governance alongside meaning governance from day one.</p>
     </div>
   </div>
 
   <div class="dark-banner">
-    <p>The core skill of every data role in real estate is shifting from <em>producing</em> intelligence to <em>governing the quality</em> of the intelligence that agents produce. That shift is not smaller. It requires more judgment, not less.</p>
+    <p>The core skill of every data role in real estate is shifting from <em>producing</em> intelligence to <em>governing the quality</em> of the intelligence agents produce. That shift requires more judgment than the prior role did, not less.</p>
   </div>
 
   <div class="page-nav-footer">
@@ -383,11 +460,11 @@
 <div class="page-inner-wide">
   <div class="eyebrow-tag">III · KPI Redesign</div>
   <h1 class="page-title">Measuring the wrong things<br>at <em>speed</em></h1>
-  <p class="page-lead">The KPIs most real estate data teams track were designed for a world of pipelines and dashboards. They measure whether data moved and whether reports were viewed. In an agentic organization, data moves constantly and no one views dashboards because agents are answering the questions directly. Those KPIs do not disappear. They become irrelevant. What matters now is whether the intelligence those agents produce is trustworthy, traceable, and current.</p>
+  <p class="page-lead">Part II introduced eight diagnostic questions — four that the knowledge architecture can already answer, and four that require the memory layer to answer. The KPIs here are the operational version of that same test. They measure whether the organization is actually building the capability Part II described, or whether it is deploying agents on an ungoverned foundation and measuring only that the agents are running.</p>
 
   <div class="inline-note signal" style="margin-bottom:2rem">
     <strong>The specific problem</strong>
-    A Yardi-to-data-warehouse pipeline can run at 99.9% uptime while the occupancy definition inside it has drifted three percentage points from the definition the LP report uses. The pipeline KPI says green. The IC memo says the asset is performing. The actual answer is unknowable until someone reconciles two definitions that have been silently diverging for a year.
+    A Yardi-to-warehouse pipeline can run at 99.9% uptime while the occupancy definition inside it has drifted three percentage points from the definition the LP report uses. Pipeline uptime says green. The IC memo says the asset is performing. The actual answer requires someone to reconcile two definitions that have been silently diverging for a year.
   </div>
 
   <div class="kpi-compare">
@@ -405,12 +482,12 @@
         </div>
         <div class="kpi-item retiring">
           <div class="kpi-icon" style="background:var(--signal-bg)">🔢</div>
-          <div class="kpi-body"><div class="kpi-name">Row Counts &amp; Fill Rates</div><div class="kpi-desc">Whether data arrived and whether fields are populated. A rent roll with 100% fill rate and a drifted NRA definition is complete and wrong.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Row Counts &amp; Fill Rates</div><div class="kpi-desc">Whether data arrived and fields are populated. A rent roll with 100% fill rate and a drifted NRA definition is complete and wrong.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
           <div class="kpi-icon" style="background:var(--signal-bg)">📈</div>
-          <div class="kpi-body"><div class="kpi-name">Dashboard Adoption</div><div class="kpi-desc">How many users accessed the reporting layer. When agents surface intelligence directly to portfolio managers and asset managers, this metric approaches zero and that is a sign of success, not failure.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Dashboard Adoption</div><div class="kpi-desc">How many users accessed the reporting layer. When agents surface intelligence directly to portfolio managers and asset managers, this metric approaches zero. That is a sign of success, not failure.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
@@ -435,17 +512,17 @@
         </div>
         <div class="kpi-item">
           <div class="kpi-icon" style="background:rgba(46,134,193,0.12)">🔗</div>
-          <div class="kpi-body"><div class="kpi-name">Decision Lineage Coverage</div><div class="kpi-desc">Percentage of material IC decisions with complete lineage records: ontological state, semantic state, and active market context bound at the moment of judgment. The target is 100%. Every IC memo that lacks a lineage record is institutional memory lost.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Decision Lineage Coverage</div><div class="kpi-desc">Percentage of material IC decisions with complete lineage records: ontological state, semantic state, and active context at the moment of judgment. Every IC memo without a lineage record is institutional memory lost permanently.</div></div>
           <span class="kpi-tag tag-new">New</span>
         </div>
         <div class="kpi-item">
           <div class="kpi-icon" style="background:var(--teal-bg)">⏱</div>
-          <div class="kpi-body"><div class="kpi-name">Context Currency Rate</div><div class="kpi-desc">Percentage of Active context records in the context graph that have been reviewed for decay within their prescribed window. Stale submarket data, expired competitor lease campaigns, and superseded macro assumptions all degrade agent reasoning silently.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Context Currency Rate</div><div class="kpi-desc">Percentage of Active context records reviewed for decay within their prescribed window. Stale submarket data, expired competitor campaigns, and superseded macro assumptions all degrade agent reasoning — silently and specifically.</div></div>
           <span class="kpi-tag tag-teal">New</span>
         </div>
         <div class="kpi-item">
           <div class="kpi-icon" style="background:var(--amber-bg)">🎯</div>
-          <div class="kpi-body"><div class="kpi-name">Agent Recommendation Traceability</div><div class="kpi-desc">Percentage of agent outputs — renewal recommendations, acquisition screens, capex sequencing — that can be traced back to the specific definitions active, the context records in scope, and the semantic layer version in use at time of generation.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Agent Recommendation Traceability</div><div class="kpi-desc">Percentage of agent outputs — renewal recommendations, acquisition screens, capex sequencing — that can be traced back to the specific definitions active, context records in scope, and semantic layer version in use at time of generation.</div></div>
           <span class="kpi-tag tag-amber">New</span>
         </div>
         <div class="kpi-item">
@@ -470,26 +547,85 @@
 <div class="page-inner-wide">
   <div class="eyebrow-tag">IV · Domain Sequencing</div>
   <h1 class="page-title">Redesign domains,<br>not <em>whole organizations</em></h1>
-  <p class="page-lead">The organizations making real gains from agentic AI are not attempting enterprise transformation. They are picking one complete end-to-end workflow, rebuilding it for agentic execution in a contained environment, proving that it works, and then moving to the next. A domain is the right unit of change: large enough to matter economically, small enough to rebuild without disrupting the rest of the business while the rebuild is underway.</p>
+  <p class="page-lead">A domain is the right unit of change. It is a coherent end-to-end workflow — from signal to outcome — with clear owners and measurable results. Big enough to matter economically. Small enough to rebuild without disrupting the rest of the business while the rebuild is underway. The right approach is to run the redesigned domain in a clean-room environment alongside the existing process until it is proven, then progressively tip activity into it. Each domain has a defined exit signal — a concrete capability the organization must demonstrate before moving to the next.</p>
 
   <div class="inline-note amber" style="margin-bottom:2rem">
     <strong>The infrastructure argument</strong>
-    The limiting factor is not model quality. It is whether the systems underneath the model carry enough governed context for the agent to reason correctly. Yardi, Argus, and VTS move data. They were never designed to accept tasks, share context across systems, or provide the provenance an agent needs to produce a trustworthy output. That infrastructure has to be built before the agent can be trusted to use it.
+    The limiting factor is not model quality. The five technical layers — Factual, Orchestration, Action, Control, and Building-Block — must be in place before any domain can run reliably. The Factual Layer is what Parts I and II built: governed entities, versioned definitions, traceable context. Without it, agents execute fast on broken foundations.
   </div>
 
+  <!-- Five technical layers -->
+  <h2 class="section-h2" style="margin-bottom:1rem">The five technical layers every domain requires</h2>
+  <div class="five-layers" style="margin-bottom:2.5rem">
+    <div class="layer-row">
+      <div class="lr-label">
+        <span class="lr-num">Layer 01</span>
+        <span class="lr-name">Factual</span>
+      </div>
+      <div class="lr-body">
+        <div class="lr-role">Makes real estate data and documents usable. Governs entity resolution across Yardi, Argus, VTS, and property manager systems. Provides a clear source of truth when systems disagree on the same asset, tenant, or metric.</div>
+        <div class="lr-re">This is the semantic layer and ontology from Part I. The Knowledge Architect owns it. Without it, all other layers run on sand.</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="lr-label">
+        <span class="lr-num">Layer 02</span>
+        <span class="lr-name">Orchestration</span>
+      </div>
+      <div class="lr-body">
+        <div class="lr-role">Plans and routes work. Identifies workflow triggers, escalation rules, and stop points — when confidence is low, when a decision carries financial risk, when a tenant relationship requires human presence.</div>
+        <div class="lr-re">Defines the boundary between steps and thoughts. The Agent Skill Designer encodes it. Without it, agents either do too much or escalate everything.</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="lr-label">
+        <span class="lr-num">Layer 03</span>
+        <span class="lr-name">Action</span>
+      </div>
+      <div class="lr-body">
+        <div class="lr-role">Executes work by securely integrating AI into property management systems, procurement platforms, and project controls. Creates tickets, schedules work, requests approvals, updates status, and logs outcomes.</div>
+        <div class="lr-re">This is where the agent moves from advisory to operational. The integration must write back to systems of record — not just read from them.</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="lr-label">
+        <span class="lr-num">Layer 04</span>
+        <span class="lr-name">Control</span>
+      </div>
+      <div class="lr-body">
+        <div class="lr-role">Provides governance: permissions, audit trails, approval workflows, and monitoring so leaders can see what happened, why it happened, and whether performance is drifting from expectations.</div>
+        <div class="lr-re">This is what the Reasoning Auditor interrogates. Without a Control Layer, agent recommendations are unverifiable — and the Quiet Failures on the next tab are inevitable.</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="lr-label">
+        <span class="lr-num">Layer 05</span>
+        <span class="lr-name">Building-Block</span>
+      </div>
+      <div class="lr-body">
+        <div class="lr-role">A library of small, reusable atomic agents that do one thing well: draft a stakeholder update, extract a clause from a lease, route for approval, write back to Yardi, close the loop. The same block is tuned for different contexts — residents, vendors, owners, property managers — without rebuilding the capability each time.</div>
+        <div class="lr-re">The winning operating model is not one heroic agent. It is composable atomic agents with clear boundaries, assembled into domain workflows that improve over time.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-h2" style="margin-bottom:1rem">Four domains, in order</h2>
   <div class="domain-grid">
 
     <!-- Domain 1 -->
     <div class="domain-card" id="dom-1" onclick="toggleDomain('dom-1')">
       <div class="domain-header">
-        <div class="domain-num-col"><div class="domain-num">01</div></div>
+        <div class="domain-num-col">
+          <div class="domain-num">01</div>
+          <div class="domain-num-label">First</div>
+        </div>
         <div class="domain-title-area">
           <div class="domain-title">Leasing and Renewals</div>
-          <div class="domain-sub">The first domain to redesign. Defined inputs, measurable outcomes, bounded scope.</div>
+          <div class="domain-sub">Highest volume, most measurable outcomes, best ratio of steps to thoughts.</div>
         </div>
         <div class="domain-signal">
           <div class="domain-signal-lbl">Exit Signal</div>
-          <div class="domain-signal-text">A renewal recommendation for any asset in the portfolio can be generated, traced, and reviewed by a Reasoning Auditor in under 20 minutes.</div>
+          <div class="domain-signal-text">A renewal recommendation for any asset can be generated, traced, and reviewed by a Reasoning Auditor in under 20 minutes.</div>
         </div>
         <div class="domain-chevron">▾</div>
       </div>
@@ -497,17 +633,22 @@
         <div class="domain-cols">
           <div>
             <span class="domain-col-head">Why start here</span>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>High volume, repetitive analytical steps — tenant credit review, market comp analysis, renewal offer structuring — are well-suited for agentic execution</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>Outcomes are measurable: renewal rate, time-to-executed-lease, concession given versus market</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>Bounded scope — one asset class, one lease type — allows the domain to be rebuilt in a clean-room environment alongside the existing process</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>High-volume, repeatable analytical steps — tenant credit review, market comp analysis, renewal offer structuring — are ideal for agentic execution</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>Outcomes are measurable: renewal rate, time-to-executed-lease, concession given vs. market</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>Bounded enough to rebuild in a clean-room environment alongside the existing leasing process</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>Errors surface quickly at asset level before they compound at portfolio level</span></div>
+            <div class="domain-outcome">
+              <span>Observed outcome:</span>
+              <span class="domain-outcome-num">3–7%</span>
+              <span>renewal rate improvement in organizations with agentic leasing workflows</span>
+            </div>
           </div>
           <div>
-            <span class="domain-col-head amber">What has to be true first</span>
+            <span class="domain-col-head amber">What must be true first</span>
             <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Occupancy definition governed and consistent across the property manager's system and the fund's reporting layer</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Market comp data from CoStar or Reis carries provenance tags — as-of date, geography, asset class definition used</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Tenant credit context is Active or Archived, not silently stale from 18 months prior</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>An Agent Skill Designer has defined what the renewal agent can recommend autonomously versus what requires human sign-off</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Market comp data from CoStar or Reis carries provenance tags: as-of date, geography, asset class definition used</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Tenant credit context is Active or Archived — not silently stale from 18 months prior</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Agent Skill Designer has defined what the renewal agent recommends autonomously vs. what requires human sign-off</span></div>
           </div>
         </div>
       </div>
@@ -516,14 +657,17 @@
     <!-- Domain 2 -->
     <div class="domain-card" id="dom-2" onclick="toggleDomain('dom-2')">
       <div class="domain-header">
-        <div class="domain-num-col"><div class="domain-num">02</div></div>
+        <div class="domain-num-col">
+          <div class="domain-num">02</div>
+          <div class="domain-num-label">Second</div>
+        </div>
         <div class="domain-title-area">
           <div class="domain-title">Asset Management Reporting</div>
-          <div class="domain-sub">Quarterly reporting rebuilt on a governed semantic layer. The point where IC materials become structured records.</div>
+          <div class="domain-sub">Quarterly reporting on a governed semantic layer. Where IC materials become structured lineage records.</div>
         </div>
         <div class="domain-signal">
           <div class="domain-signal-lbl">Exit Signal</div>
-          <div class="domain-signal-text">An LP quarterly pack can be assembled by an agent from governed source data, reviewed by a Reasoning Auditor, and the definitions used are the same ones recorded in the prior two quarters.</div>
+          <div class="domain-signal-text">An LP quarterly pack can be assembled from governed source data and a Reasoning Auditor can confirm the definitions match the prior two quarters.</div>
         </div>
         <div class="domain-chevron">▾</div>
       </div>
@@ -531,15 +675,15 @@
         <div class="domain-cols">
           <div>
             <span class="domain-col-head">Why this comes second</span>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>The semantic layer built for leasing and renewals already covers the core metrics: occupancy, NOI, WALT. Reporting agents run on the same governed foundation</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>IC materials generated in this domain become the first structured lineage records — the beginning of institutional memory that persists through personnel changes</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>LP reporting under a governed semantic layer means that when an LP asks why Q3 occupancy differs from Q2, the answer is traceable, not reconstructed from analyst memory</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>The semantic layer built for leasing already covers the core metrics: occupancy, NOI, WALT. Reporting agents run on the same governed foundation — no new entity resolution required</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>IC materials generated here become the first structured lineage records — the beginning of the institutional memory Part II described</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>When an LP asks why Q3 occupancy differs from Q2, the answer is traceable — not reconstructed from analyst memory at 11pm before a board meeting</span></div>
           </div>
           <div>
-            <span class="domain-col-head amber">What has to be true first</span>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Semantic layer versioned — formula changes to NOI or cap rate methodology create version boundaries, not silent overwrites</span></div>
+            <span class="domain-col-head amber">What must be true first</span>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Semantic layer versioned — formula changes to NOI or cap rate create version boundaries, not silent overwrites</span></div>
             <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Decision lineage capture wired into the IC process as a standard step, not an optional add-on</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Reasoning Auditors in place to review agent-assembled materials before distribution — not as a slow-down, as the quality gate that makes speed trustworthy</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Reasoning Auditors in place to review agent-assembled materials before distribution</span></div>
           </div>
         </div>
       </div>
@@ -548,14 +692,17 @@
     <!-- Domain 3 -->
     <div class="domain-card" id="dom-3" onclick="toggleDomain('dom-3')">
       <div class="domain-header">
-        <div class="domain-num-col"><div class="domain-num">03</div></div>
+        <div class="domain-num-col">
+          <div class="domain-num">03</div>
+          <div class="domain-num-label">Third</div>
+        </div>
         <div class="domain-title-area">
-          <div class="domain-title">Acquisition Screening</div>
-          <div class="domain-sub">Investment screening against a defined acquisition thesis. High analytical volume, constrained decision criteria.</div>
+          <div class="domain-title">Investing and Asset Management</div>
+          <div class="domain-sub">Acquisition screening, performance monitoring, early warning detection. The highest context-requirement domain.</div>
         </div>
         <div class="domain-signal">
           <div class="domain-signal-lbl">Exit Signal</div>
-          <div class="domain-signal-text">A deal screen across 50 opportunities can be completed by an agent using the governed acquisition thesis, and a portfolio manager can verify any individual recommendation's lineage in under 15 minutes.</div>
+          <div class="domain-signal-text">A deal screen across 50 opportunities using the governed acquisition thesis, with any recommendation traceable by a portfolio manager in under 15 minutes.</div>
         </div>
         <div class="domain-chevron">▾</div>
       </div>
@@ -563,15 +710,16 @@
         <div class="domain-cols">
           <div>
             <span class="domain-col-head">Why this comes third</span>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>Acquisition screening requires the most context richness — submarket supply dynamics, cap rate trajectory, macro assumptions — all of which need to be current and governed before an agent can reason against them reliably</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>By the time this domain is rebuilt, the Reasoning Auditor function is established and the team knows how to evaluate agent-produced investment analysis</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>Decision lineage at the acquisition screen stage creates the record that the asset management reporting domain will reference for the life of the asset</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>Acquisition screening requires the most context richness — submarket supply dynamics, cap rate trajectory, macro assumptions — all of which need to be current and governed before an agent reasons against them</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>By this stage the Reasoning Auditor function is established. The team knows how to evaluate agent-produced investment analysis before it goes to the IC</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>Decision lineage records from this domain create the institutional memory that asset management reporting will reference for the life of the asset</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>The human judgment that remains — capital allocation, tenant relationships, investment conviction — is where the brand lives. Agents do not replace it; they protect time for it</span></div>
           </div>
           <div>
-            <span class="domain-col-head amber">What has to be true first</span>
+            <span class="domain-col-head amber">What must be true first</span>
             <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Context graph current: submarket vacancy trends, competitive supply pipelines, and macro context records all reviewed for decay on a defined cadence</span></div>
             <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Acquisition thesis formalized as a governed knowledge artifact — cap rate floors, coverage ratios, geographic constraints — not embedded in a senior partner's judgment alone</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Human-in-the-loop explicitly defined: agents screen, flag, and score, but the IC decision remains a governed human judgment with a structured lineage record</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>IC decision remains a governed human judgment. Agents screen, flag, and score. Humans decide, with a structured lineage record capturing both the recommendation and the reasoning</span></div>
           </div>
         </div>
       </div>
@@ -580,10 +728,13 @@
     <!-- Domain 4 -->
     <div class="domain-card" id="dom-4" onclick="toggleDomain('dom-4')">
       <div class="domain-header">
-        <div class="domain-num-col"><div class="domain-num">04</div></div>
+        <div class="domain-num-col">
+          <div class="domain-num">04</div>
+          <div class="domain-num-label">Fourth</div>
+        </div>
         <div class="domain-title-area">
-          <div class="domain-title">Capital and Construction</div>
-          <div class="domain-sub">Capex sequencing, vendor management, and construction monitoring. The last domain because it requires the most cross-system coordination.</div>
+          <div class="domain-title">Construction and Capital Expenditures</div>
+          <div class="domain-sub">Capex sequencing, project controls, vendor management. Requires the most mature cross-system coordination.</div>
         </div>
         <div class="domain-signal">
           <div class="domain-signal-lbl">Exit Signal</div>
@@ -595,14 +746,19 @@
         <div class="domain-cols">
           <div>
             <span class="domain-col-head">Why this comes last</span>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>Construction and capex workflows span the most systems — project management, vendor contracts, budget tracking, Yardi — and require the most mature entity resolution before agents can navigate them reliably</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>Construction and capex workflows span the most systems — project management, vendor contracts, budget tracking, Yardi — and require the most mature entity resolution before agents navigate them reliably</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>The governed context built in prior domains — asset-level history, prior capex decisions, vendor performance records — is what makes capex agents useful rather than merely fast</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>By this stage the organization has learned how to delegate, review, and own — the operating model McKinsey identifies as the marker of genuine agentic maturity</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>By this stage the organization has learned to delegate, review, and own — the operating model that signals genuine agentic maturity</span></div>
+            <div class="domain-outcome">
+              <span>Observed outcome:</span>
+              <span class="domain-outcome-num">&gt;30%</span>
+              <span>time savings on maintenance and construction workflow coordination</span>
+            </div>
           </div>
           <div>
-            <span class="domain-col-head amber">What has to be true first</span>
+            <span class="domain-col-head amber">What must be true first</span>
             <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Entity resolution mature enough to unify the same asset across project management systems, Yardi, and the vendor's own billing system</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Prior capex decisions for the asset captured in the lineage record — what was approved, at what cost basis, under what assumptions about NOI recovery</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Prior capex decisions captured in the lineage record — what was approved, at what cost basis, under what assumptions about NOI recovery</span></div>
             <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Escalation paths defined: what budget variance triggers human review, what schedule deviation requires portfolio manager notification</span></div>
           </div>
         </div>
@@ -611,8 +767,13 @@
 
   </div>
 
+  <div class="loop-question">
+    <span class="loop-question-label">The strategic question every leader must answer early</span>
+    <p>When workflows run through an agentic layer, every approval, exception, and resolution leaves a trace of what happened, what was decided, and what worked. Over time, those traces become proprietary operational knowledge that improves the next decision. <strong>Who owns that learning loop — the owner, the property manager, the software vendor, or the services provider?</strong> For a fund manager whose leasing workflow runs on Greystar's system, or whose asset management reporting runs on a CBRE platform, this is not an abstract question. It is a contract negotiation that needs to happen before the domain is redesigned, not after.</p>
+  </div>
+
   <div class="dark-banner">
-    <p>The firms that win are not moving fastest. They are moving <em>most deliberately</em>. One domain rebuilt completely is worth more than four domains half-rebuilt and none of them trusted.</p>
+    <p>The firms that win are not moving fastest. They are moving <em>most deliberately</em>. One domain rebuilt completely, owned entirely, and learning continuously is worth more than four domains half-rebuilt and none of them trusted.</p>
   </div>
 
   <div class="page-nav-footer">
@@ -628,7 +789,7 @@
 <div class="page-inner-wide">
   <div class="eyebrow-tag">V · Quiet Failures</div>
   <h1 class="page-title">What fails without<br><em>announcing itself</em></h1>
-  <p class="page-lead">The dangerous failures in an agentic real estate organization are not the ones that show up in the error log. They accumulate in the IC materials, the LP packs, and the renewal recommendations — visible only in retrospect, when an LP asks a question no one can answer, or when a portfolio manager notices that two assets with identical occupancy figures were underwritten against definitions that drifted apart eighteen months ago.</p>
+  <p class="page-lead">The dangerous failures in an agentic real estate organization are not the ones that show up in the error log. They accumulate in the IC materials, the LP packs, and the renewal recommendations — visible only in retrospect, when an LP asks a question no one can answer, or when a portfolio manager realizes two assets have been compared on definitions that drifted apart eighteen months ago. Every one of these failures has the same shape: the infrastructure was built and the process was launched, then the day-to-day pressure of running a real estate portfolio quietly eroded both.</p>
 
   <div class="failure-grid">
 
@@ -637,12 +798,12 @@
         <div class="failure-num-col"><div class="failure-num">01</div></div>
         <div class="failure-body">
           <div class="failure-name">Governance Theater</div>
-          <div class="failure-desc">The drift register is created and the semantic governance council is established. The quarterly review is on the calendar. But nothing is resolved. The council meets, discusses, and defers. The register accumulates entries without owners. What looked like governance infrastructure is a compliance artifact. The actual definitions running through Yardi and the LP reporting layer continue to diverge, documented and unaddressed.</div>
+          <div class="failure-desc">The drift register is created, the semantic governance council is established, the quarterly review is on the calendar. But nothing is resolved. The council meets and defers. The register accumulates entries without owners. The actual definitions running through Yardi and the LP reporting layer continue to diverge — documented and unaddressed. The governance infrastructure exists. The governance function does not.</div>
         </div>
       </div>
       <div class="failure-footer">
         <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Every drift register entry requires a named owner and a resolution deadline. The governance council's output is a decision — a version boundary, an explicit coexistence protocol, or a formal escalation — not a summary of discussion. Measure time-to-resolution, not number of meetings held.</span>
+        <span class="mit-text">Every register entry requires a named owner and a resolution deadline. The council's output is a decision — a version boundary, an explicit coexistence protocol, or a formal escalation — not a summary of discussion. Measure time-to-resolution, not number of meetings held.</span>
       </div>
     </div>
 
@@ -651,12 +812,12 @@
         <div class="failure-num-col"><div class="failure-num">02</div></div>
         <div class="failure-body">
           <div class="failure-name">Semantic Layer Orphaning</div>
-          <div class="failure-desc">The semantic layer is built, governed, and versioned. And the analysts continue computing occupancy and NOI in their own spreadsheet models using their own cohort logic. The IC memo that goes to the investment committee uses numbers that bypassed the semantic layer entirely. Two definitions of the same metric now coexist — one governed, one operational — with no one making that choice explicitly and no record that it was made at all.</div>
+          <div class="failure-desc">The semantic layer is built, governed, and versioned. And then analysts continue computing occupancy and NOI in their own spreadsheet models using their own cohort logic. The IC memo that goes to the investment committee uses numbers that bypassed the semantic layer entirely. Two versions of the same metric now coexist — one governed, one operational — with no one having made that choice explicitly and no record that it was made at all.</div>
         </div>
       </div>
       <div class="failure-footer">
         <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Metrics that bypass the semantic layer are flagged at the point of use. IC materials cite the semantic layer version used. A bypass is treated as a drift event, registered and resolved, not as analyst discretion that goes unrecorded.</span>
+        <span class="mit-text">Metrics that bypass the semantic layer are flagged at the point of use. IC materials cite the semantic layer version used. A bypass is a drift event — registered and resolved, not treated as analyst discretion that goes unrecorded.</span>
       </div>
     </div>
 
@@ -665,12 +826,12 @@
         <div class="failure-num-col"><div class="failure-num">03</div></div>
         <div class="failure-body">
           <div class="failure-name">Agent Overconfidence</div>
-          <div class="failure-desc">The lease renewal agent produces a recommendation for the Austin mixed-use asset. The output is formatted, specific, and reads like an analyst wrote it. The occupancy figure it used reflects a definition that shifted when the property manager changed eight months ago. The market comp data it reasoned against expired from Active six weeks ago. No one checks because the format signals competence. The recommendation goes into the IC deck.</div>
+          <div class="failure-desc">The renewal agent produces a recommendation for the Austin mixed-use asset. The output is formatted, specific, and reads like an analyst wrote it. The occupancy figure it used reflects a definition that shifted when the property manager changed eight months ago. The market comp data expired from Active six weeks ago. No one checks because the format signals competence. The recommendation goes into the IC deck. This is not a model failure. It is a Control Layer failure — and a fluent output is more dangerous than a wrong number because it travels further before anyone questions it.</div>
         </div>
       </div>
       <div class="failure-footer">
         <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Reasoning Auditors review material agent outputs before they move forward. Agent recommendations carry visible metadata: which semantic layer version, which context records in scope, what the agent could not see. The format makes provenance legible. Confidence scores without traceability are not confidence — they are fluency.</span>
+        <span class="mit-text">Reasoning Auditors review material agent outputs before they move forward. Agent recommendations carry visible metadata: which semantic layer version, which context records in scope, what the agent could not see. The format makes provenance legible. Confidence without traceability is not confidence — it is fluency.</span>
       </div>
     </div>
 
@@ -679,12 +840,12 @@
         <div class="failure-num-col"><div class="failure-num">04</div></div>
         <div class="failure-body">
           <div class="failure-name">Lineage Abandonment Under Pressure</div>
-          <div class="failure-desc">The deal is moving. The seller has a counter-bid. The lineage capture requirement adds a step to the IC process. The exception is made once — the deal closes, the record is incomplete. The second exception is made without discussion. Within two quarters, the exceptions are the norm, and the only IC decisions with structured lineage records are the ones that were not time-sensitive. Which is to say: the ones that did not matter.</div>
+          <div class="failure-desc">The deal is moving. There is a competing bid. The lineage capture requirement adds a step. The exception is made once — the deal closes, the record is incomplete. The second exception is made without discussion. Within two quarters, the only IC decisions with structured lineage records are the ones that were not time-sensitive. Which is the ones that did not matter. The governance that was supposed to make institutional memory persist has been quietly switched off for every decision that was consequential.</div>
         </div>
       </div>
       <div class="failure-footer">
         <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Lineage capture has to be lightweight enough that it adds minutes, not hours, to the IC process. It is the memo's metadata, not a separate deliverable. Time pressure is not a valid exception. If it is too heavy, that is a design problem, not a reason to abandon the record.</span>
+        <span class="mit-text">Lineage capture must be lightweight enough that it adds minutes, not hours, to the IC process. It is the memo's metadata, not a separate deliverable. Time pressure is not a valid exception category. If it is too heavy, that is a design problem — not a reason to stop capturing the record.</span>
       </div>
     </div>
 
@@ -693,12 +854,12 @@
         <div class="failure-num-col"><div class="failure-num">05</div></div>
         <div class="failure-body">
           <div class="failure-name">Context Graph Rot</div>
-          <div class="failure-desc">The context graph grows. No one manages the decay lifecycle. A Sun Belt industrial supply wave from 2023 remains Active. A competing REIT's tenant incentive campaign that ended in Q1 is still tagged Active. A macro assumption from a pre-rate-cut environment is still informing agent reasoning about cap rate trajectories. The graph is full of authoritative, specific, outdated context, and it is worse than no context at all because the agent trusts it.</div>
+          <div class="failure-desc">The context graph grows. No one manages the decay lifecycle. A Sun Belt industrial supply wave from 2023 remains Active. A competing REIT's tenant incentive campaign that ended in Q1 is still tagged Active. A macro assumption from a pre-rate-cut environment continues to inform agent reasoning about cap rate trajectories. The graph is full of authoritative, specific, outdated context — and it is worse than no context because the agent trusts it. Part II built the decay governance framework precisely for this. The failure is not architectural. It is operational.</div>
         </div>
       </div>
       <div class="failure-footer">
         <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Decay governance is a staffed function, not a background process. Context Currency Rate is a tracked KPI. Every Active record has an assigned review date. Records without review dates are governance failures. The Context Graph Curator owns this lifecycle — the transitions, the timestamps, and the record of why each transition was made.</span>
+        <span class="mit-text">Decay governance is a staffed function, not a background process. Context Currency Rate is a tracked KPI. Every Active record has a review date. The Context Graph Curator owns the lifecycle — transitions, timestamps, and the record of why each happened.</span>
       </div>
     </div>
 
@@ -707,23 +868,81 @@
         <div class="failure-num-col"><div class="failure-num">06</div></div>
         <div class="failure-body">
           <div class="failure-name">Role Transition Resistance</div>
-          <div class="failure-desc">The org chart shows Reasoning Auditors. The analysts are still producing analysis. Auditing feels like a demotion because "checking someone else's work" has never been a prestigious job in the industry. The identity of the person who figures things out is harder to give up than any specific task. The role transition is announced but the behavior does not change, and the agents run in parallel to the old model without replacing it.</div>
+          <div class="failure-desc">The org chart shows Reasoning Auditors. The analysts are still producing analysis. Auditing feels like a demotion because checking someone else's work has never been prestigious in this industry. The identity of the person who figures things out is harder to give up than any specific task. The role redesign is announced, the org chart is updated, and then the behavior does not change. The agents run in parallel to the old model without replacing it. The transformation stalls at the surface.</div>
         </div>
       </div>
       <div class="failure-footer">
         <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Frame the shift explicitly: a Reasoning Auditor is not a checker. They are the organization's intelligence quality function — the person who determines whether an IC-bound recommendation can be trusted and why. That requires more judgment than building the model did. The career path runs toward decision governance, not away from it.</span>
+        <span class="mit-text">Frame the shift explicitly: a Reasoning Auditor is not a checker. They are the organization's intelligence quality function — the person who determines whether an IC-bound recommendation can be trusted and why. That requires more judgment than building the model did. The career path runs toward decision governance, not away from influence.</span>
       </div>
     </div>
 
   </div>
 
   <div class="dark-banner">
-    <p>Every one of these failures has the same shape: the infrastructure was built, the governance process was launched, and then the day-to-day pressure of running a real estate portfolio quietly eroded both. The quiet failures are not dramatic. They are the <em>normal behavior of busy organizations</em> that did not design the governance to be easy enough to sustain.</p>
+    <p>Every one of these failures is the normal behavior of busy organizations that did not design the governance to be easy enough to sustain under real operating pressure. The answer is not discipline. It is <em>design</em>.</p>
   </div>
 
   <div class="page-nav-footer">
     <button class="page-nav-btn" onclick="setTab('domains')">← Domain Sequencing</button>
+    <button class="page-nav-btn next" onclick="setTab('futures')">Three Futures →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ══ VI: THREE FUTURES ═══════════════════════════════════════════════ -->
+<div class="tab-section" id="tab-futures">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">VI · Three Futures</div>
+  <h1 class="page-title">The choice is not<br><em>whether</em> to adapt</h1>
+  <p class="page-lead">For real estate organizations, the question is not whether AI sits on the side of core systems as a set of helpful tools, or whether it becomes an operating advantage by being integrated into redesigned domains. That question has been answered. The choice now is which of three futures unfolds — and for most organizations, elements of all three will arrive simultaneously, at different rates, across different parts of the portfolio.</p>
+
+  <div class="futures-grid">
+
+    <div class="future-card">
+      <div class="future-num">01</div>
+      <div class="future-title">Portfolios become operating systems</div>
+      <div class="future-body">
+        <p>The most distinctive real estate owners and managers look less like collections of properties and more like operating systems. Not in the branding sense — in the practical sense that their portfolios run on a common layer of workflows, data, and controls.</p>
+        <p>A building is not smart because it has sensors. It is smart because the organization can turn signals into action. Every work order leaves information that improves routing. Every service resolution teaches the organization how to prevent the next issue. Every capital project sharpens sequencing and vendor performance. The portfolio becomes a teacher. The compounding effect is what separates the leaders from the laggards.</p>
+        <p>This future requires discipline: one domain wired into systems of record with real approvals and a real outcome measured, then repeated.</p>
+      </div>
+    </div>
+
+    <div class="future-card">
+      <div class="future-num">02</div>
+      <div class="future-title">Coordination layers quietly disappear</div>
+      <div class="future-body">
+        <p>A meaningful share of real estate work today exists to manage handoffs: chasing documents, confirming status, following up on approvals, reconciling expectations and results. As workflows become more automated, the middle layer of chasing begins to thin out.</p>
+        <p>The work changes, and so do the jobs hired for it. Teams that once coordinated by memory and relationships will depend on systems to carry the thread. Roles will be redesigned alongside workflows. Managers learn to supervise systems, not just people — and humans stay in control of the moments that matter: negotiations, escalations, exceptions, and the moments when the tenant relationship is on the line.</p>
+        <p>The winners reinvest the time freed up into areas of true differentiation. The losers discover the coordination work has moved to a competitor's system.</p>
+      </div>
+    </div>
+
+    <div class="future-card">
+      <div class="future-num">03</div>
+      <div class="future-title">Value creation gets harder</div>
+      <div class="future-body">
+        <p>Execution improves across the industry. Reporting gets cleaner. Work orders become more predictable. Service becomes more consistent. And as a result, efficiency stops being a differentiator.</p>
+        <p>Competitive advantage migrates twice. First to firms that build compounding learning loops in core domains. Then, as those capabilities spread, to what cannot be commoditized: trust, brand, relationships, and investment conviction. AI can sharpen each of those — but it cannot substitute for them.</p>
+        <p>The risk is subtle. If every owner and operator deploys the same agent on the same platform trained on the same patterns, tenant-facing automation gets smoother while the brand gets flatter. Differentiation comes from what you control: the workflow design, the trace data, and the voice that shows up in the moments agents cannot handle.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="inline-note blue" style="margin-bottom:2rem">
+    <strong>The 8-question test from Part II, applied here</strong>
+    Part II introduced eight diagnostic questions for the memory architecture. The first four test whether your knowledge stack can answer what is true now. The second four test whether it remembers what was true then. The three futures above correspond to what becomes possible when you can answer all eight: portfolios that learn, coordination that runs itself, and differentiation built on traceable institutional knowledge rather than replicated effort.
+  </div>
+
+  <div class="dark-banner">
+    <p>The winners will not be the firms with the flashiest demos. They will be the ones whose systems quietly get the work moving before the day begins — so people can focus on the judgment, the relationships, and the moments that cannot be automated in the <em>built environment</em>.</p>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('failures')">← Quiet Failures</button>
     <a href="index.html" class="page-nav-btn next">← Back to Series</a>
   </div>
 </div>
