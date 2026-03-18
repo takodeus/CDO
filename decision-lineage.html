@@ -60,13 +60,7 @@
     </a>
   </div>
 
- <a href="part-03.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
- <span class="spn">III</span>
- <span class="spl">The Execution Engine</span>
- </a>
- </div>
-
- <div class="sidebar-footer">
+  <div class="sidebar-footer">
  <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
  </div>
 </aside>
@@ -98,26 +92,12 @@
  Rules tell a system what should happen in general. Decision traces capture what happened in this specific case — which definition was active, which policy version applied, which exception was granted, who held authority, and what precedent was cited. Agents don't just need rules. They need access to the record of how rules were applied in the past: where exceptions were granted, how conflicts were resolved, and which precedents actually govern reality rather than what the policy document says. That record is what decision lineage is. Without it, agents can follow rules consistently but cannot navigate the exceptions and precedents that make those rules operational in practice.
  </div>
 
- <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:0.75rem;font-weight:600">Anatomy of a Decision Lineage Record</h2>
- <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem">Hover each element to understand what it captures.</p>
-
- <div class="lineage-chain">
- <div class="lc-item"><span class="lc-num">01</span><div class="lc-label">The Decision</div><div class="lc-desc">What was concluded, recommended, or acted upon</div><span class="lc-arrow">→</span></div>
- <div class="lc-item"><span class="lc-num">02</span><div class="lc-label">Ontological State</div><div class="lc-desc">Which definitions were active at the moment of decision</div><span class="lc-arrow">→</span></div>
- <div class="lc-item"><span class="lc-num">03</span><div class="lc-label">Semantic State</div><div class="lc-desc">Which formulas, metrics, and calculation logic were applied</div><span class="lc-arrow">→</span></div>
- <div class="lc-item"><span class="lc-num">04</span><div class="lc-label">Contextual State</div><div class="lc-desc">What events and circumstances were visible and Active</div><span class="lc-arrow">→</span></div>
- <div class="lc-item"><span class="lc-num">05</span><div class="lc-label">Reasoning Path</div><div class="lc-desc">How synthesis produced judgment from the above inputs</div><span class="lc-arrow">→</span></div>
- <div class="lc-item"><span class="lc-num">06</span><div class="lc-label">Actors + Authority</div><div class="lc-desc">Who or what decided, under what mandate and governance</div><span class="lc-arrow">→</span></div>
- <div class="lc-item"><span class="lc-num">07</span><div class="lc-label">Known Unknowns</div><div class="lc-desc">What was uncertain, contested, or deliberately set aside</div></div>
- </div>
-
- <div class="section-divider"></div>
 
  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1.25rem;font-weight:600">Data Lineage vs. Decision Lineage</h2>
 
  <div class="vs-grid">
  <div class="vs-col old">
- <h4>Data Lineage</h4>
+ <div class="vs-col-header">Data Lineage</div>
  <div class="vs-row"><span class="vs-dim">Tracks</span><span class="vs-val">Information movement through systems</span></div>
  <div class="vs-row"><span class="vs-dim">Answers</span><span class="vs-val">"Where did this number come from?"</span></div>
  <div class="vs-row"><span class="vs-dim">Orientation</span><span class="vs-val">Retrospective, compliance-focused</span></div>
@@ -127,7 +107,7 @@
  <div class="vs-row" style="border:none"><span class="vs-dim">Primary user</span><span class="vs-val">Data engineer, auditor</span></div>
  </div>
  <div class="vs-col new">
- <h4>Decision Lineage</h4>
+ <div class="vs-col-header">Decision Lineage</div>
  <div class="vs-row"><span class="vs-dim">Tracks</span><span class="vs-val">Meaning and judgment movement across time</span></div>
  <div class="vs-row"><span class="vs-dim">Answers</span><span class="vs-val">"Why did this conclusion make sense then?"</span></div>
  <div class="vs-row"><span class="vs-dim">Orientation</span><span class="vs-val">Forward-facing, institutional learning</span></div>
