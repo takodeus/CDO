@@ -169,8 +169,7 @@
 .mit-label { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-lt); flex-shrink: 0; margin-top: 0.05rem; }
 .mit-text { font-size: 0.8rem; color: var(--tx-body); line-height: 1.55; }
 
-/* Futures */
-.futures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+/* Failure cards */
 .future-card { background: var(--bg-card); padding: 2rem 1.75rem; }
 .future-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; line-height: 1; margin-bottom: 0.75rem; }
 .future-card:nth-child(1) .future-num { color: var(--blue-lt); }
@@ -185,7 +184,7 @@
 .loop-question strong { color: #fff; }
 
 @media (max-width: 768px) {
-  .paradox-grid, .futures-grid { grid-template-columns: 1fr; }
+  .paradox-grid { grid-template-columns: 1fr; }
   .svt-grid { grid-template-columns: 1fr; }
   .svt-col.mid-col { display: none; }
   .role-grid { grid-template-columns: 1fr; }
@@ -234,7 +233,6 @@
         <button class="series-section-item"            id="ssec-kpis"     onclick="setTab('kpis');     setSSecActive('ssec-kpis')">    <span class="sec-num">iii</span>KPI Redesign</button>
         <button class="series-section-item"            id="ssec-domains"  onclick="setTab('domains');  setSSecActive('ssec-domains')"> <span class="sec-num">iv</span>Domain Sequencing</button>
         <button class="series-section-item"            id="ssec-failures" onclick="setTab('failures'); setSSecActive('ssec-failures')"><span class="sec-num">v</span>Quiet Failures</button>
-        <button class="series-section-item"            id="ssec-futures"  onclick="setTab('futures');  setSSecActive('ssec-futures')"> <span class="sec-num">vi</span>Three Futures</button>
       </div>
     </div>
   </div>
@@ -265,7 +263,6 @@
   <button class="tab-btn"        id="btn-kpis"     onclick="setTab('kpis')">KPI Redesign</button>
   <button class="tab-btn"        id="btn-domains"  onclick="setTab('domains')">Domain Sequencing</button>
   <button class="tab-btn"        id="btn-failures" onclick="setTab('failures')">Quiet Failures</button>
-  <button class="tab-btn"        id="btn-futures"  onclick="setTab('futures')">Three Futures</button>
 </div>
 
 
@@ -322,16 +319,6 @@
 
   <div class="dark-banner">
     <p>Parts I and II built the case for the architecture. This piece is about the organization that has to run it. The Control Tower requires a redesigned operating model underneath it. The memory system requires roles that can govern it. <em>Neither works without the other.</em></p>
-  </div>
-
-  <h2 class="section-h2" style="margin:2.5rem 0 1rem">The learning loop isn't enough</h2>
-  <p class="body-text">As agentic systems mature, a seductive argument emerges. Every lease renewal the system executes teaches it how to do the next one better. Every acquisition screen sharpens the thesis. The trace data compounds into organizational learning. The portfolio becomes a teacher.</p>
-  <p class="body-text">That argument is right about one thing: the loop does compound. What it misses is what gets compounded.</p>
-  <p class="body-text" style="margin-bottom:2rem">Trace data records what happened. It does not record what it meant. The occupancy figure in the renewal recommendation is a number. The definition under which that number was computed — economic occupancy, physical occupancy, which cohort, which exclusion logic, which property manager methodology — is not in the trace. It is in the semantic layer. When definitions drift across a counterparty handoff or a personnel transition, the loop keeps running. It keeps learning. But what it is learning from has shifted underneath it. A learning loop built on drifted definitions does not compound institutional knowledge. It compounds institutional habit, with increasing confidence and decreasing memory of what the original terms meant.</p>
-
-  <div class="inline-note amber">
-    <strong>The distinction that matters</strong>
-    Data lineage tracks records. Decision lineage preserves intent. Epistemic humility is not an attitude. It is a design principle. The system has to be built to know what it does not know: which definitions were active at the time of a recommendation, which context may have decayed, which version of the semantic layer was in use. Without that infrastructure, the faster the loop runs, the more confidently it compounds the gap.
   </div>
 
   <div class="page-nav-footer">
@@ -910,68 +897,11 @@
 
   <div class="page-nav-footer">
     <button class="page-nav-btn" onclick="setTab('domains')">← Domain Sequencing</button>
-    <button class="page-nav-btn next" onclick="setTab('futures')">Three Futures →</button>
-  </div>
-</div>
-</div>
-
-
-<!-- ══ VI: THREE FUTURES ═══════════════════════════════════════════════ -->
-<div class="tab-section" id="tab-futures">
-<div class="page-inner-wide">
-  <div class="eyebrow-tag">VI · Three Futures</div>
-  <h1 class="page-title">The choice is not<br><em>whether</em> to adapt</h1>
-  <p class="page-lead">For real estate organizations, the question is not whether AI sits on the side of core systems as a set of helpful tools, or whether it becomes an operating advantage by being integrated into redesigned domains. That question has been answered. The choice now is which of three futures unfolds — and for most organizations, elements of all three will arrive simultaneously, at different rates, across different parts of the portfolio.</p>
-
-  <div class="futures-grid">
-
-    <div class="future-card">
-      <div class="future-num">01</div>
-      <div class="future-title">Portfolios become operating systems</div>
-      <div class="future-body">
-        <p>The most distinctive real estate owners and managers look less like collections of properties and more like operating systems. Not in the branding sense — in the practical sense that their portfolios run on a common layer of workflows, data, and controls.</p>
-        <p>A building is not smart because it has sensors. It is smart because the organization can turn signals into action. Every work order leaves information that improves routing. Every service resolution teaches the organization how to prevent the next issue. Every capital project sharpens sequencing and vendor performance. The portfolio becomes a teacher. The compounding effect is what separates the leaders from the laggards.</p>
-        <p>This future requires discipline: one domain wired into systems of record with real approvals and a real outcome measured, then repeated.</p>
-      </div>
-    </div>
-
-    <div class="future-card">
-      <div class="future-num">02</div>
-      <div class="future-title">Coordination layers quietly disappear</div>
-      <div class="future-body">
-        <p>A meaningful share of real estate work today exists to manage handoffs: chasing documents, confirming status, following up on approvals, reconciling expectations and results. As workflows become more automated, the middle layer of chasing begins to thin out.</p>
-        <p>The work changes, and so do the jobs hired for it. Teams that once coordinated by memory and relationships will depend on systems to carry the thread. Roles will be redesigned alongside workflows. Managers learn to supervise systems, not just people — and humans stay in control of the moments that matter: negotiations, escalations, exceptions, and the moments when the tenant relationship is on the line.</p>
-        <p>The winners reinvest the time freed up into areas of true differentiation. The losers discover the coordination work has moved to a competitor's system.</p>
-      </div>
-    </div>
-
-    <div class="future-card">
-      <div class="future-num">03</div>
-      <div class="future-title">Value creation gets harder</div>
-      <div class="future-body">
-        <p>Execution improves across the industry. Reporting gets cleaner. Work orders become more predictable. Service becomes more consistent. And as a result, efficiency stops being a differentiator.</p>
-        <p>Competitive advantage migrates twice. First to firms that build compounding learning loops in core domains. Then, as those capabilities spread, to what cannot be commoditized: trust, brand, relationships, and investment conviction. AI can sharpen each of those — but it cannot substitute for them.</p>
-        <p>The risk is subtle. If every owner and operator deploys the same agent on the same platform trained on the same patterns, tenant-facing automation gets smoother while the brand gets flatter. Differentiation comes from what you control: the workflow design, the trace data, and the voice that shows up in the moments agents cannot handle.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="inline-note blue" style="margin-bottom:2rem">
-    <strong>The 8-question test from Part II, applied here</strong>
-    Part II introduced eight diagnostic questions for the memory architecture. The first four test whether your knowledge stack can answer what is true now. The second four test whether it remembers what was true then. The three futures above correspond to what becomes possible when you can answer all eight: portfolios that learn, coordination that runs itself, and differentiation built on traceable institutional knowledge rather than replicated effort.
-  </div>
-
-  <div class="dark-banner">
-    <p>The winners will not be the firms with the flashiest demos. They will be the ones whose systems quietly get the work moving before the day begins — so people can focus on the judgment, the relationships, and the moments that cannot be automated in the <em>built environment</em>.</p>
-  </div>
-
-  <div class="page-nav-footer">
-    <button class="page-nav-btn" onclick="setTab('failures')">← Quiet Failures</button>
     <a href="index.html" class="page-nav-btn next">← Back to Series</a>
   </div>
 </div>
 </div>
+
 
 </main>
 
