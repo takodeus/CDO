@@ -3,218 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Memory Architecture — From Knowledge to Corporate Memory</title>
+<title>The Intelligence Architecture Series</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+body { margin-left: 0; }
+.s-wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* HEADER */
+.s-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 4rem; border-bottom: 1px solid var(--bd);
+  background: var(--bg); position: sticky; top: 0; z-index: 100;
+}
+.s-brand {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--tx-muted);
+}
+.s-toggle {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.5rem 0.9rem; border: 1px solid var(--bd);
+  background: var(--bg-panel); color: var(--tx-2);
+  font-family: var(--font-mono); font-size: 0.58rem;
+  letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+.s-toggle:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.s-toggle-track { width: 28px; height: 15px; border-radius: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(93,173,226,0.3); position: relative; flex-shrink: 0; transition: background 0.2s; }
+.s-toggle-thumb { position: absolute; top: 1px; left: 1px; width: 11px; height: 11px; border-radius: 50%; background: var(--blue-lt); transition: transform 0.22s, background 0.2s; }
+[data-theme="light"] .s-toggle-track { background: var(--blue-mid); border-color: var(--blue-mid); }
+[data-theme="light"] .s-toggle-thumb { background: #fff; transform: translateX(13px); }
+
+/* HERO */
+.s-hero { padding: 5rem 4rem 3.5rem; border-bottom: 1px solid var(--bd); }
+.s-eyebrow {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blue-lt); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.s-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--blue-lt); border-radius: 2px; }
+.s-title {
+  font-family: var(--font-display); font-size: clamp(2.8rem,4.5vw,4.4rem);
+  font-weight: 700; line-height: 1.07; color: var(--tx-h); margin-bottom: 1.5rem;
+}
+.s-title em { font-style: italic; color: var(--blue-lt); }
+.s-sub {
+  font-size: 1.05rem; color: var(--tx-body); line-height: 1.8;
+  max-width: 660px; margin-bottom: 3rem;
+}
+
+/* ARC */
+.s-arc { display: flex; align-items: stretch; border: 1px solid var(--bd); margin-bottom: 0.5rem; }
+.s-arc-step {
+  flex: 1; padding: 1.2rem 1.75rem; border-right: 1px solid var(--bd);
+  text-decoration: none; display: block; position: relative;
+  transition: background 0.18s var(--ease);
+}
+.s-arc-step:last-child { border-right: none; }
+.s-arc-step:hover { background: var(--bg-panel); }
+.s-arc-num { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tx-muted); margin-bottom: 0.3rem; display: block; }
+.s-arc-label { font-size: 0.92rem; font-weight: 600; color: var(--tx-h); margin-bottom: 0.15rem; }
+.s-arc-sub { font-size: 0.75rem; color: var(--tx-muted); }
+.s-arc-chevron { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 0.6rem; color: var(--bd-strong); }
+.s-arc-note { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.08em; color: var(--tx-muted); text-align: right; margin-top: 0.5rem; font-style: italic; }
+
+/* THROUGH-LINE */
+.s-through { padding: 1.75rem 4rem; background: var(--bg-panel); border-bottom: 1px solid var(--bd); }
+.s-through-inner { display: flex; align-items: flex-start; gap: 1.25rem; }
+.s-through-stripe { width: 3px; border-radius: 2px; flex-shrink: 0; align-self: stretch; min-height: 36px; background: linear-gradient(180deg, var(--blue-mid), var(--teal-lt)); }
+.s-through-label { font-family: var(--font-mono); font-size: 0.57rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: 0.6rem; display: block; }
+.s-shifts { display: flex; flex-wrap: wrap; gap: 5px; }
+.s-shift { font-family: var(--font-mono); font-size: 0.6rem; padding: 0.28rem 0.7rem; background: rgba(46,134,193,0.1); border: 1px solid rgba(46,134,193,0.22); color: var(--blue-lt); }
+[data-theme="light"] .s-shift { color: var(--accent); }
+
+/* PIECES */
+.s-pieces { padding: 3rem 4rem 5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+.s-piece {
+  display: grid; grid-template-columns: 80px 1fr;
+  border: 1px solid var(--bd); background: var(--bg-card);
+  text-decoration: none; overflow: hidden;
+  transition: box-shadow 0.2s var(--ease), transform 0.18s var(--ease);
+}
+.s-piece:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.18); transform: translateY(-2px); }
+.s-piece-num-col {
+  padding: 2rem 1.1rem; background: var(--bg-panel); border-right: 1px solid var(--bd);
+  display: flex; align-items: flex-start; justify-content: center; padding-top: 2.25rem;
+}
+.s-piece-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; line-height: 1; }
+.n1 { color: var(--blue-lt); } .n2 { color: var(--blue-mid); } .n3 { color: var(--teal-lt); }
+.s-piece-body { padding: 2rem 2.25rem; }
+.s-piece-series { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tx-muted); margin-bottom: 0.45rem; display: block; }
+.s-piece-title { font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.25rem; line-height: 1.2; }
+.s-piece-subtitle { font-family: var(--font-display); font-size: 0.88rem; font-style: italic; color: var(--tx-2); margin-bottom: 1rem; }
+.s-piece-q { font-size: 0.88rem; color: var(--tx-body); line-height: 1.7; padding: 0.85rem 1.1rem; margin-bottom: 1.25rem; background: var(--bg-panel); border-left: 3px solid var(--bd-strong); font-style: italic; }
+.s-piece-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.s-piece-tag { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.07em; padding: 0.18rem 0.55rem; border: 1px solid var(--bd); color: var(--tx-muted); background: var(--bg-panel); }
+
+/* FOOTER */
+.s-footer { margin-top: auto; padding: 1.4rem 4rem; border-top: 1px solid var(--bd); display: flex; align-items: center; justify-content: space-between; }
+.s-footer-note { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx-muted); }
+
+@media (max-width: 768px) {
+  .s-header, .s-hero, .s-through, .s-pieces, .s-footer { padding-left: 1.75rem; padding-right: 1.75rem; }
+  .s-arc { flex-direction: column; }
+  .s-arc-step { border-right: none; border-bottom: 1px solid var(--bd); }
+  .s-piece { grid-template-columns: 64px 1fr; }
+}
+</style>
 </head>
-<body data-page="home">
+<body>
+<div class="s-wrap">
 
-<!-- ── SIDEBAR NAV ─────────────────────────────────────────────── -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo">
-    <span class="logo-mark">MA</span>
-    <span class="logo-text">Memory<br>Architecture</span>
+  <div class="s-header">
+    <span class="s-brand">Real Estate &amp; Capital Markets</span>
+    <button class="s-toggle" id="theme-toggle" onclick="toggleTheme()">
+      <span class="s-toggle-track"><span class="s-toggle-thumb"></span></span>
+      <span class="theme-icon">☀</span>
+      <span class="theme-label">Light mode</span>
+    </button>
   </div>
-  <nav class="sidebar-nav">
-    <a href="index.html" class="nav-item active" data-page="home">
-      <span class="nav-num">00</span>
-      <span class="nav-label">Overview</span>
-    </a>
-    <a href="gap.html" class="nav-item" data-page="gap">
-      <span class="nav-num">01</span>
-      <span class="nav-label">The Gap</span>
-    </a>
-    <a href="memory-types.html" class="nav-item" data-page="memory-types">
-      <span class="nav-num">02</span>
-      <span class="nav-label">Memory Types</span>
-    </a>
-    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack">
-      <span class="nav-num">03</span>
-      <span class="nav-label">Knowledge Stack</span>
-    </a>
-    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage">
-      <span class="nav-num">04</span>
-      <span class="nav-label">Decision Lineage</span>
-    </a>
-    <a href="drift-register.html" class="nav-item" data-page="drift-register">
-      <span class="nav-num">05</span>
-      <span class="nav-label">Drift Register</span>
-    </a>
-    <a href="decay-governance.html" class="nav-item" data-page="decay-governance">
-      <span class="nav-num">06</span>
-      <span class="nav-label">Decay Governance</span>
-    </a>
-    <a href="moat.html" class="nav-item" data-page="moat">
-      <span class="nav-num">07</span>
-      <span class="nav-label">The Moat</span>
-    </a>
-  </nav>
-  <div class="sidebar-footer">
-    <span class="sidebar-tag">CDO Brief · Q2 2026</span>
+
+  <div class="s-hero">
+    <div class="s-eyebrow">The Intelligence Architecture Series</div>
+    <h1 class="s-title">Your systems are<br><em>forgetting</em>.</h1>
+    <p class="s-sub">The enterprise AI transition in real estate is not a technology problem. It is a governance, memory, and organizational redesign problem. The firms that pull ahead will not have the most data or the fastest models. They will have systems that remember — and organizations designed to govern what those systems know.</p>
+
+    <div class="s-arc">
+      <a href="part-01.html" class="s-arc-step">
+        <span class="s-arc-num">Part I</span>
+        <div class="s-arc-label">The Operating Model</div>
+        <div class="s-arc-sub">Why the current model breaks</div>
+        <span class="s-arc-chevron">→</span>
+      </a>
+      <a href="part-02.html" class="s-arc-step">
+        <span class="s-arc-num">Part II</span>
+        <div class="s-arc-label">Institutional Memory</div>
+        <div class="s-arc-sub">The architecture you're missing</div>
+        <span class="s-arc-chevron">→</span>
+      </a>
+      <a href="part-03.html" class="s-arc-step">
+        <span class="s-arc-num">Part III</span>
+        <div class="s-arc-label">The Execution Engine</div>
+        <div class="s-arc-sub">Building the organization around it</div>
+        <span class="s-arc-chevron">→</span>
+      </a>
+    </div>
+    <div class="s-arc-note">Each part builds on the one before. The argument is sequential.</div>
   </div>
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
-    <span class="theme-track"><span class="theme-thumb"></span></span>
-    <span class="theme-icon">☀</span>
-    <span class="theme-label">Light mode</span>
-  </button>
-  <div class="series-nav-section">
-    <span class="series-nav-label">In This Series</span>
-    <a href="series.html" class="series-home-link">↖ All Pieces</a>
-    <a href="piece-01.html" class="series-nav-item">
-      <span class="series-nav-num">01</span>
-      <span>The Control Problem</span>
-    </a>
-    <a href="index.html" class="series-nav-item current">
-      <span class="series-nav-num">02</span>
-      <span>The Memory Gap</span>
-    </a>
-    <a href="piece-03.html" class="series-nav-item">
-      <span class="series-nav-num">03</span>
-      <span>The Agentic Org</span>
-    </a>
-  </div>
-</aside>
 
-<!-- ── MOBILE HEADER ───────────────────────────────────────────── -->
-<header class="mobile-header">
-  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-    <span></span><span></span><span></span>
-  </button>
-  <span class="mobile-title">Memory Architecture</span>
-  <span class="mobile-page-num">00</span>
-</header>
-
-<!-- ── MAIN ───────────────────────────────────────────────────── -->
-<main class="main-content">
-
-  <!-- HOME / OVERVIEW -->
-  <section class="page active" id="page-home">
-    <div class="hero-layout">
-      <div class="hero-text-block">
-        <div class="eyebrow-tag">Architecture Brief</div>
-        <h1 class="hero-title">From Knowledge<br>to <em>Memory</em></h1>
-        <p class="hero-body">Every enterprise data strategy of the last decade was built on a single premise: better data produces better decisions. That premise is incomplete.</p>
-        <p class="hero-body">Better data produces better <em>inputs</em>. What happens to those inputs — how they are interpreted, by whom, under what definitions, in what context, against what prior judgment — is where intelligence actually lives. And almost no enterprise has a systematic way to preserve it.</p>
-        <p class="hero-body">This is the argument for corporate memory: not a feature of the data stack, but a different class of architecture entirely.</p>
-        <div class="hero-cta">
-          <a href="gap.html" class="btn-primary" onclick="navigateTo('gap')">Begin →</a>
-        </div>
-      </div>
-
-      <div class="hero-stack-diagram">
-        <div class="stack-section-head">Knowledge Architecture</div>
-        <div class="stack-item si-reasoning" onclick="navigateTo('knowledge-stack')">
-          <span class="si-num">04</span>
-          <div class="si-body">
-            <span class="si-name">Reasoning</span>
-            <span class="si-desc">Interpretive synthesis</span>
-          </div>
-          <span class="si-arrow">→</span>
-        </div>
-        <div class="stack-item si-context" onclick="navigateTo('knowledge-stack')">
-          <span class="si-num">03</span>
-          <div class="si-body">
-            <span class="si-name">Context Graph</span>
-            <span class="si-desc">Situational truth</span>
-          </div>
-          <span class="si-arrow">→</span>
-        </div>
-        <div class="stack-item si-semantic" onclick="navigateTo('knowledge-stack')">
-          <span class="si-num">02</span>
-          <div class="si-body">
-            <span class="si-name">Semantic Layer</span>
-            <span class="si-desc">Analytical truth</span>
-          </div>
-          <span class="si-arrow">→</span>
-        </div>
-        <div class="stack-item si-ontology" onclick="navigateTo('knowledge-stack')">
-          <span class="si-num">01</span>
-          <div class="si-body">
-            <span class="si-name">Ontology</span>
-            <span class="si-desc">Conceptual truth</span>
-          </div>
-          <span class="si-arrow">→</span>
-        </div>
-
-        <div class="stack-section-head memory-head">Memory Augmentation</div>
-        <div class="stack-item si-governance" onclick="navigateTo('moat')">
-          <span class="si-num">+4</span>
-          <div class="si-body">
-            <span class="si-name">Memory Governance</span>
-            <span class="si-desc">Versioning · Archival</span>
-          </div>
-          <span class="si-arrow">→</span>
-        </div>
-        <div class="stack-item si-drift" onclick="navigateTo('drift-register')">
-          <span class="si-num">+3</span>
-          <div class="si-body">
-            <span class="si-name">Drift Register</span>
-            <span class="si-desc">Semantic fidelity across space</span>
-          </div>
-          <span class="si-arrow">→</span>
-        </div>
-        <div class="stack-item si-decay" onclick="navigateTo('decay-governance')">
-          <span class="si-num">+2</span>
-          <div class="si-body">
-            <span class="si-name">Decay Governance</span>
-            <span class="si-desc">Context relevance across time</span>
-          </div>
-          <span class="si-arrow">→</span>
-        </div>
-        <div class="stack-item si-lineage" onclick="navigateTo('decision-lineage')">
-          <span class="si-num">+1</span>
-          <div class="si-body">
-            <span class="si-name">Decision Lineage</span>
-            <span class="si-desc">Cross-cutting thread</span>
-          </div>
-          <span class="si-arrow">→</span>
+  <div class="s-through">
+    <div class="s-through-inner">
+      <div class="s-through-stripe"></div>
+      <div>
+        <span class="s-through-label">Four shifts running through every piece</span>
+        <div class="s-shifts">
+          <span class="s-shift">Tech Debt → Data Debt</span>
+          <span class="s-shift">Systems of Record → Systems of Interpretation</span>
+          <span class="s-shift">Data Governance → Meaning Governance</span>
+          <span class="s-shift">Data Lineage → Decision Lineage</span>
+          <span class="s-shift">Operating Model → Intelligence Model</span>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Eight question test overview -->
-    <div class="section-divider"></div>
-    <div class="overview-questions">
-      <div class="oq-label">The Eight-Question Test — A Fully Augmented Architecture Answers All Eight</div>
-      <div class="oq-grid">
-        <div class="oq-item existing">
-          <span class="oq-badge">Existing</span>
-          <span class="oq-q">What is this thing?</span>
-        </div>
-        <div class="oq-item existing">
-          <span class="oq-badge">Existing</span>
-          <span class="oq-q">How is it measured?</span>
-        </div>
-        <div class="oq-item existing">
-          <span class="oq-badge">Existing</span>
-          <span class="oq-q">What is happening around it?</span>
-        </div>
-        <div class="oq-item existing">
-          <span class="oq-badge">Existing</span>
-          <span class="oq-q">What should happen next?</span>
-        </div>
-        <div class="oq-item added">
-          <span class="oq-badge">Added</span>
-          <span class="oq-q">What did this mean then?</span>
-        </div>
-        <div class="oq-item added">
-          <span class="oq-badge">Added</span>
-          <span class="oq-q">Is this term consistent across the portfolio?</span>
-        </div>
-        <div class="oq-item added">
-          <span class="oq-badge">Added</span>
-          <span class="oq-q">Is this context still current?</span>
-        </div>
-        <div class="oq-item added">
-          <span class="oq-badge">Added</span>
-          <span class="oq-q">What have we learned?</span>
+  <div class="s-pieces">
+
+    <a href="part-01.html" class="s-piece">
+      <div class="s-piece-num-col"><div class="s-piece-num n1">I</div></div>
+      <div class="s-piece-body">
+        <span class="s-piece-series">The Intelligence Architecture Series · Part I</span>
+        <div class="s-piece-title">The Control Problem</div>
+        <div class="s-piece-subtitle">From Data Stack to Intelligence Control Tower</div>
+        <div class="s-piece-q">"What breaks when you run a distributed real estate operating model on an architecture built for centralized, human-read reporting — and what does the architecture that replaces it actually look like?"</div>
+        <div class="s-piece-tags">
+          <span class="s-piece-tag">Data Pyramid</span>
+          <span class="s-piece-tag">Control Tower</span>
+          <span class="s-piece-tag">Operating Lenses</span>
+          <span class="s-piece-tag">Plural Ontologies</span>
+          <span class="s-piece-tag">Meaning Governance</span>
+          <span class="s-piece-tag">Decision Lineage</span>
+          <span class="s-piece-tag">Knowledge Graph</span>
         </div>
       </div>
-    </div>
-  </section>
+    </a>
 
-</main>
+    <a href="part-02.html" class="s-piece">
+      <div class="s-piece-num-col"><div class="s-piece-num n2">II</div></div>
+      <div class="s-piece-body">
+        <span class="s-piece-series">The Intelligence Architecture Series · Part II</span>
+        <div class="s-piece-title">The Memory Gap</div>
+        <div class="s-piece-subtitle">From Knowledge Architecture to Corporate Memory</div>
+        <div class="s-piece-q">"Your systems know what is true now. Do they remember what was true then — why a decision made sense at that moment, under which definitions, with what context active?"</div>
+        <div class="s-piece-tags">
+          <span class="s-piece-tag">Semantic Memory</span>
+          <span class="s-piece-tag">Episodic Memory</span>
+          <span class="s-piece-tag">Decision Lineage</span>
+          <span class="s-piece-tag">Drift Register</span>
+          <span class="s-piece-tag">Decay Governance</span>
+          <span class="s-piece-tag">Context Graph</span>
+          <span class="s-piece-tag">Corporate Memory</span>
+        </div>
+      </div>
+    </a>
 
-<script src="nav.js"></script>
+    <a href="part-03.html" class="s-piece">
+      <div class="s-piece-num-col"><div class="s-piece-num n3">III</div></div>
+      <div class="s-piece-body">
+        <span class="s-piece-series">The Intelligence Architecture Series · Part III</span>
+        <div class="s-piece-title">The Execution Engine</div>
+        <div class="s-piece-subtitle">Role Redesign, KPI Redesign, and the Quiet Failures No One Plans For</div>
+        <div class="s-piece-q">"You cannot deploy an agentic intelligence architecture on top of an operating model designed for human report-readers. The roles, the KPIs, the governance structures — all of it was built for a world where intelligence arrived late."</div>
+        <div class="s-piece-tags">
+          <span class="s-piece-tag">Knowledge Architects</span>
+          <span class="s-piece-tag">Reasoning Auditors</span>
+          <span class="s-piece-tag">Meaning Governors</span>
+          <span class="s-piece-tag">Intelligence KPIs</span>
+          <span class="s-piece-tag">Sequencing</span>
+          <span class="s-piece-tag">Quiet Failure Modes</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="s-footer">
+    <span class="s-footer-note">The Intelligence Architecture Series · Real Estate &amp; Capital Markets</span>
+    <span class="s-footer-note">Three parts · One argument</span>
+  </div>
+
+</div>
+<script>
+function getTheme() { return localStorage.getItem('ma-theme') || 'dark'; }
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('ma-theme', t);
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  btn.querySelector('.theme-label').textContent = t === 'light' ? 'Dark mode' : 'Light mode';
+  btn.querySelector('.theme-icon').textContent  = t === 'light' ? '🌙' : '☀';
+}
+function toggleTheme() { applyTheme(getTheme() === 'dark' ? 'light' : 'dark'); }
+document.addEventListener('DOMContentLoaded', () => applyTheme(getTheme()));
+</script>
 </body>
 </html>

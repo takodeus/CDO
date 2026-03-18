@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Architecture — From Knowledge to Corporate Memory</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home">
+
+<!-- ── SIDEBAR NAV ─────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-mark">MA</span>
+    <span class="logo-text">Memory<br>Architecture</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="part-02.html" class="nav-item active" data-page="home">
+      <span class="nav-num">00</span>
+      <span class="nav-label">Overview</span>
+    </a>
+    <a href="gap.html" class="nav-item" data-page="gap">
+      <span class="nav-num">01</span>
+      <span class="nav-label">The Gap</span>
+    </a>
+    <a href="memory-types.html" class="nav-item" data-page="memory-types">
+      <span class="nav-num">02</span>
+      <span class="nav-label">Memory Types</span>
+    </a>
+    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack">
+      <span class="nav-num">03</span>
+      <span class="nav-label">Knowledge Stack</span>
+    </a>
+    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage">
+      <span class="nav-num">04</span>
+      <span class="nav-label">Decision Lineage</span>
+    </a>
+    <a href="drift-register.html" class="nav-item" data-page="drift-register">
+      <span class="nav-num">05</span>
+      <span class="nav-label">Drift Register</span>
+    </a>
+    <a href="decay-governance.html" class="nav-item" data-page="decay-governance">
+      <span class="nav-num">06</span>
+      <span class="nav-label">Decay Governance</span>
+    </a>
+    <a href="moat.html" class="nav-item" data-page="moat">
+      <span class="nav-num">07</span>
+      <span class="nav-label">The Moat</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <span class="sidebar-tag">CDO Brief · Q2 2026</span>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+    <span class="theme-track"><span class="theme-thumb"></span></span>
+    <span class="theme-icon">☀</span>
+    <span class="theme-label">Light mode</span>
+  </button>
+  <div class="series-nav-section">
+    <span class="series-nav-label">In This Series</span>
+    <a href="part-02.html" class="series-home-link">↖ Series Home</a>
+    <a href="part-01.html" class="series-nav-item">
+      <span class="series-nav-num">01</span>
+      <span>I · The Operating Model</span>
+    </a>
+    <a href="part-02.html" class="series-nav-item current">
+      <span class="series-nav-num">02</span>
+      <span>II · Institutional Memory</span>
+    </a>
+    <a href="part-03.html" class="series-nav-item">
+      <span class="series-nav-num">03</span>
+      <span>III · The Execution Engine</span>
+    </a>
+  </div>
+</aside>
+
+<!-- ── MOBILE HEADER ───────────────────────────────────────────── -->
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mobile-title">Memory Architecture</span>
+  <span class="mobile-page-num">00</span>
+</header>
+
+<!-- ── MAIN ───────────────────────────────────────────────────── -->
+<main class="main-content">
+
+  <!-- HOME / OVERVIEW -->
+  <section class="page active" id="page-home">
+    <div class="hero-layout">
+      <div class="hero-text-block">
+        <div class="eyebrow-tag">Architecture Brief</div>
+        <h1 class="hero-title">From Knowledge<br>to <em>Memory</em></h1>
+        <p class="hero-body">Every enterprise data strategy of the last decade was built on a single premise: better data produces better decisions. That premise is incomplete.</p>
+        <p class="hero-body">Better data produces better <em>inputs</em>. What happens to those inputs — how they are interpreted, by whom, under what definitions, in what context, against what prior judgment — is where intelligence actually lives. And almost no enterprise has a systematic way to preserve it.</p>
+        <p class="hero-body">This is the argument for corporate memory: not a feature of the data stack, but a different class of architecture entirely.</p>
+        <div class="hero-cta">
+          <a href="gap.html" class="btn-primary" onclick="navigateTo('gap')">Begin →</a>
+        </div>
+      </div>
+
+      <div class="hero-stack-diagram">
+        <div class="stack-section-head">Knowledge Architecture</div>
+        <div class="stack-item si-reasoning" onclick="navigateTo('knowledge-stack')">
+          <span class="si-num">04</span>
+          <div class="si-body">
+            <span class="si-name">Reasoning</span>
+            <span class="si-desc">Interpretive synthesis</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+        <div class="stack-item si-context" onclick="navigateTo('knowledge-stack')">
+          <span class="si-num">03</span>
+          <div class="si-body">
+            <span class="si-name">Context Graph</span>
+            <span class="si-desc">Situational truth</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+        <div class="stack-item si-semantic" onclick="navigateTo('knowledge-stack')">
+          <span class="si-num">02</span>
+          <div class="si-body">
+            <span class="si-name">Semantic Layer</span>
+            <span class="si-desc">Analytical truth</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+        <div class="stack-item si-ontology" onclick="navigateTo('knowledge-stack')">
+          <span class="si-num">01</span>
+          <div class="si-body">
+            <span class="si-name">Ontology</span>
+            <span class="si-desc">Conceptual truth</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+
+        <div class="stack-section-head memory-head">Memory Augmentation</div>
+        <div class="stack-item si-governance" onclick="navigateTo('moat')">
+          <span class="si-num">+4</span>
+          <div class="si-body">
+            <span class="si-name">Memory Governance</span>
+            <span class="si-desc">Versioning · Archival</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+        <div class="stack-item si-drift" onclick="navigateTo('drift-register')">
+          <span class="si-num">+3</span>
+          <div class="si-body">
+            <span class="si-name">Drift Register</span>
+            <span class="si-desc">Semantic fidelity across space</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+        <div class="stack-item si-decay" onclick="navigateTo('decay-governance')">
+          <span class="si-num">+2</span>
+          <div class="si-body">
+            <span class="si-name">Decay Governance</span>
+            <span class="si-desc">Context relevance across time</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+        <div class="stack-item si-lineage" onclick="navigateTo('decision-lineage')">
+          <span class="si-num">+1</span>
+          <div class="si-body">
+            <span class="si-name">Decision Lineage</span>
+            <span class="si-desc">Cross-cutting thread</span>
+          </div>
+          <span class="si-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eight question test overview -->
+    <div class="section-divider"></div>
+    <div class="overview-questions">
+      <div class="oq-label">The Eight-Question Test — A Fully Augmented Architecture Answers All Eight</div>
+      <div class="oq-grid">
+        <div class="oq-item existing">
+          <span class="oq-badge">Existing</span>
+          <span class="oq-q">What is this thing?</span>
+        </div>
+        <div class="oq-item existing">
+          <span class="oq-badge">Existing</span>
+          <span class="oq-q">How is it measured?</span>
+        </div>
+        <div class="oq-item existing">
+          <span class="oq-badge">Existing</span>
+          <span class="oq-q">What is happening around it?</span>
+        </div>
+        <div class="oq-item existing">
+          <span class="oq-badge">Existing</span>
+          <span class="oq-q">What should happen next?</span>
+        </div>
+        <div class="oq-item added">
+          <span class="oq-badge">Added</span>
+          <span class="oq-q">What did this mean then?</span>
+        </div>
+        <div class="oq-item added">
+          <span class="oq-badge">Added</span>
+          <span class="oq-q">Is this term consistent across the portfolio?</span>
+        </div>
+        <div class="oq-item added">
+          <span class="oq-badge">Added</span>
+          <span class="oq-q">Is this context still current?</span>
+        </div>
+        <div class="oq-item added">
+          <span class="oq-badge">Added</span>
+          <span class="oq-q">What have we learned?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="nav.js"></script>
+</body>
+</html>

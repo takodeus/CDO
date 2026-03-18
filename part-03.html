@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03 · The Agentic Org — Your Systems Are Forgetting</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* Tab nav */
+.tab-nav-bar {
+  display: flex; gap: 2px; padding: 0 1.4rem;
+  border-bottom: 1px solid var(--bd); background: var(--bg-sidebar);
+  overflow-x: auto;
+}
+.tab-btn {
+  padding: 0.75rem 1.1rem; font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--on-dark-4); background: transparent; border: none;
+  border-bottom: 2px solid transparent; cursor: pointer;
+  transition: all 0.18s var(--ease); white-space: nowrap;
+}
+.tab-btn:hover { color: var(--on-dark-2); }
+.tab-btn.active { color: var(--blue-lt); border-bottom-color: var(--blue-mid); }
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+
+/* Role cards */
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.role-card { background: var(--bg-card); overflow: hidden; }
+.role-card-top { display: grid; grid-template-columns: 1fr 32px 1fr; }
+.role-old { padding: 1.5rem 1.25rem; background: var(--bg-panel); border-right: 1px solid var(--bd); }
+.role-arrow-col { display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: var(--blue-lt); background: var(--bg-panel); border-right: 1px solid var(--bd); }
+.role-new { padding: 1.5rem 1.25rem; }
+.role-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+.role-label.old { color: var(--tx-muted); } .role-label.new { color: var(--blue-lt); }
+.role-title { font-family: var(--font-display); font-size: 1rem; color: var(--tx-h); margin-bottom: 0.4rem; font-weight: 700; }
+.role-title.dim { color: var(--tx-muted); }
+.role-desc { font-size: 0.82rem; color: var(--tx-body); line-height: 1.65; }
+.role-card-bottom { padding: 0.85rem 1.25rem; border-top: 1px solid var(--bd); background: var(--bg-inset); font-size: 0.8rem; color: var(--tx-body); line-height: 1.55; }
+.role-card-bottom strong { color: var(--blue-lt); font-weight: 600; }
+
+.new-roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.new-role { background: rgba(46,134,193,0.08); border-left: none; padding: 1.5rem; }
+.new-role-tag { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: 0.6rem; display: block; }
+.new-role h4 { font-family: var(--font-display); font-size: 1rem; color: var(--tx-h); margin-bottom: 0.4rem; font-weight: 700; }
+.new-role p { font-size: 0.82rem; color: var(--tx-body); line-height: 1.65; }
+
+/* KPI compare */
+.kpi-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.kpi-col { background: var(--bg-card); }
+.kpi-col-header { padding: 1.25rem 1.5rem; background: var(--bg-panel); border-bottom: 1px solid var(--bd); }
+.kpi-col-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.35rem; display: block; }
+.kpi-col-label.old { color: var(--tx-muted); } .kpi-col-label.new { color: var(--blue-lt); }
+.kpi-col-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--tx-h); font-weight: 700; margin-bottom: 0.2rem; }
+.kpi-col-sub { font-size: 0.78rem; color: var(--tx-muted); font-style: italic; }
+.kpi-list { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 6px; }
+.kpi-item { display: flex; align-items: flex-start; gap: 0.85rem; padding: 0.85rem 1rem; background: var(--bg-panel); border: 1px solid var(--bd); transition: background 0.15s; }
+.kpi-item:hover { background: var(--bg-alt); }
+.kpi-item.retiring { opacity: 0.5; }
+.kpi-icon { width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+.kpi-body { flex: 1; }
+.kpi-name { font-size: 0.88rem; font-weight: 600; color: var(--tx-h); margin-bottom: 0.2rem; }
+.kpi-desc { font-size: 0.78rem; color: var(--tx-muted); line-height: 1.5; }
+.kpi-tag { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 2px; margin-left: auto; flex-shrink: 0; align-self: flex-start; }
+.tag-retiring { background: var(--signal-bg); color: var(--signal-lt); border: 1px solid var(--signal); }
+.tag-new { background: rgba(46,134,193,0.15); color: var(--blue-lt); border: 1px solid var(--blue-mid); }
+.tag-teal { background: var(--teal-bg); color: var(--teal-lt); border: 1px solid var(--teal); }
+.tag-amber { background: var(--amber-bg); color: var(--amber-lt); border: 1px solid var(--amber); }
+.tag-green { background: rgba(26,188,156,0.1); color: var(--teal-lt); border: 1px solid var(--teal); }
+
+/* Phase cards */
+.phase-card { border: 1px solid var(--bd); background: var(--bg-card); margin-bottom: 6px; overflow: hidden; }
+.phase-header { display: grid; grid-template-columns: 80px 1fr 200px 28px; align-items: stretch; cursor: pointer; user-select: none; }
+.phase-header:hover .phase-title-area { background: rgba(93,173,226,0.04); }
+.phase-num-col { padding: 1.5rem 1.25rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; }
+.phase-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1; }
+.ph1 { color: var(--blue-lt); } .ph2 { color: var(--blue-mid); } .ph3 { color: var(--teal-lt); }
+.phase-lbl { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx-muted); }
+.phase-title-area { padding: 1.5rem 1.75rem; border-right: 1px solid var(--bd); }
+.phase-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.3rem; }
+.phase-sub { font-size: 0.82rem; color: var(--tx-muted); font-style: italic; }
+.phase-signal { padding: 1.5rem 1.25rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; justify-content: center; gap: 0.3rem; }
+.phase-signal-lbl { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx-muted); }
+.phase-signal-text { font-size: 0.78rem; color: var(--tx-body); line-height: 1.5; font-style: italic; }
+.phase-toggle { display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--tx-muted); padding: 0 10px; transition: transform 0.2s; }
+.phase-card.open .phase-toggle { transform: rotate(180deg); color: var(--blue-lt); }
+.phase-body { max-height: 0; overflow: hidden; padding: 0 1.75rem; transition: max-height 0.35s ease, padding 0.2s ease; }
+.phase-card.open .phase-body { max-height: 600px; padding: 0 1.75rem 1.75rem; border-top: 1px solid var(--bd); }
+.phase-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-top: 1.5rem; }
+.phase-col-head { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.85rem; display: block; }
+.ph-focus { color: var(--blue-lt); } .ph-people { color: var(--amber-lt); } .ph-test { color: var(--teal-lt); }
+.phase-item { font-size: 0.83rem; color: var(--tx-body); line-height: 1.65; display: flex; gap: 0.6rem; margin-bottom: 0.6rem; }
+.phase-dot { flex-shrink: 0; font-weight: 700; }
+.phase-dot.focus { color: var(--blue-lt); } .phase-dot.people { color: var(--amber-lt); } .phase-dot.test { color: var(--teal-lt); }
+
+/* Failure cards */
+.failure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.failure-card { background: var(--bg-card); overflow: hidden; transition: box-shadow 0.15s; }
+.failure-card:hover { box-shadow: 0 0 0 1px var(--signal-lt); }
+.failure-card-top { display: grid; grid-template-columns: 52px 1fr; }
+.failure-num-col { padding: 1.5rem 0.75rem; display: flex; align-items: flex-start; justify-content: center; background: var(--bg-panel); border-right: 1px solid var(--bd); }
+.failure-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--signal-lt); line-height: 1; }
+.failure-body { padding: 1.5rem 1.25rem; }
+.failure-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.5rem; }
+.failure-desc { font-size: 0.83rem; color: var(--tx-body); line-height: 1.7; }
+.failure-footer { padding: 0.85rem 1.25rem; border-top: 1px solid var(--bd); background: var(--bg-inset); display: flex; gap: 0.75rem; align-items: flex-start; }
+.mit-label { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-lt); flex-shrink: 0; margin-top: 0.05rem; }
+.mit-text { font-size: 0.8rem; color: var(--tx-body); line-height: 1.55; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-mark">03</span>
+    <span class="logo-text">The Agentic<br>Org</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#roles"    class="nav-item active" onclick="setTab('roles');    setActiveNav(this)"><span class="nav-num">I</span><span class="nav-label">Role Redesign</span></a>
+    <a href="#kpis"     class="nav-item"        onclick="setTab('kpis');     setActiveNav(this)"><span class="nav-num">II</span><span class="nav-label">KPI Redesign</span></a>
+    <a href="#rollout"  class="nav-item"        onclick="setTab('rollout');  setActiveNav(this)"><span class="nav-num">III</span><span class="nav-label">Sequencing</span></a>
+    <a href="#failures" class="nav-item"        onclick="setTab('failures'); setActiveNav(this)"><span class="nav-num">IV</span><span class="nav-label">Quiet Failures</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <span class="sidebar-tag">Part III · 2026 · Real Estate</span>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+    <span class="theme-track"><span class="theme-thumb"></span></span>
+    <span class="theme-icon">☀</span>
+    <span class="theme-label">Light mode</span>
+  </button>
+  <div class="series-nav-section">
+    <span class="series-nav-label">In This Series</span>
+    <a href="index.html" class="series-home-link">↖ Series Home</a>
+    <a href="part-01.html" class="series-nav-item"><span class="series-nav-num">01</span><span>I · The Operating Model</span></a>
+    <a href="part-02.html" class="series-nav-item"><span class="series-nav-num">02</span><span>II · Institutional Memory</span></a>
+    <a href="part-03.html" class="series-nav-item current"><span class="series-nav-num">03</span><span>III · The Execution Engine</span></a>
+  </div>
+</aside>
+
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">The Agentic Org</span>
+  <span class="mobile-page-num">03</span>
+</header>
+
+<main class="main-content">
+
+<div class="tab-nav-bar">
+  <button class="tab-btn active" id="btn-roles"    onclick="setTab('roles')">Role Redesign</button>
+  <button class="tab-btn"        id="btn-kpis"     onclick="setTab('kpis')">KPI Redesign</button>
+  <button class="tab-btn"        id="btn-rollout"  onclick="setTab('rollout')">Sequencing</button>
+  <button class="tab-btn"        id="btn-failures" onclick="setTab('failures')">Quiet Failures</button>
+</div>
+
+<!-- ══ I: ROLES ════════════════════════════════════════════════════════ -->
+<div class="tab-section active" id="tab-roles">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">I · Role Redesign</div>
+  <h1 class="page-title">The organization was not<br>built for <em>this</em></h1>
+  <p class="page-lead">Every data role in real estate was designed around a world where intelligence arrived late, lived at the top of a pyramid, and was consumed by humans who made decisions. Agents change every one of those assumptions. The roles do not disappear — they transform.</p>
+
+  <div class="inline-note signal" style="margin-bottom:2rem">
+    <strong>The Core Problem</strong>
+    You cannot deploy an agentic intelligence architecture on top of an operating model designed for human report-readers. Deploying agents without redesigning the roles around them produces faster wrong answers — not better decisions.
+  </div>
+
+  <div class="role-grid">
+    <div class="role-card">
+      <div class="role-card-top">
+        <div class="role-old">
+          <span class="role-label old">Retiring Role</span>
+          <div class="role-title dim">Data Engineer</div>
+          <div class="role-desc">Moves data between systems. Builds and maintains pipelines. Optimizes query performance. Fixes ingestion failures from Yardi, Argus, VTS.</div>
+        </div>
+        <div class="role-arrow-col">→</div>
+        <div class="role-new">
+          <span class="role-label new">Emerging Role</span>
+          <div class="role-title">Knowledge Architect</div>
+          <div class="role-desc">Builds and governs ontologies. Designs the semantic layer. Maintains entity resolution across counterparties. Ensures definitions are agent-readable and version-controlled.</div>
+        </div>
+      </div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From moving data to governing meaning. Pipelines are plumbing. What breaks in an agentic org is not the pipe — it's the definition at each end.</div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-top">
+        <div class="role-old">
+          <span class="role-label old">Retiring Role</span>
+          <div class="role-title dim">Analyst</div>
+          <div class="role-desc">Produces analysis. Pulls data, builds models, creates reports. Answers portfolio questions. Generates IC materials. The primary intelligence producer.</div>
+        </div>
+        <div class="role-arrow-col">→</div>
+        <div class="role-new">
+          <span class="role-label new">Emerging Role</span>
+          <div class="role-title">Reasoning Auditor</div>
+          <div class="role-desc">Evaluates agent-produced analysis for trustworthiness. Traces decision lineage. Flags stale context, definition drift, and orphaned conclusions. The intelligence quality function.</div>
+        </div>
+      </div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From producing analysis to auditing reasoning. This is a higher-value role. The question moves from "what is the answer?" to "can this answer be trusted, and why?"</div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-top">
+        <div class="role-old">
+          <span class="role-label old">Retiring Role</span>
+          <div class="role-title dim">Data Governance Lead</div>
+          <div class="role-desc">Polices data quality. Enforces format standards, completeness rules, and access controls. Runs governance committees. Tracks data dictionaries.</div>
+        </div>
+        <div class="role-arrow-col">→</div>
+        <div class="role-new">
+          <span class="role-label new">Emerging Role</span>
+          <div class="role-title">Meaning Governor</div>
+          <div class="role-desc">Owns the drift register. Reconciles counterparty definitions. Manages version boundaries. Convenes semantic governance councils. Ensures plural ontologies coexist with governed mappings.</div>
+        </div>
+      </div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From data governance to meaning governance. Format and completeness checks are table stakes. The hard problem is whether interpretations are consistent across decisions.</div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-top">
+        <div class="role-old">
+          <span class="role-label old">Retiring Role</span>
+          <div class="role-title dim">BI Developer</div>
+          <div class="role-desc">Builds dashboards and reports. Encodes business logic into visualization layers. Maintains Power BI, Tableau, or custom reporting tools. Answers reporting requests.</div>
+        </div>
+        <div class="role-arrow-col">→</div>
+        <div class="role-new">
+          <span class="role-label new">Emerging Role</span>
+          <div class="role-title">Agent Skill Designer</div>
+          <div class="role-desc">Encodes business logic into agent-readable skills. Defines task boundaries, escalation paths, and confidence thresholds. Governs what agents can decide autonomously vs. what requires human review.</div>
+        </div>
+      </div>
+      <div class="role-card-bottom"><strong>The shift:</strong> From dashboards to agent skills. The intelligence is now embedded in the system, not displayed on a screen. The design work moves from layout to logic governance.</div>
+    </div>
+  </div>
+
+  <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.85rem">New Roles That Don't Exist Today</div>
+  <div class="new-roles">
+    <div class="new-role">
+      <span class="new-role-tag">New Function</span>
+      <h4>Decision Lineage Officer</h4>
+      <p>Owns the cross-cutting thread. Ensures every material IC decision is bound to ontological state, semantic state, and active context at the moment of judgment. The institutional memory custodian.</p>
+    </div>
+    <div class="new-role">
+      <span class="new-role-tag">New Function</span>
+      <h4>Context Graph Curator</h4>
+      <p>Manages decay governance across the context graph. Reviews Active context records for currency. Executes state transitions — Active → Archived → Deprecated — with full provenance. Prevents context rot.</p>
+    </div>
+    <div class="new-role">
+      <span class="new-role-tag">New Function</span>
+      <h4>Plural Ontology Steward</h4>
+      <p>Governs the coexistence of counterparty definitions. Maintains explicit scope tags and governed mappings. Ensures that when Greystar's "occupancy" and the fund's "occupancy" diverge, both are valid, both are labeled, and the gap is registered.</p>
+    </div>
+  </div>
+
+  <div class="dark-banner">
+    <p>Agents working without shared context create coordination failures, not efficiency gains. The constraint was never scale of operations — it was whether <em>meaning could travel reliably</em> across the boundaries that scale creates.</p>
+  </div>
+
+  <div class="page-nav-footer">
+    <a href="part-02.html" class="page-nav-btn">← The Memory Gap</a>
+    <button class="page-nav-btn next" onclick="setTab('kpis')">KPI Redesign →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ II: KPIs ════════════════════════════════════════════════════════ -->
+<div class="tab-section" id="tab-kpis">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">II · KPI Redesign</div>
+  <h1 class="page-title">Measuring the wrong things<br>at <em>speed</em></h1>
+  <p class="page-lead">Current KPIs measure the data stack's mechanical health. They tell you whether data moved. They don't tell you whether meaning traveled, whether reasoning was trustworthy, or whether institutional knowledge persisted. In an agentic organization, the KPIs have to change before the roles do — because what gets measured defines what gets built.</p>
+
+  <div class="inline-note signal" style="margin-bottom:2rem">
+    <strong>The Risk</strong>
+    Pipeline uptime at 99.9% is meaningless if the definitions powering the pipeline have drifted 4 percentage points. Optimizing for legacy KPIs in an agentic architecture produces a very fast, very confident, and very wrong organization.
+  </div>
+
+  <div class="kpi-compare">
+    <div class="kpi-col">
+      <div class="kpi-col-header">
+        <span class="kpi-col-label old">Retiring</span>
+        <div class="kpi-col-title">Data Stack Health KPIs</div>
+        <div class="kpi-col-sub">Measure whether data moved. Say nothing about meaning.</div>
+      </div>
+      <div class="kpi-list">
+        <div class="kpi-item retiring">
+          <div class="kpi-icon" style="background:var(--signal-bg)">📊</div>
+          <div class="kpi-body"><div class="kpi-name">Pipeline Uptime</div><div class="kpi-desc">% of time pipelines are operational. Measures infrastructure. Blind to semantic correctness.</div></div>
+          <span class="kpi-tag tag-retiring">Retiring</span>
+        </div>
+        <div class="kpi-item retiring">
+          <div class="kpi-icon" style="background:var(--signal-bg)">🔢</div>
+          <div class="kpi-body"><div class="kpi-name">Row Counts &amp; Fill Rates</div><div class="kpi-desc">A pipeline can have 100% fill rate and still be semantically broken — every definition drifted, every number present.</div></div>
+          <span class="kpi-tag tag-retiring">Retiring</span>
+        </div>
+        <div class="kpi-item retiring">
+          <div class="kpi-icon" style="background:var(--signal-bg)">📈</div>
+          <div class="kpi-body"><div class="kpi-name">Dashboard Adoption</div><div class="kpi-desc">In an agentic organization, humans stop pulling dashboards. Agents surface intelligence directly. This KPI disappears.</div></div>
+          <span class="kpi-tag tag-retiring">Retiring</span>
+        </div>
+        <div class="kpi-item retiring">
+          <div class="kpi-icon" style="background:var(--signal-bg)">⚡</div>
+          <div class="kpi-body"><div class="kpi-name">Query Response Time</div><div class="kpi-desc">Necessary but insufficient. The question is not how fast the answer arrives — it is whether the answer can be trusted.</div></div>
+          <span class="kpi-tag tag-retiring">Retiring</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="kpi-col">
+      <div class="kpi-col-header">
+        <span class="kpi-col-label new">Emerging</span>
+        <div class="kpi-col-title">Intelligence Quality KPIs</div>
+        <div class="kpi-col-sub">Measure whether meaning traveled and reasoning was trustworthy.</div>
+      </div>
+      <div class="kpi-list">
+        <div class="kpi-item">
+          <div class="kpi-icon" style="background:rgba(46,134,193,0.12)">🌊</div>
+          <div class="kpi-body"><div class="kpi-name">Drift Velocity</div><div class="kpi-desc">New drift events per quarter. Average time from divergence to detection. Average time from detection to resolution.</div></div>
+          <span class="kpi-tag tag-new">New</span>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-icon" style="background:rgba(46,134,193,0.12)">🔗</div>
+          <div class="kpi-body"><div class="kpi-name">Decision Lineage Coverage</div><div class="kpi-desc">% of material IC decisions with complete lineage records — ontological state, semantic state, and active context bound at the moment of judgment.</div></div>
+          <span class="kpi-tag tag-new">New</span>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-icon" style="background:var(--teal-bg)">⏱</div>
+          <div class="kpi-body"><div class="kpi-name">Context Currency Rate</div><div class="kpi-desc">% of Active context records reviewed for decay within their prescribed window. Prevents stale context from contaminating agent reasoning.</div></div>
+          <span class="kpi-tag tag-teal">New</span>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-icon" style="background:var(--amber-bg)">🎯</div>
+          <div class="kpi-body"><div class="kpi-name">Agent Recommendation Traceability</div><div class="kpi-desc">% of agent outputs that can be traced back to specific stack state — which definitions were active, which metrics applied, which context visible.</div></div>
+          <span class="kpi-tag tag-amber">New</span>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-icon" style="background:rgba(26,188,156,0.1)">🧠</div>
+          <div class="kpi-body"><div class="kpi-name">Memory Persistence Rate</div><div class="kpi-desc">% of leadership and manager transitions where institutional knowledge was successfully transferred via documented lineage — rather than lost when the person left.</div></div>
+          <span class="kpi-tag tag-green">New</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('roles')">← Role Redesign</button>
+    <button class="page-nav-btn next" onclick="setTab('rollout')">Sequencing →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ III: ROLLOUT ════════════════════════════════════════════════════ -->
+<div class="tab-section" id="tab-rollout">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">III · Sequencing</div>
+  <h1 class="page-title">Three phases,<br>not a <em>timeline</em></h1>
+  <p class="page-lead">Sequencing matters more than scheduling. Each phase has a clear entry condition and an exit signal — a concrete capability the organization must demonstrate before the next phase begins. Moving before those signals appear is how governance theater starts. Click each phase to expand.</p>
+
+  <div class="inline-note amber" style="margin-bottom:2rem">
+    <strong>The Principle</strong>
+    A structured, cross-functional approach is required. Technical deployment without organizational alignment produces agents that coordinate poorly and fail silently. The sequence here reflects that: foundation first, memory layer second, agentic coordination third.
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="phase-card" id="ph-1">
+    <div class="phase-header" onclick="togglePhase('ph-1')">
+      <div class="phase-num-col">
+        <div class="phase-num ph1">01</div>
+        <div class="phase-lbl">Foundation</div>
+      </div>
+      <div class="phase-title-area">
+        <div class="phase-title">Govern meaning before deploying agents</div>
+        <div class="phase-sub">Stand up the ontology. Establish the semantic layer for the metrics that matter. Open the drift register. Begin cataloguing context.</div>
+      </div>
+      <div class="phase-signal">
+        <div class="phase-signal-lbl">Exit Signal</div>
+        <div class="phase-signal-text">Can you answer "What is our occupancy and how is it defined?" consistently across Yardi, Argus, VTS, and the property manager — simultaneously?</div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-cols">
+        <div>
+          <span class="phase-col-head ph-focus">What Gets Built</span>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Canonical entity definitions for the five metrics that matter most: occupancy, NOI, renewal rate, WALT, cap rate</span></div>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Semantic layer governing calculation logic, cohort definitions, and exclusion rules — enforced at query time, not spreadsheet time</span></div>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Drift register opened with named owners per entry and quarterly review cadence</span></div>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Context graph seeded with current Active events across the portfolio</span></div>
+        </div>
+        <div>
+          <span class="phase-col-head ph-people">Who Changes First</span>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Data governance leads transition to Meaning Governors — first role to formally shift</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Knowledge Architect hired or designated from data engineering</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Semantic governance council established — not a committee, a function with a chair and a mandate</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>IC process reviewed for decision lineage entry points — not yet required, but mapped</span></div>
+        </div>
+        <div>
+          <span class="phase-col-head ph-test">How You Know It's Working</span>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>First drift register entry created, owned, and resolved with a formal version boundary</span></div>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>Portfolio-level occupancy computable consistently from three independent system queries</span></div>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>A new property manager onboarding produces a drift register entry automatically — not a reconciliation project months later</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase-card" id="ph-2">
+    <div class="phase-header" onclick="togglePhase('ph-2')">
+      <div class="phase-num-col">
+        <div class="phase-num ph2">02</div>
+        <div class="phase-lbl">Memory</div>
+      </div>
+      <div class="phase-title-area">
+        <div class="phase-title">Wire decision lineage into the institution</div>
+        <div class="phase-sub">Every material IC decision becomes a structured record. Decay governance activates. The semantic layer gets versioned. The architecture becomes a memory system.</div>
+      </div>
+      <div class="phase-signal">
+        <div class="phase-signal-lbl">Exit Signal</div>
+        <div class="phase-signal-text">Can a new team member reconstruct why a prior-cycle acquisition decision made sense — from a structured record, without interviewing the person who made it?</div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-cols">
+        <div>
+          <span class="phase-col-head ph-focus">What Gets Built</span>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Decision lineage records bound to every IC memo — ontological state, semantic state, active context, and reasoning path captured as structured data</span></div>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Decay governance activated — every context record assigned a decay state and review window; transitions logged with provenance</span></div>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Semantic layer versioned — formula changes create version boundaries, not overwrites; prior-period metrics tagged with formula version</span></div>
+        </div>
+        <div>
+          <span class="phase-col-head ph-people">Who Changes Next</span>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Decision Lineage Officer role created and staffed</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Context Graph Curator designated — owns the Active/Archived/Deprecated lifecycle</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Analysts begin transitioning — first cohort cross-trained as Reasoning Auditors</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>IC process updated to require lineage capture as a standard step, not an exception</span></div>
+        </div>
+        <div>
+          <span class="phase-col-head ph-test">How You Know It's Working</span>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>A 2022 acquisition can be reconstructed — occupancy definition, cap rate methodology, macro context — from a structured record in under 30 minutes</span></div>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>A competitor campaign from 18 months ago has transitioned from Active to Archived, with transition timestamp and trigger recorded</span></div>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>No IC memo from the last two cycles exists without a lineage record bound to it</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase-card" id="ph-3">
+    <div class="phase-header" onclick="togglePhase('ph-3')">
+      <div class="phase-num-col">
+        <div class="phase-num ph3">03</div>
+        <div class="phase-lbl">Agentic</div>
+      </div>
+      <div class="phase-title-area">
+        <div class="phase-title">Deploy agents on governed infrastructure</div>
+        <div class="phase-sub">Agents operate on the semantic layer. Reasoning Auditors review outputs rather than producing analysis. KPIs shift from pipeline health to intelligence quality.</div>
+      </div>
+      <div class="phase-signal">
+        <div class="phase-signal-lbl">Exit Signal</div>
+        <div class="phase-signal-text">Can an agent answer a portfolio question, and can a Reasoning Auditor verify the answer by tracing its lineage — definitions, context, reasoning path — in under ten minutes?</div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-cols">
+        <div>
+          <span class="phase-col-head ph-focus">What Gets Built</span>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Agent skills deployed on top of governed semantic layer — designed by Agent Skill Designers, not adapted from dashboards</span></div>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Lean agentic layer interfacing directly with the data layer of core systems (Yardi, Argus, VTS), supervised by humans</span></div>
+          <div class="phase-item"><span class="phase-dot focus">→</span><span>Agent governance framework active: escalation paths, confidence thresholds, human-in-the-loop checkpoints for material decisions</span></div>
+        </div>
+        <div>
+          <span class="phase-col-head ph-people">The Org That Emerges</span>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Reasoning Auditors fully transitioned — output is intelligence quality assessments, not analysis reports</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Humans supervise systems rather than executing individual analytical steps</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>KPI reporting shifts from pipeline health to intelligence quality metrics</span></div>
+          <div class="phase-item"><span class="phase-dot people">→</span><span>Corporate memory is a measured organizational capability, not an aspiration</span></div>
+        </div>
+        <div>
+          <span class="phase-col-head ph-test">How You Know It's Working</span>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>A portfolio question about Sun Belt industrial exposure is answered by an agent in seconds, and a Reasoning Auditor can verify the lineage in minutes</span></div>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>A leadership transition does not trigger a knowledge recovery project — the lineage records carry institutional memory forward</span></div>
+          <div class="phase-item"><span class="phase-dot test">→</span><span>The data team's quarterly review covers drift velocity, lineage coverage, and context currency — not pipeline uptime and row counts</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('kpis')">← KPI Redesign</button>
+    <button class="page-nav-btn next" onclick="setTab('failures')">Quiet Failures →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ IV: QUIET FAILURES ══════════════════════════════════════════════ -->
+<div class="tab-section" id="tab-failures">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">IV · Quiet Failure Modes</div>
+  <h1 class="page-title">What fails without<br><em>announcing itself</em></h1>
+  <p class="page-lead">The dangerous failures in an agentic data organization are not dramatic. They don't crash systems or trigger alerts. They accumulate silently — through well-intentioned shortcuts, time pressure, and the gradual normalization of exceptions — until a board presentation, an LP question, or a bad investment surfaces them.</p>
+
+  <div class="failure-grid">
+
+    <div class="failure-card">
+      <div class="failure-card-top">
+        <div class="failure-num-col"><div class="failure-num">01</div></div>
+        <div class="failure-body">
+          <div class="failure-name">Governance Theater</div>
+          <div class="failure-desc">The drift register is created. The semantic governance council is established. The quarterly review is scheduled. But no register entry ever achieves resolution. The council produces discussion, not decisions. The infrastructure of governance exists without the function of governance.</div>
+        </div>
+      </div>
+      <div class="failure-footer">
+        <span class="mit-label">Mitigation</span>
+        <span class="mit-text">Every register entry requires a named owner with a resolution deadline. The council's output is a decision — specific version boundaries, explicit coexistence protocols, or formal escalations. Measure time-to-resolution as a KPI, not just number of open entries.</span>
+      </div>
+    </div>
+
+    <div class="failure-card">
+      <div class="failure-card-top">
+        <div class="failure-num-col"><div class="failure-num">02</div></div>
+        <div class="failure-body">
+          <div class="failure-name">Semantic Layer Orphaning</div>
+          <div class="failure-desc">The semantic layer is built. It is technically correct, properly governed, and version-controlled. And then analysts continue computing metrics in their own spreadsheet models, using their own cohort logic. The governed definitions and the actual numbers used in IC materials diverge silently.</div>
+        </div>
+      </div>
+      <div class="failure-footer">
+        <span class="mit-label">Mitigation</span>
+        <span class="mit-text">Enforce query-time governance. Metrics that bypass the semantic layer are flagged at the point of use, not audited retroactively. IC materials are required to cite which semantic layer version was used. Bypasses are treated as drift events, not as analyst discretion.</span>
+      </div>
+    </div>
+
+    <div class="failure-card">
+      <div class="failure-card-top">
+        <div class="failure-num-col"><div class="failure-num">03</div></div>
+        <div class="failure-body">
+          <div class="failure-name">Agent Overconfidence</div>
+          <div class="failure-desc">Agents produce authoritative-sounding recommendations based on stale context or drifted definitions. The output is fluent, specific, and presented as analysis. No one checks. The speed advantage of agents creates a trust gap — people assume accuracy because the format signals competence.</div>
+        </div>
+      </div>
+      <div class="failure-footer">
+        <span class="mit-label">Mitigation</span>
+        <span class="mit-text">Reasoning Auditors as a mandatory review layer for material decisions — not optional. Agent outputs carry traceability metadata visible to consumers: which definitions were active, which context was relied upon, what the confidence score was. The format makes provenance legible, not hidden.</span>
+      </div>
+    </div>
+
+    <div class="failure-card">
+      <div class="failure-card-top">
+        <div class="failure-num-col"><div class="failure-num">04</div></div>
+        <div class="failure-body">
+          <div class="failure-name">Lineage Abandonment Under Pressure</div>
+          <div class="failure-desc">The IC process is under time pressure. A deal is moving. The lineage capture requirement is a form, a structured record, an extra step. The exception is made once — the deal closes, the record is incomplete. The second exception is made without discussion. Over time, exceptions become the norm.</div>
+        </div>
+      </div>
+      <div class="failure-footer">
+        <span class="mit-label">Mitigation</span>
+        <span class="mit-text">Make lineage capture lightweight enough that it doesn't add friction — integrated directly into the existing IC workflow, not a separate deliverable. The structured record is the IC memo's metadata. Time pressure is not a valid exception category.</span>
+      </div>
+    </div>
+
+    <div class="failure-card">
+      <div class="failure-card-top">
+        <div class="failure-num-col"><div class="failure-num">05</div></div>
+        <div class="failure-body">
+          <div class="failure-name">Context Graph Rot</div>
+          <div class="failure-desc">The context graph grows. Active events accumulate. No one manages the decay lifecycle. A competitor incentive campaign from two years ago remains Active, silently influencing agent recommendations about submarket dynamics. The graph becomes a source of authoritative noise.</div>
+        </div>
+      </div>
+      <div class="failure-footer">
+        <span class="mit-label">Mitigation</span>
+        <span class="mit-text">Decay governance is a staffed function with named ownership — the Context Graph Curator — not a background process. Context Currency Rate is a measured KPI. Every Active context record has an assigned review date. Records without review dates are governance failures, not acceptable defaults.</span>
+      </div>
+    </div>
+
+    <div class="failure-card">
+      <div class="failure-card-top">
+        <div class="failure-num-col"><div class="failure-num">06</div></div>
+        <div class="failure-body">
+          <div class="failure-name">Role Transition Resistance</div>
+          <div class="failure-desc">Analysts resist becoming Reasoning Auditors because auditing feels less prestigious than producing analysis. The identity of "person who figures things out" is harder to give up than the task of running models. The role redesign is announced, the org chart is updated, and then actual behavior doesn't change.</div>
+        </div>
+      </div>
+      <div class="failure-footer">
+        <span class="mit-label">Mitigation</span>
+        <span class="mit-text">Frame the transition explicitly and repeatedly: Reasoning Auditors are not checkers. They are the organization's intelligence quality function — a higher-value role requiring deeper judgment. The career path for a Reasoning Auditor is toward decision governance, not away from influence.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dark-banner">
+    <p>Clean pipelines carrying semantically broken data produce faster answers to the wrong questions. The quiet failures are the ones that make the wrong answer look <em>authoritative</em>.</p>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('rollout')">← Sequencing</button>
+    <a href="part-02.html" class="page-nav-btn next">← Back to Series</a>
+  </div>
+</div>
+</div>
+
+</main>
+
+<script src="nav.js"></script>
+<script>
+function setTab(id) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const s = document.getElementById('tab-' + id);
+  const b = document.getElementById('btn-' + id);
+  if (s) { s.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  if (b) b.classList.add('active');
+}
+function setActiveNav(el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+function togglePhase(id) {
+  const card = document.getElementById(id);
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.phase-card.open').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+</script>
+</body>
+</html>
