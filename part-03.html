@@ -489,22 +489,22 @@
       <div class="kpi-list">
         <div class="kpi-item retiring">
           <div class="kpi-icon" style="background:var(--signal-bg)">📊</div>
-          <div class="kpi-body"><div class="kpi-name">Pipeline Uptime</div><div class="kpi-desc">Whether Yardi, Argus, and VTS pipelines are running. Necessary infrastructure metric. Tells you nothing about semantic correctness.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Pipeline Uptime</div><div class="kpi-desc">Whether Yardi, Argus, and VTS pipelines are running. The pipeline can run at 99.9% uptime while the occupancy definition it carries has drifted three percentage points from the LP report definition. Green dashboard. Wrong number. No alert.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
           <div class="kpi-icon" style="background:var(--signal-bg)">🔢</div>
-          <div class="kpi-body"><div class="kpi-name">Row Counts &amp; Fill Rates</div><div class="kpi-desc">Whether data arrived and fields are populated. A rent roll with 100% fill rate and a drifted NRA definition is complete and wrong.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Row Counts &amp; Fill Rates</div><div class="kpi-desc">Whether data arrived and fields are populated. A rent roll with 100% fill rate where net rentable area has been computed by a new property manager using gross area since last quarter is complete, fully populated, and semantically broken. The metric has no way to know.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
           <div class="kpi-icon" style="background:var(--signal-bg)">📈</div>
-          <div class="kpi-body"><div class="kpi-name">Dashboard Adoption</div><div class="kpi-desc">How many users accessed the reporting layer. When agents surface intelligence directly to portfolio managers and asset managers, this metric approaches zero. That is a sign of success, not failure.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Dashboard Adoption</div><div class="kpi-desc">How many users accessed the reporting layer. When agents answer portfolio questions directly, nobody pulls the dashboard. A team optimizing for this KPI in an agentic organization is building reports for an audience that no longer exists — and measuring a capability that has become irrelevant.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
           <div class="kpi-icon" style="background:var(--signal-bg)">⚡</div>
-          <div class="kpi-body"><div class="kpi-name">Query Response Time</div><div class="kpi-desc">How fast an answer arrives. Speed is table stakes. Whether the answer can be trusted is the real question, and this KPI cannot answer it.</div></div>
+          <div class="kpi-body"><div class="kpi-name">Query Response Time</div><div class="kpi-desc">How fast an answer arrives. A renewal recommendation delivered in 400 milliseconds on stale submarket data and a drifted occupancy definition is a fast wrong answer. Optimizing for speed without measuring trustworthiness produces a very confident, very quick organization that keeps getting the same questions wrong.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
       </div>
@@ -562,8 +562,8 @@
   <p class="page-lead">A domain is the right unit of change. It is a coherent end-to-end workflow — from signal to outcome — with clear owners and measurable results. Big enough to matter economically. Small enough to rebuild without disrupting the rest of the business while the rebuild is underway. The right approach is to run the redesigned domain in a clean-room environment alongside the existing process until it is proven, then progressively tip activity into it. Each domain has a defined exit signal — a concrete capability the organization must demonstrate before moving to the next.</p>
 
   <div class="inline-note amber" style="margin-bottom:2rem">
-    <strong>The infrastructure argument</strong>
-    The limiting factor is not model quality. The five technical layers — Factual, Orchestration, Action, Control, and Building-Block — must be in place before any domain can run reliably. The Factual Layer is what Parts I and II built: governed entities, versioned definitions, traceable context. Without it, agents execute fast on broken foundations.
+    <strong>The ordering principle</strong>
+    The four domains below are sequenced by dependency, not by size or complexity. Each domain builds the governed foundation the next one requires. Leasing and renewals establishes the semantic layer and proves the Factual Layer works. Asset management reporting uses that same semantic layer and starts creating lineage records — the beginning of institutional memory. Acquisition screening requires both a mature semantic layer and current context in the graph. Capital and construction requires entity resolution across the most systems and benefits from prior capex decisions already in the lineage record. Skip a domain or reverse the order, and the domain that follows will be running on a foundation that was never proved.
   </div>
 
   <!-- Five technical layers -->
