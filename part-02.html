@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Memory Architecture, From Knowledge to Corporate Memory</title>
+<title>Part II · Institutional Memory — The Intelligence Architecture Series</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+<div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
 
-<!-- ── SIDEBAR NAV ─────────────────────────────────────────────── -->
 <aside class="sidebar" id="sidebar">
 
- <a href="index.html" class="sidebar-logo">
- <div class="logo-mark">II</div>
- <div>
- <div class="logo-text">The Intelligence<br>Architecture Series</div>
- <div class="logo-hint">← series home</div>
- </div>
- </a>
+  <a href="index.html" class="sidebar-logo">
+    <div class="logo-mark">II</div>
+    <div>
+      <div class="logo-text">The Intelligence<br>Architecture Series</div>
+      <div class="logo-hint">← series home</div>
+    </div>
+  </a>
 
-     <div class="series-nav-top">
+  <div class="series-nav-top">
     <span class="series-nav-title">The Series</span>
 
     <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
@@ -50,129 +51,104 @@
     </a>
   </div>
 
- <a href="part-03.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
- <span class="spn">III</span>
- <span class="spl">The Execution Engine</span>
- </a>
- </div>
-
- <div class="sidebar-footer">
- <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
- </div>
-
- <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
- <span class="theme-track"><span class="theme-thumb"></span></span>
- <span class="theme-icon">☀</span>
- <span class="theme-label">Light mode</span>
- </button>
+  <div class="sidebar-footer">
+    <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
+  </div>
 </aside>
 
-<!-- ── MOBILE HEADER ───────────────────────────────────────────── -->
 <header class="mobile-header">
- <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
- <span></span><span></span><span></span>
- </button>
- <span class="mobile-title">Memory Architecture</span>
- <span class="mobile-page-num">00</span>
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">Institutional Memory</span>
+  <span class="mobile-page-num">II</span>
 </header>
 
-<!-- ── MAIN ───────────────────────────────────────────────────── -->
 <main class="main-content">
+
 <div class="page-header-bar">
- <span class="page-header-title">Part II · Institutional Memory · Overview</span>
- <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
- <span class="theme-track"><span class="theme-thumb"></span></span>
- <span class="theme-icon">☀</span>
- <span class="theme-label">Light mode</span>
- </button>
+  <span class="page-header-title">Part II · Institutional Memory · Overview</span>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+    <span class="theme-track"><span class="theme-thumb"></span></span>
+    <span class="theme-icon">☀</span>
+    <span class="theme-label">Light mode</span>
+  </button>
 </div>
 
+<section class="page active" id="page-home">
+  <div class="hero-layout">
+    <div class="hero-text-block">
+      <div class="eyebrow-tag">Part II · Architecture Brief</div>
+      <h1 class="hero-title">From Knowledge<br>to <em>Memory</em></h1>
+      <p class="hero-body">Every enterprise data strategy of the last decade was built on a single premise: better data produces better decisions. That premise is incomplete.</p>
+      <p class="hero-body">Better data produces better <em>inputs</em>. What happens to those inputs — how they are interpreted, by whom, under what definitions, in what context, against what prior judgment — is where intelligence actually lives. And almost no enterprise has a systematic way to preserve it.</p>
+      <p class="hero-body">This is the argument for corporate memory: not a feature of the data stack, but a different class of architecture entirely.</p>
+      <div class="page-nav-footer" style="margin-top:2rem;padding-top:0;border-top:none">
+        <a href="gap.html" class="page-nav-btn next">Begin: The Gap →</a>
+      </div>
+    </div>
 
- <!-- HOME / OVERVIEW -->
- <section class="page active" id="page-home">
- <div class="hero-layout">
- <div class="hero-text-block">
- <div class="eyebrow-tag">Architecture Brief</div>
- <h1 class="hero-title">From Knowledge<br>to <em>Memory</em></h1>
- <p class="hero-body">Every enterprise data strategy of the last decade was built on a single premise: better data produces better decisions. That premise is incomplete.</p>
- <p class="hero-body">Better data produces better <em>inputs</em>. What happens to those inputs. How they are interpreted, by whom, under what definitions, in what context, against what prior judgment, is where intelligence actually lives. And almost no enterprise has a systematic way to preserve it.</p>
- <p class="hero-body">This is the argument for corporate memory: not a feature of the data stack, but a different class of architecture entirely.</p>
- <div class="hero-cta">
- <a href="gap.html" class="btn-primary">Begin →</a>
- </div>
- </div>
+    <div class="hero-stack-diagram">
+      <div class="stack-section-head">Knowledge Architecture</div>
+      <div class="stack-item si-reasoning">
+        <span class="si-num">04</span>
+        <div class="si-body">
+          <span class="si-name">Reasoning</span>
+          <span class="si-desc">Interpretive synthesis</span>
+        </div>
+      </div>
+      <div class="stack-item si-context">
+        <span class="si-num">03</span>
+        <div class="si-body">
+          <span class="si-name">Context Graph</span>
+          <span class="si-desc">Situational truth</span>
+        </div>
+      </div>
+      <div class="stack-item si-semantic">
+        <span class="si-num">02</span>
+        <div class="si-body">
+          <span class="si-name">Semantic Layer</span>
+          <span class="si-desc">Analytical truth</span>
+        </div>
+      </div>
+      <div class="stack-item si-ontology">
+        <span class="si-num">01</span>
+        <div class="si-body">
+          <span class="si-name">Ontology</span>
+          <span class="si-desc">Conceptual truth</span>
+        </div>
+      </div>
 
- <div class="hero-stack-diagram">
- <div class="stack-section-head">Knowledge Architecture</div>
- <div class="stack-item si-reasoning" onclick="window.location='knowledge-stack.html'">
- <span class="si-num">04</span>
- <div class="si-body">
- <span class="si-name">Reasoning</span>
- <span class="si-desc">Interpretive synthesis</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
- <div class="stack-item si-context" onclick="window.location='knowledge-stack.html'">
- <span class="si-num">03</span>
- <div class="si-body">
- <span class="si-name">Context Graph</span>
- <span class="si-desc">Situational truth</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
- <div class="stack-item si-semantic" onclick="window.location='knowledge-stack.html'">
- <span class="si-num">02</span>
- <div class="si-body">
- <span class="si-name">Semantic Layer</span>
- <span class="si-desc">Analytical truth</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
- <div class="stack-item si-ontology" onclick="window.location='knowledge-stack.html'">
- <span class="si-num">01</span>
- <div class="si-body">
- <span class="si-name">Ontology</span>
- <span class="si-desc">Conceptual truth</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
-
- <div class="stack-section-head memory-head">Memory Augmentation</div>
- <div class="stack-item si-governance" onclick="window.location='moat.html'">
- <span class="si-num">+4</span>
- <div class="si-body">
- <span class="si-name">Memory Governance</span>
- <span class="si-desc">Versioning · Archival</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
- <div class="stack-item si-drift" onclick="window.location='drift-register.html'">
- <span class="si-num">+3</span>
- <div class="si-body">
- <span class="si-name">Drift Register</span>
- <span class="si-desc">Semantic fidelity across space</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
- <div class="stack-item si-decay" onclick="window.location='decay-governance.html'">
- <span class="si-num">+2</span>
- <div class="si-body">
- <span class="si-name">Decay Governance</span>
- <span class="si-desc">Context relevance across time</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
- <div class="stack-item si-lineage" onclick="window.location='decision-lineage.html'">
- <span class="si-num">+1</span>
- <div class="si-body">
- <span class="si-name">Decision Lineage</span>
- <span class="si-desc">Cross-cutting thread</span>
- </div>
- <span class="si-arrow">→</span>
- </div>
- </div>
- </div>
- </section>
+      <div class="stack-section-head memory-head">Memory Augmentation</div>
+      <div class="stack-item si-governance">
+        <span class="si-num">+4</span>
+        <div class="si-body">
+          <span class="si-name">Memory Governance</span>
+          <span class="si-desc">Versioning · Archival</span>
+        </div>
+      </div>
+      <div class="stack-item si-drift">
+        <span class="si-num">+3</span>
+        <div class="si-body">
+          <span class="si-name">Drift Register</span>
+          <span class="si-desc">Semantic fidelity across space</span>
+        </div>
+      </div>
+      <div class="stack-item si-decay">
+        <span class="si-num">+2</span>
+        <div class="si-body">
+          <span class="si-name">Decay Governance</span>
+          <span class="si-desc">Context relevance across time</span>
+        </div>
+      </div>
+      <div class="stack-item si-lineage">
+        <span class="si-num">+1</span>
+        <div class="si-body">
+          <span class="si-name">Decision Lineage</span>
+          <span class="si-desc">Cross-cutting thread</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
