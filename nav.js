@@ -1,4 +1,4 @@
-/* nav.js — theme, series accordion, RE toggles, MA-site routing */
+/* nav.js v2 — theme, series accordion, RE toggles, MA-site routing */
 
 /* ── THEME ────────────────────────────────────────── */
 function getTheme() { return localStorage.getItem('ma-theme') || 'dark'; }
