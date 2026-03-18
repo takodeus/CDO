@@ -403,76 +403,73 @@
     </div>
   </div>
 
-  <div class="role-grid">
-    <div class="role-card">
-      <div class="role-card-top">
-        <div class="role-old">
-          <span class="role-label old">Retiring</span>
-          <div class="role-title dim">Data Engineer</div>
-          <div class="role-desc">Builds and maintains pipelines. Fixes Yardi-to-warehouse ingestion failures. Optimizes query performance. Moves data from source systems to reporting layers.</div>
-        </div>
-        <div class="role-arrow-col">→</div>
-        <div class="role-new">
-          <span class="role-label new">Emerging</span>
-          <div class="role-title">Knowledge Architect</div>
-          <div class="role-desc">Owns the Factual Layer. Builds and governs ontologies. Maintains entity resolution across Yardi, Argus, VTS, and third-party property manager systems. Ensures definitions are versioned and agent-readable. The plumbing still runs — but now it carries meaning, not just data.</div>
-        </div>
-      </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From moving data to governing meaning. A pipeline running at 99.9% uptime while carrying a drifted occupancy definition is not working. It is failing quietly at scale.</div>
-    </div>
+  <table class="role-table">
+    <thead>
+      <tr>
+        <th class="role-th-ret">Retiring</th>
+        <th class="role-th-eme">Emerging</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <div class="role-card">
-      <div class="role-card-top">
-        <div class="role-old">
-          <span class="role-label old">Retiring</span>
-          <div class="role-title dim">Analyst</div>
-          <div class="role-desc">Pulls data, builds models, drafts IC materials. The primary intelligence producer. Answers portfolio questions by assembling evidence from multiple systems manually.</div>
-        </div>
-        <div class="role-arrow-col">→</div>
-        <div class="role-new">
-          <span class="role-label new">Emerging</span>
-          <div class="role-title">Reasoning Auditor</div>
-          <div class="role-desc">Owns the Control Layer. Evaluates whether agent-produced analysis can be trusted. Traces which definitions were active, which context was current, which semantic layer version was in use. The intelligence quality function. This is protecting thoughts — not checking boxes.</div>
-        </div>
-      </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From producing analysis to auditing reasoning. The question moves from "what is the answer?" to "is this answer trustworthy, and can we prove it?"</div>
-    </div>
+      <tr>
+        <td class="role-td-ret">
+          <span class="rt-label ret">Retiring</span>
+          <div class="rt-name dim">Data Engineer</div>
+          <div class="rt-desc">Builds and maintains pipelines. Fixes Yardi-to-warehouse ingestion failures. Optimizes query performance. Moves data from source systems to reporting layers.</div>
+        </td>
+        <td class="role-td-eme">
+          <span class="rt-label eme">Emerging</span>
+          <div class="rt-name">Knowledge Architect</div>
+          <div class="rt-desc">Owns the Factual Layer. Builds and governs ontologies. Maintains entity resolution across Yardi, Argus, VTS, and third-party property manager systems. Ensures definitions are versioned and agent-readable. The plumbing still runs — but now it carries meaning, not just data.</div>
+        </td>
+      </tr>
+      <tr><td colspan="2" class="role-td-shift"><strong>The shift:</strong> From moving data to governing meaning. A pipeline running at 99.9% uptime while carrying a drifted occupancy definition is not working. It is failing quietly at scale.</td></tr>
 
-    <div class="role-card">
-      <div class="role-card-top">
-        <div class="role-old">
-          <span class="role-label old">Retiring</span>
-          <div class="role-title dim">Data Governance Lead</div>
-          <div class="role-desc">Enforces format standards, completeness rules, and access controls. Runs governance committees. Checks whether the data arrived correctly and in the right format.</div>
-        </div>
-        <div class="role-arrow-col">→</div>
-        <div class="role-new">
-          <span class="role-label new">Emerging</span>
-          <div class="role-title">Meaning Governor</div>
-          <div class="role-desc">Owns the drift register. Reconciles counterparty definitions — Greystar's occupancy methodology vs. the fund's, CBRE's tenant classification vs. Yardi's, Newmark's NRA calculation vs. the LP report. Manages version boundaries. Convenes semantic governance councils with decisions as output, not discussion.</div>
-        </div>
-      </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From data governance to meaning governance. Format and completeness are solved problems. Whether two assets are being compared on the same definition of economic occupancy is not.</div>
-    </div>
+      <tr>
+        <td class="role-td-ret">
+          <span class="rt-label ret">Retiring</span>
+          <div class="rt-name dim">Analyst</div>
+          <div class="rt-desc">Pulls data, builds models, drafts IC materials. The primary intelligence producer. Answers portfolio questions by assembling evidence from multiple systems manually.</div>
+        </td>
+        <td class="role-td-eme">
+          <span class="rt-label eme">Emerging</span>
+          <div class="rt-name">Reasoning Auditor</div>
+          <div class="rt-desc">Owns the Control Layer. Evaluates whether agent-produced analysis can be trusted. Traces which definitions were active, which context was current, which semantic layer version was in use. The intelligence quality function. This is protecting thoughts — not checking boxes.</div>
+        </td>
+      </tr>
+      <tr><td colspan="2" class="role-td-shift"><strong>The shift:</strong> From producing analysis to auditing reasoning. The question moves from "what is the answer?" to "is this answer trustworthy, and can we prove it?"</td></tr>
 
-    <div class="role-card">
-      <div class="role-card-top">
-        <div class="role-old">
-          <span class="role-label old">Retiring</span>
-          <div class="role-title dim">BI Developer</div>
-          <div class="role-desc">Builds dashboards and reports. Encodes business logic into Power BI or Tableau. Answers reporting requests by building visualization layers over the data warehouse.</div>
-        </div>
-        <div class="role-arrow-col">→</div>
-        <div class="role-new">
-          <span class="role-label new">Emerging</span>
-          <div class="role-title">Agent Skill Designer</div>
-          <div class="role-desc">Owns the Building-Block Layer. Encodes business logic into agent-readable skills. Defines the task boundaries, escalation triggers, and confidence thresholds for renewal recommendation agents, lease abstraction agents, and IC memo drafting agents. Governs what agents decide vs. what they escalate.</div>
-        </div>
-      </div>
-      <div class="role-card-bottom"><strong>The shift:</strong> From dashboards to agent skills. No one needs to pull the report when the agent already has the answer. The design challenge is defining what the agent is allowed to decide alone.</div>
-    </div>
-  </div>
+      <tr>
+        <td class="role-td-ret">
+          <span class="rt-label ret">Retiring</span>
+          <div class="rt-name dim">Data Governance Lead</div>
+          <div class="rt-desc">Enforces format standards, completeness rules, and access controls. Runs governance committees. Checks whether the data arrived correctly and in the right format.</div>
+        </td>
+        <td class="role-td-eme">
+          <span class="rt-label eme">Emerging</span>
+          <div class="rt-name">Meaning Governor</div>
+          <div class="rt-desc">Owns the drift register. Reconciles counterparty definitions — Greystar's occupancy methodology vs. the fund's, CBRE's tenant classification vs. Yardi's, Newmark's NRA calculation vs. the LP report. Manages version boundaries. Convenes semantic governance councils with decisions as output, not discussion.</div>
+        </td>
+      </tr>
+      <tr><td colspan="2" class="role-td-shift"><strong>The shift:</strong> From data governance to meaning governance. Format and completeness are solved problems. Whether two assets are being compared on the same definition of economic occupancy is not.</td></tr>
 
+      <tr>
+        <td class="role-td-ret">
+          <span class="rt-label ret">Retiring</span>
+          <div class="rt-name dim">BI Developer</div>
+          <div class="rt-desc">Builds dashboards and reports. Encodes business logic into Power BI or Tableau. Answers reporting requests by building visualization layers over the data warehouse.</div>
+        </td>
+        <td class="role-td-eme">
+          <span class="rt-label eme">Emerging</span>
+          <div class="rt-name">Agent Skill Designer</div>
+          <div class="rt-desc">Owns the Building-Block Layer. Encodes business logic into agent-readable skills. Defines the task boundaries, escalation triggers, and confidence thresholds for renewal recommendation agents, lease abstraction agents, and IC memo drafting agents. Governs what agents decide vs. what they escalate.</div>
+        </td>
+      </tr>
+      <tr><td colspan="2" class="role-td-shift"><strong>The shift:</strong> From dashboards to agent skills. No one needs to pull the report when the agent already has the answer. The design challenge is defining what the agent is allowed to decide alone.</td></tr>
+
+    </tbody>
+  </table>
   <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.85rem">Roles that do not exist today in most real estate organizations</div>
   <div class="new-roles">
     <div class="new-role">
