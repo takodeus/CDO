@@ -11,45 +11,83 @@
 </div>
 <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo"><span class="logo-mark">MA</span><span class="logo-text">Memory<br>Architecture</span></div>
+
+  <a href="index.html" class="sidebar-logo">
+    <div class="logo-mark">II</div>
+    <div>
+      <div class="logo-text">The Intelligence<br>Architecture Series</div>
+      <div class="logo-hint">← series home</div>
+    </div>
+  </a>
+
+  <div class="series-nav-top">
+    <span class="series-nav-title">The Series</span>
+
+    <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+      <span class="spn">I</span>
+      <span class="spl">The Operating Model</span>
+    </a>
+
+    <div class="series-part active-part" id="sp-2">
+      <div class="series-part-header" onclick="toggleSeriesPart('sp-2')">
+        <span class="spn">II</span>
+        <span class="spl">Institutional Memory</span>
+        <span class="sp-chevron">›</span>
+      </div>
+      <div class="series-part-sections">
+        <a class="series-section-item" href="part-02.html"><span class="sec-num">·</span>Overview</a>
+        <a class="series-section-item" href="gap.html"><span class="sec-num">·</span>The Gap</a>
+        <a class="series-section-item" href="memory-types.html"><span class="sec-num">·</span>Memory Types</a>
+        <a class="series-section-item" href="knowledge-stack.html"><span class="sec-num">·</span>Knowledge Stack</a>
+        <a class="series-section-item" href="decision-lineage.html"><span class="sec-num">·</span>Decision Lineage</a>
+        <a class="series-section-item" href="drift-register.html"><span class="sec-num">·</span>Drift Register</a>
+        <a class="series-section-item" href="decay-governance.html"><span class="sec-num">·</span>Decay Governance</a>
+        <a class="series-section-item" href="moat.html"><span class="sec-num">·</span>The Moat</a>
+      </div>
+    </div>
+
+    <a href="part-03.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+      <span class="spn">III</span>
+      <span class="spl">The Execution Engine</span>
+    </a>
+  </div>
+
   <nav class="sidebar-nav">
-    <a href="part-02.html" class="nav-item" data-page="home"><span class="nav-num">00</span><span class="nav-label">Overview</span></a>
-    <a href="gap.html" class="nav-item" data-page="gap"><span class="nav-num">01</span><span class="nav-label">The Gap</span></a>
-    <a href="memory-types.html" class="nav-item" data-page="memory-types"><span class="nav-num">02</span><span class="nav-label">Memory Types</span></a>
-    <a href="knowledge-stack.html" class="nav-item active" data-page="knowledge-stack"><span class="nav-num">03</span><span class="nav-label">Knowledge Stack</span></a>
-    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage"><span class="nav-num">04</span><span class="nav-label">Decision Lineage</span></a>
-    <a href="drift-register.html" class="nav-item" data-page="drift-register"><span class="nav-num">05</span><span class="nav-label">Drift Register</span></a>
-    <a href="decay-governance.html" class="nav-item" data-page="decay-governance"><span class="nav-num">06</span><span class="nav-label">Decay Governance</span></a>
-    <a href="moat.html" class="nav-item" data-page="moat"><span class="nav-num">07</span><span class="nav-label">The Moat</span></a>
+    <span class="sidebar-nav-label">In This Part</span>
+    <a href="part-02.html" class="nav-item" data-page="home"><span class="nav-num">·</span><span class="nav-label">Overview</span></a>
+    <a href="gap.html" class="nav-item" data-page="gap"><span class="nav-num">·</span><span class="nav-label">The Gap</span></a>
+    <a href="memory-types.html" class="nav-item" data-page="memory-types"><span class="nav-num">·</span><span class="nav-label">Memory Types</span></a>
+    <a href="knowledge-stack.html" class="nav-item" data-page="knowledge-stack"><span class="nav-num">·</span><span class="nav-label">Knowledge Stack</span></a>
+    <a href="decision-lineage.html" class="nav-item" data-page="decision-lineage"><span class="nav-num">·</span><span class="nav-label">Decision Lineage</span></a>
+    <a href="drift-register.html" class="nav-item" data-page="drift-register"><span class="nav-num">·</span><span class="nav-label">Drift Register</span></a>
+    <a href="decay-governance.html" class="nav-item" data-page="decay-governance"><span class="nav-num">·</span><span class="nav-label">Decay Governance</span></a>
+    <a href="moat.html" class="nav-item" data-page="moat"><span class="nav-num">·</span><span class="nav-label">The Moat</span></a>
   </nav>
-  <div class="sidebar-footer"><span class="sidebar-tag">CDO Brief · Q2 2026</span></div>
+
+  <div class="sidebar-footer">
+    <span class="sidebar-tag">Intelligence Architecture Series · Part II</span>
+  </div>
+
   <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
     <span class="theme-track"><span class="theme-thumb"></span></span>
     <span class="theme-icon">☀</span>
     <span class="theme-label">Light mode</span>
   </button>
-  <div class="series-nav-section">
-    <span class="series-nav-label">In This Series</span>
-    <a href="part-02.html" class="series-home-link">↖ Series Home</a>
-    <a href="part-01.html" class="series-nav-item">
-      <span class="series-nav-num">01</span>
-      <span>I · The Operating Model</span>
-    </a>
-    <a href="part-02.html" class="series-nav-item current">
-      <span class="series-nav-num">02</span>
-      <span>II · Institutional Memory</span>
-    </a>
-    <a href="part-03.html" class="series-nav-item">
-      <span class="series-nav-num">03</span>
-      <span>III · The Execution Engine</span>
-    </a>
-  </div>
 </aside>
 <header class="mobile-header">
   <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
   <span class="mobile-title">Memory Architecture</span><span class="mobile-page-num">03</span>
 </header>
 <main class="main-content">
+<div class="page-header-bar">
+  <span class="page-header-title">Part II · Institutional Memory · Knowledge Stack</span>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+    <span class="theme-track"><span class="theme-thumb"></span></span>
+    <span class="theme-icon">☀</span>
+    <span class="theme-label">Light mode</span>
+  </button>
+</div>
+
 <div class="page-inner-wide">
   <div class="eyebrow-tag">03 · Knowledge Stack</div>
   <h1 class="page-title">The four layers —<br><em>mapped to memory</em></h1>

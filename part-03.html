@@ -114,40 +114,72 @@
 <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
 
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo">
-    <span class="logo-mark">03</span>
-    <span class="logo-text">The Agentic<br>Org</span>
+
+  <a href="index.html" class="sidebar-logo">
+    <div class="logo-mark">III</div>
+    <div>
+      <div class="logo-text">The Intelligence<br>Architecture Series</div>
+      <div class="logo-hint">← series home</div>
+    </div>
+  </a>
+
+  <div class="series-nav-top">
+    <span class="series-nav-title">The Series</span>
+
+    <a href="part-01.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+      <span class="spn">I</span>
+      <span class="spl">The Operating Model</span>
+    </a>
+
+    <a href="part-02.html" class="series-part-header" style="text-decoration:none;display:flex;align-items:center;gap:0.7rem;padding:0.55rem 1.4rem 0.55rem 1.1rem;border-left:3px solid transparent;transition:background 0.15s;">
+      <span class="spn">II</span>
+      <span class="spl">Institutional Memory</span>
+    </a>
+
+    <div class="series-part active-part" id="sp-3">
+      <div class="series-part-header" onclick="toggleSeriesPart('sp-3')">
+        <span class="spn">III</span>
+        <span class="spl">The Execution Engine</span>
+        <span class="sp-chevron">›</span>
+      </div>
+      <div class="series-part-sections">
+        <button class="series-section-item sec-active" id="ssec-roles"    onclick="setTab('roles');    setSSecActive('ssec-roles')">   <span class="sec-num">i</span>Role Redesign</button>
+        <button class="series-section-item"            id="ssec-kpis"     onclick="setTab('kpis');     setSSecActive('ssec-kpis')">    <span class="sec-num">ii</span>KPI Redesign</button>
+        <button class="series-section-item"            id="ssec-rollout"  onclick="setTab('rollout');  setSSecActive('ssec-rollout')"> <span class="sec-num">iii</span>Sequencing</button>
+        <button class="series-section-item"            id="ssec-failures" onclick="setTab('failures'); setSSecActive('ssec-failures')"><span class="sec-num">iv</span>Quiet Failures</button>
+      </div>
+    </div>
   </div>
+
   <nav class="sidebar-nav">
-    <a href="#roles"    class="nav-item active" onclick="setTab('roles');    setActiveNav(this)"><span class="nav-num">I</span><span class="nav-label">Role Redesign</span></a>
-    <a href="#kpis"     class="nav-item"        onclick="setTab('kpis');     setActiveNav(this)"><span class="nav-num">II</span><span class="nav-label">KPI Redesign</span></a>
-    <a href="#rollout"  class="nav-item"        onclick="setTab('rollout');  setActiveNav(this)"><span class="nav-num">III</span><span class="nav-label">Sequencing</span></a>
-    <a href="#failures" class="nav-item"        onclick="setTab('failures'); setActiveNav(this)"><span class="nav-num">IV</span><span class="nav-label">Quiet Failures</span></a>
+    <span class="sidebar-nav-label">In This Part</span>
+    <a href="#" class="nav-item active" id="nav-roles"    onclick="setTab('roles');    setNavActive('nav-roles');    return false;"><span class="nav-num">i</span><span class="nav-label">Role Redesign</span></a>
+    <a href="#" class="nav-item"        id="nav-kpis"     onclick="setTab('kpis');     setNavActive('nav-kpis');     return false;"><span class="nav-num">ii</span><span class="nav-label">KPI Redesign</span></a>
+    <a href="#" class="nav-item"        id="nav-rollout"  onclick="setTab('rollout');  setNavActive('nav-rollout');  return false;"><span class="nav-num">iii</span><span class="nav-label">Sequencing</span></a>
+    <a href="#" class="nav-item"        id="nav-failures" onclick="setTab('failures'); setNavActive('nav-failures'); return false;"><span class="nav-num">iv</span><span class="nav-label">Quiet Failures</span></a>
   </nav>
+
   <div class="sidebar-footer">
-    <span class="sidebar-tag">Part III · 2026 · Real Estate</span>
-  </div>
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
-    <span class="theme-track"><span class="theme-thumb"></span></span>
-    <span class="theme-icon">☀</span>
-    <span class="theme-label">Light mode</span>
-  </button>
-  <div class="series-nav-section">
-    <span class="series-nav-label">In This Series</span>
-    <a href="index.html" class="series-home-link">↖ Series Home</a>
-    <a href="part-01.html" class="series-nav-item"><span class="series-nav-num">01</span><span>I · The Operating Model</span></a>
-    <a href="part-02.html" class="series-nav-item"><span class="series-nav-num">02</span><span>II · Institutional Memory</span></a>
-    <a href="part-03.html" class="series-nav-item current"><span class="series-nav-num">03</span><span>III · The Execution Engine</span></a>
+    <span class="sidebar-tag">Intelligence Architecture Series · Part III</span>
   </div>
 </aside>
 
 <header class="mobile-header">
   <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-  <span class="mobile-title">The Agentic Org</span>
-  <span class="mobile-page-num">03</span>
+  <span class="mobile-title">The Execution Engine</span>
+  <span class="mobile-page-num">III</span>
 </header>
 
 <main class="main-content">
+
+<div class="page-header-bar">
+  <span class="page-header-title">Part III · The Execution Engine</span>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+    <span class="theme-track"><span class="theme-thumb"></span></span>
+    <span class="theme-icon">☀</span>
+    <span class="theme-label">Light mode</span>
+  </button>
+</div>
 
 <div class="tab-nav-bar">
   <button class="tab-btn active" id="btn-roles"    onclick="setTab('roles')">Role Redesign</button>
@@ -617,10 +649,24 @@ function setTab(id) {
   const b = document.getElementById('btn-' + id);
   if (s) { s.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   if (b) b.classList.add('active');
+  setNavActive('nav-' + id);
+  setSSecActive('ssec-' + id);
 }
-function setActiveNav(el) {
+function setNavActive(id) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  el.classList.add('active');
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+function setSSecActive(id) {
+  document.querySelectorAll('.series-section-item').forEach(s => s.classList.remove('sec-active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('sec-active');
+}
+function toggleSeriesPart(id) {
+  const part = document.getElementById(id);
+  const wasActive = part.classList.contains('active-part');
+  document.querySelectorAll('.series-part').forEach(p => p.classList.remove('active-part'));
+  if (!wasActive) part.classList.add('active-part');
 }
 function togglePhase(id) {
   const card = document.getElementById(id);

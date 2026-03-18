@@ -1,14 +1,7 @@
-/* nav.js — routing, RE toggles, theme switching */
+/* nav.js — theme, series accordion, RE toggles, MA-site routing */
 
-const PAGE_NUMS = {
-  'home':'00','gap':'01','memory-types':'02','knowledge-stack':'03',
-  'decision-lineage':'04','drift-register':'05','decay-governance':'06','moat':'07'
-};
-
-/* ── THEME ──────────────────────────────────────── */
-function getTheme() {
-  return localStorage.getItem('ma-theme') || 'dark';
-}
+/* ── THEME ────────────────────────────────────────── */
+function getTheme() { return localStorage.getItem('ma-theme') || 'dark'; }
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
@@ -28,13 +21,33 @@ function applyTheme(theme) {
   }
 }
 
-function toggleTheme() {
-  applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+function toggleTheme() { applyTheme(getTheme() === 'dark' ? 'light' : 'dark'); }
+
+/* ── SERIES ACCORDION ─────────────────────────────── */
+function toggleSeriesPart(id) {
+  const part = document.getElementById(id);
+  if (!part) return;
+  const wasActive = part.classList.contains('active-part');
+  document.querySelectorAll('.series-part').forEach(p => p.classList.remove('active-part'));
+  if (!wasActive) part.classList.add('active-part');
 }
 
-/* ── RE PANEL TOGGLE ────────────────────────────── */
+/* ── SECTION + NAV ACTIVE STATE ──────────────────── */
+function setSSecActive(id) {
+  document.querySelectorAll('.series-section-item').forEach(s => s.classList.remove('sec-active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('sec-active');
+}
+
+function setNavActive(id) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+
+/* ── RE PANEL TOGGLE ──────────────────────────────── */
 function toggleRE(sectionId) {
-  const btn   = document.querySelector(`[data-re-target="${sectionId}"]`);
+  const btn   = document.querySelector('[data-re-target="' + sectionId + '"]');
   const panel = document.getElementById('re-' + sectionId);
   if (!panel || !btn) return;
   const isActive = panel.classList.toggle('active');
@@ -42,12 +55,10 @@ function toggleRE(sectionId) {
   if (isActive) setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
 }
 
-/* ── DRIFT ACCORDION ────────────────────────────── */
-function toggleDRE(el) {
-  el.closest('.dre').classList.toggle('open');
-}
+/* ── DRIFT ACCORDION ──────────────────────────────── */
+function toggleDRE(el) { el.closest('.dre').classList.toggle('open'); }
 
-/* ── KNOWLEDGE STACK EXPAND ─────────────────────── */
+/* ── KNOWLEDGE STACK EXPAND ───────────────────────── */
 function toggleLayer(el) {
   const block   = el.closest('.layer-block');
   if (!block) return;
@@ -57,27 +68,30 @@ function toggleLayer(el) {
   content.classList.toggle('visible');
 }
 
-/* ── MOBILE MENU ────────────────────────────────── */
+/* ── MOBILE MENU ──────────────────────────────────── */
 function toggleMobileMenu() {
-  document.getElementById('sidebar').classList.toggle('mobile-open');
+  document.getElementById('sidebar')?.classList.toggle('mobile-open');
 }
 
-/* ── INIT ───────────────────────────────────────── */
+/* ── INIT ─────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  // Apply saved theme immediately
   applyTheme(getTheme());
 
-  // Mark active nav item
+  // Mark active page in sidebar nav (data-page attribute)
   const file   = window.location.pathname.split('/').pop() || 'index.html';
-  const pageId = file === 'index.html' ? 'home' : file.replace('.html', '');
-  document.querySelectorAll('.nav-item').forEach(a => {
+  const pageId = (file === 'index.html' || file === 'part-02.html') ? 'home' : file.replace('.html', '');
+  document.querySelectorAll('.nav-item[data-page]').forEach(a => {
     a.classList.toggle('active', a.dataset.page === pageId);
   });
-  const mobileNum = document.querySelector('.mobile-page-num');
-  if (mobileNum) mobileNum.textContent = PAGE_NUMS[pageId] || '00';
 
-  // Close mobile menu on nav click
-  document.querySelectorAll('.nav-item').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('sidebar').classList.remove('mobile-open'));
+  // Mark active page in series section items (href-based, for Part II pages)
+  document.querySelectorAll('.series-section-item[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    a.classList.toggle('sec-active', href === file || (file === '' && href === 'part-02.html'));
+  });
+
+  // Close mobile menu on any nav click
+  document.querySelectorAll('.nav-item, .series-section-item').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('sidebar')?.classList.remove('mobile-open'));
   });
 });
