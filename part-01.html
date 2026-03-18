@@ -587,6 +587,8 @@
  <div class="inline-note blue" style="margin-bottom:3rem">
  <strong>The Constraint</strong>
  Legacy data warehouses and MDM platforms cannot natively support probabilistic entity resolution, plural ontologies, or temporal reasoning. They were built to answer "what is the number?" Not "what did the number mean at this moment, under this definition, in this context?" That gap is architectural, not a configuration problem.
+ <br><br>
+ There is a second constraint that compounds the first. Data warehouses sit in the read path. By the time a Yardi transaction lands in Snowflake or a Argus model syncs to the data lake, the decision that produced it is already over. The context that justified it — which definition was active, who approved the exception, what version of the cap rate methodology applied — is gone. A system that only sees reads, after the fact, can tell you what happened. It cannot tell you why. Decision lineage requires being in the write path at execution time, not receiving a summary of it afterward.
  </div>
 
  <!-- BRIDGE -->
