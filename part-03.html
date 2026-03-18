@@ -200,6 +200,33 @@
   .five-layers .layer-row { grid-template-columns: 1fr; }
   .lr-label { border-right: none; border-bottom: 1px solid var(--bd); }
 }
+/* Quiet Failures 2-column table */
+.qf-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+.qf-th-fail, .qf-th-mit {
+  padding: 0.75rem 1.25rem; font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+  color: #fff; text-align: left; border-bottom: 2px solid var(--bd-strong);
+}
+.qf-th-fail { background: #1a2f45; width: 58%; }
+.qf-th-mit  { background: var(--blue-mid); width: 42%; border-left: 1px solid var(--bd); }
+.qf-fail-cell, .qf-mit-cell {
+  padding: 1.5rem 1.25rem; vertical-align: top;
+  border-bottom: 1px solid var(--bd);
+}
+.qf-fail-cell { background: var(--bg-card); }
+.qf-mit-cell  { background: var(--bg-panel); border-left: 1px solid var(--bd); }
+.qf-num { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; color: var(--signal-lt); margin-bottom: 0.3rem; }
+.qf-name { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.5rem; }
+.qf-desc { font-size: 0.83rem; color: var(--tx-body); line-height: 1.7; }
+.qf-mit-label { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-lt); margin-bottom: 0.4rem; }
+.qf-mit-text { font-size: 0.83rem; color: var(--tx-body); line-height: 1.65; }
+@media (max-width: 768px) {
+  .qf-table, .qf-table tbody, .qf-table tr { display: block; }
+  .qf-table thead { display: none; }
+  .qf-fail-cell, .qf-mit-cell { display: block; width: 100%; border-left: none; }
+  .qf-mit-cell { border-top: 1px solid var(--bd); padding-top: 1rem; }
+}
+
 </style>
 </head>
 <body>
@@ -572,8 +599,8 @@
   <p class="page-lead">A domain is the right unit of change. It is a coherent end-to-end workflow — from signal to outcome — with clear owners and measurable results. Big enough to matter economically. Small enough to rebuild without disrupting the rest of the business while the rebuild is underway. The right approach is to run the redesigned domain in a clean-room environment alongside the existing process until it is proven, then progressively tip activity into it. Each domain has a defined exit signal — a concrete capability the organization must demonstrate before moving to the next.</p>
 
   <div class="inline-note amber" style="margin-bottom:2rem">
-    <strong>The ordering principle</strong>
-    The four domains below are sequenced by dependency, not by size or complexity. Each domain builds the governed foundation the next one requires. Leasing and renewals establishes the semantic layer and proves the Factual Layer works. Asset management reporting uses that same semantic layer and starts creating lineage records — the beginning of institutional memory. Acquisition screening requires both a mature semantic layer and current context in the graph. Capital and construction requires entity resolution across the most systems and benefits from prior capex decisions already in the lineage record. Skip a domain or reverse the order, and the domain that follows will be running on a foundation that was never proved.
+    <strong>Domain complexity increases with system breadth</strong>
+    Each domain below is a coherent end-to-end workflow with clear owners and measurable outcomes. They vary in architectural complexity: Construction and Capital Expenditures spans the most heterogeneous systems, involves the most external parties, and requires the most mature entity resolution. Leasing and Renewals has the highest decision volume but the most bounded data model. Asset Management Reporting has the widest LP visibility. Investing and Asset Management requires the richest context but the most concentrated decision authority. The right starting point depends on where the organization's foundation is most mature.
   </div>
 
   <!-- Five technical layers -->
@@ -639,8 +666,47 @@
       <div class="domain-header">
         <div class="domain-num-col">
           <div class="domain-num">01</div>
-          <div class="domain-num-label">First</div>
+                  </div>
+        <div class="domain-title-area">
+          <div class="domain-title">Construction and Capital Expenditures</div>
+          <div class="domain-sub">Capex sequencing, project controls, vendor management. Requires the most mature cross-system coordination.</div>
         </div>
+        <div class="domain-signal">
+          <div class="domain-signal-lbl">Exit Signal</div>
+          <div class="domain-signal-text">Capex budget variances are flagged by an agent as they occur, with the context of prior-period decisions visible to the asset manager reviewing the alert.</div>
+        </div>
+        <div class="domain-chevron">▾</div>
+      </div>
+      <div class="domain-body">
+        <div class="domain-cols">
+          <div>
+            <span class="domain-col-head">Why this domain</span>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>Construction and capex workflows span the most systems — project management, vendor contracts, budget tracking, Yardi — and require the most mature entity resolution before agents navigate them reliably</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>The governed context built in prior domains — asset-level history, prior capex decisions, vendor performance records — is what makes capex agents useful rather than merely fast</span></div>
+            <div class="domain-item"><span class="domain-item-dot">→</span><span>By this stage the organization has learned to delegate, review, and own — the operating model that signals genuine agentic maturity</span></div>
+            <div class="domain-outcome">
+              <span>Observed outcome:</span>
+              <span class="domain-outcome-num">&gt;30%</span>
+              <span>time savings on maintenance and construction workflow coordination</span>
+              <span style="font-size:0.55rem;opacity:0.7;margin-left:0.25rem">JLL, 2025</span>
+            </div>
+
+          </div>
+          <div>
+            <span class="domain-col-head amber">What must be true first</span>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Entity resolution mature enough to unify the same asset across project management systems, Yardi, and the vendor's own billing system</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Prior capex decisions captured in the lineage record — what was approved, at what cost basis, under what assumptions about NOI recovery</span></div>
+            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Escalation paths defined: what budget variance triggers human review, what schedule deviation requires portfolio manager notification</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Domain 2 -->
+    <div class="domain-card" id="dom-2" onclick="toggleDomain('dom-2')">
+      <div class="domain-header">
+        <div class="domain-num-col">
+          <div class="domain-num">02</div>
+                  </div>
         <div class="domain-title-area">
           <div class="domain-title">Leasing and Renewals</div>
           <div class="domain-sub">Highest volume, most measurable outcomes, best ratio of steps to thoughts.</div>
@@ -677,13 +743,12 @@
       </div>
     </div>
 
-    <!-- Domain 2 -->
-    <div class="domain-card" id="dom-2" onclick="toggleDomain('dom-2')">
+    <!-- Domain 3 -->
+    <div class="domain-card" id="dom-3" onclick="toggleDomain('dom-3')">
       <div class="domain-header">
         <div class="domain-num-col">
-          <div class="domain-num">02</div>
-          <div class="domain-num-label">Second</div>
-        </div>
+          <div class="domain-num">03</div>
+                  </div>
         <div class="domain-title-area">
           <div class="domain-title">Asset Management Reporting</div>
           <div class="domain-sub">Quarterly reporting on a governed semantic layer. Where IC materials become structured lineage records.</div>
@@ -697,7 +762,7 @@
       <div class="domain-body">
         <div class="domain-cols">
           <div>
-            <span class="domain-col-head">Why this comes second</span>
+            <span class="domain-col-head">Why this domain</span>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>The semantic layer built for leasing already covers the core metrics: occupancy, NOI, WALT. Reporting agents run on the same governed foundation — no new entity resolution required</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>IC materials generated here become the first structured lineage records — the beginning of the institutional memory Part II described</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>When an LP asks why Q3 occupancy differs from Q2, the answer is traceable — not reconstructed from analyst memory at 11pm before a board meeting</span></div>
@@ -718,13 +783,12 @@
       </div>
     </div>
 
-    <!-- Domain 3 -->
-    <div class="domain-card" id="dom-3" onclick="toggleDomain('dom-3')">
+    <!-- Domain 4 -->
+    <div class="domain-card" id="dom-4" onclick="toggleDomain('dom-4')">
       <div class="domain-header">
         <div class="domain-num-col">
-          <div class="domain-num">03</div>
-          <div class="domain-num-label">Third</div>
-        </div>
+          <div class="domain-num">04</div>
+                  </div>
         <div class="domain-title-area">
           <div class="domain-title">Investing and Asset Management</div>
           <div class="domain-sub">Acquisition screening, performance monitoring, early warning detection. The highest context-requirement domain.</div>
@@ -738,7 +802,7 @@
       <div class="domain-body">
         <div class="domain-cols">
           <div>
-            <span class="domain-col-head">Why this comes third</span>
+            <span class="domain-col-head">Why this domain</span>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>Acquisition screening requires the most context richness — submarket supply dynamics, cap rate trajectory, macro assumptions — all of which need to be current and governed before an agent reasons against them</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>By this stage the Reasoning Auditor function is established. The team knows how to evaluate agent-produced investment analysis before it goes to the IC</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>Decision lineage records from this domain create the institutional memory that asset management reporting will reference for the life of the asset</span></div>
@@ -760,47 +824,6 @@
       </div>
     </div>
 
-    <!-- Domain 4 -->
-    <div class="domain-card" id="dom-4" onclick="toggleDomain('dom-4')">
-      <div class="domain-header">
-        <div class="domain-num-col">
-          <div class="domain-num">04</div>
-          <div class="domain-num-label">Fourth</div>
-        </div>
-        <div class="domain-title-area">
-          <div class="domain-title">Construction and Capital Expenditures</div>
-          <div class="domain-sub">Capex sequencing, project controls, vendor management. Requires the most mature cross-system coordination.</div>
-        </div>
-        <div class="domain-signal">
-          <div class="domain-signal-lbl">Exit Signal</div>
-          <div class="domain-signal-text">Capex budget variances are flagged by an agent as they occur, with the context of prior-period decisions visible to the asset manager reviewing the alert.</div>
-        </div>
-        <div class="domain-chevron">▾</div>
-      </div>
-      <div class="domain-body">
-        <div class="domain-cols">
-          <div>
-            <span class="domain-col-head">Why this comes last</span>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>Construction and capex workflows span the most systems — project management, vendor contracts, budget tracking, Yardi — and require the most mature entity resolution before agents navigate them reliably</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>The governed context built in prior domains — asset-level history, prior capex decisions, vendor performance records — is what makes capex agents useful rather than merely fast</span></div>
-            <div class="domain-item"><span class="domain-item-dot">→</span><span>By this stage the organization has learned to delegate, review, and own — the operating model that signals genuine agentic maturity</span></div>
-            <div class="domain-outcome">
-              <span>Observed outcome:</span>
-              <span class="domain-outcome-num">&gt;30%</span>
-              <span>time savings on maintenance and construction workflow coordination</span>
-              <span style="font-size:0.55rem;opacity:0.7;margin-left:0.25rem">JLL, 2025</span>
-            </div>
-            <div class="domain-item" style="margin-top:0.85rem"><span class="domain-item-dot">→</span><span><strong>Why construction is harder than investment management:</strong> Investment screening is analytically complex but architecturally bounded — a defined thesis, a governed metric set, one decision at the end. Construction spans the most heterogeneous systems, involves the most external parties with incompatible data models, requires the most mature entity resolution, and produces decisions that are the least reversible. A missed cap rate assumption can be revised. A committed construction contract cannot.</span></div>
-          </div>
-          <div>
-            <span class="domain-col-head amber">What must be true first</span>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Entity resolution mature enough to unify the same asset across project management systems, Yardi, and the vendor's own billing system</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Prior capex decisions captured in the lineage record — what was approved, at what cost basis, under what assumptions about NOI recovery</span></div>
-            <div class="domain-item"><span class="domain-item-dot amber">→</span><span>Escalation paths defined: what budget variance triggers human review, what schedule deviation requires portfolio manager notification</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 
@@ -828,93 +851,82 @@
   <h1 class="page-title">What fails without<br><em>announcing itself</em></h1>
   <p class="page-lead">The dangerous failures in an agentic real estate organization are not the ones that show up in the error log. They accumulate in the IC materials, the LP packs, and the renewal recommendations — visible only in retrospect, when an LP asks a question no one can answer, or when a portfolio manager realizes two assets have been compared on definitions that drifted apart eighteen months ago. Every one of these failures has the same shape: the infrastructure was built and the process was launched, then the day-to-day pressure of running a real estate portfolio quietly eroded both.</p>
 
-  <div class="failure-grid">
-
-    <div class="failure-card">
-      <div class="failure-card-top">
-        <div class="failure-num-col"><div class="failure-num">01</div></div>
-        <div class="failure-body">
-          <div class="failure-name">Governance Theater</div>
-          <div class="failure-desc">The drift register is created, the semantic governance council is established, the quarterly review is on the calendar. But nothing is resolved. The council meets and defers. The register accumulates entries without owners. The actual definitions running through Yardi and the LP reporting layer continue to diverge — documented and unaddressed. The governance infrastructure exists. The governance function does not.</div>
-        </div>
-      </div>
-      <div class="failure-footer">
-        <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Every register entry requires a named owner and a resolution deadline. The council's output is a decision — a version boundary, an explicit coexistence protocol, or a formal escalation — not a summary of discussion. Measure time-to-resolution, not number of meetings held.</span>
-      </div>
-    </div>
-
-    <div class="failure-card">
-      <div class="failure-card-top">
-        <div class="failure-num-col"><div class="failure-num">02</div></div>
-        <div class="failure-body">
-          <div class="failure-name">Semantic Layer Orphaning</div>
-          <div class="failure-desc">The semantic layer is built, governed, and versioned. And then analysts continue computing occupancy and NOI in their own spreadsheet models using their own cohort logic. The IC memo that goes to the investment committee uses numbers that bypassed the semantic layer entirely. Two versions of the same metric now coexist — one governed, one operational — with no one having made that choice explicitly and no record that it was made at all.</div>
-        </div>
-      </div>
-      <div class="failure-footer">
-        <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Metrics that bypass the semantic layer are flagged at the point of use. IC materials cite the semantic layer version used. A bypass is a drift event — registered and resolved, not treated as analyst discretion that goes unrecorded.</span>
-      </div>
-    </div>
-
-    <div class="failure-card">
-      <div class="failure-card-top">
-        <div class="failure-num-col"><div class="failure-num">03</div></div>
-        <div class="failure-body">
-          <div class="failure-name">Agent Overconfidence</div>
-          <div class="failure-desc">The renewal agent produces a recommendation for the Austin mixed-use asset. The output is formatted, specific, and reads like an analyst wrote it. The occupancy figure it used reflects a definition that shifted when the property manager changed eight months ago. The market comp data expired from Active six weeks ago. No one checks because the format signals competence. The recommendation goes into the IC deck. This is not a model failure. It is a Control Layer failure — and a fluent output is more dangerous than a wrong number because it travels further before anyone questions it.</div>
-        </div>
-      </div>
-      <div class="failure-footer">
-        <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Reasoning Auditors review material agent outputs before they move forward. Agent recommendations carry visible metadata: which semantic layer version, which context records in scope, what the agent could not see. The format makes provenance legible. Confidence without traceability is not confidence — it is fluency.</span>
-      </div>
-    </div>
-
-    <div class="failure-card">
-      <div class="failure-card-top">
-        <div class="failure-num-col"><div class="failure-num">04</div></div>
-        <div class="failure-body">
-          <div class="failure-name">Lineage Abandonment Under Pressure</div>
-          <div class="failure-desc">The deal is moving. There is a competing bid. The lineage capture requirement adds a step. The exception is made once — the deal closes, the record is incomplete. The second exception is made without discussion. Within two quarters, the only IC decisions with structured lineage records are the ones that were not time-sensitive. Which is the ones that did not matter. The governance that was supposed to make institutional memory persist has been quietly switched off for every decision that was consequential.</div>
-        </div>
-      </div>
-      <div class="failure-footer">
-        <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Lineage capture must be lightweight enough that it adds minutes, not hours, to the IC process. It is the memo's metadata, not a separate deliverable. Time pressure is not a valid exception category. If it is too heavy, that is a design problem — not a reason to stop capturing the record.</span>
-      </div>
-    </div>
-
-    <div class="failure-card">
-      <div class="failure-card-top">
-        <div class="failure-num-col"><div class="failure-num">05</div></div>
-        <div class="failure-body">
-          <div class="failure-name">Context Graph Rot</div>
-          <div class="failure-desc">The context graph grows. No one manages the decay lifecycle. A Sun Belt industrial supply wave from 2023 remains Active. A competing REIT's tenant incentive campaign that ended in Q1 is still tagged Active. A macro assumption from a pre-rate-cut environment continues to inform agent reasoning about cap rate trajectories. The graph is full of authoritative, specific, outdated context — and it is worse than no context because the agent trusts it. Part II built the decay governance framework precisely for this. The failure is not architectural. It is operational.</div>
-        </div>
-      </div>
-      <div class="failure-footer">
-        <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Decay governance is a staffed function, not a background process. Context Currency Rate is a tracked KPI. Every Active record has a review date. The Context Graph Curator owns the lifecycle — transitions, timestamps, and the record of why each happened.</span>
-      </div>
-    </div>
-
-    <div class="failure-card">
-      <div class="failure-card-top">
-        <div class="failure-num-col"><div class="failure-num">06</div></div>
-        <div class="failure-body">
-          <div class="failure-name">Role Transition Resistance</div>
-          <div class="failure-desc">The org chart shows Reasoning Auditors. The analysts are still producing analysis. Auditing feels like a demotion because checking someone else's work has never been prestigious in this industry. The identity of the person who figures things out is harder to give up than any specific task. The role redesign is announced, the org chart is updated, and then the behavior does not change. The agents run in parallel to the old model without replacing it. The transformation stalls at the surface.</div>
-        </div>
-      </div>
-      <div class="failure-footer">
-        <span class="mit-label">Mitigation</span>
-        <span class="mit-text">Frame the shift explicitly: a Reasoning Auditor is not a checker. They are the organization's intelligence quality function — the person who determines whether an IC-bound recommendation can be trusted and why. That requires more judgment than building the model did. The career path runs toward decision governance, not away from influence.</span>
-      </div>
-    </div>
-
-  </div>
+  <table class="qf-table">
+    <thead>
+      <tr>
+        <th class="qf-th-fail">Failure</th>
+        <th class="qf-th-mit">Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="qf-fail-cell">
+        <div class="qf-num">01</div>
+        <div class="qf-name">Governance Theater</div>
+        <div class="qf-desc">The drift register is created, the semantic governance council is established, the quarterly review is on the calendar. But nothing is resolved. The council meets and defers. The register accumulates entries without owners. The actual definitions running through Yardi and the LP reporting layer continue to diverge — documented and unaddressed. The governance infrastructure exists. The governance function does not.</div>
+      </td>
+      <td class="qf-mit-cell">
+        <div class="qf-mit-label">Mitigation</div>
+        <div class="qf-mit-text">Every register entry requires a named owner and a resolution deadline. The council's output is a decision — a version boundary, an explicit coexistence protocol, or a formal escalation — not a summary of discussion. Measure time-to-resolution, not number of meetings held.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="qf-fail-cell">
+        <div class="qf-num">02</div>
+        <div class="qf-name">Semantic Layer Orphaning</div>
+        <div class="qf-desc">The semantic layer is built, governed, and versioned. And then analysts continue computing occupancy and NOI in their own spreadsheet models using their own cohort logic. The IC memo that goes to the investment committee uses numbers that bypassed the semantic layer entirely. Two versions of the same metric now coexist — one governed, one operational — with no one having made that choice explicitly and no record that it was made at all.</div>
+      </td>
+      <td class="qf-mit-cell">
+        <div class="qf-mit-label">Mitigation</div>
+        <div class="qf-mit-text">Metrics that bypass the semantic layer are flagged at the point of use. IC materials cite the semantic layer version used. A bypass is a drift event — registered and resolved, not treated as analyst discretion that goes unrecorded.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="qf-fail-cell">
+        <div class="qf-num">03</div>
+        <div class="qf-name">Agent Overconfidence</div>
+        <div class="qf-desc">The renewal agent produces a recommendation for the Austin mixed-use asset. The output is formatted, specific, and reads like an analyst wrote it. The occupancy figure it used reflects a definition that shifted when the property manager changed eight months ago. The market comp data expired from Active six weeks ago. No one checks because the format signals competence. The recommendation goes into the IC deck. This is not a model failure. It is a Control Layer failure — and a fluent output is more dangerous than a wrong number because it travels further before anyone questions it.</div>
+      </td>
+      <td class="qf-mit-cell">
+        <div class="qf-mit-label">Mitigation</div>
+        <div class="qf-mit-text">Reasoning Auditors review material agent outputs before they move forward. Agent recommendations carry visible metadata: which semantic layer version, which context records in scope, what the agent could not see. The format makes provenance legible. Confidence without traceability is not confidence — it is fluency.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="qf-fail-cell">
+        <div class="qf-num">04</div>
+        <div class="qf-name">Lineage Abandonment Under Pressure</div>
+        <div class="qf-desc">The deal is moving. There is a competing bid. The lineage capture requirement adds a step. The exception is made once — the deal closes, the record is incomplete. The second exception is made without discussion. Within two quarters, the only IC decisions with structured lineage records are the ones that were not time-sensitive. Which is the ones that did not matter. The governance that was supposed to make institutional memory persist has been quietly switched off for every decision that was consequential.</div>
+      </td>
+      <td class="qf-mit-cell">
+        <div class="qf-mit-label">Mitigation</div>
+        <div class="qf-mit-text">Lineage capture must be lightweight enough that it adds minutes, not hours, to the IC process. It is the memo's metadata, not a separate deliverable. Time pressure is not a valid exception category. If it is too heavy, that is a design problem — not a reason to stop capturing the record.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="qf-fail-cell">
+        <div class="qf-num">05</div>
+        <div class="qf-name">Context Graph Rot</div>
+        <div class="qf-desc">The context graph grows. No one manages the decay lifecycle. A Sun Belt industrial supply wave from 2023 remains Active. A competing REIT's tenant incentive campaign that ended in Q1 is still tagged Active. A macro assumption from a pre-rate-cut environment continues to inform agent reasoning about cap rate trajectories. The graph is full of authoritative, specific, outdated context — and it is worse than no context because the agent trusts it. The failure is not architectural. It is operational.</div>
+      </td>
+      <td class="qf-mit-cell">
+        <div class="qf-mit-label">Mitigation</div>
+        <div class="qf-mit-text">Decay governance is a staffed function, not a background process. Context Currency Rate is a tracked KPI. Every Active record has a review date. The Context Graph Curator owns the lifecycle — transitions, timestamps, and the record of why each happened.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="qf-fail-cell">
+        <div class="qf-num">06</div>
+        <div class="qf-name">Role Transition Resistance</div>
+        <div class="qf-desc">The org chart shows Reasoning Auditors. The analysts are still producing analysis. Auditing feels like a demotion because checking someone else's work has never been prestigious in this industry. The identity of the person who figures things out is harder to give up than any specific task. The role redesign is announced, the org chart is updated, and then the behavior does not change. The agents run in parallel to the old model without replacing it. The transformation stalls at the surface.</div>
+      </td>
+      <td class="qf-mit-cell">
+        <div class="qf-mit-label">Mitigation</div>
+        <div class="qf-mit-text">Frame the shift explicitly: a Reasoning Auditor is not a checker. They are the organization's intelligence quality function — the person who determines whether an IC-bound recommendation can be trusted and why. That requires more judgment than building the model did. The career path runs toward decision governance, not away from influence.</div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
   <div class="dark-banner">
     <p>Every one of these failures is the normal behavior of busy organizations that did not design the governance to be easy enough to sustain under real operating pressure. The answer is not discipline. It is <em>design</em>.</p>
