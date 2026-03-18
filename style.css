@@ -696,6 +696,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .page-nav-btn.next { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
 .page-nav-btn.next:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
+
+/* ═══════════════════════════════════════════════════════
+   SECTION NAV BAR — shared across all three articles
+═══════════════════════════════════════════════════════ */
+.tab-nav-bar {
+  display: flex; gap: 2px; padding: 0 1.4rem;
+  border-bottom: 1px solid var(--bd); background: var(--bg-sidebar);
+  overflow-x: auto; scrollbar-width: none;
+}
+.tab-nav-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 0.75rem 1.1rem; font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--on-dark-4); background: transparent; border: none;
+  border-bottom: 2px solid transparent; cursor: pointer;
+  transition: all 0.18s var(--ease); white-space: nowrap;
+  text-decoration: none; display: inline-flex; align-items: center;
+}
+.tab-btn:hover { color: var(--on-dark-2); }
+.tab-btn.active { color: var(--blue-lt); border-bottom-color: var(--blue-mid); }
+
 /* ═══════════════════════════════════════════════════════
    RESPONSIVE — iPhone-first mobile layout
 ═══════════════════════════════════════════════════════ */
