@@ -1,86 +1,543 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 01 — From Data Stack to Control Tower · Data Intelligence Series</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>01 · The Control Problem — Your Systems Are Forgetting</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-:root { --blue:#4F8EF7;--blue-deep:#2563EB;--teal:#00C2CB;--radius:10px; }
-[data-theme="light"] { --bg:#F5F7FB;--surface:#fff;--border:#E2E6F0;--text-primary:#0D1117;--text-muted:#8892A8;--text-secondary:#3D4B6B; }
-[data-theme="dark"]  { --bg:#080C14;--surface:#111827;--border:#1E2D45;--text-primary:#F0F4FF;--text-muted:#5A7898;--text-secondary:#A8BDD8; }
-*{box-sizing:border-box;margin:0;padding:0;}
-html{font-size:14px;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;}
-.series-bar{
-  position:sticky;top:0;z-index:200;
-  background:var(--bg);border-bottom:1px solid var(--border);
-  padding:0 32px;height:42px;
-  display:flex;align-items:center;justify-content:space-between;
-  font-family:'Inter',sans-serif;
+/* Piece-01 specific: tab system */
+.tab-nav-bar {
+  display: flex; gap: 2px; padding: 0 1.4rem 0;
+  border-bottom: 1px solid var(--bd); background: var(--bg-sidebar);
+  overflow-x: auto;
 }
-.series-left{display:flex;align-items:center;gap:16px;}
-.series-home{font-size:11px;font-weight:600;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;}
-.series-home:hover{opacity:0.8;}
-.series-divider{width:1px;height:16px;background:var(--border);}
-.series-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);}
-.series-nav{display:flex;align-items:center;gap:4px;}
-.series-nav-item{
-  padding:4px 10px;border-radius:5px;font-size:10px;font-weight:500;
-  text-decoration:none;color:var(--text-muted);transition:all 0.15s;
+.tab-btn {
+  padding: 0.75rem 1.1rem; font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--on-dark-4); background: transparent; border: none;
+  border-bottom: 2px solid transparent; cursor: pointer;
+  transition: all 0.18s var(--ease); white-space: nowrap;
 }
-.series-nav-item:hover{color:var(--text-primary);}
-.series-nav-item.current{background:rgba(79,142,247,0.12);color:var(--blue);font-weight:600;}
-.series-nav-arrow{font-size:11px;color:var(--border);}
-.theme-toggle{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2px;gap:2px;}
-.theme-opt{display:flex;align-items:center;gap:4px;padding:4px 8px;border-radius:4px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:var(--text-muted);background:transparent;transition:all 0.15s;}
-[data-theme="light"] .theme-opt.active{background:var(--bg);color:var(--blue-deep);}
-[data-theme="dark"] .theme-opt.active{background:rgba(79,142,247,0.1);color:#6BA3FF;}
-.theme-opt svg{width:10px;height:10px;}
-.embed-frame{flex:1;display:flex;flex-direction:column;}
-iframe{flex:1;border:none;width:100%;min-height:calc(100vh - 42px);}
+.tab-btn:hover { color: var(--on-dark-2); }
+.tab-btn.active { color: var(--blue-lt); border-bottom-color: var(--blue-mid); }
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+
+/* Shift rows (expandable) */
+.shift-row {
+  border: 1px solid var(--bd); background: var(--bg-card);
+  margin-bottom: 4px; overflow: hidden;
+  transition: box-shadow 0.18s;
+}
+.shift-row:hover { box-shadow: 0 0 0 1px var(--blue-mid); }
+.shift-row.open { box-shadow: 0 0 0 1px var(--blue-mid); }
+.shift-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.9rem 1.25rem; cursor: pointer; user-select: none;
+}
+.shift-header:hover { background: rgba(93,173,226,0.04); }
+.shift-from { font-size: 0.88rem; color: var(--tx-muted); }
+.shift-arrow-text { font-size: 1rem; font-weight: 700; color: var(--blue-lt); flex-shrink: 0; }
+.shift-to { font-size: 0.92rem; font-weight: 600; color: var(--tx-h); flex: 1; }
+.shift-chevron {
+  margin-left: auto; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--bg-panel); border: 1px solid var(--bd);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; color: var(--tx-muted); flex-shrink: 0;
+  transition: transform 0.2s, background 0.15s;
+}
+.shift-row.open .shift-chevron { transform: rotate(180deg); background: rgba(46,134,193,0.15); color: var(--blue-lt); }
+.shift-body {
+  max-height: 0; overflow: hidden; padding: 0 1.25rem;
+  font-size: 0.9rem; color: var(--tx-body); line-height: 1.75;
+  transition: max-height 0.3s ease, padding 0.2s ease;
+}
+.shift-row.open .shift-body { max-height: 200px; padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--bd); }
+
+/* Comparison table */
+.cmp-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+.cmp-table th {
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue-lt); text-align: left;
+  padding: 0.7rem 1rem; border-bottom: 2px solid var(--blue-mid);
+  background: var(--bg-panel);
+}
+.cmp-table td {
+  padding: 0.8rem 1rem; font-size: 0.85rem; color: var(--tx-body);
+  border-bottom: 1px solid var(--bd); vertical-align: top; line-height: 1.55;
+}
+.cmp-table tr:hover td { background: rgba(93,173,226,0.04); }
+.cmp-table .td-dim { color: var(--tx-muted); font-size: 0.8rem; }
+.cmp-table .td-h { font-weight: 600; color: var(--tx-h); }
+.cmp-table .td-best { color: var(--teal-lt); font-weight: 600; }
+
+/* Pyramid vs Tower */
+.model-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.model-col { background: var(--bg-card); padding: 2rem 1.75rem; }
+.model-col-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+.model-col-label.old { color: var(--signal-lt); }
+.model-col-label.new { color: var(--teal-lt); }
+.model-col h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--tx-h); margin-bottom: 0.5rem; font-weight: 700; }
+.model-layer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.65rem 0.9rem; margin-bottom: 3px;
+  border: 1px solid var(--bd); font-size: 0.83rem;
+}
+.ml-name { color: var(--tx-body); font-weight: 500; }
+.ml-tag { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.08em; padding: 0.18rem 0.5rem; border-radius: 2px; }
+.ml-lag  { background: rgba(200,69,26,0.15); color: var(--signal-lt); }
+.ml-per  { background: rgba(243,156,18,0.12); color: var(--amber-lt); }
+.ml-sil  { background: rgba(26,188,156,0.1); color: var(--teal-lt); }
+.ml-frag { background: rgba(93,173,226,0.1); color: var(--blue-lt); }
+.ml-auto { background: rgba(26,188,156,0.15); color: var(--teal-lt); }
+.ml-live { background: rgba(46,134,193,0.15); color: var(--blue-lt); }
+.ml-sem  { background: rgba(243,156,18,0.12); color: var(--amber-lt); }
+.ml-dec  { background: rgba(93,173,226,0.12); color: var(--blue-lt); }
+
+/* Lens columns */
+.lenses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.lens { background: var(--bg-card); padding: 2rem 1.5rem; }
+.lens-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; margin-bottom: 0.85rem; }
+.lens-1 .lens-num { background: rgba(46,134,193,0.15); color: var(--blue-lt); }
+.lens-2 .lens-num { background: rgba(26,188,156,0.12); color: var(--teal-lt); }
+.lens-3 .lens-num { background: rgba(243,156,18,0.1); color: var(--amber-lt); }
+.lens h3 { font-family: var(--font-display); font-size: 1rem; color: var(--tx-h); margin-bottom: 0.25rem; font-weight: 700; }
+.lens-sub { font-size: 0.78rem; color: var(--tx-muted); margin-bottom: 1rem; font-style: italic; }
+.lens-row { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0.75rem; margin-bottom: 3px; background: var(--bg-panel); border: 1px solid var(--bd); }
+.lens-row-name { font-size: 0.82rem; color: var(--tx-body); }
+.lens-tag { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.08em; padding: 0.18rem 0.5rem; font-weight: 700; color: #fff; }
+.lt-int { background: var(--teal); }
+.lt-3p  { background: var(--signal); }
+.lt-jv  { background: var(--amber); }
+.lens-connector { text-align: center; font-size: 0.75rem; color: var(--tx-muted); margin: 2px 0; }
+.lens-note { margin-top: 0.85rem; padding: 0.65rem 0.85rem; font-size: 0.78rem; color: var(--tx-body); border-left: 3px solid var(--bd-strong); background: var(--bg-panel); line-height: 1.55; }
+
+/* Institutionalizing grid */
+.inst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
+.inst-col { background: var(--bg-card); padding: 1.75rem 1.5rem; }
+.inst-col-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.85rem; display: block; }
+.inst-col-label.org  { color: var(--blue-lt); }
+.inst-col-label.arch { color: var(--teal-lt); }
+.inst-col-label.cult { color: var(--amber-lt); }
+.inst-item { display: flex; gap: 0.6rem; margin-bottom: 0.7rem; font-size: 0.83rem; color: var(--tx-body); line-height: 1.55; }
+.inst-arrow { flex-shrink: 0; font-weight: 700; }
+.inst-col.org  .inst-arrow { color: var(--blue-lt); }
+.inst-col.arch .inst-arrow { color: var(--teal-lt); }
+.inst-col.cult .inst-arrow { color: var(--amber-lt); }
 </style>
 </head>
 <body>
-<div class="series-bar">
-  <div class="series-left">
-    <a href="series.html" class="series-home">← Series</a>
-    <div class="series-divider"></div>
-    <span class="series-label">Part 01 of 03</span>
-    <div class="series-nav">
-      <span class="series-nav-item current">01 · Control Tower</span>
-      <span class="series-nav-arrow">→</span>
-      <a href="index.html" class="series-nav-item">02 · Memory Architecture</a>
-      <span class="series-nav-arrow">→</span>
-      <a href="piece-03.html" class="series-nav-item">03 · Agentic Org</a>
+
+<div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-mark">01</span>
+    <span class="logo-text">The Control<br>Problem</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#model"   class="nav-item active" onclick="setTab('model');   setActiveNav(this)"><span class="nav-num">I</span><span class="nav-label">Model Shift</span></a>
+    <a href="#lenses"  class="nav-item"        onclick="setTab('lenses');  setActiveNav(this)"><span class="nav-num">II</span><span class="nav-label">Operating Lenses</span></a>
+    <a href="#bridge"  class="nav-item"        onclick="setTab('bridge');  setActiveNav(this)"><span class="nav-num">III</span><span class="nav-label">The Bridge</span></a>
+    <a href="#arch"    class="nav-item"        onclick="setTab('arch');    setActiveNav(this)"><span class="nav-num">IV</span><span class="nav-label">Architecture</span></a>
+    <a href="#inst"    class="nav-item"        onclick="setTab('inst');    setActiveNav(this)"><span class="nav-num">V</span><span class="nav-label">Institutionalizing</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <span class="sidebar-tag">Q1 2026 · Real Estate</span>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-pressed="false">
+    <span class="theme-track"><span class="theme-thumb"></span></span>
+    <span class="theme-icon">☀</span>
+    <span class="theme-label">Light mode</span>
+  </button>
+  <div class="series-nav-section">
+    <span class="series-nav-label">In This Series</span>
+    <a href="series.html" class="series-home-link">↖ All Pieces</a>
+    <a href="piece-01.html" class="series-nav-item current"><span class="series-nav-num">01</span><span>The Control Problem</span></a>
+    <a href="index.html"   class="series-nav-item"><span class="series-nav-num">02</span><span>The Memory Gap</span></a>
+    <a href="piece-03.html" class="series-nav-item"><span class="series-nav-num">03</span><span>The Agentic Org</span></a>
+  </div>
+</aside>
+
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <span class="mobile-title">The Control Problem</span>
+  <span class="mobile-page-num">01</span>
+</header>
+
+<main class="main-content">
+
+<!-- TAB NAV -->
+<div class="tab-nav-bar">
+  <button class="tab-btn active" id="btn-model"  onclick="setTab('model')">Model Shift</button>
+  <button class="tab-btn"        id="btn-lenses" onclick="setTab('lenses')">Operating Lenses</button>
+  <button class="tab-btn"        id="btn-bridge" onclick="setTab('bridge')">The Bridge</button>
+  <button class="tab-btn"        id="btn-arch"   onclick="setTab('arch')">Architecture</button>
+  <button class="tab-btn"        id="btn-inst"   onclick="setTab('inst')">Institutionalizing</button>
+</div>
+
+<!-- ══ TAB I: MODEL SHIFT ══════════════════════════════════════════════ -->
+<div class="tab-section active" id="tab-model">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">I · Model Shift</div>
+  <h1 class="page-title">From <em>Data Pyramid</em><br>to Intelligence Control Tower</h1>
+  <p class="page-lead">The traditional stack was built on five assumptions that no longer hold. One truth per entity. One schema per domain. One metric definition per KPI. One standard workflow per process. One system of record per function. AI agents, distributed ownership, and global operations break every one simultaneously.</p>
+
+  <div class="model-compare">
+    <div class="model-col">
+      <span class="model-col-label old">Now — Data Pyramid</span>
+      <h3>Intelligence arrives late</h3>
+      <div class="model-layer"><span class="ml-name">Fund &amp; Portfolio Management</span><span class="ml-tag ml-lag">Lagging</span></div>
+      <div class="model-layer"><span class="ml-name">Asset Management</span><span class="ml-tag ml-per">Periodic</span></div>
+      <div class="model-layer"><span class="ml-name">Property Operations</span><span class="ml-tag ml-sil">Siloed</span></div>
+      <div class="model-layer"><span class="ml-name">Systems of Record</span><span class="ml-tag ml-frag">Fragmented</span></div>
+    </div>
+    <div class="model-col">
+      <span class="model-col-label new">Next — Intelligence Control Tower</span>
+      <h3>Operations decoupled from intelligence</h3>
+      <div class="model-layer"><span class="ml-name">Decision Control</span><span class="ml-tag ml-dec">Governance</span></div>
+      <div class="model-layer"><span class="ml-name">Continuous Intelligence</span><span class="ml-tag ml-live">Live</span></div>
+      <div class="model-layer"><span class="ml-name">AI Agent Network</span><span class="ml-tag ml-auto">Autonomous</span></div>
+      <div class="model-layer"><span class="ml-name">Systems of Record</span><span class="ml-tag ml-sem">Entity-resolved</span></div>
     </div>
   </div>
-  <div class="theme-toggle">
-    <button class="theme-opt" id="opt-light" onclick="setTheme('light')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      Light
-    </button>
-    <button class="theme-opt" id="opt-dark" onclick="setTheme('dark')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-      Dark
-    </button>
+
+  <h2 class="section-h2" style="margin-bottom:1rem">Paradigmatic Technology Shifts</h2>
+  <p class="body-text" style="margin-bottom:1.5rem">Enterprise architectures and technology topographies need to adapt. Click any row to read the detail.</p>
+
+  <div class="shift-row" id="sr1">
+    <div class="shift-header" onclick="toggleShift('sr1')">
+      <span class="shift-from">Tech Debt</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Data Debt</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">The accumulated cost of inconsistent identifiers, unmapped entity relationships, and definitions living inside BI logic rather than governed systems. Clean pipelines carrying semantically broken data produce faster answers to the wrong questions. AI pilots built on inconsistent entities and drifting metrics become wrong at scale, fast.</div>
+  </div>
+
+  <div class="shift-row" id="sr2">
+    <div class="shift-header" onclick="toggleShift('sr2')">
+      <span class="shift-from">Systems of Record</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Systems of Interpretation</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">ERP, CRM, and data warehouses record what happened — not why, not under which definition, not with whose authority. As agents begin acting on data rather than humans interpreting it, a new class of system is required: a semantic mediation layer that maintains contextual truth and makes it revisable without losing the trace of what was believed and when. The question shifts from "Is the data correct?" to "Does it represent the intended meaning?"</div>
+  </div>
+
+  <div class="shift-row" id="sr3">
+    <div class="shift-header" onclick="toggleShift('sr3')">
+      <span class="shift-from">Data Governance</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Meaning Governance</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">Traditional governance checked format, completeness, and access. It could not answer whether the data meant what anyone assumed it meant. Meaning governance shifts the question: is the interpretation consistent across decisions? Semantic drift — when definitions shift across counterparties, periods, or regions — is treated as a first-class risk, not a data quality footnote.</div>
+  </div>
+
+  <div class="shift-row" id="sr4">
+    <div class="shift-header" onclick="toggleShift('sr4')">
+      <span class="shift-from">Data Lineage</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Decision Lineage</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">Technical lineage tells you where a number came from. Decision lineage makes the full chain queryable: what changed, when, and which version of a definition was active at the moment a capital decision was taken. This is the minimum infrastructure required for AI accountability — and the precondition for institutional memory that compounds across cycles, people, and reorganizations.</div>
+  </div>
+
+  <div class="dark-banner" style="margin-top:2.5rem">
+    <p>Enterprise architecture is no longer application-centric. The organizing question is no longer which systems connect — it is which decisions are <em>governed, traceable, and trusted</em> across the full execution chain.</p>
+  </div>
+
+  <h2 class="section-h2" style="margin:2.5rem 0 1rem">Paradigmatic Operation Shifts</h2>
+  <p class="body-text" style="margin-bottom:1.5rem">Target operating models need to be rethought. Click any row to read the detail.</p>
+
+  <div class="shift-row" id="sr5">
+    <div class="shift-header" onclick="toggleShift('sr5')">
+      <span class="shift-from">Who Operates</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Who Decides</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">With agents able to execute at scale, the question shifts from who performs each function to who holds decision rights. You can outsource, automate, or delegate execution. You cannot outsource accountability, risk thresholds, or the authority to make capital decisions. The operating model draws the line; the intelligence layer must enforce it.</div>
+  </div>
+
+  <div class="shift-row" id="sr6">
+    <div class="shift-header" onclick="toggleShift('sr6')">
+      <span class="shift-from">Aggregating Information</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Orchestrating Outcomes</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">The old model was consolidation: pull everything into a warehouse, then report. The new challenge is coordination. Agents at property, asset, and fund level all need to work from compatible context — not fragmented signal from systems that were never reconciled. Intelligence is not produced at the top; it is synthesized across the network.</div>
+  </div>
+
+  <div class="shift-row" id="sr7">
+    <div class="shift-header" onclick="toggleShift('sr7')">
+      <span class="shift-from">Measuring Activity</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Driving Decisions</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">Most operational reporting tells leadership what already happened. The advantage goes to whoever acts earliest on what is about to happen. That means humans supervising systems rather than individual steps — and those systems drawing on governed, traceable data whose definitions are consistent across every counterparty and period.</div>
+  </div>
+
+  <div class="shift-row" id="sr8">
+    <div class="shift-header" onclick="toggleShift('sr8')">
+      <span class="shift-from">Reporting Results</span>
+      <span class="shift-arrow-text">→</span>
+      <span class="shift-to">Managing Performance</span>
+      <span class="shift-chevron">▾</span>
+    </div>
+    <div class="shift-body">Reporting records what was. Performance management actively governs what comes next: capital reallocation, lease strategy, capex sequencing. The difference between an organization that learns and one that merely repeats is whether it can recall which interpretation drove which outcome — and whether that record survives the next leadership change.</div>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('lenses')">Operating Lenses →</button>
+    <a href="index.html" class="page-nav-btn next">Next: The Memory Gap →</a>
   </div>
 </div>
-<div class="embed-frame">
-  <iframe src="Brookfield_1Q2026.html" id="content-frame" title="From Data Stack to Control Tower"></iframe>
 </div>
+
+<!-- ══ TAB II: OPERATING LENSES ════════════════════════════════════════ -->
+<div class="tab-section" id="tab-lenses">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">II · Operating Lenses</div>
+  <h1 class="page-title">Why the operating model<br>determines the <em>intelligence stack</em></h1>
+  <p class="page-lead">The more distributed the operating model, the more critical the intelligence architecture becomes. The intelligence stack required depends on where operational control sits. Every handoff in the chain is a potential drift event — a moment where data crosses an organizational boundary without its meaning traveling with it.</p>
+
+  <div class="lenses">
+    <div class="lens lens-1">
+      <div class="lens-num">01</div>
+      <h3>Owner-Operator</h3>
+      <div class="lens-sub">All operations performed internally, from property to fund</div>
+      <div class="lens-row"><span class="lens-row-name">Fund / Portfolio Management</span><span class="lens-tag lt-int">Internal</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Asset Management</span><span class="lens-tag lt-int">Internal</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Property Operations</span><span class="lens-tag lt-int">Internal</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Transaction Data</span><span class="lens-tag lt-int">Staff</span></div>
+      <div class="lens-note">Single data owner across all layers. Full control of provenance chain. Lowest third-party integration complexity. The Knowledge Graph spans internally owned entities end-to-end.</div>
+    </div>
+
+    <div class="lens lens-2">
+      <div class="lens-num">02</div>
+      <h3>Investment Manager · Outsourced Property Ops</h3>
+      <div class="lens-sub">Property operations outsourced; asset &amp; fund management internal</div>
+      <div class="lens-row"><span class="lens-row-name">Fund / Portfolio Management</span><span class="lens-tag lt-int">Internal</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Asset Management</span><span class="lens-tag lt-int">Internal</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Property Operations</span><span class="lens-tag lt-3p">3rd Party</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Transaction Data</span><span class="lens-tag lt-3p">Prop Mgr</span></div>
+      <div class="lens-note">Third-party data must be ingested and reconciled. Definition drift is the primary risk: the property manager's "occupancy" may not match the fund's "occupancy" — and neither system flags the divergence.</div>
+    </div>
+
+    <div class="lens lens-3">
+      <div class="lens-num">03</div>
+      <h3>Outsourced Asset Management</h3>
+      <div class="lens-sub">Property and asset management outsourced; fund management internal</div>
+      <div class="lens-row"><span class="lens-row-name">Fund / Portfolio Management</span><span class="lens-tag lt-int">Internal</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Asset Management</span><span class="lens-tag lt-jv">JV / 3rd Party</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Property Operations</span><span class="lens-tag lt-3p">3rd Party</span></div>
+      <div class="lens-connector">↑</div>
+      <div class="lens-row"><span class="lens-row-name">Transaction Data</span><span class="lens-tag lt-3p">Prop Mgr</span></div>
+      <div class="lens-note">Provenance and entity resolution critical across two handoffs. The investor loses not just data custody at the asset management boundary — they lose context. Every definitional divergence across both handoffs compounds invisibly.</div>
+    </div>
+  </div>
+
+  <div class="dark-banner">
+    <p>The hard part is not moving data. It is preserving what the data <em>means</em> at every third-party handoff. Yardi, Argus, and VTS record what happened — but not under which definition or whose authority.</p>
+  </div>
+
+  <div class="inline-note blue" style="margin-top:2rem">
+    <strong>The Context Graph Solution</strong>
+    A context graph makes past decisions searchable across organizational lines. At every handoff, data carries provenance tags: source, as-of date, definition used, authority. Entity resolution unifies the same asset across Yardi, Argus, and the JV partner's system. Plural ontologies let the partner's definitions sit alongside yours — instead of silently colliding.
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('model')">← Model Shift</button>
+    <button class="page-nav-btn next" onclick="setTab('bridge')">The Bridge →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ TAB III: THE BRIDGE ══════════════════════════════════════════════ -->
+<div class="tab-section" id="tab-bridge">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">III · The Bridge</div>
+  <h1 class="page-title">What has to <em>change</em><br>and in what order</h1>
+  <p class="page-lead">The transition from data pyramid to intelligence control tower is not a technology procurement decision. It is a sequenced organizational and architectural shift — four paradigmatic moves that must happen in the right order, because each one is the precondition for the next.</p>
+
+  <table class="cmp-table" style="margin-bottom:2rem">
+    <thead>
+      <tr><th>Shift</th><th>Legacy Failure Mode</th><th>Modern Stack Advantage</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-h">Entity Resolution</td>
+        <td class="td-dim">IDs do not align across managers, funds, servicers, and external datasets; matching is periodic and highly manual</td>
+        <td class="td-best">Probabilistic, time-aware entity resolution across sources, with traceable history and lineage</td>
+      </tr>
+      <tr>
+        <td class="td-h">Canonical Schema</td>
+        <td class="td-dim">Standards are imposed or application-specific; every team rebuilds "truth" independently</td>
+        <td class="td-best">Governed canonical layer anchored on entities and relationships that can evolve safely</td>
+      </tr>
+      <tr>
+        <td class="td-h">Meaning Governance</td>
+        <td class="td-dim">Governance checks format and completeness; definitions live in BI logic and spreadsheets</td>
+        <td class="td-best">Explicit, versioned definitions and contexts enforced across all uses, not invented at query time</td>
+      </tr>
+      <tr>
+        <td class="td-h">Observability</td>
+        <td class="td-dim">Monitoring focused on row counts and fill rates; semantic failures occur invisibly in mapping and reconciliation</td>
+        <td class="td-best">Detect mapping drift, reconciliation anomalies, and definition drift as pipelines run — not months later</td>
+      </tr>
+      <tr>
+        <td class="td-h">Decision Lineage</td>
+        <td class="td-dim">Technical lineage exists, but "why did it change?" remains manual across tools and teams</td>
+        <td class="td-best">Queryable meaning lineage: what changed, when, which version was active, who held authority</td>
+      </tr>
+      <tr>
+        <td class="td-h">AI Readiness</td>
+        <td class="td-dim">AI pilots built on inconsistent entities and drifting metrics become wrong at scale</td>
+        <td class="td-best">Agent-grade foundation: governed entities, time-aware reasoning, traceable meaning</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="dark-banner">
+    <p>The organisations that will lead are not those that deploy the most AI. They are those that build the institutional infrastructure to <em>govern meaning, trace decisions, and adapt definitions</em> as their operating models evolve.</p>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('lenses')">← Operating Lenses</button>
+    <button class="page-nav-btn next" onclick="setTab('arch')">Architecture →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ TAB IV: ARCHITECTURE ═════════════════════════════════════════════ -->
+<div class="tab-section" id="tab-arch">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">IV · Architecture</div>
+  <h1 class="page-title">How the stacks<br><em>compare</em></h1>
+  <p class="page-lead">The architecture comparison is not a product selection exercise. It is a capabilities map — showing which approaches can support the demands of an agentic operating model and which cannot. The substrate shapes the intelligence.</p>
+
+  <table class="cmp-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Legacy DW + MDM</th>
+        <th>Horizontal KG</th>
+        <th>Vertical PropTech SaaS</th>
+        <th style="color:var(--teal-lt)">Intelligence Control Tower</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="td-h">Core abstraction</td><td>Tables · Golden records</td><td>Generic nodes/edges</td><td>Application objects</td><td class="td-best">Resolved entities</td></tr>
+      <tr><td class="td-h">Entity resolution</td><td>Deterministic keys</td><td>Partial, manual</td><td>Implicit</td><td class="td-best">Probabilistic, time-aware</td></tr>
+      <tr><td class="td-h">Ontology model</td><td>Fixed schema · Single</td><td>Generic ontology</td><td>Hard-coded</td><td class="td-best">Plural ontologies · Governed</td></tr>
+      <tr><td class="td-h">Temporal reasoning</td><td>Weak</td><td>Medium</td><td>Low</td><td class="td-best">Native</td></tr>
+      <tr><td class="td-h">Semantic lineage</td><td>Minimal</td><td>Partial</td><td>Opaque</td><td class="td-best">Explicit</td></tr>
+      <tr><td class="td-h">AI readiness</td><td>Low</td><td>Medium</td><td>Narrow</td><td class="td-best">Agent-grade</td></tr>
+      <tr><td class="td-h">Governance maturity</td><td>Data-centric</td><td>Developer-centric</td><td>App-centric</td><td class="td-best">Semantic-centric</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-h2" style="margin-bottom:1rem">Data Operating Model Evolution</h2>
+
+  <table class="cmp-table">
+    <thead><tr><th>Now · Data Pyramid</th><th>Next · Intelligence Control Tower</th></tr></thead>
+    <tbody>
+      <tr><td>Quarterly reports delivered after decisions are made</td><td class="td-best">Continuous intelligence surface — always current</td></tr>
+      <tr><td>Intelligence sits at the top of the stack, arriving last</td><td class="td-best">Intelligence sits between operations and executives</td></tr>
+      <tr><td>Regional systems siloed with manual reconciliation</td><td class="td-best">Connected execution band with entity resolution at source</td></tr>
+      <tr><td>AI is hidden tooling bolted onto existing pipelines</td><td class="td-best">AI agents are active participants with traceable actions</td></tr>
+      <tr><td>Data governance: format, completeness, and ownership</td><td class="td-best">Meaning governance: versioned definitions enforced at query time</td></tr>
+      <tr><td>Centralised control requires centralised execution</td><td class="td-best">Decision rights enforced at top; execution distributed</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('bridge')">← The Bridge</button>
+    <button class="page-nav-btn next" onclick="setTab('inst')">Institutionalizing →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ TAB V: INSTITUTIONALIZING ════════════════════════════════════════ -->
+<div class="tab-section" id="tab-inst">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">V · Institutionalizing</div>
+  <h1 class="page-title">Deploying more AI is not<br>the <em>differentiator</em></h1>
+  <p class="page-lead">What matters is the institutional plumbing underneath: governed definitions, decision traceability, and the ability to adapt as the operating model shifts. The moves required are organizational and cultural as much as they are architectural.</p>
+
+  <div class="dark-banner">
+    <p>The accumulated record of which interpretations drove which outcomes. Persists through reorganisations, market cycles, and leadership transitions. Without it, the organisation keeps re-learning the same lessons. <em>This is the real moat.</em></p>
+  </div>
+
+  <div class="inst-grid" style="margin-top:2rem">
+    <div class="inst-col org">
+      <span class="inst-col-label org">Organisational Moves</span>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Establish semantic governance councils — not just data governance committees</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Fund ontology engineering as a core enterprise capability</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>When an AI agent gets it wrong, ask whether the definitions were broken before blaming the model</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Appoint owners for definition drift across counterparties and periods</span></div>
+    </div>
+    <div class="inst-col arch">
+      <span class="inst-col-label arch">Architectural Moves</span>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Layer knowledge graphs across Yardi, Argus, VTS as the semantic backbone</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Decouple storage from meaning; enforce governed definitions at query time</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Let multiple valid definitions coexist with clear scope and provenance tags</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Build agent governance alongside meaning governance from day one</span></div>
+    </div>
+    <div class="inst-col cult">
+      <span class="inst-col-label cult">Cultural Moves</span>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Accept that definitional ambiguity is a feature of distributed operations — not a defect</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Reward interpretation quality and decision traceability alongside data accuracy</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Move past "single source of truth" toward traceable sources of meaning</span></div>
+      <div class="inst-item"><span class="inst-arrow">→</span><span>Measure corporate memory: can you look up which definition drove which outcome?</span></div>
+    </div>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('arch')">← Architecture</button>
+    <a href="index.html" class="page-nav-btn next">Next: The Memory Gap →</a>
+  </div>
+</div>
+</div>
+
+</main><!-- main-content -->
+
+<script src="nav.js"></script>
 <script>
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  localStorage.setItem('di-theme',t);
-  document.getElementById('opt-light').classList.toggle('active',t==='light');
-  document.getElementById('opt-dark').classList.toggle('active',t==='dark');
-  // Pass theme to iframe
-  const iframe=document.getElementById('content-frame');
-  try{ iframe.contentDocument.documentElement.setAttribute('data-theme',t); }catch(e){}
+function setTab(id) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const s = document.getElementById('tab-' + id);
+  const b = document.getElementById('btn-' + id);
+  if (s) { s.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  if (b) b.classList.add('active');
 }
-const saved=localStorage.getItem('di-theme')||'light';
-setTheme(saved);
+function setActiveNav(el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+function toggleShift(id) {
+  const row = document.getElementById(id);
+  const wasOpen = row.classList.contains('open');
+  document.querySelectorAll('.shift-row.open').forEach(r => r.classList.remove('open'));
+  if (!wasOpen) row.classList.add('open');
+}
 </script>
 </body>
 </html>
