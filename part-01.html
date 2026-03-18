@@ -141,6 +141,59 @@
 .inst-col.org  .inst-arrow { color: var(--blue-lt); }
 .inst-col.arch .inst-arrow { color: var(--teal-lt); }
 .inst-col.cult .inst-arrow { color: var(--amber-lt); }
+
+/* Architecture tab — section headers A / B */
+.arch-section-header {
+  display: flex; align-items: flex-start; gap: 1.25rem;
+  margin-bottom: 1.5rem; margin-top: 0.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--bg-panel); border: 1px solid var(--bd);
+  border-left: 4px solid var(--blue-mid);
+}
+.arch-section-num {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+  color: var(--blue-lt); line-height: 1; flex-shrink: 0; width: 28px;
+}
+.arch-section-label {
+  font-family: var(--font-mono); font-size: 0.58rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--blue-lt); margin-bottom: 0.3rem; display: block;
+}
+.arch-section-title {
+  font-family: var(--font-display); font-size: 1.3rem;
+  font-weight: 700; color: var(--tx-h); line-height: 1.2; margin-bottom: 0.25rem;
+}
+.arch-section-sub {
+  font-size: 0.85rem; color: var(--tx-muted); font-style: italic;
+}
+
+/* TOM→TIM section B: different accent */
+.arch-section-header:nth-of-type(2) {
+  border-left-color: var(--teal-lt);
+  margin-top: 0;
+}
+.arch-section-header:nth-of-type(2) .arch-section-label { color: var(--teal-lt); }
+.arch-section-header:nth-of-type(2) .arch-section-num  { color: var(--teal-lt); }
+
+/* Bridge connector between A and B */
+.arch-bridge {
+  display: flex; align-items: center; gap: 1.25rem;
+  margin: 2rem 0 2.5rem;
+}
+.arch-bridge-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--bd-strong));
+}
+.arch-bridge-line:last-child {
+  background: linear-gradient(90deg, var(--bd-strong), transparent);
+}
+.arch-bridge-text {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--tx-muted); white-space: nowrap;
+  padding: 0.4rem 0.85rem; border: 1px solid var(--bd);
+  background: var(--bg-panel);
+}
 </style>
 </head>
 <body>
@@ -504,10 +557,20 @@
 <div class="tab-section" id="tab-arch">
 <div class="page-inner-wide">
   <div class="eyebrow-tag">IV · Architecture</div>
-  <h1 class="page-title">How the stacks<br><em>compare</em></h1>
-  <p class="page-lead">The architecture comparison is not a product selection exercise. It is a capabilities map — showing which approaches can support the demands of an agentic operating model and which cannot. The substrate shapes the intelligence.</p>
+  <h1 class="page-title">Two questions.<br><em>One answer.</em></h1>
+  <p class="page-lead">The architecture comparison and the operating model shift are not separate conversations. The technology stack determines what the operating model can become. You cannot run a Target Intelligence Model on infrastructure built for a Target Operating Model.</p>
 
-  <table class="cmp-table">
+  <!-- SECTION A: TECH STACK -->
+  <div class="arch-section-header">
+    <div class="arch-section-num">A</div>
+    <div>
+      <div class="arch-section-label">Technology Architecture</div>
+      <div class="arch-section-title">Which stacks can carry the weight</div>
+      <div class="arch-section-sub">A capabilities map — not a product selection. The substrate shapes the intelligence.</div>
+    </div>
+  </div>
+
+  <table class="cmp-table" style="margin-bottom:0.5rem">
     <thead>
       <tr>
         <th>Dimension</th>
@@ -528,19 +591,66 @@
     </tbody>
   </table>
 
-  <h2 class="section-h2" style="margin-bottom:1rem">Data Operating Model Evolution</h2>
+  <div class="inline-note blue" style="margin-bottom:3rem">
+    <strong>The Constraint</strong>
+    Legacy data warehouses and MDM platforms cannot natively support probabilistic entity resolution, plural ontologies, or temporal reasoning. They were built to answer "what is the number?" — not "what did the number mean at this moment, under this definition, in this context?" That gap is architectural, not a configuration problem.
+  </div>
 
-  <table class="cmp-table">
-    <thead><tr><th>Now · Data Pyramid</th><th>Next · Intelligence Control Tower</th></tr></thead>
+  <!-- BRIDGE -->
+  <div class="arch-bridge">
+    <div class="arch-bridge-line"></div>
+    <div class="arch-bridge-text">The technology stack is not the destination. It is the precondition.</div>
+    <div class="arch-bridge-line"></div>
+  </div>
+
+  <!-- SECTION B: TOM → TIM -->
+  <div class="arch-section-header">
+    <div class="arch-section-num">B</div>
+    <div>
+      <div class="arch-section-label">Operating Model</div>
+      <div class="arch-section-title">From Target Operating Model to Target Intelligence Model</div>
+      <div class="arch-section-sub">The TOM defined how work gets done. The TIM defines how intelligence governs what work gets decided.</div>
+    </div>
+  </div>
+
+  <table class="cmp-table" style="margin-bottom:2rem">
+    <thead>
+      <tr>
+        <th style="color:var(--signal-lt)">Target Operating Model (Now)</th>
+        <th style="color:var(--teal-lt)">Target Intelligence Model (Next)</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr><td>Quarterly reports delivered after decisions are made</td><td class="td-best">Continuous intelligence surface — always current</td></tr>
-      <tr><td>Intelligence sits at the top of the stack, arriving last</td><td class="td-best">Intelligence sits between operations and executives</td></tr>
-      <tr><td>Regional systems siloed with manual reconciliation</td><td class="td-best">Connected execution band with entity resolution at source</td></tr>
-      <tr><td>AI is hidden tooling bolted onto existing pipelines</td><td class="td-best">AI agents are active participants with traceable actions</td></tr>
-      <tr><td>Data governance: format, completeness, and ownership</td><td class="td-best">Meaning governance: versioned definitions enforced at query time</td></tr>
-      <tr><td>Centralised control requires centralised execution</td><td class="td-best">Decision rights enforced at top; execution distributed</td></tr>
+      <tr>
+        <td>Intelligence arrives quarterly — after decisions are already made</td>
+        <td class="td-best">Continuous intelligence surface — always current, always governed</td>
+      </tr>
+      <tr>
+        <td>Intelligence sits at the top of the stack, produced last</td>
+        <td class="td-best">Intelligence sits between operations and decision-makers — always in the middle</td>
+      </tr>
+      <tr>
+        <td>Regional systems siloed; reconciliation is manual and periodic</td>
+        <td class="td-best">Connected execution band with entity resolution at source</td>
+      </tr>
+      <tr>
+        <td>AI is hidden tooling bolted onto existing reporting pipelines</td>
+        <td class="td-best">Agents are active participants with traceable actions and governed skills</td>
+      </tr>
+      <tr>
+        <td>Governance covers format, completeness, and access controls</td>
+        <td class="td-best">Governance covers meaning: versioned definitions enforced at every query</td>
+      </tr>
+      <tr>
+        <td>Centralised control requires centralised execution — distributed ops create blind spots</td>
+        <td class="td-best">Decision rights enforced at the top; execution fully distributed and observable</td>
+      </tr>
     </tbody>
   </table>
+
+  <div class="dark-banner">
+    <p>The Target Operating Model asked: <em>who does what, where?</em><br>The Target Intelligence Model asks: <em>which decisions are governed, traceable, and trusted — and by what infrastructure?</em></p>
+  </div>
 
   <div class="page-nav-footer">
     <button class="page-nav-btn" onclick="setTab('bridge')">← The Bridge</button>
