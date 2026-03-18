@@ -112,6 +112,62 @@
  <p>Drift and decay share the same failure signature: <em>nothing breaks visibly</em>. The definitions quietly diverge. The context quietly expires. The agent quietly reasons on both.</p>
  </div>
 
+
+ <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1rem;font-weight:600">Context Durability</h2>
+ <p class="body-text" style="margin-bottom:1.5rem">Not all context expires at the same rate. The governance cadence for each record should be calibrated to its natural durability — a competitor incentive campaign and an IC investment thesis require fundamentally different review windows.</p>
+
+ <div class="dur-list">
+   <div class="dur-item">
+     <div class="dur-meta">
+       <span class="dur-context-label">Competitor incentive campaign in submarket</span>
+       <span class="dur-horizon signal">2–4 months</span>
+     </div>
+     <div class="dur-track"><div class="dur-fill" style="width:8%;background:var(--signal-lt)"></div></div>
+   </div>
+   <div class="dur-item">
+     <div class="dur-meta">
+       <span class="dur-context-label">Property management transition context</span>
+       <span class="dur-horizon signal">6–12 months</span>
+     </div>
+     <div class="dur-track"><div class="dur-fill" style="width:18%;background:var(--signal-lt)"></div></div>
+   </div>
+   <div class="dur-item">
+     <div class="dur-meta">
+       <span class="dur-context-label">Submarket supply wave (construction pipeline)</span>
+       <span class="dur-horizon amber">18–30 months</span>
+     </div>
+     <div class="dur-track"><div class="dur-fill" style="width:30%;background:var(--amber-lt)"></div></div>
+   </div>
+   <div class="dur-item">
+     <div class="dur-meta">
+       <span class="dur-context-label">Interest rate environment and financing conditions</span>
+       <span class="dur-horizon amber">24–48 months</span>
+     </div>
+     <div class="dur-track"><div class="dur-fill" style="width:40%;background:var(--amber-lt)"></div></div>
+   </div>
+   <div class="dur-item">
+     <div class="dur-meta">
+       <span class="dur-context-label">JV partnership structure and governance terms</span>
+       <span class="dur-horizon teal">Fund life</span>
+     </div>
+     <div class="dur-track"><div class="dur-fill" style="width:62%;background:var(--teal-lt)"></div></div>
+   </div>
+   <div class="dur-item">
+     <div class="dur-meta">
+       <span class="dur-context-label">Asset classification rationale (core / value-add)</span>
+       <span class="dur-horizon teal">Hold period +</span>
+     </div>
+     <div class="dur-track"><div class="dur-fill" style="width:78%;background:var(--teal-lt)"></div></div>
+   </div>
+   <div class="dur-item">
+     <div class="dur-meta">
+       <span class="dur-context-label">IC approval rationale and investment thesis</span>
+       <span class="dur-horizon teal">Permanent</span>
+     </div>
+     <div class="dur-track"><div class="dur-fill" style="width:100%;background:var(--teal-lt)"></div></div>
+   </div>
+ </div>
+
  <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);margin-bottom:1rem;font-weight:600">The Three Decay States</h2>
  <div class="decay-state-grid">
  <div class="decay-state ds-active-bg">
@@ -152,11 +208,11 @@
  <span class="re-panel-icon">RE Application</span>
  <h4>When Drift and Decay Interact</h4>
  </div>
- <p>The most complex governance scenario is when both problems occur simultaneously. A definition of "market exposure" was used consistently for three years, then drifted, different teams started applying it differently. Simultaneously, the market conditions it was designed to capture have changed.</p>
- <p>You now have both problems at once: the term is semantically inconsistent <strong>and</strong> the context it described is no longer current. Resolving the drift by picking one canonical definition is not enough, you also need to archive the contextual snapshots that each version was applied to, so that historical analysis remains coherent across the version boundary.</p>
+ <p>The most architecturally complex scenario is when both problems occur simultaneously — a definition has drifted and the context it was applied to is no longer current. This is not uncommon in long-hold real estate portfolios where operating models have changed, counterparties have turned over, and market conditions have shifted through a full cycle.</p>
+ <p>The design principle: drift resolution and decay archival must be coordinated, not independent. When a drift event is resolved with a formal version boundary, that boundary should trigger a decay state review of any context tagged with the prior definition version. The version boundary marks the point where semantic meaning changed — the decay review determines which contextual facts were rendered obsolete by that same shift.</p>
  <div class="re-example">
- <strong>The Governance Rule</strong>
- When a drift event is resolved with a formal version boundary, that boundary should trigger a decay state review of any context tagged with the prior definition version. The two governance disciplines must coordinate, drift resolution and decay archival are not independent events.
+ <strong>Scenario</strong>
+ The definition of "effective rent" in a JV portfolio was updated in Q2 2023 to include tenant improvement amortization (previously excluded). This is a drift resolution — version boundary recorded, both parties aligned. But it also means that every contextual fact tagged under the prior effective rent definition — submarket rent benchmarks, comparable lease analyses, renewal rate assessments — may now be reading a different concept than the one they were originally calibrated against. The decay review asks: do those contextual facts need to be archived and re-evaluated under the new definition, or are they still valid as-is? Without this coordinated review, the context graph carries mixed provenance — some facts computed under v1, some under v2, with no flag distinguishing them.
  </div>
  </div>
 
