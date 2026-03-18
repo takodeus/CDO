@@ -110,6 +110,7 @@
 </style>
 </head>
 <body>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
 
@@ -150,14 +151,6 @@
       </div>
     </div>
   </div>
-
-  <nav class="sidebar-nav">
-    <span class="sidebar-nav-label">In This Part</span>
-    <a href="#" class="nav-item active" id="nav-roles"    onclick="setTab('roles');    setNavActive('nav-roles');    return false;"><span class="nav-num">i</span><span class="nav-label">Role Redesign</span></a>
-    <a href="#" class="nav-item"        id="nav-kpis"     onclick="setTab('kpis');     setNavActive('nav-kpis');     return false;"><span class="nav-num">ii</span><span class="nav-label">KPI Redesign</span></a>
-    <a href="#" class="nav-item"        id="nav-rollout"  onclick="setTab('rollout');  setNavActive('nav-rollout');  return false;"><span class="nav-num">iii</span><span class="nav-label">Sequencing</span></a>
-    <a href="#" class="nav-item"        id="nav-failures" onclick="setTab('failures'); setNavActive('nav-failures'); return false;"><span class="nav-num">iv</span><span class="nav-label">Quiet Failures</span></a>
-  </nav>
 
   <div class="sidebar-footer">
     <span class="sidebar-tag">Intelligence Architecture Series · Part III</span>

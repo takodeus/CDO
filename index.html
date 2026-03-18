@@ -189,13 +189,42 @@ body { margin-left: 0; }
 .s-footer-note { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx-muted); }
 
 @media (max-width: 768px) {
-  .s-header, .s-hero, .s-through-header, .s-shifts-headers, .s-shifts, .s-pieces, .s-footer { padding-left: 1.75rem; padding-right: 1.75rem; }
+  .s-header, .s-hero, .s-through-header, .s-shifts-headers, .s-shifts, .s-pieces, .s-footer {
+    padding-left: 1.25rem; padding-right: 1.25rem;
+  }
+  .s-header { padding-top: 0.75rem; padding-bottom: 0.75rem; position: sticky; top: 0; }
+  .s-hero { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+  .s-title { font-size: clamp(2.4rem, 9vw, 3.4rem); }
+  .s-sub { font-size: 0.92rem; margin-bottom: 2rem; }
   .s-arc { flex-direction: column; }
   .s-arc-step { border-right: none; border-bottom: 1px solid var(--bd); }
-  .s-piece { grid-template-columns: 64px 1fr; }
-  .s-shifts { grid-template-columns: 1fr 28px 1fr; }
-  .s-shifts-headers { grid-template-columns: 1fr 28px 1fr; }
-  .s-shift-from, .s-shift-to { font-size: 0.82rem; padding: 0.7rem 0.85rem; }
+  .s-arc-chevron { right: 0.5rem; }
+
+  /* Shifts grid */
+  .s-shifts { grid-template-columns: 1fr 24px 1fr; padding: 0 1.25rem; }
+  .s-shifts-headers { grid-template-columns: 1fr 24px 1fr; padding: 0 1.25rem; }
+  .s-shifts-col-label { font-size: 0.6rem; padding: 0.4rem 0.75rem; }
+  .s-shift-from, .s-shift-to { font-size: 0.82rem; padding: 0.65rem 0.75rem; }
+  .s-shift-arr { font-size: 0.85rem; }
+
+  /* Piece cards */
+  .s-piece { grid-template-columns: 56px 1fr; }
+  .s-piece-num { font-size: 1.6rem; }
+  .s-piece-body { padding: 1.25rem 1rem; }
+  .s-piece-title { font-size: 1.15rem; }
+  .s-piece-q { font-size: 0.82rem; }
+  .s-pieces { padding: 1.5rem 1.25rem 3rem; gap: 0.85rem; }
+
+  /* Footer */
+  .s-footer { padding: 1rem 1.25rem; flex-direction: column; gap: 0.4rem; align-items: flex-start; }
+}
+
+@media (max-width: 390px) {
+  .s-title { font-size: 2.1rem; }
+  .s-shifts { grid-template-columns: 1fr 18px 1fr; }
+  .s-shifts-headers { grid-template-columns: 1fr 18px 1fr; }
+  .s-shift-from, .s-shift-to { font-size: 0.75rem; padding: 0.55rem 0.6rem; }
+  .s-shifts-col-label { font-size: 0.55rem; padding: 0.35rem 0.6rem; }
 }
 </style>
 </head>

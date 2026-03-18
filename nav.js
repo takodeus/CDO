@@ -69,8 +69,22 @@ function toggleLayer(el) {
 }
 
 /* ── MOBILE MENU ──────────────────────────────────── */
+function openSidebar() {
+  document.getElementById('sidebar')?.classList.add('mobile-open');
+  const ov = document.getElementById('sidebar-overlay');
+  if (ov) ov.classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  document.getElementById('sidebar')?.classList.remove('mobile-open');
+  const ov = document.getElementById('sidebar-overlay');
+  if (ov) ov.classList.remove('visible');
+  document.body.style.overflow = '';
+}
 function toggleMobileMenu() {
-  document.getElementById('sidebar')?.classList.toggle('mobile-open');
+  const s = document.getElementById('sidebar');
+  if (!s) return;
+  s.classList.contains('mobile-open') ? closeSidebar() : openSidebar();
 }
 
 /* ── INIT ─────────────────────────────────────────── */
@@ -90,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
     a.classList.toggle('sec-active', href === file || (file === '' && href === 'part-02.html'));
   });
 
-  // Close mobile menu on any nav click
-  document.querySelectorAll('.nav-item, .series-section-item').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('sidebar')?.classList.remove('mobile-open'));
+  // Close mobile sidebar on any nav or section click
+  document.querySelectorAll('.nav-item, .series-section-item, .series-part-header a').forEach(a => {
+    a.addEventListener('click', closeSidebar);
   });
 });
