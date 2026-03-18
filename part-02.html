@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Söhne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="home">
+<body>
 
 <!-- ── SIDEBAR NAV ─────────────────────────────────────────────── -->
 <aside class="sidebar" id="sidebar">
@@ -94,13 +94,13 @@
  <p class="hero-body">Better data produces better <em>inputs</em>. What happens to those inputs. How they are interpreted, by whom, under what definitions, in what context, against what prior judgment, is where intelligence actually lives. And almost no enterprise has a systematic way to preserve it.</p>
  <p class="hero-body">This is the argument for corporate memory: not a feature of the data stack, but a different class of architecture entirely.</p>
  <div class="hero-cta">
- <a href="gap.html" class="btn-primary" onclick="navigateTo('gap')">Begin →</a>
+ <a href="gap.html" class="btn-primary">Begin →</a>
  </div>
  </div>
 
  <div class="hero-stack-diagram">
  <div class="stack-section-head">Knowledge Architecture</div>
- <div class="stack-item si-reasoning" onclick="navigateTo('knowledge-stack')">
+ <div class="stack-item si-reasoning" onclick="window.location='knowledge-stack.html'">
  <span class="si-num">04</span>
  <div class="si-body">
  <span class="si-name">Reasoning</span>
@@ -108,7 +108,7 @@
  </div>
  <span class="si-arrow">→</span>
  </div>
- <div class="stack-item si-context" onclick="navigateTo('knowledge-stack')">
+ <div class="stack-item si-context" onclick="window.location='knowledge-stack.html'">
  <span class="si-num">03</span>
  <div class="si-body">
  <span class="si-name">Context Graph</span>
@@ -116,7 +116,7 @@
  </div>
  <span class="si-arrow">→</span>
  </div>
- <div class="stack-item si-semantic" onclick="navigateTo('knowledge-stack')">
+ <div class="stack-item si-semantic" onclick="window.location='knowledge-stack.html'">
  <span class="si-num">02</span>
  <div class="si-body">
  <span class="si-name">Semantic Layer</span>
@@ -124,7 +124,7 @@
  </div>
  <span class="si-arrow">→</span>
  </div>
- <div class="stack-item si-ontology" onclick="navigateTo('knowledge-stack')">
+ <div class="stack-item si-ontology" onclick="window.location='knowledge-stack.html'">
  <span class="si-num">01</span>
  <div class="si-body">
  <span class="si-name">Ontology</span>
@@ -134,7 +134,7 @@
  </div>
 
  <div class="stack-section-head memory-head">Memory Augmentation</div>
- <div class="stack-item si-governance" onclick="navigateTo('moat')">
+ <div class="stack-item si-governance" onclick="window.location='moat.html'">
  <span class="si-num">+4</span>
  <div class="si-body">
  <span class="si-name">Memory Governance</span>
@@ -142,7 +142,7 @@
  </div>
  <span class="si-arrow">→</span>
  </div>
- <div class="stack-item si-drift" onclick="navigateTo('drift-register')">
+ <div class="stack-item si-drift" onclick="window.location='drift-register.html'">
  <span class="si-num">+3</span>
  <div class="si-body">
  <span class="si-name">Drift Register</span>
@@ -150,7 +150,7 @@
  </div>
  <span class="si-arrow">→</span>
  </div>
- <div class="stack-item si-decay" onclick="navigateTo('decay-governance')">
+ <div class="stack-item si-decay" onclick="window.location='decay-governance.html'">
  <span class="si-num">+2</span>
  <div class="si-body">
  <span class="si-name">Decay Governance</span>
@@ -158,53 +158,13 @@
  </div>
  <span class="si-arrow">→</span>
  </div>
- <div class="stack-item si-lineage" onclick="navigateTo('decision-lineage')">
+ <div class="stack-item si-lineage" onclick="window.location='decision-lineage.html'">
  <span class="si-num">+1</span>
  <div class="si-body">
  <span class="si-name">Decision Lineage</span>
  <span class="si-desc">Cross-cutting thread</span>
  </div>
  <span class="si-arrow">→</span>
- </div>
- </div>
- </div>
-
- <!-- Eight question test overview -->
- <div class="section-divider"></div>
- <div class="overview-questions">
- <div class="oq-label">The Eight-Question Test, A Fully Augmented Architecture Answers All Eight</div>
- <div class="oq-grid">
- <div class="oq-item existing">
- <span class="oq-badge">Existing</span>
- <span class="oq-q">What is this thing?</span>
- </div>
- <div class="oq-item existing">
- <span class="oq-badge">Existing</span>
- <span class="oq-q">How is it measured?</span>
- </div>
- <div class="oq-item existing">
- <span class="oq-badge">Existing</span>
- <span class="oq-q">What is happening around it?</span>
- </div>
- <div class="oq-item existing">
- <span class="oq-badge">Existing</span>
- <span class="oq-q">What should happen next?</span>
- </div>
- <div class="oq-item added">
- <span class="oq-badge">Added</span>
- <span class="oq-q">What did this mean then?</span>
- </div>
- <div class="oq-item added">
- <span class="oq-badge">Added</span>
- <span class="oq-q">Is this term consistent across the portfolio?</span>
- </div>
- <div class="oq-item added">
- <span class="oq-badge">Added</span>
- <span class="oq-q">Is this context still current?</span>
- </div>
- <div class="oq-item added">
- <span class="oq-badge">Added</span>
- <span class="oq-q">What have we learned?</span>
  </div>
  </div>
  </div>
