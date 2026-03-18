@@ -69,8 +69,8 @@
 
 /* Role cards */
 .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
-.role-card { background: var(--bg-card); overflow: hidden; }
-.role-card-top { display: grid; grid-template-columns: 1fr 32px 1fr; }
+.role-card { background: var(--bg-card); overflow: hidden; display: flex; flex-direction: column; }
+.role-card-top { display: grid; grid-template-columns: 1fr 32px 1fr; flex: 1; align-items: stretch; }
 .role-old {
   padding: 1.5rem 1.25rem;
   background: var(--bg-inset);
@@ -157,15 +157,15 @@
 
 /* Failure cards */
 .failure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); border: 1px solid var(--bd); margin-bottom: 2rem; }
-.failure-card { background: var(--bg-card); overflow: hidden; transition: box-shadow 0.15s; }
+.failure-card { background: var(--bg-card); overflow: hidden; transition: box-shadow 0.15s; display: flex; flex-direction: column; }
 .failure-card:hover { box-shadow: 0 0 0 1px var(--signal-lt); }
-.failure-card-top { display: grid; grid-template-columns: 52px 1fr; }
+.failure-card-top { display: grid; grid-template-columns: 52px 1fr; flex: 1; align-items: stretch; }
 .failure-num-col { padding: 1.5rem 0.75rem; display: flex; align-items: flex-start; justify-content: center; background: var(--bg-panel); border-right: 1px solid var(--bd); }
 .failure-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--signal-lt); line-height: 1; }
 .failure-body { padding: 1.5rem 1.25rem; }
 .failure-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.5rem; }
 .failure-desc { font-size: 0.83rem; color: var(--tx-body); line-height: 1.7; }
-.failure-footer { padding: 0.85rem 1.25rem; border-top: 1px solid var(--bd); background: var(--bg-inset); display: flex; gap: 0.75rem; align-items: flex-start; }
+.failure-footer { padding: 0.85rem 1.25rem; border-top: 1px solid var(--bd); background: var(--bg-inset); display: flex; gap: 0.75rem; align-items: flex-start; margin-top: auto; }
 .mit-label { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-lt); flex-shrink: 0; margin-top: 0.05rem; }
 .mit-text { font-size: 0.8rem; color: var(--tx-body); line-height: 1.55; }
 
