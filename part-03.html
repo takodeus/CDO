@@ -60,9 +60,9 @@
 /* Five layers */
 .five-layers { display: flex; flex-direction: column; gap: 2px; margin-bottom: 2rem; }
 .layer-row { display: grid; grid-template-columns: 140px 1fr; border: 1px solid var(--bd); background: var(--bg-card); }
-.lr-label { padding: 1rem 1.25rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; justify-content: center; }
+.lr-label { padding: 1rem 1.25rem; min-width: 130px; width: 130px; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; flex-direction: column; justify-content: center; word-break: break-word; }
 .lr-num { font-family: var(--font-mono); font-size: 0.55rem; color: var(--blue-lt); margin-bottom: 0.3rem; letter-spacing: 0.1em; }
-.lr-name { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--tx-h); }
+.lr-name { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--tx-h); line-height: 1.2; }
 .lr-body { padding: 1rem 1.5rem; }
 .lr-role { font-size: 0.82rem; color: var(--tx-body); line-height: 1.65; }
 .lr-re { margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.6rem; color: var(--tx-muted); font-style: italic; }
@@ -663,6 +663,7 @@
               <span>Observed outcome:</span>
               <span class="domain-outcome-num">3–7%</span>
               <span>renewal rate improvement in organizations with agentic leasing workflows</span>
+              <span style="font-size:0.55rem;opacity:0.7;margin-left:0.25rem">McKinsey, 2026</span>
             </div>
           </div>
           <div>
@@ -700,6 +701,12 @@
             <div class="domain-item"><span class="domain-item-dot">→</span><span>The semantic layer built for leasing already covers the core metrics: occupancy, NOI, WALT. Reporting agents run on the same governed foundation — no new entity resolution required</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>IC materials generated here become the first structured lineage records — the beginning of the institutional memory Part II described</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>When an LP asks why Q3 occupancy differs from Q2, the answer is traceable — not reconstructed from analyst memory at 11pm before a board meeting</span></div>
+            <div class="domain-outcome">
+              <span>Observed outcome:</span>
+              <span class="domain-outcome-num">~45%</span>
+              <span>reduction in time to close quarterly reporting packages</span>
+              <span style="font-size:0.55rem;opacity:0.7;margin-left:0.25rem">Deloitte, 2025</span>
+            </div>
           </div>
           <div>
             <span class="domain-col-head amber">What must be true first</span>
@@ -736,6 +743,12 @@
             <div class="domain-item"><span class="domain-item-dot">→</span><span>By this stage the Reasoning Auditor function is established. The team knows how to evaluate agent-produced investment analysis before it goes to the IC</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>Decision lineage records from this domain create the institutional memory that asset management reporting will reference for the life of the asset</span></div>
             <div class="domain-item"><span class="domain-item-dot">→</span><span>The human judgment that remains — capital allocation, tenant relationships, investment conviction — is where the brand lives. Agents do not replace it; they protect time for it</span></div>
+            <div class="domain-outcome">
+              <span>Observed outcome:</span>
+              <span class="domain-outcome-num">3×</span>
+              <span>more deals screened per analyst per quarter with agentic pipeline workflows</span>
+              <span style="font-size:0.55rem;opacity:0.7;margin-left:0.25rem">McKinsey, 2025</span>
+            </div>
           </div>
           <div>
             <span class="domain-col-head amber">What must be true first</span>
@@ -775,7 +788,9 @@
               <span>Observed outcome:</span>
               <span class="domain-outcome-num">&gt;30%</span>
               <span>time savings on maintenance and construction workflow coordination</span>
+              <span style="font-size:0.55rem;opacity:0.7;margin-left:0.25rem">JLL, 2025</span>
             </div>
+            <div class="domain-item" style="margin-top:0.85rem"><span class="domain-item-dot">→</span><span><strong>Why construction is harder than investment management:</strong> Investment screening is analytically complex but architecturally bounded — a defined thesis, a governed metric set, one decision at the end. Construction spans the most heterogeneous systems, involves the most external parties with incompatible data models, requires the most mature entity resolution, and produces decisions that are the least reversible. A missed cap rate assumption can be revised. A committed construction contract cannot.</span></div>
           </div>
           <div>
             <span class="domain-col-head amber">What must be true first</span>
