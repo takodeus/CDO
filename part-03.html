@@ -57,6 +57,15 @@
 .svt-col.thoughts-col .svt-dot { color: var(--blue-lt); }
 .svt-arrow { font-size: 1.4rem; font-weight: 300; color: var(--blue-lt); }
 
+/* Assumption stack — 1x3 vertical */
+.assumption-stack { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--bd); margin-bottom: 2.5rem; }
+.assumption-row { display: grid; grid-template-columns: 140px 1fr; align-items: stretch; border-bottom: 1px solid var(--bd); }
+.assumption-row:last-child { border-bottom: none; }
+.assumption-label-col { padding: 1.5rem 1.25rem; background: var(--bg-panel); border-right: 1px solid var(--bd); display: flex; align-items: flex-start; justify-content: center; }
+.assumption-content { padding: 1.5rem 1.75rem; }
+.assumption-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--tx-h); margin-bottom: 0.4rem; }
+.assumption-body { font-size: 0.88rem; color: var(--tx-body); line-height: 1.78; }
+
 /* Five layers */
 .five-layers { display: flex; flex-direction: column; gap: 2px; margin-bottom: 2rem; }
 .layer-row { display: grid; grid-template-columns: 140px 1fr; border: 1px solid var(--bd); background: var(--bg-card); }
@@ -218,6 +227,8 @@
   .paradox-grid { grid-template-columns: 1fr; }
   .svt-grid { grid-template-columns: 1fr; }
   .svt-col.mid-col { display: none; }
+  .assumption-row { grid-template-columns: 1fr; }
+  .assumption-label-col { border-right: none; border-bottom: 1px solid var(--bd); justify-content: flex-start; padding: 0.75rem 1.25rem; }
   .role-grid { grid-template-columns: 1fr; }
   .role-card-top { grid-template-columns: 1fr; }
   .role-old { border-right: none; border-bottom: 1px solid var(--bd); }
