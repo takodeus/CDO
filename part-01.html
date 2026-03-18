@@ -194,6 +194,38 @@
  padding: 0.4rem 0.85rem; border: 1px solid var(--bd);
  background: var(--bg-panel);
 }
+/* Now → Next 1×5 layout */
+.now-next { border: 1px solid var(--bd); margin-bottom: 2rem; }
+.now-next-headers { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--bd-strong); }
+.now-next-hcol { padding: 1.1rem 1.5rem; background: var(--bg-panel); }
+.now-next-hcol:first-child { border-right: 1px solid var(--bd); }
+.now-next-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.3rem; display: block; }
+.now-next-label.old { color: var(--signal-lt); }
+.now-next-label.new { color: var(--teal-lt); }
+.now-next-headline { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--tx-h); }
+.now-next-row { display: grid; grid-template-columns: 1fr 36px 1fr; align-items: center; border-bottom: 1px solid var(--bd); }
+.now-next-row:last-child { border-bottom: none; }
+.now-next-cell { padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.now-next-cell.old-cell { background: var(--bg-panel); border-right: 1px solid var(--bd); opacity: 0.8; }
+.now-next-cell.new-cell { border-left: 1px solid var(--bd); }
+.now-next-arrow { display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--blue-lt); font-weight: 700; }
+.nn-name { font-size: 0.88rem; font-weight: 500; color: var(--tx-h); }
+.nn-tag { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.08em; padding: 0.18rem 0.5rem; border-radius: 2px; flex-shrink: 0; }
+.nn-lag  { background: var(--signal-bg); color: var(--signal-lt); border: 1px solid var(--signal); }
+.nn-per  { background: var(--amber-bg); color: var(--amber-lt); border: 1px solid var(--amber); }
+.nn-sil  { background: var(--signal-bg); color: var(--signal-lt); border: 1px solid var(--signal); }
+.nn-frag { background: var(--signal-bg); color: var(--signal-lt); border: 1px solid var(--signal); }
+.nn-dec  { background: rgba(46,134,193,0.12); color: var(--blue-lt); border: 1px solid var(--blue-mid); }
+.nn-live { background: var(--teal-bg); color: var(--teal-lt); border: 1px solid var(--teal); }
+.nn-auto { background: var(--teal-bg); color: var(--teal-lt); border: 1px solid var(--teal); }
+.nn-sem  { background: var(--teal-bg); color: var(--teal-lt); border: 1px solid var(--teal); }
+[data-theme="light"] .now-next-cell.old-cell { opacity: 1; background: var(--bg-alt); }
+@media (max-width: 768px) {
+  .now-next-row { grid-template-columns: 1fr 24px 1fr; }
+  .now-next-cell { padding: 0.65rem 0.85rem; }
+  .nn-name { font-size: 0.8rem; }
+}
+
 /* Legacy Architecture & Operating Model grid */
 .legacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--bd); margin-bottom: 2.5rem; }
 .legacy-col { display: flex; flex-direction: column; }
@@ -361,36 +393,46 @@
 
  </div>
 
- <div class="model-compare">
- <div class="model-compare-headers">
- <div class="model-col-header">
- <span class="model-col-label old">Now, Data Pyramid</span>
- <h3>Intelligence arrives late</h3>
- <p>Reports delivered after decisions are made</p>
+ <div class="now-next">
+   <div class="now-next-headers">
+     <div class="now-next-hcol">
+       <span class="now-next-label old">Now · Data Pyramid</span>
+       <div class="now-next-headline">Intelligence arrives late</div>
+     </div>
+     <div class="now-next-hcol">
+       <span class="now-next-label new">Next · Intelligence Control Tower</span>
+       <div class="now-next-headline">Operations decoupled from intelligence</div>
+     </div>
+   </div>
+   <div class="now-next-row">
+     <div class="now-next-cell old-cell"><span class="nn-name">Fund &amp; Portfolio Management</span><span class="nn-tag nn-lag">Lagging</span></div>
+     <div class="now-next-arrow">→</div>
+     <div class="now-next-cell new-cell"><span class="nn-name">Decision Control</span><span class="nn-tag nn-dec">Governance</span></div>
+   </div>
+   <div class="now-next-row">
+     <div class="now-next-cell old-cell"><span class="nn-name">Asset Management</span><span class="nn-tag nn-per">Periodic</span></div>
+     <div class="now-next-arrow">→</div>
+     <div class="now-next-cell new-cell"><span class="nn-name">Continuous Intelligence</span><span class="nn-tag nn-live">Live</span></div>
+   </div>
+   <div class="now-next-row">
+     <div class="now-next-cell old-cell"><span class="nn-name">Property Operations</span><span class="nn-tag nn-sil">Siloed</span></div>
+     <div class="now-next-arrow">→</div>
+     <div class="now-next-cell new-cell"><span class="nn-name">AI Agent Network</span><span class="nn-tag nn-auto">Autonomous</span></div>
+   </div>
+   <div class="now-next-row">
+     <div class="now-next-cell old-cell"><span class="nn-name">Systems of Record</span><span class="nn-tag nn-frag">Fragmented</span></div>
+     <div class="now-next-arrow">→</div>
+     <div class="now-next-cell new-cell"><span class="nn-name">Systems of Record</span><span class="nn-tag nn-sem">Entity-resolved</span></div>
+   </div>
+   <div class="now-next-row">
+     <div class="now-next-cell old-cell"><span class="nn-name">Semantic Layer</span><span class="nn-tag nn-lag">Absent</span></div>
+     <div class="now-next-arrow">→</div>
+     <div class="now-next-cell new-cell"><span class="nn-name">Semantic Layer</span><span class="nn-tag nn-dec">Governed</span></div>
+   </div>
  </div>
- <div class="model-col-header">
- <span class="model-col-label new">Next, Intelligence Control Tower</span>
- <h3>Operations decoupled from intelligence</h3>
- <p>Decision rights at top; execution distributed</p>
- </div>
- </div>
- <div class="model-row">
- <div class="model-cell"><span class="ml-name">Fund &amp; Portfolio Management</span><span class="ml-tag ml-lag">Lagging</span></div>
- <div class="model-cell"><span class="ml-name">Decision Control</span><span class="ml-tag ml-dec">Governance</span></div>
- </div>
- <div class="model-row">
- <div class="model-cell"><span class="ml-name">Asset Management</span><span class="ml-tag ml-per">Periodic</span></div>
- <div class="model-cell"><span class="ml-name">Continuous Intelligence</span><span class="ml-tag ml-live">Live</span></div>
- </div>
- <div class="model-row">
- <div class="model-cell"><span class="ml-name">Property Operations</span><span class="ml-tag ml-sil">Siloed</span></div>
- <div class="model-cell"><span class="ml-name">AI Agent Network</span><span class="ml-tag ml-auto">Autonomous</span></div>
- </div>
- <div class="model-row">
- <div class="model-cell"><span class="ml-name">Systems of Record</span><span class="ml-tag ml-frag">Fragmented</span></div>
- <div class="model-cell"><span class="ml-name">Systems of Record</span><span class="ml-tag ml-sem">Entity-resolved</span></div>
- </div>
- </div>
+
+
+ <div class="section-divider" style="margin:2.5rem 0"></div>
 
  <h2 class="section-h2" style="margin-bottom:1rem">Paradigmatic Technology Shifts</h2>
  <p class="body-text" style="margin-bottom:1.5rem">Enterprise architectures and technology topographies need to adapt. Click any row to read the detail.</p>
@@ -483,8 +525,7 @@
  </div>
 
  <div class="page-nav-footer">
- <button class="page-nav-btn" onclick="setTab('lenses')">Operating Lenses →</button>
- <a href="part-02.html" class="page-nav-btn next">Next: The Memory Gap →</a>
+ <button class="page-nav-btn next" onclick="setTab('lenses')">Operating Lenses →</button>
  </div>
 </div>
 </div>
