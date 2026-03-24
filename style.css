@@ -404,69 +404,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ═══════════════════════════════════════════════════════
-   TECH PANEL TOGGLE
+   TECH CONTEXT TABLES (extends .re-panel)
+   Tech Context panels reuse all .re-panel / .re-toggle-bar /
+   .re-toggle-btn styles. Only table layout is added here since
+   .re-panel does not define table styles.
 ═══════════════════════════════════════════════════════ */
-.tech-toggle-bar {
-  display: flex; align-items: center; justify-content: space-between;
-  margin: 1.75rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--bd);
-}
-.tech-toggle-btn {
-  display: flex; align-items: center; gap: 0.65rem; padding: 0.65rem 1.25rem;
-  background: var(--bg-panel); color: var(--tx-2);
-  font-family: var(--font-mono); font-size: 0.65rem;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  border: 1px solid var(--bd);
-  transition: all 0.2s var(--ease);
-}
-.tech-toggle-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
-.tech-toggle-btn.active { background: var(--teal); color: #fff; border-color: var(--teal); }
-.tech-toggle-btn .btn-dot { background: var(--tx-muted); }
-.tech-toggle-btn.active .btn-dot { background: var(--teal-lt); }
-
-.tech-panel {
-  display: none; background: var(--bg-panel);
-  border: 1px solid var(--teal); border-top: 3px solid var(--teal-lt);
-  padding: 2.25rem 2.5rem; margin-top: 1.5rem;
-  animation: panelSlide 0.25s var(--ease);
-}
-.tech-panel.active { display: block; }
-.tech-panel-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.5rem; }
-.tech-panel-icon {
-  font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--teal-lt); padding: 0.25rem 0.65rem;
-  border: 1px solid var(--teal); background: var(--teal-bg); white-space: nowrap;
-}
-.tech-panel h4 { font-family: var(--font-display); font-size: 1.3rem; color: var(--tx-h); font-weight: 700; }
-.tech-panel p  { font-size: 1rem; color: var(--tx-body); line-height: 1.8; margin-bottom: 0.85rem; }
-.tech-panel strong { color: var(--tx-h); font-weight: 600; }
-.tech-panel .tech-source {
-  background: var(--bg-inset); border-left: 3px solid var(--teal-lt);
-  padding: 1.1rem 1.4rem; margin-top: 1.25rem; font-size: 0.95rem; color: var(--tx-body); line-height: 1.75;
-}
-.tech-panel .tech-source strong {
-  color: var(--teal-lt); display: block; margin-bottom: 0.35rem;
-  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
-}
-.tech-panel table {
+.re-panel table {
   width: 100%; border-collapse: collapse; margin-top: 1.25rem; font-size: 0.92rem;
 }
-.tech-panel th {
+.re-panel th {
   text-align: left; padding: 0.55rem 0.85rem;
-  background: rgba(14,102,85,0.15); color: var(--teal-lt);
+  background: var(--bg-inset); color: var(--tx-2);
   font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
-  border-bottom: 1px solid var(--teal);
+  border-bottom: 1px solid var(--accent);
 }
-.tech-panel td {
+.re-panel td {
   padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--bd);
   color: var(--tx-body); vertical-align: top; line-height: 1.6;
 }
-.tech-panel tr:last-child td { border-bottom: none; }
-.tech-panel td:first-child { color: var(--tx-2); font-weight: 500; white-space: nowrap; }
+.re-panel tr:last-child td { border-bottom: none; }
+.re-panel td:first-child { color: var(--tx-2); font-weight: 500; }
 @media (max-width: 640px) {
-  .tech-toggle-bar { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-  .tech-panel { padding: 1.5rem 1.25rem; }
-  .tech-panel table { font-size: 0.82rem; }
-  .tech-panel td { padding: 0.5rem 0.55rem; }
+  .re-panel table { font-size: 0.82rem; }
+  .re-panel td { padding: 0.5rem 0.55rem; }
 }
 
 /* ═══════════════════════════════════════════════════════

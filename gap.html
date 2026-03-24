@@ -154,16 +154,16 @@
 
  
   <!-- TECH TOGGLE -->
-  <div class="tech-toggle-bar">
+  <div class="re-toggle-bar">
     <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
-    <button class="tech-toggle-btn" data-tech-target="gap" onclick="toggleTech('gap')">
+    <button class="re-toggle-btn" data-tech-target="gap" onclick="toggleTech('gap')">
       <span class="btn-dot"></span>
       Show Tech Context
     </button>
   </div>
-  <div class="tech-panel" id="tech-gap">
-    <div class="tech-panel-header">
-      <span class="tech-panel-icon">Tech Context</span>
+  <div class="re-panel" id="tech-gap">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">Tech Context</span>
       <h4>The ARR Problem</h4>
     </div>
     <p>A B2B SaaS company closes its quarter. The CEO asks a single question: what was ARR at quarter end?</p>
@@ -171,7 +171,7 @@
     <p>Three numbers. Same question. Same quarter. None of them wrong by their own logic.</p>
     <p>The pipeline is green. Every row is present. Every field is populated. The failure is semantic&#160;&#8212; and it only surfaces at the board meeting when the CFO&#8217;s slide and the CRO&#8217;s slide show different numbers for the same metric.</p>
     <p><strong>What each system knows vs. what the organization remembers.</strong> NetSuite knows what revenue was recognized. Salesforce knows what was sold. The dbt model knows what was true when it was written. None of them knows what ARR <em>meant</em> at the moment a board decision was made&#160;&#8212; which definition was active, whose authority governed it, whether that definition matched the one used in the prior quarter&#8217;s comparison.</p>
-    <div class="tech-source">
+    <div class="re-example">
       <strong>Research signal</strong>
       McKinsey&#8217;s 2025 State of AI survey found that 51% of organizations reported at least one negative AI incident in the past year. In the SaaS context, the most common incident is not a model hallucination&#160;&#8212; it is a metric inconsistency an AI agent propagated at speed, answering a question about ARR confidently from a definition the organization had silently abandoned. The read path cannot reconstruct the context that made a definition rational at the moment it was used. A data warehouse sees ARR after the quarter closes. The decision lineage&#160;&#8212; which version, whose authority, what version boundary&#160;&#8212; was never captured at execution time.
     </div>

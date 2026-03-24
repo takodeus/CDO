@@ -279,16 +279,16 @@
 
  
   <!-- TECH TOGGLE -->
-  <div class="tech-toggle-bar">
+  <div class="re-toggle-bar">
     <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
-    <button class="tech-toggle-btn" data-tech-target="decay" onclick="toggleTech('decay')">
+    <button class="re-toggle-btn" data-tech-target="decay" onclick="toggleTech('decay')">
       <span class="btn-dot"></span>
       Show Tech Context
     </button>
   </div>
-  <div class="tech-panel" id="tech-decay">
-    <div class="tech-panel-header">
-      <span class="tech-panel-icon">Tech Context</span>
+  <div class="re-panel" id="tech-decay">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">Tech Context</span>
       <h4>When Context Expires but Stays Active in a Trading Environment</h4>
     </div>
     <p>A quantitative asset manager builds a systematic equities strategy in 2022. The strategy encodes a market context record: elevated inflation, rising rate regime, flight-to-quality premium in large-cap defensives. This context record is tagged <strong>Active</strong> and informs position sizing, factor weights, and the agent&#8217;s risk threshold parameters.</p>
@@ -306,7 +306,7 @@
         <tr><td>Investment policy statement</td><td>Until amended</td></tr>
       </tbody>
     </table>
-    <div class="tech-source">
+    <div class="re-example">
       <strong>Design principle</strong>
       Decay is not deletion. The 2022 macro context record, once archived, becomes the lineage evidence for why the strategy was calibrated the way it was during that period. Deleting it makes every position from 2022&#160;&#8211;&#160;2023 permanently uninterpretable. Archival preserves the chain. The agent reasoning over current data is not the same agent that built the strategy&#160;&#8212; and both need to be able to reconstruct why the original thesis made sense when it was made.
     </div>

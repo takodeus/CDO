@@ -225,23 +225,23 @@
 
  
   <!-- TECH TOGGLE -->
-  <div class="tech-toggle-bar">
+  <div class="re-toggle-bar">
     <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
-    <button class="tech-toggle-btn" data-tech-target="drift" onclick="toggleTech('drift')">
+    <button class="re-toggle-btn" data-tech-target="drift" onclick="toggleTech('drift')">
       <span class="btn-dot"></span>
       Show Tech Context
     </button>
   </div>
-  <div class="tech-panel" id="tech-drift">
-    <div class="tech-panel-header">
-      <span class="tech-panel-icon">Tech Context</span>
+  <div class="re-panel" id="tech-drift">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">Tech Context</span>
       <h4>Where Drift Enters an Enterprise Analytics Stack</h4>
     </div>
     <p>A growth-stage enterprise deploys Salesforce for CRM, Amplitude for product analytics, and Snowflake as its data warehouse, with dbt managing transformations and Looker as the primary BI layer. Each team defines &#8220;conversion&#8221; within their own system.</p>
     <p>Marketing measures lead-to-opportunity conversion in Salesforce. Product measures trial-to-paid conversion in Amplitude using a 7-day activation window. The data warehouse team computes conversion in a dbt model using a 14-day window inherited from a legacy definition. Looker surfaces a fourth number&#160;&#8212; a blended funnel metric built for a specific board presentation two years ago that was never retired.</p>
     <p>No individual definition is wrong. All four are internally consistent. None are reconciled. When the AI-powered forecasting agent queries the semantic layer for conversion rate to project next-quarter pipeline, it finds two accessible definitions and selects the one with higher confidence weighting&#160;&#8212; the dbt model&#160;&#8212; without flagging the selection or recording which version was active at inference time.</p>
     <p><strong>The visibility problem.</strong> At Gartner&#8217;s Data &amp; Analytics Summit 2026, analysts declared universal semantic layers a &#8220;non-negotiable foundation&#8221; and predicted that 60% of agentic analytics projects relying solely on the Model Context Protocol will fail by 2028 without a consistent semantic layer. The failure mode they described is not architectural complexity. It is silent definition selection&#160;&#8212; an agent choosing between competing valid definitions without recording that a choice was made.</p>
-    <div class="tech-source">
+    <div class="re-example">
       <strong>Active register&#160;&#8212; enterprise analytics stack</strong>
       <em>Conversion rate</em>&#160;&#8212; Marketing: lead-to-opportunity, 30-day window, Salesforce. Product: trial-to-paid, 7-day activation window, Amplitude. Data warehouse: trial-to-paid, 14-day window, dbt transform v1.4. Looker: blended funnel, original board deck definition, unversioned. Divergence detected Q2 2025 during annual planning when three teams presented incompatible pipeline projections to the same leadership team.
       <br><br>
