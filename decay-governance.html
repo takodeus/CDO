@@ -277,7 +277,42 @@
  </tbody>
  </table>
 
- <div class="page-nav-footer">
+ 
+  <!-- TECH TOGGLE -->
+  <div class="tech-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
+    <button class="tech-toggle-btn" data-tech-target="decay" onclick="toggleTech('decay')">
+      <span class="btn-dot"></span>
+      Show Tech Context
+    </button>
+  </div>
+  <div class="tech-panel" id="tech-decay">
+    <div class="tech-panel-header">
+      <span class="tech-panel-icon">Tech Context</span>
+      <h4>When Context Expires but Stays Active in a Trading Environment</h4>
+    </div>
+    <p>A quantitative asset manager builds a systematic equities strategy in 2022. The strategy encodes a market context record: elevated inflation, rising rate regime, flight-to-quality premium in large-cap defensives. This context record is tagged <strong>Active</strong> and informs position sizing, factor weights, and the agent&#8217;s risk threshold parameters.</p>
+    <p>In Q3 2023, the rate environment begins shifting. By mid-2024, the thesis underlying the context record has partially resolved. The original macro context is neither fully current nor fully obsolete&#160;&#8212; it is in the decay zone. No one triggers a review. The context remains tagged Active.</p>
+    <p>The agent, reasoning against still-Active context from a resolved macro environment, continues applying the flight-to-quality premium to factor weights. The positions it recommends are systematically over-hedged for a risk environment that no longer exists. The drift is not in the data&#160;&#8212; the underlying market data is current. The drift is in the <em>interpretation framework</em> applied to that data, designed for a moment that has passed.</p>
+    <p><strong>The lifecycle problem.</strong> Gartner&#8217;s 2026 Data &amp; Analytics Summit identified that organizations must move beyond static quality checks to continuous contextual validation of data fitness for specific AI use cases. In financial services, the stakes of stale context are not a delayed report. They are compounding position risk on an outdated thesis, executed at machine speed.</p>
+    <table>
+      <thead><tr><th>Context type</th><th>Natural durability</th></tr></thead>
+      <tbody>
+        <tr><td>Earnings surprise signal</td><td>24&#160;&#8211;&#160;48 hours</td></tr>
+        <tr><td>Sector rotation thesis</td><td>3&#160;&#8211;&#160;6 months</td></tr>
+        <tr><td>Macro rate environment</td><td>18&#160;&#8211;&#160;36 months</td></tr>
+        <tr><td>Factor model calibration</td><td>12&#160;&#8211;&#160;24 months</td></tr>
+        <tr><td>Regulatory capital model</td><td>Regulatory cycle</td></tr>
+        <tr><td>Investment policy statement</td><td>Until amended</td></tr>
+      </tbody>
+    </table>
+    <div class="tech-source">
+      <strong>Design principle</strong>
+      Decay is not deletion. The 2022 macro context record, once archived, becomes the lineage evidence for why the strategy was calibrated the way it was during that period. Deleting it makes every position from 2022&#160;&#8211;&#160;2023 permanently uninterpretable. Archival preserves the chain. The agent reasoning over current data is not the same agent that built the strategy&#160;&#8212; and both need to be able to reconstruct why the original thesis made sense when it was made.
+    </div>
+  </div>
+
+<div class="page-nav-footer">
  <a href="drift-register.html" class="page-nav-btn">← Drift Register</a>
  <a href="moat.html" class="page-nav-btn next">The Moat →</a>
  </div>

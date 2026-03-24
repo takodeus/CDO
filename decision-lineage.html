@@ -140,7 +140,42 @@
  </div>
  </div>
 
- <div class="page-nav-footer">
+ 
+  <!-- TECH TOGGLE -->
+  <div class="tech-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
+    <button class="tech-toggle-btn" data-tech-target="lineage" onclick="toggleTech('lineage')">
+      <span class="btn-dot"></span>
+      Show Tech Context
+    </button>
+  </div>
+  <div class="tech-panel" id="tech-lineage">
+    <div class="tech-panel-header">
+      <span class="tech-panel-icon">Tech Context</span>
+      <h4>The Regulatory Reconstruction Problem</h4>
+    </div>
+    <p>A consumer lender deploys an AI model to support credit underwriting decisions in Q1 2024. The model runs on a feature store built on Snowflake, with features derived from bureau data, internal transaction history, and behavioral signals. It is accurate, well-calibrated, and in production.</p>
+    <p>In Q3 2025, a regulatory examination begins. The examiner asks a question that should be straightforward: for the applications declined in Q2 2024, what features drove the model&#8217;s recommendation, which version of the model was active, what training data vintage underpinned the feature definitions, and how did the protected attribute exclusion logic function at that specific point in time?</p>
+    <p>The answer requires reconstructing the state of a system&#160;&#8212; not as it is today, but as it was at the moment of each decision. The model version is known. The feature store schema from Q2 2024 is partially recoverable. The training data vintage is in a Git tag. The exclusion logic, however, was updated in a hotfix deployed in late Q1 2024. Whether the hotfix was active for a given application depends on the deployment timestamp, which is not bound to individual inference records.</p>
+    <p>The data lineage is intact. The decision lineage is not.</p>
+    <div class="tech-source">
+      <strong>The documented failure pattern</strong>
+      In October 2025, Deloitte Australia submitted a government report riddled with AI-generated errors and agreed to refund part of the $290,000 contract. The 237-page report contained fabricated academic references, nonexistent research papers, and invented quotes from federal court judges. The failure is structurally identical: a fluent output, produced by a capable model, that cannot be traced to the premises that produced it. One case ends in a regulatory inquiry. The other in a news story. The architectural failure is the same.
+    </div>
+    <table>
+      <thead><tr><th>Question</th><th>Data lineage answers</th><th>Decision lineage answers</th></tr></thead>
+      <tbody>
+        <tr><td>Where did this number come from?</td><td>Yes&#160;&#8212; full pipeline trace</td><td>Yes</td></tr>
+        <tr><td>Which model version produced this?</td><td>Partially&#160;&#8212; if version was logged</td><td>Yes&#160;&#8212; if bound at inference time</td></tr>
+        <tr><td>Which feature definitions were active?</td><td>No&#160;&#8212; features are current state</td><td>Yes&#160;&#8212; if semantic layer is versioned</td></tr>
+        <tr><td>Which training data vintage applied?</td><td>No&#160;&#8212; warehouse is current state</td><td>Yes&#160;&#8212; if training context is preserved</td></tr>
+        <tr><td>Which exception logic was in force?</td><td>No&#160;&#8212; code is current state</td><td>Yes&#160;&#8212; if deployment state is bound to output</td></tr>
+        <tr><td>Why did this decision make sense then?</td><td>No</td><td>Yes&#160;&#8212; if full context snapshot is preserved</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="page-nav-footer">
  <a href="knowledge-stack.html" class="page-nav-btn">← Knowledge Stack</a>
  <a href="drift-register.html" class="page-nav-btn next">Drift Register →</a>
  </div>

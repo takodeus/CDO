@@ -165,7 +165,31 @@
  </tbody>
  </table>
 
- <div class="page-nav-footer">
+ 
+  <!-- TECH TOGGLE -->
+  <div class="tech-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
+    <button class="tech-toggle-btn" data-tech-target="moat" onclick="toggleTech('moat')">
+      <span class="btn-dot"></span>
+      Show Tech Context
+    </button>
+  </div>
+  <div class="tech-panel" id="tech-moat">
+    <div class="tech-panel-header">
+      <span class="tech-panel-icon">Tech Context</span>
+      <h4>The Compounding Advantage in Product-Led Organizations</h4>
+    </div>
+    <p>Two enterprise software companies compete in the same market. Both deploy AI in their product development and go-to-market workflows in 2024. Both have comparable model quality and engineering capability. Their trajectories diverge not because of the models but because of what the models can reason over.</p>
+    <p>Company A deploys agents on a governed semantic layer and a decision-lineage-capable data stack. Every significant decision&#160;&#8212; a pricing change, a feature sunset, a market entry&#160;&#8212; is bound to the context that made it rational: the competitive signals that were Active, the customer cohort definitions in use, the retention model version that informed the projection. When the AI product agent reasons about the next pricing decision, it can query: <em>in 2022 when we ran a similar pricing test in the mid-market segment, what was the competitive context, which definition of retention were we using, and how did the actual outcome compare to the model&#8217;s prediction?</em> The answer is retrievable in minutes.</p>
+    <p>Company B deployed agents on a faster timeline. Their data warehouse is cleaner. Their model is marginally more capable. But every pricing decision, every feature launch, every market entry exists as a record&#160;&#8212; not a memory. The agent can retrieve what was decided. It cannot reconstruct why it made sense. When the mid-market pricing question comes up again, the team rebuilds the context from scratch. They relearn the same lesson. They make the same calibration error. At agent speed, with greater confidence than any human team ever did.</p>
+    <p><strong>The compounding gap.</strong> McKinsey found that only 39% of organizations report EBIT impact from AI at the enterprise level, despite 88% reporting regular AI use in at least one business function. The gap between using AI and compounding from AI is not model quality. It is institutional memory. Deloitte&#8217;s 2026 State of AI survey found that only 34% of organizations are truly reimagining the business. The 66% that are not are deploying intelligence on top of forgetting. Fast, fluent, and perpetually starting over.</p>
+    <div class="tech-source">
+      <strong>The test that separates the two companies</strong>
+      A product leader who joined three years after a major platform pivot asks: why did we make that architectural decision, under what assumptions about the market, using what definition of customer success, with what competitive context active? If the answer requires calling the person who was there&#160;&#8212; the memory is human, not institutional. When that person leaves, the memory leaves. The agent reasoning about the next architectural decision will have access to everything the company <em>knows</em>. It will have no access to what the company <em>learned</em>. That is the only moat that cannot be purchased.
+    </div>
+  </div>
+
+<div class="page-nav-footer">
  <a href="decay-governance.html" class="page-nav-btn">← Decay Governance</a>
  <a href="part-03.html" class="page-nav-btn next">Part III: The Execution Engine →</a>
  </div>
