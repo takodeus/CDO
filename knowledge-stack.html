@@ -191,7 +191,38 @@
  </div>
  </div>
 
- <div class="page-nav-footer">
+ 
+  <!-- TECH TOGGLE -->
+  <div class="tech-toggle-bar">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
+    <button class="tech-toggle-btn" data-tech-target="knowledge-stack" onclick="toggleTech('knowledge-stack')">
+      <span class="btn-dot"></span>
+      Show Tech Context
+    </button>
+  </div>
+  <div class="tech-panel" id="tech-knowledge-stack">
+    <div class="tech-panel-header">
+      <span class="tech-panel-icon">Tech Context</span>
+      <h4>The Stack You Have vs. The Stack You Need</h4>
+    </div>
+    <p>A large enterprise deploys GPT-4 via Azure OpenAI as its reasoning layer. The data warehouse runs on Snowflake. Business logic lives in dbt transformation models&#160;&#8212; SQL files in a Git repository, with metric definitions documented in code comments and a partially maintained data catalog covering approximately 40% of production models. The BI layer is Tableau, with semantic models built by individual analysts over three years, each encoding their own cohort logic.</p>
+    <p>Layer 04&#160;&#8212; Reasoning&#160;&#8212; is deployed. It is capable, fast, and fluent.</p>
+    <p>Layer 01&#160;&#8212; Ontology&#160;&#8212; is partial. Entity resolution between the CRM, the ERP, and the data warehouse is incomplete. The same customer appears under four different IDs across systems. &#8220;Product&#8221; means something different in the CRM (a SKU) than in the data warehouse (a contract line item) than in the BI layer (a revenue category).</p>
+    <p>Layer 02&#160;&#8212; Semantic layer&#160;&#8212; is fragmented across dbt model comments, Tableau semantic models, and institutional knowledge in the heads of three senior analysts. None of it is versioned. None of it is machine-readable by the agent at inference time.</p>
+    <p>Layer 03&#160;&#8212; Context graph&#160;&#8212; does not exist. Competitive context, market conditions at the time of major decisions, exception approvals and their rationale&#160;&#8212; none of this is captured in a queryable structure. It lives in email threads, Slack messages, and Confluence pages the agent cannot access.</p>
+    <p><strong>The consequence.</strong> Gartner predicts that through 2026, organizations will abandon 60% of AI projects unsupported by AI-ready data. At Gartner&#8217;s 2026 D&amp;A Summit, analysts showed that organizations with the highest satisfaction from AI initiatives invest 1.78&#215; more in foundations&#160;&#8212; data quality, governance, talent&#160;&#8212; than in AI tools themselves. The agent is not wrong. It is reasoning correctly over an incomplete and ungoverned foundation. Fast. Authoritative. Increasingly expensive to trust.</p>
+    <table>
+      <thead><tr><th>Layer</th><th>What most enterprises have</th><th>What the agent needs</th></tr></thead>
+      <tbody>
+        <tr><td>01 Ontology</td><td>Partial entity resolution, application-specific schemas</td><td>Probabilistic, time-aware entity resolution. Plural ontologies with governed mappings</td></tr>
+        <tr><td>02 Semantic layer</td><td>dbt model comments. Tableau semantic models. Analyst spreadsheets</td><td>Versioned, machine-readable metric definitions with calculation lineage and counterparty mappings</td></tr>
+        <tr><td>03 Context graph</td><td>Email threads, Slack, Confluence, people&#8217;s heads</td><td>Explicitly temporal context records with Active&#160;/&#160;Archived&#160;/&#160;Deprecated lifecycle governance</td></tr>
+        <tr><td>04 Reasoning</td><td>Deployed</td><td>Deployed&#160;&#8212; trustworthy only when the three layers beneath it are governed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="page-nav-footer">
  <a href="memory-types.html" class="page-nav-btn">← Memory Types</a>
  <a href="decision-lineage.html" class="page-nav-btn next">Decision Lineage →</a>
  </div>

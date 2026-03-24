@@ -55,6 +55,16 @@ function toggleRE(sectionId) {
   if (isActive) setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
 }
 
+/* ── TECH PANEL TOGGLE ────────────────────────────── */
+function toggleTech(sectionId) {
+  const btn   = document.querySelector('[data-tech-target="' + sectionId + '"]');
+  const panel = document.getElementById('tech-' + sectionId);
+  if (!panel || !btn) return;
+  const isActive = panel.classList.toggle('active');
+  btn.classList.toggle('active', isActive);
+  if (isActive) setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
 /* ── DRIFT ACCORDION ──────────────────────────────── */
 function toggleDRE(el) { el.closest('.dre').classList.toggle('open'); }
 
