@@ -142,37 +142,43 @@
 
  
   <!-- TECH TOGGLE -->
-  <div class="tech-toggle-bar">
+  <div class="re-toggle-bar">
     <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
-    <button class="tech-toggle-btn" data-tech-target="lineage" onclick="toggleTech('lineage')">
+    <button class="re-toggle-btn" data-tech-target="lineage" onclick="toggleTech('lineage')">
       <span class="btn-dot"></span>
       Show Tech Context
     </button>
   </div>
-  <div class="tech-panel" id="tech-lineage">
-    <div class="tech-panel-header">
-      <span class="tech-panel-icon">Tech Context</span>
-      <h4>The Regulatory Reconstruction Problem</h4>
+  <div class="re-panel" id="tech-lineage">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">Tech Context</span>
+      <h4>The Reconstruction Problem in Private Credit</h4>
     </div>
-    <p>A consumer lender deploys an AI model to support credit underwriting decisions in Q1 2024. The model runs on a feature store built on Snowflake, with features derived from bureau data, internal transaction history, and behavioral signals. It is accurate, well-calibrated, and in production.</p>
-    <p>In Q3 2025, a regulatory examination begins. The examiner asks a question that should be straightforward: for the applications declined in Q2 2024, what features drove the model&#8217;s recommendation, which version of the model was active, what training data vintage underpinned the feature definitions, and how did the protected attribute exclusion logic function at that specific point in time?</p>
-    <p>The answer requires reconstructing the state of a system&#160;&#8212; not as it is today, but as it was at the moment of each decision. The model version is known. The feature store schema from Q2 2024 is partially recoverable. The training data vintage is in a Git tag. The exclusion logic, however, was updated in a hotfix deployed in late Q1 2024. Whether the hotfix was active for a given application depends on the deployment timestamp, which is not bound to individual inference records.</p>
-    <p>The data lineage is intact. The decision lineage is not.</p>
-    <div class="tech-source">
+    <p>A direct lender closes a $200M term loan in 2022. The covenant package lives in Allvue or Investran: leverage ratio, DSCR floor, capex basket, cross-default triggers. Two amendments follow over two years&#160;&#8212; the first broadens the EBITDA add-back basket, the second modifies the maintenance covenant step-down schedule. Both are approved by credit committee. Both are in the system.</p>
+    <p>In 2024 the borrower approaches technical default. The lender needs to reconstruct the credit committee&#8217;s reasoning at origination, the market context from Bloomberg and Chatham that shaped the original structure, the approval logic behind each amendment, and the precedent set by comparable credits in the portfolio using Preqin or PitchBook for the comp set.</p>
+    <p>The data lineage is intact. Every amendment, payment, and covenant test is in Allvue or Investran. The decision lineage is not. The reason this amendment was approved when a comparable request from a different borrower was declined six months earlier exists only in a PDF credit memo, not in a queryable record bound to the transaction at write time.</p>
+    <div class="re-example">
       <strong>The documented failure pattern</strong>
-      In October 2025, Deloitte Australia submitted a government report riddled with AI-generated errors and agreed to refund part of the $290,000 contract. The 237-page report contained fabricated academic references, nonexistent research papers, and invented quotes from federal court judges. The failure is structurally identical: a fluent output, produced by a capable model, that cannot be traced to the premises that produced it. One case ends in a regulatory inquiry. The other in a news story. The architectural failure is the same.
+      In October 2025, Deloitte Australia submitted a government report containing fabricated academic references and invented quotes from federal court judges, and agreed to refund part of the $290,000 contract. The structure of the failure is the same: a fluent output, produced by a capable system, that could not be traced to the premises that produced it. One case ends in a regulatory inquiry. The other in a news story. The architectural gap is identical.
     </div>
     <table>
-      <thead><tr><th>Question</th><th>Data lineage answers</th><th>Decision lineage answers</th></tr></thead>
+      <thead><tr><th>Question</th><th>Data lineage</th><th>Decision lineage</th></tr></thead>
       <tbody>
-        <tr><td>Where did this number come from?</td><td>Yes&#160;&#8212; full pipeline trace</td><td>Yes</td></tr>
-        <tr><td>Which model version produced this?</td><td>Partially&#160;&#8212; if version was logged</td><td>Yes&#160;&#8212; if bound at inference time</td></tr>
-        <tr><td>Which feature definitions were active?</td><td>No&#160;&#8212; features are current state</td><td>Yes&#160;&#8212; if semantic layer is versioned</td></tr>
-        <tr><td>Which training data vintage applied?</td><td>No&#160;&#8212; warehouse is current state</td><td>Yes&#160;&#8212; if training context is preserved</td></tr>
-        <tr><td>Which exception logic was in force?</td><td>No&#160;&#8212; code is current state</td><td>Yes&#160;&#8212; if deployment state is bound to output</td></tr>
-        <tr><td>Why did this decision make sense then?</td><td>No</td><td>Yes&#160;&#8212; if full context snapshot is preserved</td></tr>
+        <tr><td>Where did this number come from?</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Which model version produced this?</td><td>Partial&#160;&#8212; if version was logged</td><td>Yes&#160;&#8212; if bound at inference time</td></tr>
+        <tr><td>Which covenant definition was active?</td><td>No&#160;&#8212; Allvue stores current state</td><td>Yes&#160;&#8212; if semantic layer is versioned</td></tr>
+        <tr><td>Which credit committee rationale applied?</td><td>No&#160;&#8212; PDF memo</td><td>Yes&#160;&#8212; if approval context is captured at write time</td></tr>
+        <tr><td>Which market context was in force?</td><td>No&#160;&#8212; Bloomberg and Chatham are current state</td><td>Yes&#160;&#8212; if market inputs are bound to the output record</td></tr>
+        <tr><td>Why did this recommendation make sense then?</td><td>No</td><td>Yes&#160;&#8212; if the full context snapshot is preserved</td></tr>
       </tbody>
     </table>
+    <p>The practical minimum does not require a knowledge graph on day one. It requires one discipline: every recommendation record written with the model version, assumption-set version, and approval-logic version that were active at that moment. That binding is not data lineage. It is the write-path capture that data lineage was never designed to perform.</p>
+    <div class="tech-sources">
+      <strong>Sources</strong>
+      Deloitte Australia AI governance incident, <em>Computerworld</em> (Oct. 2025).
+      Deloitte and EY, AI governance and controls research (2025&#160;&#8211;&#160;2026).
+      Gartner, <em>Rethink Semantic Layers to Support the Future of Analytics and AI</em> (8 Apr. 2025, ID G00826629).
+    </div>
   </div>
 
 <div class="page-nav-footer">

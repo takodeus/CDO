@@ -167,25 +167,28 @@
 
  
   <!-- TECH TOGGLE -->
-  <div class="tech-toggle-bar">
+  <div class="re-toggle-bar">
     <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-muted)">Tech Context</span>
-    <button class="tech-toggle-btn" data-tech-target="moat" onclick="toggleTech('moat')">
+    <button class="re-toggle-btn" data-tech-target="moat" onclick="toggleTech('moat')">
       <span class="btn-dot"></span>
       Show Tech Context
     </button>
   </div>
-  <div class="tech-panel" id="tech-moat">
-    <div class="tech-panel-header">
-      <span class="tech-panel-icon">Tech Context</span>
-      <h4>The Compounding Advantage in Product-Led Organizations</h4>
+  <div class="re-panel" id="tech-moat">
+    <div class="re-panel-header">
+      <span class="re-panel-icon">Tech Context</span>
+      <h4>The Compounding Advantage</h4>
     </div>
-    <p>Two enterprise software companies compete in the same market. Both deploy AI in their product development and go-to-market workflows in 2024. Both have comparable model quality and engineering capability. Their trajectories diverge not because of the models but because of what the models can reason over.</p>
-    <p>Company A deploys agents on a governed semantic layer and a decision-lineage-capable data stack. Every significant decision&#160;&#8212; a pricing change, a feature sunset, a market entry&#160;&#8212; is bound to the context that made it rational: the competitive signals that were Active, the customer cohort definitions in use, the retention model version that informed the projection. When the AI product agent reasons about the next pricing decision, it can query: <em>in 2022 when we ran a similar pricing test in the mid-market segment, what was the competitive context, which definition of retention were we using, and how did the actual outcome compare to the model&#8217;s prediction?</em> The answer is retrievable in minutes.</p>
-    <p>Company B deployed agents on a faster timeline. Their data warehouse is cleaner. Their model is marginally more capable. But every pricing decision, every feature launch, every market entry exists as a record&#160;&#8212; not a memory. The agent can retrieve what was decided. It cannot reconstruct why it made sense. When the mid-market pricing question comes up again, the team rebuilds the context from scratch. They relearn the same lesson. They make the same calibration error. At agent speed, with greater confidence than any human team ever did.</p>
-    <p><strong>The compounding gap.</strong> McKinsey found that only 39% of organizations report EBIT impact from AI at the enterprise level, despite 88% reporting regular AI use in at least one business function. The gap between using AI and compounding from AI is not model quality. It is institutional memory. Deloitte&#8217;s 2026 State of AI survey found that only 34% of organizations are truly reimagining the business. The 66% that are not are deploying intelligence on top of forgetting. Fast, fluent, and perpetually starting over.</p>
-    <div class="tech-source">
-      <strong>The test that separates the two companies</strong>
-      A product leader who joined three years after a major platform pivot asks: why did we make that architectural decision, under what assumptions about the market, using what definition of customer success, with what competitive context active? If the answer requires calling the person who was there&#160;&#8212; the memory is human, not institutional. When that person leaves, the memory leaves. The agent reasoning about the next architectural decision will have access to everything the company <em>knows</em>. It will have no access to what the company <em>learned</em>. That is the only moat that cannot be purchased.
+    <p>Two alternatives managers enter the AI cycle at roughly the same moment. Comparable AUM. Comparable talent. Comparable technology spend across eFront, Yardi, Snowflake, and Azure OpenAI. What separates them is not the model. It is the quality of the memory beneath it.</p>
+    <p>Manager A has governed institutional memory across asset classes. Leasing decisions in VTS are tied to the occupancy definition active at the time. Underwriting revisions in Argus are bound to the Chatham rate view and Bloomberg market context that shaped the original capital structure. Credit committee approvals in Allvue or Investran are linked to the rationale, not just the outcome. When the firm revisits a comparable situation two years later, the earlier decision can be reconstructed in minutes.</p>
+    <p>Manager B moved faster. Its warehouse in Snowflake is cleaner. Its dbt models are well-maintained. Its models may be marginally better. But its major decisions survive only as records of what happened. The reasoning has to be rebuilt from scratch each time. The firm relearns the same lessons, repeats the same miscalibrations, and does it with more speed and confidence each cycle.</p>
+    <p>BlackRock is building the product version of this argument. The convergence of Aladdin and eFront is an attempt to construct unified institutional memory across public and alternative markets inside a single platform. The firms without BlackRock&#8217;s scale to buy or build that infrastructure need to construct the equivalent from the composite stack&#160;&#8212; Collibra for governed definitions, Informatica and Reltio for lineage and entity resolution, AtScale for semantic exposure, Snowflake and dbt for the data foundation&#160;&#8212; and govern it deliberately rather than waiting for a platform to do it for them.</p>
+    <p>A useful test is simple. If a CIO or portfolio leader who joined years after a major refinancing cycle asks why the firm chose that hedge structure, leasing posture, or underwriting assumption set, can the institution answer without calling the people who happened to be there?</p>
+    <p>If it cannot, the memory is still human. When those people leave, the lesson leaves with them. That is harder to copy than model access, tooling, or speed.</p>
+    <div class="tech-sources">
+      <strong>Sources</strong>
+      McKinsey, <em>The State of AI: Agents, Innovation, and Transformation</em> (Nov. 2025)&#160;&#8212; 39% enterprise EBIT impact; 88% AI adoption in at least one function.
+      Deloitte, <em>State of AI in the Enterprise</em> (2026)&#160;&#8212; 34% truly reimagining the business.
     </div>
   </div>
 
