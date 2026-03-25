@@ -203,23 +203,28 @@
   <div class="re-panel" id="tech-knowledge-stack">
     <div class="re-panel-header">
       <span class="re-panel-icon">Tech Context</span>
-      <h4>The Stack You Have vs. The Stack You Need</h4>
+      <h4>The Stack Most Alternatives Managers Actually Have</h4>
     </div>
-    <p>A large enterprise deploys GPT-4 via Azure OpenAI as its reasoning layer. The data warehouse runs on Snowflake. Business logic lives in dbt transformation models&#160;&#8212; SQL files in a Git repository, with metric definitions documented in code comments and a partially maintained data catalog covering approximately 40% of production models. The BI layer is Tableau, with semantic models built by individual analysts over three years, each encoding their own cohort logic.</p>
-    <p>Layer 04&#160;&#8212; Reasoning&#160;&#8212; is deployed. It is capable, fast, and fluent.</p>
-    <p>Layer 01&#160;&#8212; Ontology&#160;&#8212; is partial. Entity resolution between the CRM, the ERP, and the data warehouse is incomplete. The same customer appears under four different IDs across systems. &#8220;Product&#8221; means something different in the CRM (a SKU) than in the data warehouse (a contract line item) than in the BI layer (a revenue category).</p>
-    <p>Layer 02&#160;&#8212; Semantic layer&#160;&#8212; is fragmented across dbt model comments, Tableau semantic models, and institutional knowledge in the heads of three senior analysts. None of it is versioned. None of it is machine-readable by the agent at inference time.</p>
-    <p>Layer 03&#160;&#8212; Context graph&#160;&#8212; does not exist. Competitive context, market conditions at the time of major decisions, exception approvals and their rationale&#160;&#8212; none of this is captured in a queryable structure. It lives in email threads, Slack messages, and Confluence pages the agent cannot access.</p>
-    <p><strong>The consequence.</strong> Gartner predicts that through 2026, organizations will abandon 60% of AI projects unsupported by AI-ready data. At Gartner&#8217;s 2026 D&amp;A Summit, analysts showed that organizations with the highest satisfaction from AI initiatives invest 1.78&#215; more in foundations&#160;&#8212; data quality, governance, talent&#160;&#8212; than in AI tools themselves. The agent is not wrong. It is reasoning correctly over an incomplete and ungoverned foundation. Fast. Authoritative. Increasingly expensive to trust.</p>
+    <p>A large alternatives manager runs eFront or Allvue for fund operations, Yardi and MRI for real estate, DealCloud for deal flow, Anaplan for fund-level financial planning, Snowflake as the warehouse, dbt for transformation, Tableau or Power BI for reporting, and ChatGPT via Azure OpenAI as the reasoning layer.</p>
+    <p>The reasoning layer is usually the first thing bought. What sits beneath it is rarely governed.</p>
+    <p>Ontology is only partially resolved. The same asset, tenant, or loan can appear differently across eFront, Yardi, and DealCloud. Even familiar terms&#160;&#8212; occupancy, NOI, commitment, exposure&#160;&#8212; shift by function and platform. Reltio or Informatica MDM can resolve the entity. Most firms have not made that investment yet.</p>
+    <p>The semantic layer is fragmented across dbt models, Anaplan assumptions, Argus files, and analyst spreadsheets. It is not consistently versioned. None of it is machine-readable by the agent at inference time. Collibra is where these definitions should live. AtScale is how they get exposed to the reasoning layer without moving the data.</p>
+    <p>The context layer barely exists. IC memos live in PDFs. Committee minutes live in SharePoint. Chatham outputs arrive by email. The market context behind major decisions, the rationale for an underwriting override, the reason treasury hedged one way instead of another&#160;&#8212; all of it is document-based, not queryable.</p>
+    <p>So the model does exactly what it is designed to do. It reasons over what it can see. The problem is what it cannot see.</p>
     <table>
-      <thead><tr><th>Layer</th><th>What most enterprises have</th><th>What the agent needs</th></tr></thead>
+      <thead><tr><th>Layer</th><th>What most firms have</th><th>What the agent needs</th></tr></thead>
       <tbody>
-        <tr><td>01 Ontology</td><td>Partial entity resolution, application-specific schemas</td><td>Probabilistic, time-aware entity resolution. Plural ontologies with governed mappings</td></tr>
-        <tr><td>02 Semantic layer</td><td>dbt model comments. Tableau semantic models. Analyst spreadsheets</td><td>Versioned, machine-readable metric definitions with calculation lineage and counterparty mappings</td></tr>
-        <tr><td>03 Context graph</td><td>Email threads, Slack, Confluence, people&#8217;s heads</td><td>Explicitly temporal context records with Active&#160;/&#160;Archived&#160;/&#160;Deprecated lifecycle governance</td></tr>
-        <tr><td>04 Reasoning</td><td>Deployed</td><td>Deployed&#160;&#8212; trustworthy only when the three layers beneath it are governed</td></tr>
+        <tr><td>01&#160;Ontology</td><td>Asset and entity definitions siloed by platform. eFront, Yardi, and DealCloud do not share a canonical model</td><td>Time-aware entity resolution across all platforms. Reltio or Informatica MDM as the resolution layer</td></tr>
+        <tr><td>02&#160;Semantic layer</td><td>dbt models, Anaplan assumptions, Argus files, analyst spreadsheets. None versioned, none machine-readable at inference time</td><td>Versioned, governed definitions in Collibra. AtScale exposing them to the reasoning layer without data movement</td></tr>
+        <tr><td>03&#160;Context graph</td><td>IC memos in PDFs, committee minutes in SharePoint, Chatham outputs in email, market context in people&#8217;s heads</td><td>Explicit, time-bound context records with Active&#160;/&#160;Archived&#160;/&#160;Deprecated lifecycle governance</td></tr>
+        <tr><td>04&#160;Reasoning</td><td>Deployed via Azure OpenAI</td><td>The same layer&#160;&#8212; trustworthy only when the three layers beneath it are governed</td></tr>
       </tbody>
     </table>
+    <div class="tech-sources">
+      <strong>Sources</strong>
+      Gartner, <em>Rethink Semantic Layers to Support the Future of Analytics and AI</em> (8 Apr. 2025, ID G00826629)&#160;&#8212; composite semantic layers and knowledge-graph-supported architecture.
+      Gartner D&amp;A Summit 2026&#160;&#8212; organizations with highest AI satisfaction invest 1.78&#215; more in foundations than in AI tools.
+    </div>
   </div>
 
 <div class="page-nav-footer">

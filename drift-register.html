@@ -235,17 +235,23 @@
   <div class="re-panel" id="tech-drift">
     <div class="re-panel-header">
       <span class="re-panel-icon">Tech Context</span>
-      <h4>Where Drift Enters an Enterprise Analytics Stack</h4>
+      <h4>EBITDA Drift Across a Private Equity Portfolio</h4>
     </div>
-    <p>A growth-stage enterprise deploys Salesforce for CRM, Amplitude for product analytics, and Snowflake as its data warehouse, with dbt managing transformations and Looker as the primary BI layer. Each team defines &#8220;conversion&#8221; within their own system.</p>
-    <p>Marketing measures lead-to-opportunity conversion in Salesforce. Product measures trial-to-paid conversion in Amplitude using a 7-day activation window. The data warehouse team computes conversion in a dbt model using a 14-day window inherited from a legacy definition. Looker surfaces a fourth number&#160;&#8212; a blended funnel metric built for a specific board presentation two years ago that was never retired.</p>
-    <p>No individual definition is wrong. All four are internally consistent. None are reconciled. When the AI-powered forecasting agent queries the semantic layer for conversion rate to project next-quarter pipeline, it finds two accessible definitions and selects the one with higher confidence weighting&#160;&#8212; the dbt model&#160;&#8212; without flagging the selection or recording which version was active at inference time.</p>
-    <p><strong>The visibility problem.</strong> At Gartner&#8217;s Data &amp; Analytics Summit 2026, analysts declared universal semantic layers a &#8220;non-negotiable foundation&#8221; and predicted that 60% of agentic analytics projects relying solely on the Model Context Protocol will fail by 2028 without a consistent semantic layer. The failure mode they described is not architectural complexity. It is silent definition selection&#160;&#8212; an agent choosing between competing valid definitions without recording that a choice was made.</p>
+    <p>A mid-market PE fund holds fifteen companies across six sectors. Every portfolio company CFO computes EBITDA differently: some treat stock-based compensation as an add-back, some do not; some capitalize certain development costs, some expense them; some include earn-out payments in the base, some strip them out.</p>
+    <p>The GP&#8217;s fund model normalizes these for reporting in iLEVEL or Allvue. But the normalization logic shifts across Fund I, Fund II, and Fund III as accounting conventions evolve and as the GP&#8217;s own views change. By Fund III, cross-vintage EBITDA comparisons are unreliable&#160;&#8212; not because the data is missing, but because the definition was never stabilized.</p>
+    <p>DealCloud carries deal-level data. iLEVEL or Allvue carries portfolio monitoring. Each portfolio company runs its own ERP. dbt sits in the middle attempting to reconcile what was never agreed. Monte Carlo can detect that something has drifted. Collibra is where the definition should have lived from the start.</p>
+    <p>None of these definitions is irrational. They coexist without being reconciled. When a fund-level analytics agent asks for portfolio EBITDA, it retrieves what is available, applies the most accessible normalization, and moves on without recording that a choice was made.</p>
+    <p>That is the failure Gartner is warning about in agentic analytics. Not complexity. Silent selection.</p>
     <div class="re-example">
-      <strong>Active register&#160;&#8212; enterprise analytics stack</strong>
-      <em>Conversion rate</em>&#160;&#8212; Marketing: lead-to-opportunity, 30-day window, Salesforce. Product: trial-to-paid, 7-day activation window, Amplitude. Data warehouse: trial-to-paid, 14-day window, dbt transform v1.4. Looker: blended funnel, original board deck definition, unversioned. Divergence detected Q2 2025 during annual planning when three teams presented incompatible pipeline projections to the same leadership team.
+      <strong>Active register &#8212; PE portfolio monitoring stack</strong>
+      <em>EBITDA</em> &#8212; Fund model: normalized with GP-defined add-backs, Allvue. Portfolio company: as reported to board, company ERP. LP report: per LPA definition, Investran. Divergence detected during Fund III annual valuation when three companies showed wider-than-expected spread between reported and normalized figures across vintage years.
       <br><br>
-      <em>Monthly active user</em>&#160;&#8212; Product: any login event in a 30-day rolling window. Customer success: completion of at least one core workflow action in 30 days. Engineering: any API call in a 30-day window. Finance: paying seat with at least one session in billing period. All four definitions appear in the same quarterly business review deck under the same label.
+      <em>Lease start date</em> &#8212; Deal team: signed commencement target, DealCloud. Portfolio ops: actual move-in or operational start date. Fund accounting: rent or revenue commencement date per GAAP. Reporting: first period included in performance roll-forward. All four appear in the same quarterly LP update under the same label.
+    </div>
+    <div class="tech-sources">
+      <strong>Sources</strong>
+      Gartner, <em>Rethink Semantic Layers to Support the Future of Analytics and AI</em> (8 Apr. 2025, ID G00826629).
+      Gartner Data &amp; Analytics Summit 2026 &#8212; semantic layers as non-negotiable foundation; 60% agentic analytics failure prediction for MCP-only deployments.
     </div>
   </div>
 

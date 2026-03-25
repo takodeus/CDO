@@ -402,6 +402,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--amber-lt); display: block; margin-bottom: 0.35rem;
   font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
 }
+.re-panel .tech-sources {
+  background: var(--bg-inset); border-left: 3px solid var(--bd);
+  padding: 0.85rem 1.2rem; margin-top: 1.25rem;
+  font-size: 0.75rem; color: var(--tx-muted); line-height: 1.7;
+}
+.re-panel .tech-sources strong {
+  color: var(--tx-muted); display: block; margin-bottom: 0.25rem;
+  font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
 
 /* ═══════════════════════════════════════════════════════
    TECH CONTEXT TABLES (extends .re-panel)
