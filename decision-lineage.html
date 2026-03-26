@@ -154,7 +154,7 @@
       <span class="re-panel-icon">Tech Context</span>
       <h4>The Reconstruction Problem in Private Credit</h4>
     </div>
-    <p>A direct lender closes a $200M term loan in 2022. The covenant package lives in Allvue or Investran: leverage ratio, DSCR floor, capex basket, cross-default triggers. Two amendments follow over two years&#160;&#8212; the first broadens the EBITDA add-back basket, the second modifies the maintenance covenant step-down schedule. Both are approved by credit committee. Both are in the system.</p>
+    <p>A direct lender closes a $200M term loan in 2022. The covenant package lives in Allvue or Investran: leverage ratio, DSCR floor, capex basket, cross-default triggers. Two amendments follow over two years, the first broadens the EBITDA add-back basket, the second modifies the maintenance covenant step-down schedule. Both are approved by credit committee. Both are in the system.</p>
     <p>In 2024 the borrower approaches technical default. The lender needs to reconstruct the credit committee&#8217;s reasoning at origination, the market context from Bloomberg and Chatham that shaped the original structure, the approval logic behind each amendment, and the precedent set by comparable credits in the portfolio using Preqin or PitchBook for the comp set.</p>
     <p>The data lineage is intact. Every amendment, payment, and covenant test is in Allvue or Investran. The decision lineage is not. The reason this amendment was approved when a comparable request from a different borrower was declined six months earlier exists only in a PDF credit memo, not in a queryable record bound to the transaction at write time.</p>
     <div class="re-example">
@@ -165,11 +165,11 @@
       <thead><tr><th>Question</th><th>Data lineage</th><th>Decision lineage</th></tr></thead>
       <tbody>
         <tr><td>Where did this number come from?</td><td>Yes</td><td>Yes</td></tr>
-        <tr><td>Which model version produced this?</td><td>Partial&#160;&#8212; if version was logged</td><td>Yes&#160;&#8212; if bound at inference time</td></tr>
-        <tr><td>Which covenant definition was active?</td><td>No&#160;&#8212; Allvue stores current state</td><td>Yes&#160;&#8212; if semantic layer is versioned</td></tr>
-        <tr><td>Which credit committee rationale applied?</td><td>No&#160;&#8212; PDF memo</td><td>Yes&#160;&#8212; if approval context is captured at write time</td></tr>
-        <tr><td>Which market context was in force?</td><td>No&#160;&#8212; Bloomberg and Chatham are current state</td><td>Yes&#160;&#8212; if market inputs are bound to the output record</td></tr>
-        <tr><td>Why did this recommendation make sense then?</td><td>No</td><td>Yes&#160;&#8212; if the full context snapshot is preserved</td></tr>
+        <tr><td>Which model version produced this?</td><td>Partial; if version was logged</td><td>Yes; if bound at inference time</td></tr>
+        <tr><td>Which covenant definition was active?</td><td>No; Allvue stores current state</td><td>Yes; if semantic layer is versioned</td></tr>
+        <tr><td>Which credit committee rationale applied?</td><td>No; PDF memo</td><td>Yes; if approval context is captured at write time</td></tr>
+        <tr><td>Which market context was in force?</td><td>No; Bloomberg and Chatham are current state</td><td>Yes; if market inputs are bound to the output record</td></tr>
+        <tr><td>Why did this recommendation make sense then?</td><td>No</td><td>Yes; if the full context snapshot is preserved</td></tr>
       </tbody>
     </table>
     <p>The practical minimum does not require a knowledge graph on day one. It requires one discipline: every recommendation record written with the model version, assumption-set version, and approval-logic version that were active at that moment. That binding is not data lineage. It is the write-path capture that data lineage was never designed to perform.</p>

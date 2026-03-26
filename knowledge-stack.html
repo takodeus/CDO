@@ -207,9 +207,9 @@
     </div>
     <p>A large alternatives manager runs eFront or Allvue for fund operations, Yardi and MRI for real estate, DealCloud for deal flow, Anaplan for fund-level financial planning, Snowflake as the warehouse, dbt for transformation, Tableau or Power BI for reporting, and ChatGPT via Azure OpenAI as the reasoning layer.</p>
     <p>The reasoning layer is usually the first thing bought. What sits beneath it is rarely governed.</p>
-    <p>Ontology is only partially resolved. The same asset, tenant, or loan can appear differently across eFront, Yardi, and DealCloud. Even familiar terms&#160;&#8212; occupancy, NOI, commitment, exposure&#160;&#8212; shift by function and platform. Reltio or Informatica MDM can resolve the entity. Most firms have not made that investment yet.</p>
+    <p>Ontology is only partially resolved. The same asset, tenant, or loan can appear differently across eFront, Yardi, and DealCloud. Even familiar terms, such as occupancy, NOI, commitment, exposure, shift by function and platform. Reltio or Informatica MDM can resolve the entity. Most firms have not made that investment yet.</p>
     <p>The semantic layer is fragmented across dbt models, Anaplan assumptions, Argus files, and analyst spreadsheets. It is not consistently versioned. None of it is machine-readable by the agent at inference time. Collibra is where these definitions should live. AtScale is how they get exposed to the reasoning layer without moving the data.</p>
-    <p>The context layer barely exists. IC memos live in PDFs. Committee minutes live in SharePoint. Chatham outputs arrive by email. The market context behind major decisions, the rationale for an underwriting override, the reason treasury hedged one way instead of another&#160;&#8212; all of it is document-based, not queryable.</p>
+    <p>The context layer barely exists. IC memos live in PDFs. Committee minutes live in SharePoint. Chatham outputs arrive by email. The market context behind major decisions, the rationale for an underwriting override, the reason treasury hedged one way instead of another; all of it is document-based, not queryable.</p>
     <p>So the model does exactly what it is designed to do. It reasons over what it can see. The problem is what it cannot see.</p>
     <table>
       <thead><tr><th>Layer</th><th>What most firms have</th><th>What the agent needs</th></tr></thead>
@@ -217,7 +217,7 @@
         <tr><td>01&#160;Ontology</td><td>Asset and entity definitions siloed by platform. eFront, Yardi, and DealCloud do not share a canonical model</td><td>Time-aware entity resolution across all platforms. Reltio or Informatica MDM as the resolution layer</td></tr>
         <tr><td>02&#160;Semantic layer</td><td>dbt models, Anaplan assumptions, Argus files, analyst spreadsheets. None versioned, none machine-readable at inference time</td><td>Versioned, governed definitions in Collibra. AtScale exposing them to the reasoning layer without data movement</td></tr>
         <tr><td>03&#160;Context graph</td><td>IC memos in PDFs, committee minutes in SharePoint, Chatham outputs in email, market context in people&#8217;s heads</td><td>Explicit, time-bound context records with Active&#160;/&#160;Archived&#160;/&#160;Deprecated lifecycle governance</td></tr>
-        <tr><td>04&#160;Reasoning</td><td>Deployed via Azure OpenAI</td><td>The same layer&#160;&#8212; trustworthy only when the three layers beneath it are governed</td></tr>
+        <tr><td>04&#160;Reasoning</td><td>Deployed via Azure OpenAI</td><td>The same layer; trustworthy only when the three layers beneath it are governed</td></tr>
       </tbody>
     </table>
     <div class="tech-sources">
