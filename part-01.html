@@ -288,9 +288,9 @@
  <div class="series-part-sections">
  <button class="series-section-item sec-active" id="ssec-model" onclick="setTab('model'); setSSecActive('ssec-model')"> <span class="sec-num">i</span>The Fracture</button>
  <button class="series-section-item" id="ssec-lenses" onclick="setTab('lenses'); setSSecActive('ssec-lenses')"><span class="sec-num">ii</span>The Boundary</button>
- <button class="series-section-item" id="ssec-bridge" onclick="setTab('bridge'); setSSecActive('ssec-bridge')"><span class="sec-num">iii</span>The Bridge</button>
- <button class="series-section-item" id="ssec-arch" onclick="setTab('arch'); setSSecActive('ssec-arch')"> <span class="sec-num">iv</span>The Architecture</button>
- <button class="series-section-item" id="ssec-inst" onclick="setTab('inst'); setSSecActive('ssec-inst')"> <span class="sec-num">v</span>The Work</button>
+        <button class="series-section-item" id="ssec-bridge" onclick="setTab('bridge'); setSSecActive('ssec-bridge')"><span class="sec-num">iv</span>The Bridge</button>
+ <button class="series-section-item" id="ssec-arch" onclick="setTab('arch'); setSSecActive('ssec-arch')"> <span class="sec-num">v</span>The Architecture</button>
+ <button class="series-section-item" id="ssec-inst" onclick="setTab('inst'); setSSecActive('ssec-inst')"> <span class="sec-num">vi</span>The Work</button>
  </div>
  </div>
 
@@ -334,6 +334,7 @@
 <div class="tab-nav-bar">
  <button class="tab-btn active" id="btn-model" onclick="setTab('model')">The Fracture</button>
  <button class="tab-btn" id="btn-lenses" onclick="setTab('lenses')">The Boundary</button>
+ <button class="tab-btn" id="btn-perimeter" onclick="setTab('perimeter')">The Perimeter</button>
  <button class="tab-btn" id="btn-bridge" onclick="setTab('bridge')">The Bridge</button>
  <button class="tab-btn" id="btn-arch" onclick="setTab('arch')">The Architecture</button>
  <button class="tab-btn" id="btn-inst" onclick="setTab('inst')">The Work</button>
@@ -603,15 +604,192 @@
 
  <div class="page-nav-footer">
  <button class="page-nav-btn" onclick="setTab('model')">← The Fracture</button>
- <button class="page-nav-btn next" onclick="setTab('bridge')">The Bridge →</button>
+ <button class="page-nav-btn next" onclick="setTab('perimeter')">The Perimeter →</button>
  </div>
 </div>
 </div>
 
-<!-- ══ TAB III: THE BRIDGE ══════════════════════════════════════════════ -->
+
+<!-- ══ TAB III: THE PERIMETER ═════════════════════════════════════ -->
+<div class="tab-section" id="tab-perimeter">
+<div class="page-inner-wide">
+  <div class="eyebrow-tag">III · The Perimeter</div>
+  <h1 class="page-title">The data arrives.<br><em>The meaning stays behind.</em></h1>
+  <p class="page-lead">The three operating configurations showed where the internal boundary sits. This section names everything beyond it. Every counterparty in a large investment manager's ecosystem sends data across an organizational boundary. None of them send meaning with it.</p>
+  <p class="page-lead" style="margin-top:1rem">The fund administrator sends the NAV. The property manager sends the rent roll. The JV partner sends the performance model. Each calculation arrives interpreted, acted upon, aggregated into IC materials. The definitions behind each calculation stay on the other side of the boundary.</p>
+
+  <h2>The semantic boundaries in a large investment manager's ecosystem</h2>
+
+  <div class="legacy-grid" style="grid-template-columns:1fr 1fr;gap:1px;background:var(--bd);border:1px solid var(--bd);margin-bottom:2.5rem">
+
+    <div style="background:var(--bg-card);padding:1.4rem">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--signal-lt);border-bottom:1px solid var(--bd);padding-bottom:0.6rem;margin-bottom:1rem">Operations &amp; Administration</div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Fund Administrator</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Citco, Alter Domus, SS&amp;C, Apex</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">NAV, waterfall calculations, LP allocations, capital call notices</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--signal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">GAAP version, waterfall interpretation, management fee netting convention. None of this travels with the number.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Captive Offshore Operations</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">In-house centers in Toronto, Dublin, Mumbai</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Processed records, reconciled positions, operational data at scale</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--signal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">15 years of processing history locked in point-in-time artifacts. The longitudinal record exists. Governed institutional memory does not.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Transfer Agent</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">State Street, BNY Mellon, Northern Trust</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Investor records, subscription/redemption processing, register entries</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--signal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Investor identity and entitlement data governed separately from fund-level context.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-card);padding:1.4rem">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--signal-lt);border-bottom:1px solid var(--bd);padding-bottom:0.6rem;margin-bottom:1rem">Asset &amp; Property Operations</div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Property Manager</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Greystar, CBRE, JLL, Newmark, Cushman</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Rent rolls, occupancy reports, operating statements, maintenance logs</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--signal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Physical vs. economic occupancy, gross vs. net area, which units included. Definition travels with the person, not the file.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">JV Partner</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Operating partners, co-investors, platform companies</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Asset-level performance, EBITDA reporting, capex schedules, leasing pipeline</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--signal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">EBITDA add-back conventions, capex treatment, revenue recognition. Each partner uses their own definitions, often legitimately.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Asset Manager (3rd Party)</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Outsourced AM for specific strategies</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Hold/sell recommendations, valuation inputs, asset business plans</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--signal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Investment thesis context, underwriting assumptions, decision rationale. Exists in emails and decks, not governed records.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-card);padding:1.4rem">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);border-bottom:1px solid var(--bd);padding-bottom:0.6rem;margin-bottom:1rem">Market &amp; Valuation Data</div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Valuation Firms</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">CBRE Valuation, Cushman Valuation, JLL Valuation</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Appraised values, cap rates, comparable transaction data, market reports</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Cap rate methodology, comp selection criteria, market definition. Quarterly snapshot with no semantic continuity across periods.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Market Data Providers</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">MSCI, CoStar, Green Street, CBRE Research</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Market indices, transaction comps, supply/demand data, submarket analytics</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Index methodology changes silently. Market boundary definitions shift. Historical comparability is assumed, not governed.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Rate &amp; Hedge Data</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Chatham Financial, Bloomberg, Refinitiv</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">SOFR fixings, swap curves, hedge valuations, FX rates</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Hedge accounting treatment, curve construction methodology. Arrives by email attachment, not as governed context records.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-card);padding:1.4rem">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber-lt);border-bottom:1px solid var(--bd);padding-bottom:0.6rem;margin-bottom:1rem">Legal, Tax &amp; Compliance</div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Fund Counsel</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Kirkland, Simpson Thacher, Proskauer</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">LPA interpretations, side letter summaries, regulatory guidance, closing opinions</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--amber-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Legal interpretation of carry, distribution waterfall, LP rights. Exists in PDFs, not queryable as governed definitions.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem;margin-bottom:1.25rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">Tax Advisors</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Deloitte, EY, KPMG, PwC fund tax groups</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Tax analysis, UBTI estimates, PFIC opinions, blocker structuring</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--amber-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">Jurisdictional definitions of distributable income, NAV, and taxable gain. Multiple valid answers depending on LP domicile.</div>
+      </div>
+      <div style="border-left:2px solid var(--bd);padding-left:0.85rem">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--tx-h);margin-bottom:0.2rem">LP Data Room</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--tx-muted);font-style:italic;margin-bottom:0.5rem">Intralinks, Datasite, iDeals, direct portals</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--tx-muted);margin-bottom:0.2rem">Sends</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65;margin-bottom:0.6rem">Investor-facing documents, quarterly reports, capital account statements</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;color:var(--amber-lt);margin-bottom:0.2rem">Semantic risk</div>
+        <div style="font-size:0.78rem;color:var(--tx-body);line-height:1.65">What the LP sees vs. what the GP means. The same metric presented differently to different LP classes based on their LPA terms.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Four types of semantic boundary</h2>
+  <p class="page-lead" style="margin-bottom:1.5rem">Not all ecosystem boundaries carry the same risk. The governance architecture differs by type.</p>
+  <div style="margin-bottom:2.5rem;border-top:1px solid var(--bd)">
+    <div style="display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--bd)">
+      <div style="border-right:1px solid var(--bd);padding:1.25rem 1rem;background:var(--bg-panel)"><span style="font-family:var(--font-mono);font-size:0.55rem;color:var(--signal-lt);display:block;margin-bottom:0.3rem">01</span><span style="font-family:var(--font-display);font-size:0.95rem;font-style:italic;color:var(--tx-h)">Counterparty definitions</span></div>
+      <div style="padding:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--tx-muted);display:block;margin-bottom:0.4rem">The problem</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0">The JV partner uses EBITDA differently. Greystar's occupancy methodology differs from the fund's. Both definitions are valid within their scope. The intelligence layer must hold both, record which was active at which decision, and flag when they diverge beyond the agreed tolerance.</p></div>
+        <div style="border-left:1px solid var(--bd);padding-left:1.25rem"><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--signal-lt);display:block;margin-bottom:0.4rem">In practice</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0;font-style:italic">GP fund model normalizes with GP-defined add-backs. JV partner reports as-board EBITDA. LP report uses LPA-defined convention. All three appear in the same IC memo under the same label.</p></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--bd)">
+      <div style="border-right:1px solid var(--bd);padding:1.25rem 1rem;background:var(--bg-panel)"><span style="font-family:var(--font-mono);font-size:0.55rem;color:var(--signal-lt);display:block;margin-bottom:0.3rem">02</span><span style="font-family:var(--font-display);font-size:0.95rem;font-style:italic;color:var(--tx-h)">System definitions</span></div>
+      <div style="padding:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--tx-muted);display:block;margin-bottom:0.4rem">The problem</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0">The property manager's software computes net rentable area differently than the fund model. This is not a data quality problem. It is a semantic encoding problem. The system produced a number. The meaning requires knowing how the system was configured at the time.</p></div>
+        <div style="border-left:1px solid var(--bd);padding-left:1.25rem"><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--signal-lt);display:block;margin-bottom:0.4rem">In practice</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0;font-style:italic">Yardi computes NRA as gross area minus common area. The fund model uses rentable area per BOMA standard. A new property manager switches software mid-year. The drift is silent and continuous.</p></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--bd)">
+      <div style="border-right:1px solid var(--bd);padding:1.25rem 1rem;background:var(--bg-panel)"><span style="font-family:var(--font-mono);font-size:0.55rem;color:var(--signal-lt);display:block;margin-bottom:0.3rem">03</span><span style="font-family:var(--font-display);font-size:0.95rem;font-style:italic;color:var(--tx-h)">Temporal definitions</span></div>
+      <div style="padding:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--tx-muted);display:block;margin-bottom:0.4rem">The problem</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0">The fund administrator used one GAAP convention in 2019 and another in 2023. The 2019 fund reports are still referenced in current IC materials. The intelligence layer must know which convention was in force at each reporting period and preserve that as governed context.</p></div>
+        <div style="border-left:1px solid var(--bd);padding-left:1.25rem"><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--signal-lt);display:block;margin-bottom:0.4rem">In practice</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0;font-style:italic">ASC 820 fair value hierarchy applied differently across vintage years. The 2021 and 2024 quarterly reports use incompatible methodologies. No flag. No version boundary. No record.</p></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--bd)">
+      <div style="border-right:1px solid var(--bd);padding:1.25rem 1rem;background:var(--bg-panel)"><span style="font-family:var(--font-mono);font-size:0.55rem;color:var(--signal-lt);display:block;margin-bottom:0.3rem">04</span><span style="font-family:var(--font-display);font-size:0.95rem;font-style:italic;color:var(--tx-h)">Jurisdictional definitions</span></div>
+      <div style="padding:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--tx-muted);display:block;margin-bottom:0.4rem">The problem</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0">A Luxembourg SICAR, a UK REIT, a US UPREIT, and a Cayman co-investment vehicle all appear in the same fund of funds. Each has its own legal definition of distributable income, NAV, and carry. The intelligence layer governs coexistence rather than forcing a false unification.</p></div>
+        <div style="border-left:1px solid var(--bd);padding-left:1.25rem"><span style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;color:var(--signal-lt);display:block;margin-bottom:0.4rem">In practice</span><p style="font-size:0.85rem;color:var(--tx-body);line-height:1.7;margin:0;font-style:italic">LP in a UK pension fund and LP in a US endowment receive the same asset's return presented differently. Both presentations are correct. An agent reasoning across both without knowing the jurisdictional context produces a meaningless average.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inline-note" style="background:var(--bg-panel);border-left:3px solid var(--signal);margin-bottom:2rem">
+    <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--signal-lt);display:block;margin-bottom:0.5rem">The position that is genuinely open</span>
+    <p style="margin-bottom:0.85rem">Citco, Alter Domus, SS&amp;C, State Street: every major fund administrator is sitting on the most complete operational record in alternatives. They processed the NAV, allocated the distributions, ran the waterfalls. They have the longitudinal record across thousands of fund structures.</p>
+    <p style="margin-bottom:0.85rem">What they do not have is the intelligence layer that makes that record queryable across time, interpretable across definition changes, and trustworthy at the moment an agent reasons against it. The captive offshore operation has the same asset: fifteen years of processing records, locked in point-in-time artifacts, governed as operational history but not as institutional memory.</p>
+    <p style="margin-bottom:0">The Era 03 position for these organizations is not to become a technology company. It is to become the firm that governs meaning at the boundary: not just operational capacity, but semantic continuity. No incumbent has built it. The position is genuinely open.</p>
+  </div>
+
+  <div class="dark-banner">
+    <p>Your architecture is only as intelligent as your <em>least-governed boundary</em>.</p>
+  </div>
+
+  <div class="page-nav-footer">
+    <button class="page-nav-btn" onclick="setTab('lenses')">&#8592; The Boundary</button>
+    <button class="page-nav-btn next" onclick="setTab('bridge')">The Bridge &#8594;</button>
+  </div>
+</div>
+</div>
+<!-- ══ TAB III: THE PERIMETER ══════════════════════════════════════════ -->
 <div class="tab-section" id="tab-bridge">
 <div class="page-inner-wide">
- <div class="eyebrow-tag">III · The Bridge</div>
+ <div class="eyebrow-tag">IV · The Bridge</div>
  <h1 class="page-title">The sequence<br>is <em>not optional</em></h1>
  <p class="page-lead">The transition from data pyramid to intelligence control tower is not a technology procurement decision. It is a sequenced organizational and architectural shift, four paradigmatic moves that must happen in the right order, because each one is the precondition for the next.</p>
 
@@ -658,7 +836,7 @@
  </div>
 
  <div class="page-nav-footer">
- <button class="page-nav-btn" onclick="setTab('lenses')">← The Boundary</button>
+ <button class="page-nav-btn" onclick="setTab('perimeter')">← The Perimeter</button>
  <button class="page-nav-btn next" onclick="setTab('arch')">The Architecture →</button>
  </div>
 </div>
