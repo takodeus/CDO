@@ -67,6 +67,7 @@ function toggleTech(sectionId) {
 
 /* ── DRIFT ACCORDION ──────────────────────────────── */
 function toggleDRE(el) { el.closest('.dre').classList.toggle('open'); }
+function toggleQF(el) { el.closest('.qf-row').classList.toggle('open'); }
 
 /* ── KNOWLEDGE STACK EXPAND ───────────────────────── */
 function toggleLayer(el) {
