@@ -248,6 +248,21 @@
   .lr-label { border-right: none; border-bottom: 1px solid var(--bd); }
 }
 /* Quiet Failures 2-column table */
+.qf-row { border-top: 1px solid var(--bd); cursor: pointer; }
+.qf-row:last-child { border-bottom: 1px solid var(--bd); }
+.qf-row-header { display: flex; align-items: baseline; gap: 1rem; padding: 1.1rem 0.5rem; min-height: 44px; }
+.qf-row-header:hover .qf-name { color: var(--signal-lt); }
+.qf-row-num { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--signal-lt); flex-shrink: 0; width: 1.5rem; }
+.qf-row-name { font-family: var(--font-display); font-size: 1rem; font-style: italic; color: var(--tx-h); flex: 1; }
+.qf-row-toggle { font-family: var(--font-mono); font-size: 0.7rem; color: var(--tx-muted); margin-left: auto; flex-shrink: 0; min-width: 16px; text-align: right; }
+.qf-row-body { display: none; padding: 0 0.5rem 1.4rem 2.5rem; }
+.qf-row.open .qf-row-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.qf-row.open .qf-row-toggle::after { content: '×'; }
+.qf-row:not(.open) .qf-row-toggle::after { content: '+'; }
+.qf-col-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx-muted); display: block; margin-bottom: 0.5rem; }
+.qf-col-label.mit { color: var(--signal-lt); }
+.qf-col-text { font-size: 0.88rem; color: var(--tx-body); line-height: 1.75; }
+@media (max-width: 640px) { .qf-row.open .qf-row-body { grid-template-columns: 1fr; } }
 .qf-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
 .qf-th-fail, .qf-th-mit {
   padding: 0.75rem 1.25rem; font-family: var(--font-mono); font-size: 0.62rem;
@@ -450,6 +465,10 @@
     </div>
   </div>
 
+  <p style="font-size:1rem;color:var(--tx-body);line-height:1.8;max-width:640px;margin-bottom:2rem;">For senior leaders — portfolio managers, asset managers, fund principals — this is not a question of whether agents will change the role. It is a question of what judgment looks like when the production work is automated. The answer is that judgment becomes more visible, more consequential, and more exposed. Every exception you approve, every agent output you override, every context record you validate or challenge is a direct act of governance. The role does not shrink. It concentrates.</p>
+  <p style="font-size:1rem;color:var(--tx-body);line-height:1.8;max-width:640px;margin-bottom:2rem;">For mid-career professionals — analysts, associates, VP-level operators — the transition is more disorienting because the volume of familiar work disappears first. The spreadsheet models, the data pulls, the first-draft IC materials: these go to agents. What remains requires building a new kind of credibility. The people who move fastest are the ones who reframe the transition as an expansion of scope rather than a contraction of value.</p>
+  <p style="font-size:1rem;color:var(--tx-body);line-height:1.8;max-width:640px;margin-bottom:2.5rem;">For early-career hires — analysts entering roles that previously existed to produce — the path forward is not to compete with agents on output volume. It is to develop the judgment that makes output trustworthy: domain depth, context literacy, and the ability to evaluate whether a recommendation is correct, not just formatted.</p>
+
   <table class="role-table">
     <thead>
       <tr>
@@ -540,6 +559,35 @@
     <p>Governing the quality of agent-produced intelligence requires <em>more judgment</em> than producing analysis ever did.</p>
   </div>
 
+  <div class="inline-note" style="margin-top:2rem;margin-bottom:2rem;background:var(--bg-panel);border-left:3px solid var(--signal)">
+    <p style="margin-bottom:0.85rem">The roles above describe a destination, not a starting point. Most real estate organizations have strong analysts, capable data engineers, and experienced governance leads. The transition is not a replacement of those people. It is a redefinition of what their judgment is applied to.</p>
+    <p style="margin-bottom:0">The analyst who built every IC model for three years has exactly the domain knowledge the Reasoning Auditor role requires. The data engineer who debugged every Yardi integration understands entity resolution at the level the Knowledge Architect role demands. The path is a reorientation of expertise, not a removal of it.</p>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx-muted);margin-bottom:1rem">Transition by cohort</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd)">
+      <div style="background:var(--bg-card);padding:1.25rem">
+        <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--signal-lt);margin-bottom:0.6rem">Senior leaders</div>
+        <p style="font-size:0.88rem;color:var(--tx-body);line-height:1.7;margin:0">The governance and accountability questions are yours. Who owns the decisions agents make? What escalation path exists when a recommendation is wrong? These are not IT questions. They are yours.</p>
+      </div>
+      <div style="background:var(--bg-card);padding:1.25rem">
+        <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.6rem">Mid-career practitioners</div>
+        <p style="font-size:0.88rem;color:var(--tx-body);line-height:1.7;margin:0">Your domain expertise is the scarcest input. The Meaning Governor reconciling Greystar's definitions against the fund's needs someone who has worked both sides. The Reasoning Auditor evaluating a renewal recommendation needs someone who has built one.</p>
+      </div>
+      <div style="background:var(--bg-card);padding:1.25rem">
+        <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber-lt);margin-bottom:0.6rem">Early-career analysts</div>
+        <p style="font-size:0.88rem;color:var(--tx-body);line-height:1.7;margin:0">The work that took three hours now takes three minutes. That time belongs to you if you claim it. The organizations that pull ahead will be the ones where junior people use that time to develop judgment, not just throughput.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="inline-note" style="background:var(--bg-panel);border-left:3px solid var(--teal)">
+    <strong style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);display:block;margin-bottom:0.5rem">On change management</strong>
+    <p style="margin-bottom:0.75rem;font-size:0.9rem;color:var(--tx-body);line-height:1.75">Mercer's 2026 Global Talent Trends survey found employee thriving dropped from 66% in 2024 to 44% in 2026, lower than during COVID. 62% say leaders underestimate AI's emotional impact. Bain's research puts it plainly: no agentic transformation succeeds if the goal appears to be replacing jobs without a path to a more fulfilling career. Elevation framing over efficiency framing is not a communications choice. It is an execution requirement.</p>
+    <p style="margin-bottom:0;font-size:0.9rem;color:var(--tx-body);line-height:1.75">The organizations making this transition successfully are investing in plain-language role impact descriptions, funded learning time, and career paths into the net-new functions, not just announcing the redesign and measuring throughput.</p>
+  </div>
+
   <div class="page-nav-footer">
     <button class="page-nav-btn" onclick="setTab('paradox')">← The Paradox</button>
     <button class="page-nav-btn next" onclick="setTab('kpis')">KPI Redesign →</button>
@@ -555,6 +603,8 @@
   <h1 class="page-title">Measuring the wrong things<br>at <em>speed</em></h1>
   <p class="page-lead">Part II introduced eight diagnostic questions — four that the knowledge architecture can already answer, and four that require the memory layer to answer. The KPIs here are the operational version of that same test. They measure whether the organization is actually building the capability Part II described, or whether it is deploying agents on an ungoverned foundation and measuring only that the agents are running.</p>
 
+  <p class="page-lead" style="margin-bottom:1.5rem">The retiring metrics persist because they are easy to instrument, they satisfy board reporting requirements, and they are the metrics the data team has always owned. None of them are wrong as signals of pipeline health. All of them are silent on the question that matters most: whether the data means what the organization thinks it means.</p>
+
   <div class="inline-note signal" style="margin-bottom:2rem">
     <strong>The specific problem</strong>
     A Yardi-to-warehouse pipeline can run at 99.9% uptime while the occupancy definition inside it has drifted three percentage points from the definition the LP report uses. Pipeline uptime says green. The IC memo says the asset is performing. The actual answer requires someone to reconcile two definitions that have been silently diverging for a year.
@@ -569,22 +619,22 @@
       </div>
       <div class="kpi-list">
         <div class="kpi-item retiring">
-          <div class="kpi-icon" style="background:var(--signal-bg)">📊</div>
+          <div class="kpi-icon" style="background:var(--signal-bg)"></div>
           <div class="kpi-body"><div class="kpi-name">Pipeline Uptime</div><div class="kpi-desc">Whether Yardi, Argus, and VTS pipelines are running. The pipeline can run at 99.9% uptime while the occupancy definition it carries has drifted three percentage points from the LP report definition. Green dashboard. Wrong number. No alert.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
-          <div class="kpi-icon" style="background:var(--signal-bg)">🔢</div>
+          <div class="kpi-icon" style="background:var(--signal-bg)"></div>
           <div class="kpi-body"><div class="kpi-name">Row Counts &amp; Fill Rates</div><div class="kpi-desc">Whether data arrived and fields are populated. A rent roll with 100% fill rate where net rentable area has been computed by a new property manager using gross area since last quarter is complete, fully populated, and semantically broken. The metric has no way to know.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
-          <div class="kpi-icon" style="background:var(--signal-bg)">📈</div>
+          <div class="kpi-icon" style="background:var(--signal-bg)"></div>
           <div class="kpi-body"><div class="kpi-name">Dashboard Adoption</div><div class="kpi-desc">How many users accessed the reporting layer. When agents answer portfolio questions directly, nobody pulls the dashboard. A team optimizing for this KPI in an agentic organization is building reports for an audience that no longer exists — and measuring a capability that has become irrelevant.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
         <div class="kpi-item retiring">
-          <div class="kpi-icon" style="background:var(--signal-bg)">⚡</div>
+          <div class="kpi-icon" style="background:var(--signal-bg)"></div>
           <div class="kpi-body"><div class="kpi-name">Query Response Time</div><div class="kpi-desc">How fast an answer arrives. A renewal recommendation delivered in 400 milliseconds on stale submarket data and a drifted occupancy definition is a fast wrong answer. Optimizing for speed without measuring trustworthiness produces a very confident, very quick organization that keeps getting the same questions wrong.</div></div>
           <span class="kpi-tag tag-retiring">Retiring</span>
         </div>
@@ -599,32 +649,36 @@
       </div>
       <div class="kpi-list">
         <div class="kpi-item">
-          <div class="kpi-icon" style="background:rgba(46,134,193,0.12)">🌊</div>
-          <div class="kpi-body"><div class="kpi-name">Drift Velocity</div><div class="kpi-desc">New drift events per quarter across counterparty definitions — property managers, JV partners, servicers. Average time from divergence to detection. Average time from detection to resolution.</div></div>
+          <div class="kpi-icon" style="background:rgba(46,134,193,0.12)"></div>
+          <div class="kpi-body"><div class="kpi-name">Drift Velocity <span style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--signal);color:var(--signal-lt);padding:0.1rem 0.4rem;margin-left:0.5rem">Meaning Governor</span></div><div class="kpi-desc">New drift events per quarter across counterparty definitions — property managers, JV partners, servicers. Average time from divergence to detection. Average time from detection to resolution.</div></div>
           <span class="kpi-tag tag-new">New</span>
         </div>
         <div class="kpi-item">
-          <div class="kpi-icon" style="background:rgba(46,134,193,0.12)">🔗</div>
-          <div class="kpi-body"><div class="kpi-name">Decision Lineage Coverage</div><div class="kpi-desc">Percentage of material IC decisions with complete lineage records: ontological state, semantic state, and active context at the moment of judgment. Every IC memo without a lineage record is institutional memory lost permanently.</div></div>
+          <div class="kpi-icon" style="background:rgba(46,134,193,0.12)"></div>
+          <div class="kpi-body"><div class="kpi-name">Decision Lineage Coverage <span style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--signal);color:var(--signal-lt);padding:0.1rem 0.4rem;margin-left:0.5rem">Decision Lineage Officer</span></div><div class="kpi-desc">Percentage of material IC decisions with complete lineage records: ontological state, semantic state, and active context at the moment of judgment. Every IC memo without a lineage record is institutional memory lost permanently.</div></div>
           <span class="kpi-tag tag-new">New</span>
         </div>
         <div class="kpi-item">
-          <div class="kpi-icon" style="background:var(--teal-bg)">⏱</div>
-          <div class="kpi-body"><div class="kpi-name">Context Currency Rate</div><div class="kpi-desc">Percentage of Active context records reviewed for decay within their prescribed window. Stale submarket data, expired competitor campaigns, and superseded macro assumptions all degrade agent reasoning — silently and specifically.</div></div>
+          <div class="kpi-icon" style="background:var(--teal-bg)"></div>
+          <div class="kpi-body"><div class="kpi-name">Context Currency Rate <span style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--teal);color:var(--teal-lt);padding:0.1rem 0.4rem;margin-left:0.5rem">Context Graph Curator</span></div><div class="kpi-desc">Percentage of Active context records reviewed for decay within their prescribed window. Stale submarket data, expired competitor campaigns, and superseded macro assumptions all degrade agent reasoning — silently and specifically.</div></div>
           <span class="kpi-tag tag-teal">New</span>
         </div>
         <div class="kpi-item">
-          <div class="kpi-icon" style="background:var(--amber-bg)">🎯</div>
-          <div class="kpi-body"><div class="kpi-name">Agent Recommendation Traceability</div><div class="kpi-desc">Percentage of agent outputs — renewal recommendations, acquisition screens, capex sequencing — that can be traced back to the specific definitions active, context records in scope, and semantic layer version in use at time of generation.</div></div>
+          <div class="kpi-icon" style="background:var(--amber-bg)"></div>
+          <div class="kpi-body"><div class="kpi-name">Agent Recommendation Traceability <span style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--amber);color:var(--amber-lt);padding:0.1rem 0.4rem;margin-left:0.5rem">Reasoning Auditor</span></div><div class="kpi-desc">Percentage of agent outputs — renewal recommendations, acquisition screens, capex sequencing — that can be traced back to the specific definitions active, context records in scope, and semantic layer version in use at time of generation.</div></div>
           <span class="kpi-tag tag-amber">New</span>
         </div>
         <div class="kpi-item">
-          <div class="kpi-icon" style="background:rgba(26,188,156,0.1)">🧠</div>
-          <div class="kpi-body"><div class="kpi-name">Memory Persistence Rate</div><div class="kpi-desc">Percentage of portfolio manager and asset manager transitions where institutional knowledge was transferred via structured lineage records rather than lost. When someone leaves, can the next person reconstruct the logic of prior decisions without calling them?</div></div>
+          <div class="kpi-icon" style="background:rgba(26,188,156,0.1)"></div>
+          <div class="kpi-body"><div class="kpi-name">Memory Persistence Rate <span style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--signal);color:var(--signal-lt);padding:0.1rem 0.4rem;margin-left:0.5rem">Decision Lineage Officer</span></div><div class="kpi-desc">Percentage of portfolio manager and asset manager transitions where institutional knowledge was transferred via structured lineage records rather than lost. When someone leaves, can the next person reconstruct the logic of prior decisions without calling them?</div></div>
           <span class="kpi-tag tag-green">New</span>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="dark-banner" style="margin-top:2rem">
+    <p>A pipeline at 99.9% uptime that carries drifted definitions is not a success. It is a <em>confidence problem</em>.</p>
   </div>
 
   <div class="page-nav-footer">
@@ -895,82 +949,85 @@
   <h1 class="page-title">What fails without<br><em>announcing itself</em></h1>
   <p class="page-lead">The dangerous failures in an agentic real estate organization are not the ones that show up in the error log. They accumulate in the IC materials, the LP packs, and the renewal recommendations — visible only in retrospect, when an LP asks a question no one can answer, or when a portfolio manager realizes two assets have been compared on definitions that drifted apart eighteen months ago. Every one of these failures has the same shape: the infrastructure was built and the process was launched, then the day-to-day pressure of running a real estate portfolio quietly eroded both.</p>
 
-  <table class="qf-table">
-    <thead>
-      <tr>
-        <th class="qf-th-fail">Failure</th>
-        <th class="qf-th-mit">Mitigation</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td class="qf-fail-cell">
-        <div class="qf-num">01</div>
-        <div class="qf-name">Governance Theater</div>
-        <div class="qf-desc">The drift register is created, the semantic governance council is established, the quarterly review is on the calendar. But nothing is resolved. The council meets and defers. The register accumulates entries without owners. The actual definitions running through Yardi and the LP reporting layer continue to diverge — documented and unaddressed. The governance infrastructure exists. The governance function does not.</div>
-      </td>
-      <td class="qf-mit-cell">
-        <div class="qf-mit-label">Mitigation</div>
-        <div class="qf-mit-text">Every register entry requires a named owner and a resolution deadline. The council's output is a decision — a version boundary, an explicit coexistence protocol, or a formal escalation — not a summary of discussion. Measure time-to-resolution, not number of meetings held.</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="qf-fail-cell">
-        <div class="qf-num">02</div>
-        <div class="qf-name">Semantic Layer Orphaning</div>
-        <div class="qf-desc">The semantic layer is built, governed, and versioned. And then analysts continue computing occupancy and NOI in their own spreadsheet models using their own cohort logic. The IC memo that goes to the investment committee uses numbers that bypassed the semantic layer entirely. Two versions of the same metric now coexist — one governed, one operational — with no one having made that choice explicitly and no record that it was made at all.</div>
-      </td>
-      <td class="qf-mit-cell">
-        <div class="qf-mit-label">Mitigation</div>
-        <div class="qf-mit-text">Metrics that bypass the semantic layer are flagged at the point of use. IC materials cite the semantic layer version used. A bypass is a drift event — registered and resolved, not treated as analyst discretion that goes unrecorded.</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="qf-fail-cell">
-        <div class="qf-num">03</div>
-        <div class="qf-name">Agent Overconfidence</div>
-        <div class="qf-desc">The renewal agent produces a recommendation for the Austin mixed-use asset. The output is formatted, specific, and reads like an analyst wrote it. The occupancy figure it used reflects a definition that shifted when the property manager changed eight months ago. The market comp data expired from Active six weeks ago. No one checks because the format signals competence. The recommendation goes into the IC deck. This is not a model failure. It is a Control Layer failure — and a fluent output is more dangerous than a wrong number because it travels further before anyone questions it.</div>
-      </td>
-      <td class="qf-mit-cell">
-        <div class="qf-mit-label">Mitigation</div>
-        <div class="qf-mit-text">Reasoning Auditors review material agent outputs before they move forward. Agent recommendations carry visible metadata: which semantic layer version, which context records in scope, what the agent could not see. The format makes provenance legible. Confidence without traceability is not confidence — it is fluency.</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="qf-fail-cell">
-        <div class="qf-num">04</div>
-        <div class="qf-name">Lineage Abandonment Under Pressure</div>
-        <div class="qf-desc">The deal is moving. There is a competing bid. The lineage capture requirement adds a step. The exception is made once — the deal closes, the record is incomplete. The second exception is made without discussion. Within two quarters, the only IC decisions with structured lineage records are the ones that were not time-sensitive. Which is the ones that did not matter. The governance that was supposed to make institutional memory persist has been quietly switched off for every decision that was consequential.</div>
-      </td>
-      <td class="qf-mit-cell">
-        <div class="qf-mit-label">Mitigation</div>
-        <div class="qf-mit-text">Lineage capture must be lightweight enough that it adds minutes, not hours, to the IC process. It is the memo's metadata, not a separate deliverable. Time pressure is not a valid exception category. If it is too heavy, that is a design problem — not a reason to stop capturing the record.</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="qf-fail-cell">
-        <div class="qf-num">05</div>
-        <div class="qf-name">Context Graph Rot</div>
-        <div class="qf-desc">The context graph grows. No one manages the decay lifecycle. A Sun Belt industrial supply wave from 2023 remains Active. A competing REIT's tenant incentive campaign that ended in Q1 is still tagged Active. A macro assumption from a pre-rate-cut environment continues to inform agent reasoning about cap rate trajectories. The graph is full of authoritative, specific, outdated context — and it is worse than no context because the agent trusts it. The failure is not architectural. It is operational.</div>
-      </td>
-      <td class="qf-mit-cell">
-        <div class="qf-mit-label">Mitigation</div>
-        <div class="qf-mit-text">Decay governance is a staffed function, not a background process. Context Currency Rate is a tracked KPI. Every Active record has a review date. The Context Graph Curator owns the lifecycle — transitions, timestamps, and the record of why each happened.</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="qf-fail-cell">
-        <div class="qf-num">06</div>
-        <div class="qf-name">Role Transition Resistance</div>
-        <div class="qf-desc">The org chart shows Reasoning Auditors. The analysts are still producing analysis. Auditing feels like a demotion because checking someone else's work has never been prestigious in this industry. The identity of the person who figures things out is harder to give up than any specific task. The role redesign is announced, the org chart is updated, and then the behavior does not change. The agents run in parallel to the old model without replacing it. The transformation stalls at the surface.</div>
-      </td>
-      <td class="qf-mit-cell">
-        <div class="qf-mit-label">Mitigation</div>
-        <div class="qf-mit-text">Frame the shift explicitly: a Reasoning Auditor is not a checker. They are the organization's intelligence quality function — the person who determines whether an IC-bound recommendation can be trusted and why. That requires more judgment than building the model did. The career path runs toward decision governance, not away from influence.</div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="qf-accordion">
+    <div class="qf-row" onclick="toggleQF(this)">
+      <div class="qf-row-header">
+        <span class="qf-row-num">01</span>
+        <span class="qf-row-name">Governance Theater</span>
+        <span class="qf-row-toggle"></span>
+      </div>
+      <div class="qf-row-body">
+        <div><span class="qf-col-label">Failure mode</span><p class="qf-col-text">The drift register is created, the semantic governance council is established, the quarterly review is on the calendar. But nothing is resolved. The council meets and defers. The register accumulates entries without owners. The actual definitions running through Yardi and the LP reporting layer continue to diverge: documented and unaddressed. The governance infrastructure exists. The governance function does not.</p></div>
+        <div><span class="qf-col-label mit">Mitigation</span><p class="qf-col-text">Every register entry requires a named owner and a resolution deadline. The council's output is a decision: a version boundary, an explicit coexistence protocol, or a formal escalation, not a summary of discussion. Measure time-to-resolution, not number of meetings held.</p></div>
+      </div>
+    </div>
+    <div class="qf-row" onclick="toggleQF(this)">
+      <div class="qf-row-header">
+        <span class="qf-row-num">02</span>
+        <span class="qf-row-name">Semantic Layer Orphaning</span>
+        <span class="qf-row-toggle"></span>
+      </div>
+      <div class="qf-row-body">
+        <div><span class="qf-col-label">Failure mode</span><p class="qf-col-text">The semantic layer is built, governed, and versioned. And then analysts continue computing occupancy and NOI in their own spreadsheet models using their own cohort logic. The IC memo that goes to the investment committee uses numbers that bypassed the semantic layer entirely. Two versions of the same metric now coexist: one governed, one operational, with no one having made that choice explicitly and no record that it was made at all.</p></div>
+        <div><span class="qf-col-label mit">Mitigation</span><p class="qf-col-text">Metrics that bypass the semantic layer are flagged at the point of use. IC materials cite the semantic layer version used. A bypass is a drift event, registered and resolved, not treated as analyst discretion that goes unrecorded.</p></div>
+      </div>
+    </div>
+    <div class="qf-row" onclick="toggleQF(this)">
+      <div class="qf-row-header">
+        <span class="qf-row-num">03</span>
+        <span class="qf-row-name">Agent Overconfidence</span>
+        <span class="qf-row-toggle"></span>
+      </div>
+      <div class="qf-row-body">
+        <div><span class="qf-col-label">Failure mode</span><p class="qf-col-text">The renewal agent produces a recommendation for the Austin mixed-use asset. The output is formatted, specific, and reads like an analyst wrote it. The occupancy figure it used reflects a definition that shifted when the property manager changed eight months ago. The market comp data expired from Active six weeks ago. No one checks because the format signals competence. The recommendation goes into the IC deck. A fluent output is more dangerous than a wrong number because it travels further before anyone questions it.</p></div>
+        <div><span class="qf-col-label mit">Mitigation</span><p class="qf-col-text">Reasoning Auditors review material agent outputs before they move forward. Agent recommendations carry visible metadata: which semantic layer version, which context records in scope, what the agent could not see. The format makes provenance legible. Confidence without traceability is not confidence. It is fluency.</p></div>
+      </div>
+    </div>
+    <div class="qf-row" onclick="toggleQF(this)">
+      <div class="qf-row-header">
+        <span class="qf-row-num">04</span>
+        <span class="qf-row-name">Lineage Abandonment Under Pressure</span>
+        <span class="qf-row-toggle"></span>
+      </div>
+      <div class="qf-row-body">
+        <div><span class="qf-col-label">Failure mode</span><p class="qf-col-text">The deal is moving. There is a competing bid. The lineage capture requirement adds a step. The exception is made once. The deal closes, the record is incomplete. Within two quarters, the only IC decisions with structured lineage records are the ones that were not time-sensitive. Which is the ones that did not matter. The governance that was supposed to make institutional memory persist has been quietly switched off for every decision that was consequential.</p></div>
+        <div><span class="qf-col-label mit">Mitigation</span><p class="qf-col-text">Lineage capture must be lightweight: minutes, not hours. It is the memo's metadata, not a separate deliverable. Time pressure is not a valid exception. It is the exact condition under which the record matters most.</p></div>
+      </div>
+    </div>
+    <div class="qf-row" onclick="toggleQF(this)">
+      <div class="qf-row-header">
+        <span class="qf-row-num">05</span>
+        <span class="qf-row-name">Context Graph Rot</span>
+        <span class="qf-row-toggle"></span>
+      </div>
+      <div class="qf-row-body">
+        <div><span class="qf-col-label">Failure mode</span><p class="qf-col-text">The context graph grows. No one manages the decay lifecycle. Outdated submarket supply waves, expired rent concession campaigns, and pre-rate-cut macro assumptions continue to inform agent reasoning. The graph is full of authoritative, specific, outdated context. Agents reasoning over it produce fluent recommendations grounded in a world that no longer exists.</p></div>
+        <div><span class="qf-col-label mit">Mitigation</span><p class="qf-col-text">Decay governance is a staffed function. Context Currency Rate is a tracked KPI. Every Active record has a review date. The Context Graph Curator owns the Active to Archived to Deprecated transitions and the record of why each happened.</p></div>
+      </div>
+    </div>
+    <div class="qf-row" onclick="toggleQF(this)">
+      <div class="qf-row-header">
+        <span class="qf-row-num">06</span>
+        <span class="qf-row-name">Role Transition Resistance</span>
+        <span class="qf-row-toggle"></span>
+      </div>
+      <div class="qf-row-body">
+        <div><span class="qf-col-label">Failure mode</span><p class="qf-col-text">The org chart shows Reasoning Auditors. The analysts are still producing analysis. The role redesign is announced, the org chart is updated, and then the behavior does not change. The new titles exist. The new functions do not. The organization has the vocabulary of transformation without the structure.</p></div>
+        <div><span class="qf-col-label mit">Mitigation</span><p class="qf-col-text">A Reasoning Auditor is not a checker. They are the organization's intelligence quality function. The career path runs toward decision governance, not away from influence. The role must be trusted and why. That requires more judgment than building the model did.</p></div>
+      </div>
+    </div>
+    <div class="qf-row" onclick="toggleQF(this)">
+      <div class="qf-row-header">
+        <span class="qf-row-num">07</span>
+        <span class="qf-row-name">Decision Governance Vacuum</span>
+        <span class="qf-row-toggle"></span>
+      </div>
+      <div class="qf-row-body">
+        <div><span class="qf-col-label">Failure mode</span><p class="qf-col-text">Agents are executing. Nobody has formally answered who owns the decisions they are making. When an agent produces a recommendation that is acted on and turns out to be wrong, accountability dissolves into the architecture. The IC committee approved it. The agent recommended it. The data was correct. No one is responsible because no one was ever named.</p></div>
+        <div><span class="qf-col-label mit">Mitigation</span><p class="qf-col-text">Decision governance is a named function, not a committee that convenes after an incident. Every material AI-supported decision has a named owner, a defined escalation path, and an audit trail that survives the output.</p></div>
+      </div>
+    </div>
+  </div>
 
   <div class="dark-banner">
     <p>These are not failures of discipline. They are failures of <em>design</em>.</p>
